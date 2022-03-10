@@ -89,6 +89,7 @@ namespace MIRDC_Puckering.OtherProgram
                     Thread.Sleep(100);
                 }
 
+
             }
             catch { MessageBox.Show("sys error!!"); }
 
