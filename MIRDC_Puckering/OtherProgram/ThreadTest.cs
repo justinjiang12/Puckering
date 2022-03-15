@@ -18,7 +18,11 @@ namespace MIRDC_Puckering.OtherProgram
         //實作function類別之物件
         private function fun_mirdc = new function();
         //宣告main_MIRDC_testLoop 欄位(thread)
-        Thread main_MIRDC_testLoop;
+        private Thread main_MIRDC_testLoop;
+        private bool state_MIRDC_testLoop = false;
+        
+        
+
         #endregion
 
 
@@ -43,14 +47,14 @@ namespace MIRDC_Puckering.OtherProgram
             button4.Enabled = true;
             button5.Enabled = true;
             //建立並觸發執行緒
-            creat_thread();
+            state_MIRDC_testLoop = creat_thread();
         }
         /// <summary>
         /// 視窗關閉
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        public void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             //關閉執行緒
             end_thread();
@@ -61,14 +65,23 @@ namespace MIRDC_Puckering.OtherProgram
         /// <summary>
         /// 建立執行緒
         /// </summary>
-        private void creat_thread()
+        private bool creat_thread()
         {
-            //實作執行緒thr_mirdc
-            Thread thr_mirdc = new Thread(fun_mirdc.LoopRun);
-            //將實作之執行緒傳遞於main_MIRDC_testLoop欄位
-            main_MIRDC_testLoop = thr_mirdc;
-            //啟動main_MIRDC_testLoop執行緒
-            main_MIRDC_testLoop.Start();
+            try
+            {
+                //實作執行緒thr_mirdc
+                Thread thr_mirdc = new Thread(fun_mirdc.LoopRun);
+                //將實作之執行緒傳遞於main_MIRDC_testLoop欄位
+                main_MIRDC_testLoop = thr_mirdc;
+                //啟動main_MIRDC_testLoop執行緒
+                main_MIRDC_testLoop.Start();
+                return true;
+            }
+            catch(Exception x) 
+            {
+                MessageBox.Show(x.ToString(), "systen error!!!");
+                return false;
+            }
 
         }
         /// <summary>
@@ -78,21 +91,22 @@ namespace MIRDC_Puckering.OtherProgram
         {
             try
             {
-                //暫停執行緒旗標
-                fun_mirdc.loopStop = true;
-                //關閉執行緒
-                main_MIRDC_testLoop.Abort();
-                //確認關閉執行緒動作
-                while (main_MIRDC_testLoop.ThreadState != ThreadState.Aborted)
+                if (state_MIRDC_testLoop)
                 {
-                    //當調用Abort方法後，如果thread線程的狀態不為Aborted，主線程就一直在這裡做迴圈，直到thread線程的狀態變為Aborted為止
-                    Thread.Sleep(100);
+                    //暫停執行緒旗標
+                    fun_mirdc.loopStop = true;
+                    //關閉執行緒
+                    main_MIRDC_testLoop.Abort();
+                    //確認關閉執行緒動作
+
+                    while (main_MIRDC_testLoop.ThreadState != ThreadState.Aborted)
+                    {
+                        //當調用Abort方法後，如果thread線程的狀態不為Aborted，主線程就一直在這裡做迴圈，直到thread線程的狀態變為Aborted為止
+                        Thread.Sleep(100);
+                    }
                 }
-
-
             }
             catch { MessageBox.Show("sys error!!"); }
-
         }
         #endregion
 
@@ -193,8 +207,6 @@ namespace MIRDC_Puckering.OtherProgram
         #endregion
 
     }
-
-
 
 
     /// <summary>
