@@ -11,6 +11,12 @@ using System.Threading; //需匯入System.Threading
 
 namespace MIRDC_Puckering.OtherProgram
 {
+    /// <summary>
+    /// 委派宣告
+    /// </summary>
+    /// <param name="State"></param>
+    public delegate void LoopState();
+
     public partial class ThreadTest : Form
     {
 
@@ -20,8 +26,10 @@ namespace MIRDC_Puckering.OtherProgram
         //宣告main_MIRDC_testLoop 欄位(thread)
         private Thread main_MIRDC_testLoop;
         private bool state_MIRDC_testLoop = false;
-        
-        
+
+        //宣告事件(對外)
+        public event LoopState LoopState;
+
 
         #endregion
 
@@ -135,6 +143,7 @@ namespace MIRDC_Puckering.OtherProgram
                             button2.Enabled = false;
                             button4.Enabled = true;
                             button5.Enabled = true;
+                            LoopState(); //事件觸發
                         }
                         else
                         {

@@ -14,6 +14,8 @@ namespace MIRDC_Puckering
         #region 欄位宣告
         //實作function類別之物件
         private function fun_mirdc = new function();
+
+
         //宣告main_MIRDC_testLoop 欄位(thread)
         private Thread main_MIRDC_testLoop;
         private bool state_MIRDC_testLoop = false;

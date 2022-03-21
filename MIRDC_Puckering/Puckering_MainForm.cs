@@ -20,12 +20,11 @@ namespace MIRDC_Puckering
     {
         #region 欄位宣告
 
-
         string pageState = "HomePage";
+        int eventnum=1;
 
         public MitusbiahiRobotForm F_MRC = new MitusbiahiRobotForm();
         public ThreadTest F_ThrT = new ThreadTest();
-
 
 
         #endregion
@@ -46,8 +45,10 @@ namespace MIRDC_Puckering
         /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            F_ThrT.LoopState += testfuntion;
         }
+
+
         /// <summary>
         /// 視窗關閉
         /// </summary>
@@ -55,7 +56,6 @@ namespace MIRDC_Puckering
         /// <param name="e"></param>
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             
             DialogResult dr = MessageBox.Show("確定要關閉程式嗎?",
             "Closing event!", MessageBoxButtons.YesNo);
@@ -72,6 +72,19 @@ namespace MIRDC_Puckering
             
 
         }
+        #endregion
+
+
+        #region 事件觸發方法
+        /// <summary>
+        /// 事件觸發方法
+        /// </summary>
+        private void testfuntion()
+        {
+            eventnum += eventnum;
+            label1.Text = eventnum.ToString();
+        }
+
         #endregion
 
 
@@ -127,7 +140,6 @@ namespace MIRDC_Puckering
                         this.Close();
 
                         break;
-                        
 
 
                 }
@@ -142,7 +154,6 @@ namespace MIRDC_Puckering
         /// <param name="pageName"></param>
         public void RemovePage(string pageName)
         {
-
             if (pageName == "Mitusbishi_Page") { panel1.Controls.Remove(F_MRC); }
             if (pageName == "Thread_Page") { panel1.Controls.Remove(F_ThrT); }
 
