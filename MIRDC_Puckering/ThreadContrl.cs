@@ -13,7 +13,7 @@ namespace MIRDC_Puckering
     {
         #region 欄位宣告
         //實作function類別之物件
-        private function fun_mirdc = new function();
+        //private function fun_mirdc = new function();
 
 
         //宣告main_MIRDC_testLoop 欄位(thread)
@@ -31,9 +31,9 @@ namespace MIRDC_Puckering
             try
             {
                 //實作執行緒thr_mirdc
-                Thread thr_mirdc = new Thread(fun_mirdc.LoopRun);
+                //Thread thr_mirdc = new Thread(fun_mirdc.LoopRun);
                 //將實作之執行緒傳遞於main_MIRDC_testLoop欄位
-                main_MIRDC_testLoop = thr_mirdc;
+                //main_MIRDC_testLoop = thr_mirdc;
                 //啟動main_MIRDC_testLoop執行緒
                 main_MIRDC_testLoop.Start();
                 return true;
@@ -56,7 +56,7 @@ namespace MIRDC_Puckering
                 if (state_MIRDC_testLoop)
                 {
                     //暫停執行緒旗標
-                    fun_mirdc.loopStop = true;
+                    //fun_mirdc.loopStop = true;
                     //關閉執行緒
                     main_MIRDC_testLoop.Abort();
                     //確認關閉執行緒動作
@@ -71,10 +71,6 @@ namespace MIRDC_Puckering
             catch { MessageBox.Show("sys error!!"); }
         }
         #endregion
-
-
-
-
 
 
 

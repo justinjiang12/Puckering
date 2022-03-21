@@ -46,6 +46,7 @@ namespace MIRDC_Puckering
         private void Form1_Load(object sender, EventArgs e)
         {
             F_ThrT.LoopState += testfuntion;
+            ISystem.OnSysModelChanging += ChangeSysModelState;
         }
 
 
@@ -75,7 +76,7 @@ namespace MIRDC_Puckering
         #endregion
 
 
-        #region 事件觸發方法
+        #region 相關事件觸發方法
         /// <summary>
         /// 事件觸發方法
         /// </summary>
@@ -84,6 +85,103 @@ namespace MIRDC_Puckering
             eventnum += eventnum;
             label1.Text = eventnum.ToString();
         }
+
+        /// <summary>
+        /// 當系統狀態改變事件觸發
+        /// </summary>
+        /// <param name="State"></param>
+        private void ChangeSysModelState(SysModel State)
+        {
+            label2.Text = State.ToString();
+            CheckSysModel(State);
+
+        }
+
+        #endregion
+
+        #region 系統狀態執行辦法
+        /// <summary>
+        /// 確認目前系統模式並處理之
+        /// </summary>
+        /// <param name="State"></param>
+        private void CheckSysModel(SysModel State)
+        {
+            switch (State)
+            {
+                case SysModel.System_PowerOn:
+                    SysPowerOn();
+                    break;
+
+                case SysModel.Initial_Run:
+                    SysInitial();
+                    break;
+
+                case SysModel.Manual:
+                    SysManual();
+                    break;
+
+                case SysModel.Prepare_Run:
+                    SysPrepare();
+                    break;
+
+                case SysModel.Auto_Run:
+                    SysAuto();
+                    break;
+
+                case SysModel.AtoM_Run:
+                    SysAutoToManual();
+                    break;
+
+            }
+        }
+
+        #endregion
+
+        #region 系統控制方法巨集
+
+        /// <summary>
+        /// 系統狀態執行方法(PowerOn)
+        /// </summary>
+        private void SysPowerOn()
+        {
+
+        }
+        /// <summary>
+        /// 系統狀態執行方法(Initial)
+        /// </summary>
+        private void SysInitial()
+        {
+
+        }
+        /// <summary>
+        /// 系統狀態執行方法(Prepare)
+        /// </summary>
+        private void SysPrepare()
+        {
+
+        }
+        /// <summary>
+        /// 系統狀態執行方法(AutoToManual)
+        /// </summary>
+        private void SysAutoToManual()
+        {
+
+        }
+        /// <summary>
+        /// 系統狀態執行方法(Manual)
+        /// </summary>
+        private void SysManual()
+        {
+
+        }
+        /// <summary>
+        /// 系統狀態執行方法(Auto)
+        /// </summary>
+        private void SysAuto()
+        {
+
+        }
+
 
         #endregion
 
@@ -142,6 +240,22 @@ namespace MIRDC_Puckering
                         break;
 
 
+
+                    case "Btn_manual":
+
+                        ISystem.Model_State = SysModel.Manual;
+
+                        break;
+
+
+                    case "Btn_auto":
+
+                        ISystem.Model_State = SysModel.Auto_Run;
+
+                        break;
+
+
+
                 }
             }
             catch(Exception x) { MessageBox.Show(x.ToString(),"systen error!!!"); }
@@ -186,6 +300,7 @@ namespace MIRDC_Puckering
 
         }
 
+       
     }
 
 

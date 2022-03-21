@@ -56,6 +56,7 @@ namespace MIRDC_Puckering.OtherProgram
             button5.Enabled = true;
             //建立並觸發執行緒
             state_MIRDC_testLoop = creat_thread();
+           
         }
         /// <summary>
         /// 視窗關閉

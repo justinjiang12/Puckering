@@ -8,36 +8,75 @@ using System.ComponentModel;
 namespace MIRDC_Puckering
 {
 
-    delegate void ChangeSysState(SysState State);
+    delegate void ChangeSysModel(SysModel State);
+    delegate void ChangeSysContrl(SysContrl State);
 
+    /// <summary>
+    /// 系統狀態
+    /// </summary>
     class ISystem
     {
         /// <summary>
-        /// 當系統參數切換時觸發
+        /// 當系統參數切換時觸發(委派)
         /// </summary>
-        public static event ChangeSysState OnSysStateChanging;
+        public static event ChangeSysModel OnSysModelChanging;
+        public static event ChangeSysContrl OnSysContrlChanging;
 
-        private static SysState _state = SysState.Standby;
+        /// <summary>
+        /// 系統狀態列概述
+        /// </summary>
+        private static SysModel _Mstate = SysModel.Standby;
+
+        /// <summary>
+        /// 系統狀態列概述
+        /// </summary>
+        private static SysContrl _Cstate = SysContrl.Auto_Stop;
+
+
+
 
         /// <summary>
         /// !!Important!! 切換參數時的觸發
         /// </summary>
-        public static SysState State
+        public static SysModel Model_State
         {
             get
             {
-                return _state;
+                return _Mstate;
             }
             set
             {
-                _state = value;
-                OnSysStateChanging(_state);
+                _Mstate = value;
+                OnSysModelChanging(_Mstate);
             }
         }
 
+
+
+        /// <summary>
+        /// !!Important!! 切換參數時的觸發
+        /// </summary>
+        public static SysContrl Contrl_State
+        {
+            get
+            {
+                return _Cstate;
+            }
+            set
+            {
+                _Cstate = value;
+                OnSysContrlChanging(_Cstate);
+            }
+        }
+
+
     }
 
-    public enum SysState
+
+    /// <summary>
+    /// 系統狀態表單
+    /// </summary>
+    public enum SysModel
     {
         //===================程式開啟=======================//
         /// <summary>
@@ -52,9 +91,14 @@ namespace MIRDC_Puckering
         [Description("系統初始化(開始)...")]
         Initial_Start,
         /// <summary>
-        /// 系統初始化(執行中)...
+        /// 系統初始化(執行中_暫停)...
         /// </summary>
-        [Description("系統初始化(執行中)...")]
+        [Description("系統初始化(執行中_暫停)...")]
+        Initial_Stop,
+        /// <summary>
+        /// 系統初始化(執行中_啟動)...
+        /// </summary>
+        [Description("系統初始化(執行中_啟動)...")]
         Initial_Run,
         /// <summary>
         /// 系統初始化(執行失敗)...
@@ -79,9 +123,14 @@ namespace MIRDC_Puckering
         [Description("系統自動模式準備(開始)...")]
         Prepare_Start,
         /// <summary>
-        /// 系統自動模式準備(執行中)...
+        /// 系統自動模式準備(執行中_暫停)...
         /// </summary>
-        [Description("系統自動模式準備(執行中)...")]
+        [Description("系統自動模式準備(執行中_暫停)...")]
+        Prepare_Stop,
+        /// <summary>
+        /// 系統自動模式準備(執行中_啟動)...
+        /// </summary>
+        [Description("系統自動模式準備(執行中_啟動)...")]
         Prepare_Run,
         /// <summary>
         /// 系統自動模式準備(執行失敗)...
@@ -95,10 +144,15 @@ namespace MIRDC_Puckering
         Prepare_End,
         //===================系統自動(Auto)模式=======================//
         /// <summary>
-        /// 系統(自動模式)...
+        /// 系統(自動模式_暫停)...
         /// </summary>
-        [Description("系統(自動模式)...")]
-        Auto,
+        [Description("系統(自動模式_暫停)...")]
+        Auto_Stop,
+        /// <summary>
+        /// 系統(自動模式_啟動)...
+        /// </summary>
+        [Description("系統(自動模式_啟動)...")]
+        Auto_Run,
         //===================系統自動切換至手動模式準備=======================//
         /// <summary>
         /// 系統自動切換至手動(開始)...
@@ -106,9 +160,14 @@ namespace MIRDC_Puckering
         [Description("系統自動切換至手動(開始)...")]
         AtoM_Start,
         /// <summary>
-        /// 系統自動切換至手動(執行中)...
+        /// 系統自動切換至手動(執行中_暫停)...
         /// </summary>
-        [Description("系統自動切換至手動(執行中)...")]
+        [Description("系統自動切換至手動(執行中_暫停)...")]
+        AtoM_Stop,
+        /// <summary>
+        /// 系統自動切換至手動(執行中_啟動)...
+        /// </summary>
+        [Description("系統自動切換至手動(執行中_啟動)...")]
         AtoM_Run,
         /// <summary>
         /// 系統自動切換至手動(執行失敗)...
@@ -140,6 +199,35 @@ namespace MIRDC_Puckering
         [Description("系統發生錯誤!")]
         Sys_Error = 99
     }
+
+
+    /// <summary>
+    /// 系統狀態表單
+    /// </summary>
+    public enum SysContrl
+    {
+        //===================程式開啟=======================//
+        /// <summary>
+        /// 自動模式啟動狀態
+        /// </summary>
+        [Description("自動模式啟動狀態...")]
+        Auto_Start,
+        /// <summary>
+        /// 自動模式暫停狀態
+        /// </summary>
+        [Description("自動模式暫停狀態...")]
+        Auto_Stop,
+        //===================系統初始化=======================//
+
+
+        /// <summary>
+        /// other
+        /// </summary>
+        [Description("other!")]
+        other = 99
+    }
+
+
 
 
 }
