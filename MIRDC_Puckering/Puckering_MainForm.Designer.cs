@@ -28,19 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Puckering_MainForm));
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.thr_timer = new System.Windows.Forms.Timer(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,6 +80,9 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label5);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.label3);
             this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.Controls.Add(this.label1);
             this.groupBox4.Controls.Add(this.button1);
@@ -88,28 +96,6 @@
             this.groupBox4.TabIndex = 16;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "groupBox4";
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(1404, 221);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(147, 67);
-            this.button4.TabIndex = 22;
-            this.button4.Tag = "Btn_auto";
-            this.button4.Text = "Auto";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(1404, 157);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(147, 58);
-            this.button3.TabIndex = 21;
-            this.button3.Tag = "Btn_manual";
-            this.button3.Text = "Manual";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button_Click);
             // 
             // label2
             // 
@@ -162,6 +148,28 @@
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button_Click);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(1404, 221);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(147, 67);
+            this.button4.TabIndex = 22;
+            this.button4.Tag = "Btn_auto";
+            this.button4.Text = "Auto";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(1404, 157);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(147, 58);
+            this.button3.TabIndex = 21;
+            this.button3.Tag = "Btn_manual";
+            this.button3.Text = "Manual";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button_Click);
+            // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -176,6 +184,38 @@
             this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button_Click);
+            // 
+            // thr_timer
+            // 
+            this.thr_timer.Enabled = true;
+            this.thr_timer.Tick += new System.EventHandler(this.thr_timer_Tick);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(903, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(72, 15);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "GrabStep : ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(903, 70);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(71, 15);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "PushStep : ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(903, 121);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(81, 15);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "VisionStep : ";
             // 
             // Puckering_MainForm
             // 
@@ -214,6 +254,10 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Timer thr_timer;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
     }
 }
 

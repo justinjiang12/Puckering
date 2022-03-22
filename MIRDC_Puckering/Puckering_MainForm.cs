@@ -23,6 +23,9 @@ namespace MIRDC_Puckering
         string pageState = "HomePage";
         int eventnum=1;
 
+        private ThreadContrl thr_contrl = new ThreadContrl();
+
+
         public MitusbiahiRobotForm F_MRC = new MitusbiahiRobotForm();
         public ThreadTest F_ThrT = new ThreadTest();
 
@@ -172,14 +175,14 @@ namespace MIRDC_Puckering
         /// </summary>
         private void SysManual()
         {
-
+            thr_contrl.End_thread();
         }
         /// <summary>
         /// 系統狀態執行方法(Auto)
         /// </summary>
         private void SysAuto()
         {
-
+            thr_contrl.Run_thread();
         }
 
 
@@ -300,7 +303,12 @@ namespace MIRDC_Puckering
 
         }
 
-       
+        private void thr_timer_Tick(object sender, EventArgs e)
+        {
+            label3.Text += thr_contrl.L_GrabRobot.num;
+            label4.Text += thr_contrl.L_PushRobot.num;
+            label5.Text += thr_contrl.L_Vision.num;
+        }
     }
 
 
