@@ -7,9 +7,37 @@ using System.Threading;
 
 namespace MIRDC_Puckering
 {
+    //delegate void ChangeLoopStep(string step);
+
+    class OtherControl
+    {
+        public static void ResetData()
+        {
+            GrabRobotLoop.GR_signal_a1 = false;
+            GrabRobotLoop.GR_signal_a2 = false;
+            GrabRobotLoop.GR_signal_a3 = false;
+            GrabRobotLoop.GR_signal_a4 = false;
+            PushRobotLoop.PR_signal_a1 = false;
+            PushRobotLoop.PR_signal_a2 = false;
+            PushRobotLoop.PR_signal_a3 = false;
+            PushRobotLoop.PR_signal_a4 = false;
+            VisionLoop.VI_signal_a1 = false;
+            VisionLoop.VI_signal_a2 = false;
+            VisionLoop.VI_signal_a3 = false;
+            VisionLoop.VI_signal_a4 = false;
+
+        }
+    }
+
+
     class GrabRobotLoop
     {
-        #region 欄位
+        #region 委派專用欄位
+        //public event ChangeLoopStep OnChangeLoopStep;
+
+        #endregion
+
+        #region 外部實作欄位
 
         //步序數據
         public int step { get { return m_step; } set { m_step = value; } } //對外訊號(R/W)
@@ -22,8 +50,25 @@ namespace MIRDC_Puckering
         private string m_num = "0"; //對內訊號
         //步序停止訊號
         public bool loopStop { get { return m_loopStop; } set { m_loopStop = value; } }//對外訊號(R/W)
-        private bool m_loopStop; //對內訊號
+        private bool m_loopStop ; //對內訊號
+
         #endregion
+
+
+        #region 內部(for Other Loop)交握欄位
+        public static bool GR_signal_a1 { get { return _signal_a1; } set { _signal_a1 = value; } }//訊號(R/W)
+        private static bool _signal_a1 = false; //訊號
+        public static bool GR_signal_a2 { get { return _signal_a2; } set { _signal_a2 = value; } }//訊號(R/W)
+        private static bool _signal_a2 = false; //訊號
+        public static bool GR_signal_a3 { get { return _signal_a3; } set { _signal_a3 = value; } }//訊號(R/W)
+        private static bool _signal_a3 = false; //訊號
+        public static bool GR_signal_a4 { get { return _signal_a4; } set { _signal_a4 = value; } }//訊號(R/W)
+        private static bool _signal_a4 = false; //訊號
+
+
+        #endregion
+
+
 
         /// <summary>
         /// 類別執行緒主要控制
@@ -31,7 +76,7 @@ namespace MIRDC_Puckering
         public void LoopRun()
         {
             //基本參數初始化
-            m_loopStop = false; //步序暫停(關閉)
+            m_loopStop = true; //步序暫停(關閉)
             m_step = 0; //步序歸零
             //迴圈內部執行步序方法
             while (true)
@@ -54,7 +99,14 @@ namespace MIRDC_Puckering
 
                     //填入該步序動作區塊
 
-                    m_num = m_step.ToString(); //步序顯示用 
+
+
+
+                    
+                    m_num = m_step.ToString(); //步序顯示用
+
+                    // OnChangeLoopStep(m_num);//委派觸發
+
                     m_step++; //下一步序控制
                     break;
 
@@ -197,7 +249,7 @@ namespace MIRDC_Puckering
                     while (m_loopStop) { } //暫停迴圈
 
                     //填入該步序動作區塊
-
+                    _signal_a1 = true;
                     m_num = m_step.ToString(); //步序顯示用
                     m_step = 0; //下一步序控制
                     break;
@@ -225,8 +277,24 @@ namespace MIRDC_Puckering
         private string m_num = "0"; //對內訊號
         //步序停止訊號
         public bool loopStop { get { return m_loopStop; } set { m_loopStop = value; } }//對外訊號(R/W)
-        private bool m_loopStop; //對內訊號
+        private bool m_loopStop ; //對內訊號
         #endregion
+
+
+        #region 內部(for Other Loop)交握欄位
+        public static bool PR_signal_a1 { get { return _signal_a1; } set { _signal_a1 = value; } }//訊號(R/W)
+        private static bool _signal_a1 = false; //訊號
+        public static bool PR_signal_a2 { get { return _signal_a2; } set { _signal_a2 = value; } }//訊號(R/W)
+        private static bool _signal_a2 = false; //訊號
+        public static bool PR_signal_a3 { get { return _signal_a3; } set { _signal_a3 = value; } }//訊號(R/W)
+        private static bool _signal_a3 = false; //訊號
+        public static bool PR_signal_a4 { get { return _signal_a4; } set { _signal_a4 = value; } }//訊號(R/W)
+        private static bool _signal_a4 = false; //訊號
+
+
+        #endregion
+
+
 
         /// <summary>
         /// 類別執行緒主要控制
@@ -234,7 +302,7 @@ namespace MIRDC_Puckering
         public void LoopRun()
         {
             //基本參數初始化
-            m_loopStop = false; //步序暫停(關閉)
+            m_loopStop = true; //步序暫停(關閉)
             m_step = 0; //步序歸零
             //迴圈內部執行步序方法
             while (true)
@@ -256,9 +324,13 @@ namespace MIRDC_Puckering
                     while (m_loopStop) { } //暫停迴圈
 
                     //填入該步序動作區塊
+                    if (GrabRobotLoop.GR_signal_a1)
+                    {
+                        m_step++; //下一步序控制
+                    }
 
                     m_num = m_step.ToString(); //步序顯示用 
-                    m_step++; //下一步序控制
+                    //m_step++; //下一步序控制
                     break;
 
                 #endregion
@@ -400,7 +472,7 @@ namespace MIRDC_Puckering
                     while (m_loopStop) { } //暫停迴圈
 
                     //填入該步序動作區塊
-
+                    _signal_a1 = true;
                     m_num = m_step.ToString(); //步序顯示用
                     m_step = 0; //下一步序控制
                     break;
@@ -431,13 +503,27 @@ namespace MIRDC_Puckering
         private bool m_loopStop; //對內訊號
         #endregion
 
+
+        #region 內部(for Other Loop)交握欄位
+        public static bool VI_signal_a1 { get { return _signal_a1; } set { _signal_a1 = value; } }//訊號(R/W)
+        private static bool _signal_a1 = false; //訊號
+        public static bool VI_signal_a2 { get { return _signal_a2; } set { _signal_a2 = value; } }//訊號(R/W)
+        private static bool _signal_a2 = false; //訊號
+        public static bool VI_signal_a3 { get { return _signal_a3; } set { _signal_a3 = value; } }//訊號(R/W)
+        private static bool _signal_a3 = false; //訊號
+        public static bool VI_signal_a4 { get { return _signal_a4; } set { _signal_a4 = value; } }//訊號(R/W)
+        private static bool _signal_a4 = false; //訊號
+
+
+        #endregion
+
         /// <summary>
         /// 類別執行緒主要控制
         /// </summary>
         public void LoopRun()
         {
             //基本參數初始化
-            m_loopStop = false; //步序暫停(關閉)
+            m_loopStop = true; //步序暫停(關閉)
             m_step = 0; //步序歸零
             //迴圈內部執行步序方法
             while (true)
@@ -459,9 +545,15 @@ namespace MIRDC_Puckering
                     while (m_loopStop) { } //暫停迴圈
 
                     //填入該步序動作區塊
+                    if (PushRobotLoop.PR_signal_a1) 
+                    {
+                        m_step++; //下一步序控制 
+                    }
+
+
 
                     m_num = m_step.ToString(); //步序顯示用 
-                    m_step++; //下一步序控制
+                    
                     break;
 
                 #endregion

@@ -9,7 +9,7 @@ namespace MIRDC_Puckering
 {
 
     delegate void ChangeSysModel(SysModel State);
-    delegate void ChangeSysContrl(SysContrl State);
+    delegate void ChangeSysControl(SysControl State);
 
     /// <summary>
     /// 系統狀態
@@ -20,7 +20,7 @@ namespace MIRDC_Puckering
         /// 當系統參數切換時觸發(委派)
         /// </summary>
         public static event ChangeSysModel OnSysModelChanging;
-        public static event ChangeSysContrl OnSysContrlChanging;
+        public static event ChangeSysControl OnSysControlChanging;
 
         /// <summary>
         /// 系統狀態列概述
@@ -30,7 +30,7 @@ namespace MIRDC_Puckering
         /// <summary>
         /// 系統狀態列概述
         /// </summary>
-        private static SysContrl _Cstate = SysContrl.Auto_Stop;
+        private static SysControl _Cstate = SysControl.Auto_Stop;
 
 
 
@@ -56,8 +56,8 @@ namespace MIRDC_Puckering
         /// <summary>
         /// !!Important!! 切換參數時的觸發
         /// </summary>
-        public static SysContrl Contrl_State
-        {
+        public static SysControl Control_State
+        {            
             get
             {
                 return _Cstate;
@@ -65,7 +65,7 @@ namespace MIRDC_Puckering
             set
             {
                 _Cstate = value;
-                OnSysContrlChanging(_Cstate);
+                OnSysControlChanging(_Cstate);
             }
         }
 
@@ -144,15 +144,10 @@ namespace MIRDC_Puckering
         Prepare_End,
         //===================系統自動(Auto)模式=======================//
         /// <summary>
-        /// 系統(自動模式_暫停)...
-        /// </summary>
-        [Description("系統(自動模式_暫停)...")]
-        Auto_Stop,
-        /// <summary>
         /// 系統(自動模式_啟動)...
         /// </summary>
-        [Description("系統(自動模式_啟動)...")]
-        Auto_Run,
+        [Description("系統(自動模式)...")]
+        Auto,
         //===================系統自動切換至手動模式準備=======================//
         /// <summary>
         /// 系統自動切換至手動(開始)...
@@ -204,7 +199,7 @@ namespace MIRDC_Puckering
     /// <summary>
     /// 系統狀態表單
     /// </summary>
-    public enum SysContrl
+    public enum SysControl
     {
         //===================程式開啟=======================//
         /// <summary>

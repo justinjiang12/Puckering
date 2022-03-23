@@ -23,7 +23,10 @@ namespace MIRDC_Puckering
         string pageState = "HomePage";
         int eventnum=1;
 
-        private ThreadContrl thr_contrl = new ThreadContrl();
+        /// <summary>
+        /// 實作執行續控制
+        /// </summary>
+        private ThreadControl thr_control = new ThreadControl();
 
 
         public MitusbiahiRobotForm F_MRC = new MitusbiahiRobotForm();
@@ -39,7 +42,7 @@ namespace MIRDC_Puckering
         {
             InitializeComponent();
         }
-
+         
         #region 視窗管理
         /// <summary>
         /// 視窗建立
@@ -50,6 +53,11 @@ namespace MIRDC_Puckering
         {
             F_ThrT.LoopState += testfuntion;
             ISystem.OnSysModelChanging += ChangeSysModelState;
+            ISystem.OnSysControlChanging += ChangeSysControlState;
+            //委派方法
+            //thr_control.L_GrabRobot.OnChangeLoopStep += ChangeGLoopStep;
+            ISystem.Model_State = SysModel.Manual;
+
         }
 
 
@@ -70,14 +78,14 @@ namespace MIRDC_Puckering
             else
             {
                 F_ThrT.Form1_FormClosing(sender, e); //關閉ThreadTest_Form
-                
+                thr_control.End_thread();
                 e.Cancel = false;//確認離開
+
             }
             
 
         }
         #endregion
-
 
         #region 相關事件觸發方法
         /// <summary>
@@ -95,10 +103,33 @@ namespace MIRDC_Puckering
         /// <param name="State"></param>
         private void ChangeSysModelState(SysModel State)
         {
-            label2.Text = State.ToString();
+            label2.Text = "SysModel : "+State.ToString();
             CheckSysModel(State);
 
         }
+
+
+
+        /// <summary>
+        /// 當系統控制狀態改變事件觸發
+        /// </summary>
+        /// <param name="State"></param>
+        private void ChangeSysControlState(SysControl State)
+        {
+
+            CheckSysControl(State);
+
+        }
+
+
+        /* //委派方法
+        private void ChangeGLoopStep(string step)
+        {
+
+            label3.Text = "GrabRobot_Step : " + step;
+
+        }
+        */
 
         #endregion
 
@@ -127,12 +158,32 @@ namespace MIRDC_Puckering
                     SysPrepare();
                     break;
 
-                case SysModel.Auto_Run:
+                case SysModel.Auto:
                     SysAuto();
                     break;
 
                 case SysModel.AtoM_Run:
                     SysAutoToManual();
+                    break;
+
+            }
+        }
+
+
+        /// <summary>
+        /// 確認目前系統模式並處理之
+        /// </summary>
+        /// <param name="State"></param>
+        private void CheckSysControl(SysControl State)
+        {
+            switch (State)
+            {
+                case SysControl.Auto_Start:
+                    autoLoopStart();
+                    break;
+
+                case SysControl.Auto_Stop:
+                    autoLoopStop();
                     break;
 
             }
@@ -175,15 +226,46 @@ namespace MIRDC_Puckering
         /// </summary>
         private void SysManual()
         {
-            thr_contrl.End_thread();
+            btn_Auto.Enabled = true;
+            btn_Manual.Enabled = false;
+            btn_Start.Enabled = false;
+            btn_Stop.Enabled = false;
+            thr_control.End_thread();
         }
+
         /// <summary>
         /// 系統狀態執行方法(Auto)
         /// </summary>
         private void SysAuto()
         {
-            thr_contrl.Run_thread();
+            btn_Auto.Enabled = false;
+            btn_Manual.Enabled = true;
+            btn_Start.Enabled = true;
+            btn_Stop.Enabled = false;
+            thr_control.Run_thread();
         }
+
+
+        /// <summary>
+        /// 自動流程啟動
+        /// </summary>
+        private void autoLoopStart()
+        {
+            thr_control.L_GrabRobot.loopStop = false;
+            thr_control.L_PushRobot.loopStop = false;
+            thr_control.L_Vision.loopStop = false;
+        }
+
+        /// <summary>
+        /// 自動流程暫停
+        /// </summary>
+        private void autoLoopStop()
+        {
+            thr_control.L_GrabRobot.loopStop = true;
+            thr_control.L_PushRobot.loopStop = true;
+            thr_control.L_Vision.loopStop = true;
+        }
+
 
 
         #endregion
@@ -243,20 +325,42 @@ namespace MIRDC_Puckering
                         break;
 
 
+                    case "btn_Manual":
 
-                    case "Btn_manual":
+                        DialogResult dr1 = MessageBox.Show("確定要手動模式嗎?","Closing event!", MessageBoxButtons.YesNo);
+                        if (dr1 == DialogResult.Yes)
+                        {
+                            ISystem.Model_State = SysModel.Manual;
+                        }
 
-                        ISystem.Model_State = SysModel.Manual;
+
+                        break;
+
+
+                    case "btn_Auto":
+
+                        DialogResult dr2 = MessageBox.Show("確定要自動模式嗎?", "Closing event!", MessageBoxButtons.YesNo);
+                        if (dr2 == DialogResult.Yes)
+                        {
+                            ISystem.Model_State = SysModel.Auto;
+                        }
 
                         break;
 
 
-                    case "Btn_auto":
+                    case "btn_Start":
 
-                        ISystem.Model_State = SysModel.Auto_Run;
-
+                        ISystem.Control_State = SysControl.Auto_Start;
+                        btn_Start.Enabled = false;
+                        btn_Stop.Enabled = true;
                         break;
 
+                    case "btn_Stop":
+
+                        ISystem.Control_State = SysControl.Auto_Stop;
+                        btn_Stop.Enabled = false;
+                        btn_Start.Enabled = true;
+                        break;
 
 
                 }
@@ -264,6 +368,11 @@ namespace MIRDC_Puckering
             catch(Exception x) { MessageBox.Show(x.ToString(),"systen error!!!"); }
         }
         #endregion
+
+        
+
+
+
 
         /// <summary>
         /// 關閉子分頁
@@ -305,9 +414,11 @@ namespace MIRDC_Puckering
 
         private void thr_timer_Tick(object sender, EventArgs e)
         {
-            label3.Text += thr_contrl.L_GrabRobot.num;
-            label4.Text += thr_contrl.L_PushRobot.num;
-            label5.Text += thr_contrl.L_Vision.num;
+
+            label3.Text = "GrabRobot_Step : " + thr_control.L_GrabRobot.num;
+            label4.Text = "PushRobot_Step : " + thr_control.L_PushRobot.num;
+            label5.Text = "Vision_Step : " + thr_control.L_Vision.num;
+
         }
     }
 

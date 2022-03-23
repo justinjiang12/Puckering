@@ -9,7 +9,7 @@ using System.Threading;
 namespace MIRDC_Puckering
 {
 
-    class ThreadContrl
+    class ThreadControl
     {
         #region 欄位宣告
 
@@ -82,7 +82,7 @@ namespace MIRDC_Puckering
                 CloseThread(Thr_GrabRobot, state_GrabRobot);
                 CloseThread(Thr_PushRobot, state_PushRobot);
                 CloseThread(Thr_Vision, state_Vision);
-
+                OtherControl.ResetData();
             }
             catch { MessageBox.Show("sys error!!"); }
         }
@@ -108,9 +108,6 @@ namespace MIRDC_Puckering
                 }
             }
         }
-
-
-
 
     }
 }

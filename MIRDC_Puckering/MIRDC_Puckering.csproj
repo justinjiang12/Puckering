@@ -95,7 +95,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ThreadContrl.cs" />
+    <Compile Include="ThreadControl.cs" />
     <EmbeddedResource Include="OtherProgram\ThreadTest.resx">
       <DependentUpon>ThreadTest.cs</DependentUpon>
     </EmbeddedResource>
