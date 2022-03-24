@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading; //需匯入System.Threading
 using MIRDC_Puckering.Robotcontrol;
-using MIRDC_Puckering.OtherProgram;
 
 
 
@@ -30,7 +29,6 @@ namespace MIRDC_Puckering
 
 
         public MitusbiahiRobotForm F_MRC = new MitusbiahiRobotForm();
-        public ThreadTest F_ThrT = new ThreadTest();
 
 
         #endregion
@@ -51,7 +49,6 @@ namespace MIRDC_Puckering
         /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
-            F_ThrT.LoopState += testfuntion;
             ISystem.OnSysModelChanging += ChangeSysModelState;
             ISystem.OnSysControlChanging += ChangeSysControlState;
             //委派方法
@@ -77,7 +74,6 @@ namespace MIRDC_Puckering
             }
             else
             {
-                F_ThrT.Form1_FormClosing(sender, e); //關閉ThreadTest_Form
                 thr_control.End_thread();
                 e.Cancel = false;//確認離開
 
@@ -121,12 +117,12 @@ namespace MIRDC_Puckering
 
         }
 
-
-        /* //委派方法
-        private void ChangeGLoopStep(string step)
+        /*
+         //委派方法
+        private void ChangeGLoopStep()
         {
 
-            label3.Text = "GrabRobot_Step : " + step;
+          //  label3.Text = "GrabRobot_Step : " + GrabRobotLoop.GR_StepNum;
 
         }
         */
@@ -227,9 +223,12 @@ namespace MIRDC_Puckering
         private void SysManual()
         {
             btn_Auto.Enabled = true;
+
             btn_Manual.Enabled = false;
             btn_Start.Enabled = false;
+            btn_Start.BackColor = Color.DarkGreen;
             btn_Stop.Enabled = false;
+            btn_Stop.BackColor = Color.DarkRed;
             thr_control.End_thread();
         }
 
@@ -241,7 +240,9 @@ namespace MIRDC_Puckering
             btn_Auto.Enabled = false;
             btn_Manual.Enabled = true;
             btn_Start.Enabled = true;
+            btn_Start.BackColor = Color.LimeGreen;
             btn_Stop.Enabled = false;
+            btn_Stop.BackColor = Color.DarkRed;
             thr_control.Run_thread();
         }
 
@@ -251,7 +252,7 @@ namespace MIRDC_Puckering
         /// </summary>
         private void autoLoopStart()
         {
-            thr_control.L_GrabRobot.loopStop = false;
+            thr_control.L_GrabRobot.GR_loopStop = false;
             thr_control.L_PushRobot.PR_loopStop = false;
             thr_control.L_Vision.VI_loopStop = false;
         }
@@ -261,7 +262,7 @@ namespace MIRDC_Puckering
         /// </summary>
         private void autoLoopStop()
         {
-            thr_control.L_GrabRobot.loopStop = true;
+            thr_control.L_GrabRobot.GR_loopStop = true;
             thr_control.L_PushRobot.PR_loopStop = true;
             thr_control.L_Vision.VI_loopStop = true;
         }
@@ -285,11 +286,31 @@ namespace MIRDC_Puckering
 
                 switch (tag)
                 {
-                    
-                    case "FormLoad":
+                    case "HomePage":
+
+                        
+                        break;
+
+                    case "VisionPage":
+
+
+                        break;
+
+                    case "MitubiahiPage":
 
                         ShowForm(F_MRC);
                         pageState = "Mitusbishi_Page";
+
+                        break;
+
+                    case "KukaPage":
+
+
+                        break;
+
+                    case "IOPage":
+
+
                         break;
 
 
@@ -298,18 +319,8 @@ namespace MIRDC_Puckering
                         panel1.Controls.Remove(F_MRC);
                         break;
 
-                    case "FormLoad_1":
-
-                        ShowForm(F_ThrT);
-                        pageState = "Thread_Page";
-                        break;
 
 
-                    case "FormClose_1":
-                            
-                        panel1.Controls.Remove(F_ThrT);
-                        
-                        break;
 
 
                     case "FormClose_clear":
@@ -352,14 +363,18 @@ namespace MIRDC_Puckering
 
                         ISystem.Control_State = SysControl.Auto_Start;
                         btn_Start.Enabled = false;
+                        btn_Start.BackColor = Color.DarkGreen;
                         btn_Stop.Enabled = true;
+                        btn_Stop.BackColor = Color.Red;
                         break;
 
                     case "btn_Stop":
 
                         ISystem.Control_State = SysControl.Auto_Stop;
                         btn_Stop.Enabled = false;
+                        btn_Start.BackColor = Color.LimeGreen;
                         btn_Start.Enabled = true;
+                        btn_Stop.BackColor = Color.DarkRed;
                         break;
 
 
@@ -381,7 +396,6 @@ namespace MIRDC_Puckering
         public void RemovePage(string pageName)
         {
             if (pageName == "Mitusbishi_Page") { panel1.Controls.Remove(F_MRC); }
-            if (pageName == "Thread_Page") { panel1.Controls.Remove(F_ThrT); }
 
         }
 
@@ -415,8 +429,8 @@ namespace MIRDC_Puckering
         private void thr_timer_Tick(object sender, EventArgs e)
         {
 
-            label3.Text = "GrabRobot_Step : " + thr_control.L_GrabRobot.num;
-            label4.Text = "PushRobot_Step : " + thr_control.L_PushRobot.PR_StepNum;
+            label3.Text = "GrabRobot_Step : " + GrabRobotLoop.GR_StepNum;
+            label4.Text = "PushRobot_Step : " + PushRobotLoop.PR_StepNum;
             label5.Text = "Vision_Step : " + VisionLoop.VI_StepNum;
 
         }

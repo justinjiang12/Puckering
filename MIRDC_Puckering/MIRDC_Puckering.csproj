@@ -70,12 +70,6 @@
   <ItemGroup>
     <Compile Include="AutoLoop\AutoLoop.cs" />
     <Compile Include="ISystem.cs" />
-    <Compile Include="OtherProgram\ThreadTest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OtherProgram\ThreadTest.Designer.cs">
-      <DependentUpon>ThreadTest.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -96,9 +90,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThreadControl.cs" />
-    <EmbeddedResource Include="OtherProgram\ThreadTest.resx">
-      <DependentUpon>ThreadTest.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Robotcontrol\MitusbishiRobot.resx">
       <DependentUpon>MitusbishiRobot.cs</DependentUpon>
     </EmbeddedResource>
@@ -128,6 +119,28 @@
     <Content Include="Image\MIRDC_LOGO.png" />
     <Content Include="Image\SESC_LOGO.png" />
     <Content Include="Image\SHomePage_LOGO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxMELFARXMLib">
+      <Guid>{1E9AEBC5-891B-11D6-8661-00D05915F009}</Guid>
+      <VersionMajor>3</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="MELFARXMLib">
+      <Guid>{1E9AEBC5-891B-11D6-8661-00D05915F009}</Guid>
+      <VersionMajor>3</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="OtherProgram\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
