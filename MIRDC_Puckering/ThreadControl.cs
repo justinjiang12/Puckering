@@ -21,12 +21,16 @@ namespace MIRDC_Puckering
         public VisionLoop L_Vision = new VisionLoop();
 
 
-        //宣告main_MIRDC_testLoop 欄位(thread)
+        /// <summary>
+        /// 宣告main_MIRDC_testLoop 欄位(thread)
+        /// </summary>
         private Thread Thr_GrabRobot;
         private Thread Thr_PushRobot;
         private Thread Thr_Vision;
 
-        //執行序狀態旗標
+        /// <summary>
+        /// 執行序狀態旗標
+        /// </summary>
         private bool state_GrabRobot = false;
         private bool state_PushRobot = false;
         private bool state_Vision = false;
@@ -79,17 +83,17 @@ namespace MIRDC_Puckering
         {
             try
             {
+                OtherControl.ResetData();
                 CloseThread(Thr_GrabRobot, state_GrabRobot);
                 CloseThread(Thr_PushRobot, state_PushRobot);
                 CloseThread(Thr_Vision, state_Vision);
-                OtherControl.ResetData();
             }
             catch { MessageBox.Show("sys error!!"); }
         }
         #endregion
 
         /// <summary>
-        /// 關閉執行續方法
+        /// 其他執行續方法
         /// </summary>
         /// <param name="Thr_name"></param>
         /// <param name="state"></param>

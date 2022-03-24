@@ -252,8 +252,8 @@ namespace MIRDC_Puckering
         private void autoLoopStart()
         {
             thr_control.L_GrabRobot.loopStop = false;
-            thr_control.L_PushRobot.loopStop = false;
-            thr_control.L_Vision.loopStop = false;
+            thr_control.L_PushRobot.PR_loopStop = false;
+            thr_control.L_Vision.VI_loopStop = false;
         }
 
         /// <summary>
@@ -262,8 +262,8 @@ namespace MIRDC_Puckering
         private void autoLoopStop()
         {
             thr_control.L_GrabRobot.loopStop = true;
-            thr_control.L_PushRobot.loopStop = true;
-            thr_control.L_Vision.loopStop = true;
+            thr_control.L_PushRobot.PR_loopStop = true;
+            thr_control.L_Vision.VI_loopStop = true;
         }
 
 
@@ -416,8 +416,8 @@ namespace MIRDC_Puckering
         {
 
             label3.Text = "GrabRobot_Step : " + thr_control.L_GrabRobot.num;
-            label4.Text = "PushRobot_Step : " + thr_control.L_PushRobot.num;
-            label5.Text = "Vision_Step : " + thr_control.L_Vision.num;
+            label4.Text = "PushRobot_Step : " + thr_control.L_PushRobot.PR_StepNum;
+            label5.Text = "Vision_Step : " + VisionLoop.VI_StepNum;
 
         }
     }
