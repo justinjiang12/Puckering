@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading; //需匯入System.Threading
 using MIRDC_Puckering.Robotcontrol;
-
+using DIO;
+using MxAutomation_Example;
 
 
 
@@ -28,8 +29,9 @@ namespace MIRDC_Puckering
         private ThreadControl thr_control = new ThreadControl();
 
 
-        public MitusbiahiRobotForm F_MRC = new MitusbiahiRobotForm();
-
+        public static MitusbiahiRobotForm F_MRC = new MitusbiahiRobotForm();
+        public static IOForm F_IO = new IOForm();
+        public static MainView F_KRC = new MainView();
 
         #endregion
 
@@ -49,14 +51,28 @@ namespace MIRDC_Puckering
         /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
+            ISystem_EventLoad();
+            Thread_EventLoad();
+        }
+
+        private void ISystem_EventLoad()
+        {
             ISystem.OnSysModelChanging += ChangeSysModelState;
             ISystem.OnSysControlChanging += ChangeSysControlState;
             //委派方法
             //thr_control.L_GrabRobot.OnChangeLoopStep += ChangeGLoopStep;
             ISystem.Model_State = SysModel.Manual;
-
         }
 
+        private void Thread_EventLoad()
+        {
+            thr_control.L_GrabRobot.e_Signal_output += GrabRobot_output;
+        }
+
+        private void GrabRobot_output(ushort num,bool state)
+        {
+            F_IO.DO_Write(num,state);
+        }
 
         /// <summary>
         /// 視窗關閉
@@ -304,19 +320,21 @@ namespace MIRDC_Puckering
                         break;
 
                     case "KukaPage":
-
-
+                        
+                        ShowForm(F_KRC);
+                        pageState = "KUKA_Page";
                         break;
 
                     case "IOPage":
-
-
+                        ShowForm(F_IO);
+                        pageState = "IO_Page";
                         break;
 
 
                     case "FormClose":
 
                         panel1.Controls.Remove(F_MRC);
+
                         break;
 
 
@@ -384,10 +402,6 @@ namespace MIRDC_Puckering
         }
         #endregion
 
-        
-
-
-
 
         /// <summary>
         /// 關閉子分頁
@@ -396,7 +410,8 @@ namespace MIRDC_Puckering
         public void RemovePage(string pageName)
         {
             if (pageName == "Mitusbishi_Page") { panel1.Controls.Remove(F_MRC); }
-
+            if (pageName == "IO_Page") { panel1.Controls.Remove(F_IO); }
+            if (pageName == "KUKA_Page") { panel1.Controls.Remove(F_KRC); }
         }
 
         /// <summary>
@@ -405,6 +420,8 @@ namespace MIRDC_Puckering
         /// <param name="frm"></param>
         public void ShowForm(Form frm)
         {
+
+            #region 範例
             /*  //魏展範例
             frm.MdiParent = this;
             frm.FormBorderStyle = FormBorderStyle.None;
@@ -415,7 +432,7 @@ namespace MIRDC_Puckering
             frm.BringToFront();
             frm.Show();
             */
-
+            #endregion
             RemovePage(pageState);
             frm.MdiParent = this;//指定當前窗體為頂級Mdi窗體
             frm.TopLevel = false;
@@ -435,6 +452,5 @@ namespace MIRDC_Puckering
 
         }
     }
-
 
 }

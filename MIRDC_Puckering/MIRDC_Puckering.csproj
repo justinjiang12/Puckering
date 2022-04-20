@@ -55,6 +55,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MxAutomation_V2.1.3">
+      <HintPath>.\MxAutomation_V2.1.3.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -69,16 +72,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoLoop\AutoLoop.cs" />
+    <Compile Include="IOControl\ControlArrayUtils.cs" />
+    <Compile Include="IOControl\IOForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IOControl\IOForm.designer.cs">
+      <DependentUpon>IOForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IOControl\UniDAQ.cs" />
     <Compile Include="ISystem.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Robotcontrol\MitusbishiRobot.cs">
+    <Compile Include="RobotControl\MainView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Robotcontrol\MitusbishiRobot.Designer.cs">
+    <Compile Include="RobotControl\MainView.designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RobotControl\MitusbishiRobot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RobotControl\MitusbishiRobot.Designer.cs">
       <DependentUpon>MitusbishiRobot.cs</DependentUpon>
     </Compile>
     <Compile Include="Puckering_MainForm.cs">
@@ -90,7 +107,13 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThreadControl.cs" />
-    <EmbeddedResource Include="Robotcontrol\MitusbishiRobot.resx">
+    <EmbeddedResource Include="IOControl\IOForm.resx">
+      <DependentUpon>IOForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RobotControl\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RobotControl\MitusbishiRobot.resx">
       <DependentUpon>MitusbishiRobot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Puckering_MainForm.resx">
@@ -121,6 +144,9 @@
     <Content Include="Image\SHomePage_LOGO.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="OtherProgram\" />
+  </ItemGroup>
+  <ItemGroup>
     <COMReference Include="AxMELFARXMLib">
       <Guid>{1E9AEBC5-891B-11D6-8661-00D05915F009}</Guid>
       <VersionMajor>3</VersionMajor>
@@ -138,9 +164,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="OtherProgram\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

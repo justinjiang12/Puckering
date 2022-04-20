@@ -7,7 +7,10 @@ using System.ComponentModel;
 
 namespace MIRDC_Puckering
 {
-
+    /// <summary>
+    /// 宣告委派
+    /// </summary>
+    /// <param name="State"></param>
     delegate void ChangeSysModel(SysModel State);
     delegate void ChangeSysControl(SysControl State);
 
@@ -32,9 +35,6 @@ namespace MIRDC_Puckering
         /// </summary>
         private static SysControl _Cstate = SysControl.Auto_Stop;
 
-
-
-
         /// <summary>
         /// !!Important!! 切換參數時的觸發
         /// </summary>
@@ -51,8 +51,6 @@ namespace MIRDC_Puckering
             }
         }
 
-
-
         /// <summary>
         /// !!Important!! 切換參數時的觸發
         /// </summary>
@@ -68,7 +66,6 @@ namespace MIRDC_Puckering
                 OnSysControlChanging(_Cstate);
             }
         }
-
 
     }
 

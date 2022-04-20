@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace MIRDC_Puckering
 {
-   // delegate void ChangeLoopStep();
+    delegate void A_DO_1(ushort num ,bool state);
 
     class OtherControl
     {
@@ -36,7 +36,7 @@ namespace MIRDC_Puckering
     class GrabRobotLoop
     {
         #region 委派專用欄位
-        //public event ChangeLoopStep OnChangeLoopStep;
+        public event A_DO_1 e_Signal_output;
 
         #endregion
 
@@ -103,14 +103,16 @@ namespace MIRDC_Puckering
                     //填入該步序動作區塊
 
 
-
+                    //if (!Puckering_MainForm.F_IO.DI_Read(0)) {Puckering_MainForm.F_IO.DO_Write(1, true);}//IO輸出
+                    e_Signal_output(1, true);//委派觸發
+                    //判斷該回饋訊號
+                    if (Puckering_MainForm.F_IO.DI_Read(1)) 
+                    {
+                        _StepNum = _step.ToString(); //步序顯示用
+                        _step++; //下一步序控制
+                    }
 
                     
-                    _StepNum = _step.ToString(); //步序顯示用
-
-                    //OnChangeLoopStep();//委派觸發
-
-                    _step++; //下一步序控制
                     break;
 
                 #endregion
@@ -180,9 +182,15 @@ namespace MIRDC_Puckering
                     while (_loopStop) { } //暫停迴圈
 
                     //填入該步序動作區塊
+                    e_Signal_output(1, false);//委派觸發
 
-                    _StepNum = _step.ToString(); //步序顯示用
-                    _step++; //下一步序控制
+                    //判斷該回饋訊號
+                    if (!Puckering_MainForm.F_IO.DI_Read(1)) 
+                    {
+                        _StepNum = _step.ToString(); //步序顯示用
+                        _step++; //下一步序控制
+                    }
+                    
                     break;
 
                 #endregion
@@ -251,10 +259,15 @@ namespace MIRDC_Puckering
                 case 12:
                     while (_loopStop) { } //暫停迴圈
 
+
+                    
+
                     //填入該步序動作區塊
                     _signal_a1 = true;
                     _StepNum = _step.ToString(); //步序顯示用
                     _step = 0; //下一步序控制
+
+
                     break;
 
                     #endregion
@@ -329,6 +342,7 @@ namespace MIRDC_Puckering
                     //填入該步序動作區塊
                     if (GrabRobotLoop.GR_signal_a1)
                     {
+                        // if (Puckering_MainForm.F_IO.DI_Read(0)) { Puckering_MainForm.F_IO.DO_Write(1, false); }//IO輸出
                         _step++; //下一步序控制
                     }
 
@@ -552,7 +566,6 @@ namespace MIRDC_Puckering
                     {
                         _step++; //下一步序控制 
                     }
-
 
 
                     _StepNum = _step.ToString(); //步序顯示用 
