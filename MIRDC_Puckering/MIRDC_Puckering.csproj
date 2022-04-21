@@ -81,6 +81,13 @@
     </Compile>
     <Compile Include="IOControl\UniDAQ.cs" />
     <Compile Include="ISystem.cs" />
+    <Compile Include="OtherProgram\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherProgram\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherProgram\Permission.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -109,6 +116,9 @@
     <Compile Include="ThreadControl.cs" />
     <EmbeddedResource Include="IOControl\IOForm.resx">
       <DependentUpon>IOForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherProgram\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RobotControl\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
@@ -143,9 +153,7 @@
     <Content Include="Image\SESC_LOGO.png" />
     <Content Include="Image\SHomePage_LOGO.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="OtherProgram\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <COMReference Include="AxMELFARXMLib">
       <Guid>{1E9AEBC5-891B-11D6-8661-00D05915F009}</Guid>

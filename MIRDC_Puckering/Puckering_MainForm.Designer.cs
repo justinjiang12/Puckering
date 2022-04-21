@@ -54,9 +54,10 @@
             this.btn_Start = new System.Windows.Forms.Button();
             this.btn_Stop = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button11 = new System.Windows.Forms.Button();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -207,7 +208,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(6, 122);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(64, 12);
+            this.label5.Size = new System.Drawing.Size(81, 15);
             this.label5.TabIndex = 23;
             this.label5.Text = "VisionStep : ";
             // 
@@ -216,7 +217,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 99);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 12);
+            this.label4.Size = new System.Drawing.Size(71, 15);
             this.label4.TabIndex = 22;
             this.label4.Text = "PushStep : ";
             // 
@@ -225,7 +226,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 74);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 12);
+            this.label3.Size = new System.Drawing.Size(72, 15);
             this.label3.TabIndex = 21;
             this.label3.Text = "GrabStep : ";
             // 
@@ -234,7 +235,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 26);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 12);
+            this.label2.Size = new System.Drawing.Size(76, 15);
             this.label2.TabIndex = 20;
             this.label2.Text = "SysModel : ";
             // 
@@ -243,7 +244,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 51);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 12);
+            this.label1.Size = new System.Drawing.Size(41, 15);
             this.label1.TabIndex = 19;
             this.label1.Text = "label1";
             // 
@@ -333,32 +334,43 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "System msg";
             // 
-            // label6
+            // label8
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(147, 17);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(110, 12);
-            this.label6.TabIndex = 24;
-            this.label6.Text = "PC_IP : 192.168.1.10 ";
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 590);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(148, 15);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Kuka_IP : 192.168.1.30 ";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(147, 34);
+            this.label7.Location = new System.Drawing.Point(6, 573);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(144, 12);
+            this.label7.Size = new System.Drawing.Size(178, 15);
             this.label7.TabIndex = 25;
             this.label7.Text = "Mitusbishi_IP : 192.168.1.20 ";
             // 
-            // label8
+            // label6
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(147, 51);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(121, 12);
-            this.label8.TabIndex = 26;
-            this.label8.Text = "Kuka_IP : 192.168.1.30 ";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 556);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(135, 15);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "PC_IP : 192.168.1.10 ";
+            // 
+            // button11
+            // 
+            this.button11.Font = new System.Drawing.Font("微軟正黑體", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button11.Location = new System.Drawing.Point(1368, 168);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(147, 64);
+            this.button11.TabIndex = 31;
+            this.button11.Tag = "btn_Manual";
+            this.button11.Text = "Login";
+            this.button11.UseVisualStyleBackColor = true;
             // 
             // Puckering_MainForm
             // 
@@ -366,6 +378,7 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1523, 790);
             this.ControlBox = false;
+            this.Controls.Add(this.button11);
             this.Controls.Add(this.btn_Stop);
             this.Controls.Add(this.btn_Start);
             this.Controls.Add(this.groupBox1);
@@ -418,6 +431,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button11;
     }
 }
 
