@@ -7,13 +7,11 @@ using System.ComponentModel;
 
 namespace MIRDC_Puckering.OtherProgram
 {
-    class Permission
-    {
-        /// <summary>
-        /// 宣告委派
-        /// </summary>
-        /// <param name="State"></param>
-        delegate void ChangePermission(PermissionList State);
+    /// <summary>
+    /// 宣告委派
+    /// </summary>
+    /// <param name="Level"></param>
+    delegate void ChangePermission(PermissionList Level);
 
         /// <summary>
         /// 權限狀態
@@ -21,14 +19,14 @@ namespace MIRDC_Puckering.OtherProgram
         class IPermission
         {
             /// <summary>
-            /// 當系統參數切換時觸發(委派)
+            /// 當權限等極切換時觸發(委派)
             /// </summary>
             public static event ChangePermission OnSysLevelChanging;
 
 
 
             /// <summary>
-            /// 系統狀態列概述
+            /// 權限等級概述
             /// </summary>
             private static PermissionList _permissionLevel = PermissionList.Level_0_Guest;
 
@@ -53,11 +51,11 @@ namespace MIRDC_Puckering.OtherProgram
 
 
         /// <summary>
-        /// 系統狀態表單
+        /// 權限等級表單
         /// </summary>
         public enum PermissionList
         {
-            //===================權限等極=======================//
+            //===================權限等級=======================//
             /// <summary>
             /// 訪客
             /// </summary>
@@ -82,7 +80,7 @@ namespace MIRDC_Puckering.OtherProgram
             /// 最高權限(設計者)
             /// </summary>
             [Description("最高權限")]
-            Level_3_Designer,
+            Level_10_Designer,
 
             /// <summary>
             /// other
@@ -94,4 +92,4 @@ namespace MIRDC_Puckering.OtherProgram
 
 
     }
-}
+

@@ -11,6 +11,9 @@ using System.Threading; //需匯入System.Threading
 using MIRDC_Puckering.Robotcontrol;
 using DIO;
 using MxAutomation_Example;
+using MIRDC_Puckering.OtherProgram;
+using FesIF_Demo;
+
 
 
 
@@ -32,6 +35,8 @@ namespace MIRDC_Puckering
         public static MitusbiahiRobotForm F_MRC = new MitusbiahiRobotForm();
         public static IOForm F_IO = new IOForm();
         public static MainView F_KRC = new MainView();
+        public static LoginForm F_LOGIN = new LoginForm();
+        public static YaskawRobot F_YRC = new YaskawRobot();
 
         #endregion
 
@@ -53,6 +58,7 @@ namespace MIRDC_Puckering
         {
             ISystem_EventLoad();
             Thread_EventLoad();
+            IPermission_EventLoad();
         }
 
         private void ISystem_EventLoad()
@@ -62,6 +68,13 @@ namespace MIRDC_Puckering
             //委派方法
             //thr_control.L_GrabRobot.OnChangeLoopStep += ChangeGLoopStep;
             ISystem.Model_State = SysModel.Manual;
+        }
+
+        private void IPermission_EventLoad()
+        {
+            IPermission.OnSysLevelChanging += ChangePermissionLevel;
+            //委派方法
+            IPermission.Permission_Level = PermissionList.Level_0_Guest;
         }
 
         private void Thread_EventLoad()
@@ -100,14 +113,6 @@ namespace MIRDC_Puckering
         #endregion
 
         #region 相關事件觸發方法
-        /// <summary>
-        /// 事件觸發方法
-        /// </summary>
-        private void testfuntion()
-        {
-            eventnum += eventnum;
-            label1.Text = eventnum.ToString();
-        }
 
         /// <summary>
         /// 當系統狀態改變事件觸發
@@ -117,6 +122,21 @@ namespace MIRDC_Puckering
         {
             label2.Text = "SysModel : "+State.ToString();
             CheckSysModel(State);
+
+        }
+
+        private void ChangePermissionLevel (PermissionList Level)
+        {
+            string _num = "***";
+            if (Level== PermissionList.Level_0_Guest) { _num = "Guest"; }
+            if (Level == PermissionList.Level_1_Operator) { _num = "Operator"; }
+            if (Level == PermissionList.Level_2_Engineer) { _num = "Engineer"; }
+            if (Level == PermissionList.Level_3_SeniorEngineer) { _num = "SeniorEngineer"; }
+            if (Level == PermissionList.Level_10_Designer) { _num = "Designer"; }
+
+
+            label9.Text = "Permission : " + _num;
+            CheckPermission(Level);
 
         }
 
@@ -198,6 +218,41 @@ namespace MIRDC_Puckering
                     autoLoopStop();
                     break;
 
+            }
+        }
+
+        /// <summary>
+        /// 確認目前權限並處理之
+        /// </summary>
+        /// <param name="State"></param>
+        private void CheckPermission(PermissionList Level)
+        {
+            switch (Level)
+            {
+                case PermissionList.Level_0_Guest:
+
+
+                    break;
+
+                case PermissionList.Level_1_Operator:
+
+
+                    break;
+
+                case PermissionList.Level_2_Engineer:
+
+
+                    break;
+
+                case PermissionList.Level_3_SeniorEngineer:
+
+
+                    break;
+
+                case PermissionList.Level_10_Designer:
+
+
+                    break;
             }
         }
 
@@ -325,6 +380,15 @@ namespace MIRDC_Puckering
                         pageState = "KUKA_Page";
                         break;
 
+                    case "YaskawaPage":
+
+                        ShowForm(F_YRC);
+                        pageState = "Yaskawa_Page";
+                        break;
+
+                        
+
+
                     case "IOPage":
                         ShowForm(F_IO);
                         pageState = "IO_Page";
@@ -350,6 +414,13 @@ namespace MIRDC_Puckering
                     case "btn_esc":
 
                         this.Close();
+
+                        break;
+
+
+                    case "btn_Login":
+
+                        F_LOGIN.Show();
 
                         break;
 
@@ -412,6 +483,7 @@ namespace MIRDC_Puckering
             if (pageName == "Mitusbishi_Page") { panel1.Controls.Remove(F_MRC); }
             if (pageName == "IO_Page") { panel1.Controls.Remove(F_IO); }
             if (pageName == "KUKA_Page") { panel1.Controls.Remove(F_KRC); }
+            if (pageName == "Yaskawa_Page") { panel1.Controls.Remove(F_YRC); }
         }
 
         /// <summary>
@@ -451,6 +523,8 @@ namespace MIRDC_Puckering
             label5.Text = "Vision_Step : " + VisionLoop.VI_StepNum;
 
         }
+
+
     }
 
 }

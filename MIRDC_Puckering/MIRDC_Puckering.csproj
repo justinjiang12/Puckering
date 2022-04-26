@@ -55,6 +55,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FesIF">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files\Yaskawa\FesiF\FesIF.dll</HintPath>
+    </Reference>
     <Reference Include="MxAutomation_V2.1.3">
       <HintPath>.\MxAutomation_V2.1.3.dll</HintPath>
     </Reference>
@@ -93,6 +96,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RobotControl\YaskawaRobot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RobotControl\YaskawaRobot.designer.cs">
+      <DependentUpon>YaskawaRobot.cs</DependentUpon>
+    </Compile>
     <Compile Include="RobotControl\MainView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OtherProgram\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RobotControl\YaskawaRobot.resx">
+      <DependentUpon>YaskawaRobot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RobotControl\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>

@@ -170,8 +170,13 @@ namespace DIO
         /// <param name="_state"></param>
         public void DO_Write(ushort _num , bool _state)
         {
-            if (_state==true) { wInitialCode = UniDAQ.Ixud_WriteDOBit(wBoardNo, wOutputPort, _num, 1); }
-            if (_state == false) { wInitialCode = UniDAQ.Ixud_WriteDOBit(wBoardNo, wOutputPort, _num, 0); }
+            try
+            {
+                if (_state == true) { wInitialCode = UniDAQ.Ixud_WriteDOBit(wBoardNo, wOutputPort, _num, 1); }
+                if (_state == false) { wInitialCode = UniDAQ.Ixud_WriteDOBit(wBoardNo, wOutputPort, _num, 0); }
+            }
+            catch (Exception x) { MessageBox.Show(x.ToString(), "systen error!!!"); }
+
         }
         /// <summary>
         /// DI_Read
@@ -180,9 +185,14 @@ namespace DIO
         /// <returns></returns>
         public bool DI_Read(ushort _num)
         {
-            ushort _DIVal = 0;
-            wInitialCode = UniDAQ.Ixud_ReadDIBit(wBoardNo, wInputPort, _num, ref _DIVal);
-            if (_DIVal==0) { return false; } else { return true; }
+            try
+            {
+                ushort _DIVal = 0;
+                wInitialCode = UniDAQ.Ixud_ReadDIBit(wBoardNo, wInputPort, _num, ref _DIVal);
+                if (_DIVal == 0) { return false; } else { return true; }
+            }
+            catch (Exception x) { MessageBox.Show(x.ToString(), "systen error!!!"); return false; }
+            
         }
 
 
