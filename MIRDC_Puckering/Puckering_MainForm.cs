@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading; //需匯入System.Threading
+using MIRDC_Puckering.AutoLoop;
 using MIRDC_Puckering.Robotcontrol;
 using DIO;
 using MxAutomation_Example;
@@ -79,7 +80,7 @@ namespace MIRDC_Puckering
 
         private void Thread_EventLoad()
         {
-            thr_control.L_GrabRobot.e_Signal_output += GrabRobot_output;
+            thr_control.L_GrabRobot.e_Signal_output_1 += GrabRobot_output;
         }
 
         private void GrabRobot_output(ushort num,bool state)
@@ -108,7 +109,6 @@ namespace MIRDC_Puckering
 
             }
             
-
         }
         #endregion
 
@@ -339,7 +339,6 @@ namespace MIRDC_Puckering
         }
 
 
-
         #endregion
 
 
@@ -517,10 +516,9 @@ namespace MIRDC_Puckering
 
         private void thr_timer_Tick(object sender, EventArgs e)
         {
-
-            label3.Text = "GrabRobot_Step : " + GrabRobotLoop.GR_StepNum;
-            label4.Text = "PushRobot_Step : " + PushRobotLoop.PR_StepNum;
-            label5.Text = "Vision_Step : " + VisionLoop.VI_StepNum;
+            label3.Text = "GrabRobot_Step : " + GRAB_ROBOT_LOOP.GR_StepNum;
+            label4.Text = "PushRobot_Step : " + PUSH_ROBOT_LOOP.PR_StepNum;
+            label5.Text = "Vision_Step : " + VISION_LOOP.VI_StepNum;
 
         }
 

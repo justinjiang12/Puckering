@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.Threading;
+using MIRDC_Puckering.AutoLoop;
 
 namespace MIRDC_Puckering
 {
@@ -16,10 +17,9 @@ namespace MIRDC_Puckering
         /// <summary>
         /// 實作各部動作流程類別
         /// </summary>
-        public GrabRobotLoop L_GrabRobot = new GrabRobotLoop();
-        public PushRobotLoop L_PushRobot = new PushRobotLoop();
-        public VisionLoop L_Vision = new VisionLoop();
-
+        public GRAB_ROBOT_LOOP L_GrabRobot = new GRAB_ROBOT_LOOP();
+        public PUSH_ROBOT_LOOP L_PushRobot = new PUSH_ROBOT_LOOP();
+        public VISION_LOOP L_Vision = new VISION_LOOP();
 
         /// <summary>
         /// 宣告main_MIRDC_testLoop 欄位(thread)
@@ -83,7 +83,10 @@ namespace MIRDC_Puckering
         {
             try
             {
-                OtherControl.ResetData();
+                //OtherControl.ResetData();
+                L_GrabRobot.ResetData();
+                L_PushRobot.ResetData();
+                L_Vision.ResetData();
                 CloseThread(Thr_GrabRobot, state_GrabRobot);
                 CloseThread(Thr_PushRobot, state_PushRobot);
                 CloseThread(Thr_Vision, state_Vision);

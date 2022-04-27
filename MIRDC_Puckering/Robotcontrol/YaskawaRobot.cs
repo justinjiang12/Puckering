@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.ComponentModel;
+using System.IO;
+using System.Collections.Generic;
 using FESIFS;
 
 namespace FesIF_Demo
@@ -19,6 +22,11 @@ namespace FesIF_Demo
         /*額外宣告區間*/
 
         int label;
+
+        DirectoryInfo dirInfo;
+        FileSystemWatcher _watch = new FileSystemWatcher();
+        BindingList<PathData> PathDataList = new BindingList<PathData>();
+
 
         /*------------*/
 
@@ -628,5 +636,239 @@ namespace FesIF_Demo
                 decode[i] = (byte)binaryarray[binaryarray.Length - 1 - i];
             FESIF.Close();
         }
+
+
+        #region Justin test
+
+        #region 控制物件管理
+        /// <summary>
+        /// 按鈕管理巨集
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string tag = (string)btn.Tag;
+            try
+            {
+
+                switch (tag)
+                {
+                    case "btn_connect":
+
+
+                        break;
+
+                    case "btn_SVON":
+
+
+                        break;
+
+                    case "btn_SVOFF":
+
+
+                        break;
+
+                    case "btn_STOP":
+
+
+                        break;
+
+                    case "btn_START":
+
+
+                        break;
+
+                    case "btn_PROLOAD":
+
+
+                        break;
+
+                    case "btn_PRORUN":
+
+
+                        break;
+
+                    case "btn_BRO":
+
+                        try
+                        {
+                            OpenFileDialog dlg = new OpenFileDialog();
+                            dlg.ShowDialog();
+                            Browse_textbox.Text = dlg.FileName;
+                        }
+                        catch { MessageBox.Show("system error"); }
+
+                        break;
+
+                    case "btn_LOADDATA":
+                        try
+                        {
+                            dataGridView1.Rows.Clear();
+                            LoadCSV(Browse_textbox.Text);
+                        }
+                        catch { MessageBox.Show("system error"); }
+
+                        break;
+
+                    case "btn_PROWRITE":
+
+
+                        break;
+
+
+
+                    case "btn_PRODLOAD":
+
+
+                        break;
+
+                        
+
+
+                }
+            }
+            catch (Exception x) { MessageBox.Show(x.ToString(), "systen error!!!"); }
+        }
+        #endregion
+
+
+        #endregion
+
+
+        /// <summary>
+        /// 取得csv並匯入DataGridView
+        /// </summary>
+        public void LoadCSV(string csvFile)
+        {
+
+            var listOfStrings = new List<string>();
+            string[] ss = listOfStrings.ToArray();
+            int p_num = 0;
+
+            dataGridView1.DataSource = PathDataList;
+
+            foreach (string s in File.ReadAllLines(csvFile))
+            {
+                ss = s.Split(','); //將一列的資料，以逗號的方式進行資料切割，並將資料放入一個字串陣列       
+
+
+
+                PathDataList.Add(new PathData
+                {
+                    Name = ss[0],
+                    X = Math.Round(float.Parse(ss[1]) + 170, 2, MidpointRounding.AwayFromZero).ToString(),
+                    Y = Math.Round(float.Parse(ss[2]) + 150, 2, MidpointRounding.AwayFromZero).ToString(),
+                    Z = Math.Round(0 - float.Parse(ss[3]), 2, MidpointRounding.AwayFromZero).ToString(),
+                    A = ss[4],
+                    B = ss[5],
+                    C = ss[6]
+
+
+
+                });
+
+            }
+
+        }
+
+
+    }
+    /// <summary>
+    /// 新增一個類別For 點位 Data 欄位
+    /// </summary>
+    public class PathData : INotifyPropertyChanged
+    {
+        #region 插入更改事件
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged(string p)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(p));
+        }
+
+        #endregion
+
+        private string _Name;
+        private string _X;
+        private string _Y;
+        private string _Z;
+        private string _A;
+        private string _B;
+        private string _C;
+
+        public string Name
+        {
+            get { return _Name; }
+            set
+            {
+                _Name = value;
+                NotifyPropertyChanged(nameof(Name));
+            }
+        }
+
+        public string X
+        {
+            get { return _X; }
+            set
+            {
+                _X = value;
+                NotifyPropertyChanged(nameof(X));
+            }
+        }
+
+        public string Y
+        {
+            get { return _Y; }
+            set
+            {
+                _Y = value;
+                NotifyPropertyChanged(nameof(Y));
+            }
+        }
+
+        public string Z
+        {
+            get { return _Z; }
+            set
+            {
+                _Z = value;
+                NotifyPropertyChanged(nameof(Z));
+            }
+        }
+
+        public string A
+        {
+            get { return _A; }
+            set
+            {
+                _A = value;
+                NotifyPropertyChanged(nameof(A));
+            }
+        }
+
+        public string B
+        {
+            get { return _B; }
+            set
+            {
+                _B = value;
+                NotifyPropertyChanged(nameof(B));
+            }
+        }
+
+
+        public string C
+        {
+            get { return _C; }
+            set
+            {
+                _C = value;
+                NotifyPropertyChanged(nameof(C));
+            }
+        }
+
+
     }
 }

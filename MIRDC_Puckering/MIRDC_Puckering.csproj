@@ -74,7 +74,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoLoop\AutoLoop.cs" />
+    <Compile Include="AutoLoop\GRAB_ROBOT_LOOP.cs" />
+    <Compile Include="AutoLoop\OTHER_LOOP.cs" />
+    <Compile Include="AutoLoop\PUSH_ROBOT_LOOP.cs" />
+    <Compile Include="AutoLoop\VISION_LOOP.cs" />
+    <Compile Include="AutoLoop\WELDING_ROBOT_LOOP.cs" />
     <Compile Include="IOControl\ControlArrayUtils.cs" />
     <Compile Include="IOControl\IOForm.cs">
       <SubType>Form</SubType>
@@ -102,11 +106,11 @@
     <Compile Include="RobotControl\YaskawaRobot.designer.cs">
       <DependentUpon>YaskawaRobot.cs</DependentUpon>
     </Compile>
-    <Compile Include="RobotControl\MainView.cs">
+    <Compile Include="RobotControl\KUKARobot.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RobotControl\MainView.designer.cs">
-      <DependentUpon>MainView.cs</DependentUpon>
+    <Compile Include="RobotControl\KUKARobot.designer.cs">
+      <DependentUpon>KUKARobot.cs</DependentUpon>
     </Compile>
     <Compile Include="RobotControl\MitusbishiRobot.cs">
       <SubType>Form</SubType>
@@ -122,6 +126,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RobotControl\YASKAWA_LIB\RouteBook.cs" />
+    <Compile Include="RobotControl\YASKAWA_LIB\Yaskawa.cs" />
     <Compile Include="ThreadControl.cs" />
     <EmbeddedResource Include="IOControl\IOForm.resx">
       <DependentUpon>IOForm.cs</DependentUpon>
@@ -132,8 +138,8 @@
     <EmbeddedResource Include="RobotControl\YaskawaRobot.resx">
       <DependentUpon>YaskawaRobot.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RobotControl\MainView.resx">
-      <DependentUpon>MainView.cs</DependentUpon>
+    <EmbeddedResource Include="RobotControl\KUKARobot.resx">
+      <DependentUpon>KUKARobot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RobotControl\MitusbishiRobot.resx">
       <DependentUpon>MitusbishiRobot.cs</DependentUpon>
