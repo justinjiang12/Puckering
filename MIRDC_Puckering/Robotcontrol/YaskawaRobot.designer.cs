@@ -83,28 +83,33 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.Browse_textbox = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button25 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
             this.button26 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
-            this.button25 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.Browse_textbox = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button9 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button6 = new System.Windows.Forms.Button();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbSocket
@@ -122,11 +127,11 @@
             // tbMsg
             // 
             this.tbMsg.Font = new System.Drawing.Font("新細明體", 12F);
-            this.tbMsg.Location = new System.Drawing.Point(387, 415);
+            this.tbMsg.Location = new System.Drawing.Point(764, 25);
             this.tbMsg.Margin = new System.Windows.Forms.Padding(4);
             this.tbMsg.Multiline = true;
             this.tbMsg.Name = "tbMsg";
-            this.tbMsg.Size = new System.Drawing.Size(369, 165);
+            this.tbMsg.Size = new System.Drawing.Size(432, 557);
             this.tbMsg.TabIndex = 51;
             // 
             // label9
@@ -757,70 +762,122 @@
             this.groupBox1.Controls.Add(this.s);
             this.groupBox1.Controls.Add(this.l);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(556, 5);
+            this.groupBox1.Location = new System.Drawing.Point(16, 15);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(782, 590);
+            this.groupBox1.Size = new System.Drawing.Size(1203, 601);
             this.groupBox1.TabIndex = 148;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "TaiwanYaskawa";
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button14);
-            this.groupBox2.Controls.Add(this.button12);
-            this.groupBox2.Controls.Add(this.button26);
+            this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.button10);
-            this.groupBox2.Controls.Add(this.button25);
-            this.groupBox2.Controls.Add(this.button11);
-            this.groupBox2.Controls.Add(this.Browse_textbox);
-            this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Controls.Add(this.button9);
             this.groupBox2.Controls.Add(this.button7);
             this.groupBox2.Controls.Add(this.button8);
             this.groupBox2.Controls.Add(this.textBox5);
             this.groupBox2.Controls.Add(this.button6);
-            this.groupBox2.Controls.Add(this.checkBox2);
-            this.groupBox2.Controls.Add(this.textBox4);
-            this.groupBox2.Controls.Add(this.label19);
             this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.label18);
             this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 5);
+            this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(528, 724);
+            this.groupBox2.Size = new System.Drawing.Size(1213, 742);
             this.groupBox2.TabIndex = 149;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "JustinTest";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.Browse_textbox);
+            this.groupBox3.Controls.Add(this.label19);
+            this.groupBox3.Controls.Add(this.dataGridView1);
+            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Controls.Add(this.button25);
+            this.groupBox3.Controls.Add(this.button14);
+            this.groupBox3.Controls.Add(this.button26);
+            this.groupBox3.Location = new System.Drawing.Point(314, 24);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(556, 482);
+            this.groupBox3.TabIndex = 157;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Point/Robot Program";
+            // 
+            // Browse_textbox
+            // 
+            this.Browse_textbox.Location = new System.Drawing.Point(6, 23);
+            this.Browse_textbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Browse_textbox.Name = "Browse_textbox";
+            this.Browse_textbox.Size = new System.Drawing.Size(332, 25);
+            this.Browse_textbox.TabIndex = 151;
+            this.Browse_textbox.Text = "C:\\Users\\j0910\\Google 雲端硬碟\\工作\\專案\\MIRDC\\預浸布雙機協作_科學專案\\程式\\MIRDC_Puckering(20220427)\\" +
+    "MIRDC_Puckering\\PathData";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label19.Location = new System.Drawing.Point(7, 441);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(122, 20);
+            this.label19.TabIndex = 156;
+            this.label19.Text = "Program Name";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(6, 55);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 27;
+            this.dataGridView1.Size = new System.Drawing.Size(529, 367);
+            this.dataGridView1.TabIndex = 150;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("新細明體", 12F);
+            this.textBox4.Location = new System.Drawing.Point(159, 433);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(220, 34);
+            this.textBox4.TabIndex = 155;
+            this.textBox4.Text = "WedingProgrm";
+            // 
+            // button25
+            // 
+            this.button25.Location = new System.Drawing.Point(344, 21);
+            this.button25.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(99, 28);
+            this.button25.TabIndex = 152;
+            this.button25.Tag = "btn_BRO";
+            this.button25.Text = "Browse";
+            this.button25.UseVisualStyleBackColor = true;
+            this.button25.Click += new System.EventHandler(this.button_Click);
+            // 
             // button14
             // 
             this.button14.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button14.Location = new System.Drawing.Point(390, 664);
+            this.button14.Location = new System.Drawing.Point(387, 433);
             this.button14.Margin = new System.Windows.Forms.Padding(4);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(123, 41);
+            this.button14.Size = new System.Drawing.Size(148, 37);
             this.button14.TabIndex = 154;
             this.button14.Tag = "btn_PRODLOAD";
-            this.button14.Text = "程式輸入";
+            this.button14.Text = "Program Load";
             this.button14.UseVisualStyleBackColor = true;
             this.button14.Click += new System.EventHandler(this.button_Click);
             // 
-            // button12
-            // 
-            this.button12.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button12.Location = new System.Drawing.Point(259, 664);
-            this.button12.Margin = new System.Windows.Forms.Padding(4);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(123, 41);
-            this.button12.TabIndex = 150;
-            this.button12.Tag = "btn_PROWRITE";
-            this.button12.Text = "程式編譯";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button_Click);
-            // 
             // button26
             // 
-            this.button26.Location = new System.Drawing.Point(111, 238);
+            this.button26.Location = new System.Drawing.Point(448, 21);
             this.button26.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button26.Name = "button26";
             this.button26.Size = new System.Drawing.Size(87, 28);
@@ -832,73 +889,26 @@
             // 
             // button10
             // 
+            this.button10.Enabled = false;
             this.button10.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button10.Location = new System.Drawing.Point(300, 87);
+            this.button10.Location = new System.Drawing.Point(163, 139);
             this.button10.Margin = new System.Windows.Forms.Padding(4);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(99, 41);
+            this.button10.Size = new System.Drawing.Size(129, 37);
             this.button10.TabIndex = 152;
             this.button10.Tag = "btn_STOP";
             this.button10.Text = "暫停";
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button_Click);
             // 
-            // button25
-            // 
-            this.button25.Location = new System.Drawing.Point(7, 238);
-            this.button25.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(99, 28);
-            this.button25.TabIndex = 152;
-            this.button25.Tag = "btn_BRO";
-            this.button25.Text = "Browse";
-            this.button25.UseVisualStyleBackColor = true;
-            this.button25.Click += new System.EventHandler(this.button_Click);
-            // 
-            // button11
-            // 
-            this.button11.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button11.Location = new System.Drawing.Point(407, 87);
-            this.button11.Margin = new System.Windows.Forms.Padding(4);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(107, 41);
-            this.button11.TabIndex = 153;
-            this.button11.Tag = "btn_START";
-            this.button11.Text = "暫停解除";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button_Click);
-            // 
-            // Browse_textbox
-            // 
-            this.Browse_textbox.Location = new System.Drawing.Point(6, 209);
-            this.Browse_textbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Browse_textbox.Name = "Browse_textbox";
-            this.Browse_textbox.Size = new System.Drawing.Size(508, 25);
-            this.Browse_textbox.TabIndex = 151;
-            this.Browse_textbox.Text = "C:\\Users\\j0910\\Google 雲端硬碟\\工作\\專案\\MIRDC\\預浸布雙機協作_科學專案\\程式\\MIRDC_Puckering(20220427)\\" +
-    "MIRDC_Puckering\\PathData";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 270);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(508, 388);
-            this.dataGridView1.TabIndex = 150;
-            // 
             // button9
             // 
+            this.button9.Enabled = false;
             this.button9.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button9.Location = new System.Drawing.Point(300, 136);
+            this.button9.Location = new System.Drawing.Point(6, 135);
             this.button9.Margin = new System.Windows.Forms.Padding(4);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(214, 41);
+            this.button9.Size = new System.Drawing.Size(149, 41);
             this.button9.TabIndex = 151;
             this.button9.Tag = "btn_PRORUN";
             this.button9.Text = "啟動";
@@ -908,10 +918,10 @@
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button7.Location = new System.Drawing.Point(300, 38);
+            this.button7.Location = new System.Drawing.Point(6, 86);
             this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(99, 41);
+            this.button7.Size = new System.Drawing.Size(149, 41);
             this.button7.TabIndex = 149;
             this.button7.Tag = "btn_SVON";
             this.button7.Text = "伺服ON";
@@ -921,10 +931,10 @@
             // button8
             // 
             this.button8.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button8.Location = new System.Drawing.Point(407, 38);
+            this.button8.Location = new System.Drawing.Point(163, 87);
             this.button8.Margin = new System.Windows.Forms.Padding(4);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(107, 41);
+            this.button8.Size = new System.Drawing.Size(129, 41);
             this.button8.TabIndex = 150;
             this.button8.Tag = "btn_SVOFF";
             this.button8.Text = "伺服OFF";
@@ -934,68 +944,35 @@
             // textBox5
             // 
             this.textBox5.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox5.Location = new System.Drawing.Point(7, 136);
+            this.textBox5.Location = new System.Drawing.Point(7, 187);
             this.textBox5.Margin = new System.Windows.Forms.Padding(4);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(154, 41);
+            this.textBox5.Size = new System.Drawing.Size(214, 41);
             this.textBox5.TabIndex = 148;
             this.textBox5.Text = "請填入程式名稱，例：XXX.JBI";
             // 
             // button6
             // 
+            this.button6.Enabled = false;
             this.button6.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button6.Location = new System.Drawing.Point(169, 136);
+            this.button6.Location = new System.Drawing.Point(6, 232);
             this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(123, 41);
+            this.button6.Size = new System.Drawing.Size(215, 41);
             this.button6.TabIndex = 109;
             this.button6.Tag = "btn_PROLOAD";
             this.button6.Text = "程式選擇";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button_Click);
             // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("新細明體", 12F);
-            this.checkBox2.Location = new System.Drawing.Point(169, 92);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(111, 24);
-            this.checkBox2.TabIndex = 94;
-            this.checkBox2.Text = "啟動通信";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("新細明體", 12F);
-            this.textBox4.Location = new System.Drawing.Point(169, 44);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(95, 34);
-            this.textBox4.TabIndex = 95;
-            this.textBox4.Text = "10040";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label19.Location = new System.Drawing.Point(165, 20);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(39, 20);
-            this.label19.TabIndex = 96;
-            this.label19.Text = "Port";
-            // 
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button5.Location = new System.Drawing.Point(6, 87);
+            this.button5.Location = new System.Drawing.Point(163, 38);
             this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(149, 41);
+            this.button5.Size = new System.Drawing.Size(129, 41);
             this.button5.TabIndex = 97;
             this.button5.Tag = "btn_connect";
             this.button5.Text = "輸入完成";
@@ -1024,13 +1001,44 @@
             this.textBox1.TabIndex = 91;
             this.textBox1.Text = "192.168.1.40";
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(12, 6);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1233, 783);
+            this.tabControl1.TabIndex = 150;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1225, 754);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "JustinTest";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.groupBox1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1225, 754);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "官方Demo";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // YaskawRobot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1359, 741);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(1257, 801);
+            this.Controls.Add(this.tabControl1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "YaskawRobot";
             this.Text = "台灣安川電機";
@@ -1038,7 +1046,12 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
@@ -1101,15 +1114,11 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox textBox1;
@@ -1118,7 +1127,12 @@
         private System.Windows.Forms.TextBox Browse_textbox;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }
 

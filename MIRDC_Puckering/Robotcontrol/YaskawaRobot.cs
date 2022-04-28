@@ -4,12 +4,23 @@ using System.ComponentModel;
 using System.IO;
 using System.Collections.Generic;
 using FESIFS;
+using RouteButler_Yaskawa;
 
 namespace FesIF_Demo
 {
 
     public partial class YaskawRobot : Form
 	{
+
+        #region Justin 欄位
+
+        private readonly Yaskawa yaskawa = new Yaskawa();
+
+
+        #endregion
+
+
+        #region yaskawa <官方>
         /*必要宣告項目*/
         string IP ;
         int Port;
@@ -637,6 +648,7 @@ namespace FesIF_Demo
             FESIF.Close();
         }
 
+        #endregion
 
         #region Justin test
 
@@ -648,6 +660,7 @@ namespace FesIF_Demo
         /// <param name="e"></param>
         private void button_Click(object sender, EventArgs e)
         {
+            int rslt;
             Button btn = (Button)sender;
             string tag = (string)btn.Tag;
             try
@@ -657,16 +670,37 @@ namespace FesIF_Demo
                 {
                     case "btn_connect":
 
+                        rslt = yaskawa.Connect(textBox1.Text);
+                        if (rslt == 0)
+                        {
+                            //FormStart();
+                            //timer_robot.Start();
+                            //timer_UI.Start();
+                        }
 
                         break;
 
                     case "btn_SVON":
 
+                        rslt = yaskawa.ServoSwitch(1);
+                        //txt_systemstate.Text = yaskawa.ExecuteError;
+                        if (yaskawa.ExecuteError == "0,0")
+                        {
+                            //btn_srvon.Enabled = false;
+                            //btn_srvoff.Enabled = true;
+                        }
 
                         break;
 
                     case "btn_SVOFF":
 
+                        rslt = yaskawa.ServoSwitch(2);
+                        //txt_systemstate.Text = yaskawa.ExecuteError;
+                        if (yaskawa.ExecuteError == "0,0")
+                        {
+                            //btn_srvon.Enabled = true;
+                            //btn_srvoff.Enabled = false;
+                        }
 
                         break;
 
@@ -721,7 +755,7 @@ namespace FesIF_Demo
 
                     case "btn_PRODLOAD":
 
-
+                        RobotCompileProgram(textBox4.Text);
                         break;
 
                         
@@ -733,9 +767,7 @@ namespace FesIF_Demo
         }
         #endregion
 
-
-        #endregion
-
+        #region 程式編寫內容
 
         /// <summary>
         /// 取得csv並匯入DataGridView
@@ -753,20 +785,15 @@ namespace FesIF_Demo
             {
                 ss = s.Split(','); //將一列的資料，以逗號的方式進行資料切割，並將資料放入一個字串陣列       
 
-
-
                 PathDataList.Add(new PathData
                 {
                     Name = ss[0],
-                    X = Math.Round(float.Parse(ss[1]) + 170, 2, MidpointRounding.AwayFromZero).ToString(),
-                    Y = Math.Round(float.Parse(ss[2]) + 150, 2, MidpointRounding.AwayFromZero).ToString(),
-                    Z = Math.Round(0 - float.Parse(ss[3]), 2, MidpointRounding.AwayFromZero).ToString(),
-                    A = ss[4],
-                    B = ss[5],
-                    C = ss[6]
-
-
-
+                    X = Math.Round(double.Parse(ss[1]) + 170, 2, MidpointRounding.AwayFromZero),
+                    Y = Math.Round(double.Parse(ss[2]) + 150, 2, MidpointRounding.AwayFromZero),
+                    Z = Math.Round(0 - double.Parse(ss[3]), 2, MidpointRounding.AwayFromZero),
+                    A = double.Parse(ss[4]),
+                    B = double.Parse(ss[5]),
+                    C = double.Parse(ss[6])
                 });
 
             }
@@ -774,7 +801,52 @@ namespace FesIF_Demo
         }
 
 
+
+        /// <summary>
+        /// 編寫Robot Program
+        /// </summary>
+        public bool RobotCompileProgram(string _programName)
+        {
+            try
+            {
+                RouteBook_Yaskawa routeBook_Welding = new RouteBook_Yaskawa(_programName,dataGridView1.RowCount, 0, 0);
+
+                for (int i = 1; i < dataGridView1.RowCount; i++)
+                {
+
+                    routeBook_Welding.Workspace = 0;
+                    routeBook_Welding.FlipMode = 1;
+                    routeBook_Welding.ProcessQueue[i - 1] = 1;
+                    routeBook_Welding.MovingMode[i - 1] = 2;
+                    routeBook_Welding.Tool[i - 1] = 0;
+                    routeBook_Welding.Override[i - 1] = 10;
+                    routeBook_Welding.Accerlerate[i - 1] = 70;
+                    routeBook_Welding.Decerlerate[i - 1] = 70;
+
+                    routeBook_Welding.X[i - 1] = (double)dataGridView1.Rows[i].Cells[0].Value;
+                    routeBook_Welding.Y[i - 1] = (double)dataGridView1.Rows[i].Cells[1].Value;
+                    routeBook_Welding.Z[i - 1] = (double)dataGridView1.Rows[i].Cells[2].Value;
+                    routeBook_Welding.A[i - 1] = (double)dataGridView1.Rows[i].Cells[3].Value;
+                    routeBook_Welding.B[i - 1] = (double)dataGridView1.Rows[i].Cells[4].Value;
+                    routeBook_Welding.C[i - 1] = (double)dataGridView1.Rows[i].Cells[5].Value;
+
+                }
+
+                int rslt = yaskawa.SaveFile(routeBook_Welding, _programName, 1);
+                return true;
+            }
+            catch { MessageBox.Show("system error"); return false; }
+
+
+        }
+
+        #endregion
+
+        #endregion
+
     }
+
+
     /// <summary>
     /// 新增一個類別For 點位 Data 欄位
     /// </summary>
@@ -791,12 +863,12 @@ namespace FesIF_Demo
         #endregion
 
         private string _Name;
-        private string _X;
-        private string _Y;
-        private string _Z;
-        private string _A;
-        private string _B;
-        private string _C;
+        private double _X;
+        private double _Y;
+        private double _Z;
+        private double _A;
+        private double _B;
+        private double _C;
 
         public string Name
         {
@@ -808,7 +880,7 @@ namespace FesIF_Demo
             }
         }
 
-        public string X
+        public double X
         {
             get { return _X; }
             set
@@ -818,7 +890,7 @@ namespace FesIF_Demo
             }
         }
 
-        public string Y
+        public double Y
         {
             get { return _Y; }
             set
@@ -828,7 +900,7 @@ namespace FesIF_Demo
             }
         }
 
-        public string Z
+        public double Z
         {
             get { return _Z; }
             set
@@ -838,7 +910,7 @@ namespace FesIF_Demo
             }
         }
 
-        public string A
+        public double A
         {
             get { return _A; }
             set
@@ -848,7 +920,7 @@ namespace FesIF_Demo
             }
         }
 
-        public string B
+        public double B
         {
             get { return _B; }
             set
@@ -859,7 +931,7 @@ namespace FesIF_Demo
         }
 
 
-        public string C
+        public double C
         {
             get { return _C; }
             set
