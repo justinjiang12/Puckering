@@ -810,25 +810,24 @@ namespace FesIF_Demo
             try
             {
                 RouteBook_Yaskawa routeBook_Welding = new RouteBook_Yaskawa(_programName,dataGridView1.RowCount, 0, 0);
+                routeBook_Welding.Workspace = 0;
+                routeBook_Welding.FlipMode = 1;
 
-                for (int i = 1; i < dataGridView1.RowCount; i++)
+                for (int i = 0; i < dataGridView1.RowCount-1; i++)
                 {
+                    routeBook_Welding.ProcessQueue[i] = 1;
+                    routeBook_Welding.MovingMode[i] = 2;
+                    routeBook_Welding.Tool[i] = 0;
+                    routeBook_Welding.Override[i] = 10;
+                    routeBook_Welding.Accerlerate[i] = 70;
+                    routeBook_Welding.Decerlerate[i] = 70;
 
-                    routeBook_Welding.Workspace = 0;
-                    routeBook_Welding.FlipMode = 1;
-                    routeBook_Welding.ProcessQueue[i - 1] = 1;
-                    routeBook_Welding.MovingMode[i - 1] = 2;
-                    routeBook_Welding.Tool[i - 1] = 0;
-                    routeBook_Welding.Override[i - 1] = 10;
-                    routeBook_Welding.Accerlerate[i - 1] = 70;
-                    routeBook_Welding.Decerlerate[i - 1] = 70;
-
-                    routeBook_Welding.X[i - 1] = (double)dataGridView1.Rows[i].Cells[0].Value;
-                    routeBook_Welding.Y[i - 1] = (double)dataGridView1.Rows[i].Cells[1].Value;
-                    routeBook_Welding.Z[i - 1] = (double)dataGridView1.Rows[i].Cells[2].Value;
-                    routeBook_Welding.A[i - 1] = (double)dataGridView1.Rows[i].Cells[3].Value;
-                    routeBook_Welding.B[i - 1] = (double)dataGridView1.Rows[i].Cells[4].Value;
-                    routeBook_Welding.C[i - 1] = (double)dataGridView1.Rows[i].Cells[5].Value;
+                    routeBook_Welding.X[i] = (double)dataGridView1.Rows[i].Cells[0].Value;
+                    routeBook_Welding.Y[i] = (double)dataGridView1.Rows[i].Cells[1].Value;
+                    routeBook_Welding.Z[i] = (double)dataGridView1.Rows[i].Cells[2].Value;
+                    routeBook_Welding.A[i] = (double)dataGridView1.Rows[i].Cells[3].Value;
+                    routeBook_Welding.B[i] = (double)dataGridView1.Rows[i].Cells[4].Value;
+                    routeBook_Welding.C[i] = (double)dataGridView1.Rows[i].Cells[5].Value;
 
                 }
 
