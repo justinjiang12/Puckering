@@ -38,7 +38,6 @@ namespace MIRDC_Puckering.AutoLoop
 
         #endregion
 
-
         #region 內部(for Other Loop)交握欄位
         public static bool GR_signal_a1 { get { return _signal_a1; } set { _signal_a1 = value; } }//訊號(R/W)
         private static bool _signal_a1 = false; //訊號

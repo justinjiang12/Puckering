@@ -50,22 +50,23 @@ namespace RouteButler_Yaskawa
 
             string path = ".\\" + _filename + ".JBI";
             StreamWriter _streamWriter = new StreamWriter(path, false);
-            _streamWriter.Write(JobInitial);
-            _streamWriter.Write(FileName + _filename + Environment.NewLine);
-            _streamWriter.Write(PoseInitial);
-            _streamWriter.Write(PointNumber + "0,0,0,{0},0,0" + Environment.NewLine, _routeBook.PointNumber);
+            _streamWriter.Write(JobInitial); // </JOB>
+            _streamWriter.Write(FileName + _filename + Environment.NewLine); // <//NAME WedingProgrm>
+            _streamWriter.Write(PoseInitial); // <//POS>
+            _streamWriter.Write(PointNumber + "0,0,0,{0},0,0" + Environment.NewLine, _routeBook.PointNumber);   //  <///NPOS 0,0,0,256,0,0>
             if (_routeBook.Workspace != 0)
-                _streamWriter.Write(UserGroup + _routeBook.Workspace.ToString() + Environment.NewLine);
+                _streamWriter.Write(UserGroup + _routeBook.Workspace.ToString() + Environment.NewLine); 
             if (_routeBook.Workspace != 0)
-                _streamWriter.Write(PoseType + "USER" + Environment.NewLine);
+                _streamWriter.Write(PoseType + "USER" + Environment.NewLine);    //   <///POSTYPE USER>
             else
-                _streamWriter.Write(PoseType + "ROBOT" + Environment.NewLine);
+                _streamWriter.Write(PoseType + "ROBOT" + Environment.NewLine);   //   <///POSTYPE ROBOT>
             if (_routeBook.FlipMode == 0)
-                _streamWriter.Write(FirstDefineEnd + FlipMode);
+                _streamWriter.Write(FirstDefineEnd + FlipMode);  
             else
-                _streamWriter.Write(FirstDefineEnd + NonFlipMode);
+                _streamWriter.Write(FirstDefineEnd + NonFlipMode);  //   <///RCONF 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0>
 
-            _routeBook.PointCount = 0;
+            //寫入點位數據(Data)    <ex. ///TOOL 0  P0001 = 265.320,187.550,-152.780,0.0000,0.0000,0.0000 >
+            _routeBook.PointCount = 0;               
             for (int i = 0; i < _routeBook.PointNumber; i++)
             {
                 _streamWriter.Write(Tool + _routeBook.Tool[_routeBook.PointCount].ToString() + Environment.NewLine);
@@ -82,12 +83,13 @@ namespace RouteButler_Yaskawa
                 _routeBook.PointCount++;
             }
 
-            _streamWriter.Write(CommandInitial + DateTime.Now.ToString("yyyy/MM/dd HH:mm") + Environment.NewLine);
-            _streamWriter.Write(JobAttribute);
+            _streamWriter.Write(CommandInitial + DateTime.Now.ToString("yyyy/MM/dd HH:mm") + Environment.NewLine);  //    <//INST///DATE 2022/05/03 14:18>
+            _streamWriter.Write(JobAttribute);    //    <///ATTR SC,RW,RJ>
             if (_routeBook.Workspace != 0)
-                _streamWriter.Write(Frame + "USER " + _routeBook.Workspace.ToString() + Environment.NewLine);
-            _streamWriter.Write(SecondDefineEnd);
+                _streamWriter.Write(Frame + "USER " + _routeBook.Workspace.ToString() + Environment.NewLine);     
+            _streamWriter.Write(SecondDefineEnd); //      <///GROUP1 RB1   NOP>
 
+            //寫入控制語法    <ex. MOVS P0001 V=10.0 ACC=70 DEC=70>
             _routeBook.CommandCount = 0;
             _routeBook.PointCount = 0;
             _routeBook.DoutCount = 0;
@@ -95,9 +97,11 @@ namespace RouteButler_Yaskawa
             {
                 switch (_routeBook.ProcessQueue[_routeBook.CommandCount])
                 {
+                    #region Point 語法
                     case 1:
                         switch (_routeBook.MovingMode[_routeBook.PointCount])
                         {
+                            #region MovL Point
                             case 1:
                                 _streamWriter.Write(MovL
                                                                    + PointInitial + (_routeBook.PointCount + _initialpoint).ToString().PadLeft(4, '0')
@@ -106,6 +110,12 @@ namespace RouteButler_Yaskawa
                                                                    + DEC + _routeBook.Decerlerate[_routeBook.PointCount].ToString()
                                                                    + Environment.NewLine);
                                 break;
+
+                            #endregion
+
+
+                            #region MovS Point
+
                             case 2:
                                 _streamWriter.Write(MovS
                                                                    + PointInitial + (_routeBook.PointCount + _initialpoint).ToString().PadLeft(4, '0')
@@ -114,10 +124,15 @@ namespace RouteButler_Yaskawa
                                                                    + DEC + _routeBook.Decerlerate[_routeBook.PointCount].ToString()
                                                                    + Environment.NewLine);
                                 break;
+
+                            #endregion
                         }
 
                         _routeBook.PointCount++;
                         break;
+                    #endregion
+
+                    #region Dout 語法
                     case 2:
                         if (_routeBook.DOutMode[_routeBook.DoutCount] > 0)
                             _streamWriter.Write(DOUTInitial + _routeBook.DOutMode[_routeBook.DoutCount].ToString() + DOUTEnd + " ON" +  Environment.NewLine);
@@ -126,6 +141,10 @@ namespace RouteButler_Yaskawa
 
                         _routeBook.DoutCount++;
                         break;
+
+                    #endregion
+
+
                     case 3:
                         _streamWriter.Write(_routeBook.RobotCommand[_routeBook.RobotCommandCount] + Environment.NewLine);
 
@@ -134,7 +153,7 @@ namespace RouteButler_Yaskawa
                 }
             }
 
-            _streamWriter.Write(ProgramEnd);
+            _streamWriter.Write(ProgramEnd);   //      <END>
 
             _streamWriter.Close();
             _streamWriter.Dispose();

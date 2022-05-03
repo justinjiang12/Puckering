@@ -14,7 +14,8 @@ namespace FesIF_Demo
 
         #region Justin 欄位
 
-        private readonly Yaskawa yaskawa = new Yaskawa();
+
+        private readonly Yaskawa YaskawaController = new Yaskawa();
 
 
         #endregion
@@ -660,7 +661,7 @@ namespace FesIF_Demo
         /// <param name="e"></param>
         private void button_Click(object sender, EventArgs e)
         {
-            int rslt;
+            int _rslt;
             Button btn = (Button)sender;
             string tag = (string)btn.Tag;
             try
@@ -670,8 +671,8 @@ namespace FesIF_Demo
                 {
                     case "btn_connect":
 
-                        rslt = yaskawa.Connect(textBox1.Text);
-                        if (rslt == 0)
+                        _rslt = YaskawaController.Connect(textBox1.Text);
+                        if (_rslt == 0)
                         {
                             //FormStart();
                             //timer_robot.Start();
@@ -682,9 +683,9 @@ namespace FesIF_Demo
 
                     case "btn_SVON":
 
-                        rslt = yaskawa.ServoSwitch(1);
+                        _rslt = YaskawaController.ServoSwitch(1);
                         //txt_systemstate.Text = yaskawa.ExecuteError;
-                        if (yaskawa.ExecuteError == "0,0")
+                        if (YaskawaController.ExecuteError == "0,0")
                         {
                             //btn_srvon.Enabled = false;
                             //btn_srvoff.Enabled = true;
@@ -694,9 +695,9 @@ namespace FesIF_Demo
 
                     case "btn_SVOFF":
 
-                        rslt = yaskawa.ServoSwitch(2);
+                        _rslt = YaskawaController.ServoSwitch(2);
                         //txt_systemstate.Text = yaskawa.ExecuteError;
-                        if (yaskawa.ExecuteError == "0,0")
+                        if (YaskawaController.ExecuteError == "0,0")
                         {
                             //btn_srvon.Enabled = true;
                             //btn_srvoff.Enabled = false;
@@ -756,10 +757,9 @@ namespace FesIF_Demo
                     case "btn_PRODLOAD":
 
                         RobotCompileProgram(textBox4.Text);
+                        int rslt1 = YaskawaController.Upload2Controller(textBox4.Text);
+                        MessageBox.Show("完成");
                         break;
-
-                        
-
 
                 }
             }
@@ -800,43 +800,43 @@ namespace FesIF_Demo
 
         }
 
-
-
         /// <summary>
-        /// 編寫Robot Program
+        /// 編寫Robot Program (for Yaskawa)
         /// </summary>
         public bool RobotCompileProgram(string _programName)
         {
             try
             {
-                RouteBook_Yaskawa routeBook_Welding = new RouteBook_Yaskawa(_programName,dataGridView1.RowCount, 0, 0);
-                routeBook_Welding.Workspace = 0;
-                routeBook_Welding.FlipMode = 1;
+                // 實作程式物件
+                RouteBook_Yaskawa _routeBook_Welding = new RouteBook_Yaskawa(_programName,dataGridView1.RowCount, 0, 0);
+                //寫入工作環境生成狀態
+                _routeBook_Welding.Workspace = 0;
+                _routeBook_Welding.FlipMode = 1;
 
                 for (int i = 0; i < dataGridView1.RowCount-1; i++)
                 {
-                    routeBook_Welding.ProcessQueue[i] = 1;
-                    routeBook_Welding.MovingMode[i] = 2;
-                    routeBook_Welding.Tool[i] = 0;
-                    routeBook_Welding.Override[i] = 10;
-                    routeBook_Welding.Accerlerate[i] = 70;
-                    routeBook_Welding.Decerlerate[i] = 70;
-
-                    routeBook_Welding.X[i] = (double)dataGridView1.Rows[i].Cells[0].Value;
-                    routeBook_Welding.Y[i] = (double)dataGridView1.Rows[i].Cells[1].Value;
-                    routeBook_Welding.Z[i] = (double)dataGridView1.Rows[i].Cells[2].Value;
-                    routeBook_Welding.A[i] = (double)dataGridView1.Rows[i].Cells[3].Value;
-                    routeBook_Welding.B[i] = (double)dataGridView1.Rows[i].Cells[4].Value;
-                    routeBook_Welding.C[i] = (double)dataGridView1.Rows[i].Cells[5].Value;
-
+                    //填入Point 資料屬性
+                    _routeBook_Welding.ProcessQueue[i] = 1;
+                    _routeBook_Welding.MovingMode[i] = 2;
+                    _routeBook_Welding.Tool[i] = 0;
+                    _routeBook_Welding.Override[i] = 10;
+                    _routeBook_Welding.Accerlerate[i] = 70;
+                    _routeBook_Welding.Decerlerate[i] = 70;
+                    //填入Point 資料數值
+                    _routeBook_Welding.X[i] = (double)dataGridView1.Rows[i].Cells[1].Value;
+                    _routeBook_Welding.Y[i] = (double)dataGridView1.Rows[i].Cells[2].Value;
+                    _routeBook_Welding.Z[i] = (double)dataGridView1.Rows[i].Cells[3].Value;
+                    _routeBook_Welding.A[i] = (double)dataGridView1.Rows[i].Cells[4].Value;
+                    _routeBook_Welding.B[i] = (double)dataGridView1.Rows[i].Cells[5].Value;
+                    _routeBook_Welding.C[i] = (double)dataGridView1.Rows[i].Cells[6].Value;                    
                 }
 
-                int rslt = yaskawa.SaveFile(routeBook_Welding, _programName, 1);
+                //程式寫入
+                int _rslt = YaskawaController.SaveFile(_routeBook_Welding, _programName, 1);
+                MessageBox.Show("OK!!!"); 
                 return true;
             }
             catch { MessageBox.Show("system error"); return false; }
-
-
         }
 
         #endregion

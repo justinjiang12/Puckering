@@ -799,7 +799,7 @@
             this.groupBox3.Controls.Add(this.button26);
             this.groupBox3.Location = new System.Drawing.Point(314, 24);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(556, 482);
+            this.groupBox3.Size = new System.Drawing.Size(546, 712);
             this.groupBox3.TabIndex = 157;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Point/Robot Program";
@@ -818,7 +818,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label19.Location = new System.Drawing.Point(7, 441);
+            this.label19.Location = new System.Drawing.Point(7, 675);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(122, 20);
@@ -836,13 +836,13 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(529, 367);
+            this.dataGridView1.Size = new System.Drawing.Size(529, 606);
             this.dataGridView1.TabIndex = 150;
             // 
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("新細明體", 12F);
-            this.textBox4.Location = new System.Drawing.Point(159, 433);
+            this.textBox4.Location = new System.Drawing.Point(159, 667);
             this.textBox4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
@@ -865,7 +865,7 @@
             // button14
             // 
             this.button14.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button14.Location = new System.Drawing.Point(387, 433);
+            this.button14.Location = new System.Drawing.Point(387, 667);
             this.button14.Margin = new System.Windows.Forms.Padding(4);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(148, 37);
