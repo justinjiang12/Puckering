@@ -44,7 +44,69 @@ namespace RouteButler_Yaskawa
                                 DOUTEnd = ")";//DOUTInitial + number + DOUTEnd
         #endregion
 
-        public int SaveFile(RouteBook_Yaskawa _routeBook, string _filename, int _initialpoint)
+        #region 連線
+
+        /// <summary>
+        /// 連線(多形)
+        /// </summary>
+        /// <param name="_ip"></param>
+        /// <param name="_type"></param>
+        /// <returns></returns>
+        private int Connect(string _ip, string _type)
+        {
+            int _socketreturn = 1;
+            try
+            {
+                switch (_type)
+                {
+                    case "normal":
+                        _socketreturn = fesIF.Open(_ip, 10040);
+                        break;
+                    case "file":
+                        _socketreturn = fesIF.Open(_ip, 10041);
+                        break;
+                }
+                return _socketreturn;
+            }
+            catch
+            { return 1; }
+        }
+
+        /// <summary>
+        /// 連線(多形)
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public int Connect(string ip)
+        {
+            int _socketreturn = Connect(ip, "normal");
+            if (_socketreturn == 0)
+            {
+                RobotIP = ip;
+                Close();
+                return 0;
+            }
+            else
+            {
+                RobotIP = "null";
+                Close();
+                return 1;
+            }
+        }
+
+        #endregion
+
+
+        #region 程式編譯(撰寫/上載)
+
+        /// <summary>
+        /// 編寫JBI檔案
+        /// </summary>
+        /// <param name="_routeBook"></param>
+        /// <param name="_filename"></param>
+        /// <param name="_initialpoint"></param>
+        /// <returns></returns>
+        public int CompileFile(RouteBook_Yaskawa _routeBook, string _filename, int _initialpoint)
         {
             CurrentState = "Tanslate to JBI format & upload to controller";
 
@@ -161,23 +223,96 @@ namespace RouteButler_Yaskawa
             return 0;
         }
 
-        public int Connect(string ip)
+        /// <summary>
+        /// 上傳程式資料
+        /// </summary>
+        /// <param name="_filename"></param>
+        /// <returns></returns>
+        public int Upload2Controller(string _filename)
         {
-            int _socketreturn = Connect(ip, "normal");
-            if (_socketreturn == 0)
-            {
-                RobotIP = ip;
-                Close();
+            CurrentState = "Upload JBI file";
+
+            Connect(RobotIP, "file");
+
+            short[] _errorcode = new short[2];
+            int _socketreturn1 = fesIF.DelFile(_filename + ".JBI", _errorcode);
+            ExecuteError = _errorcode[0].ToString() + "," + _errorcode[1].ToString();
+
+            int _socketreturn2 = fesIF.LoadFile(_filename + ".JBI", _errorcode);
+            ExecuteError += "," + _errorcode[0].ToString() + "," + _errorcode[1].ToString();
+
+            CurrentState = "Idle";
+
+            Close();
+
+            if (_socketreturn2 == 0)
                 return 0;
-            }
             else
-            {
-                RobotIP = "null";
-                Close();
                 return 1;
-            }
         }
 
+        /// <summary>
+        /// 程式內容啟動
+        /// </summary>
+        /// <param name="_filename"></param>
+        /// <returns></returns>
+        public int RunProgram(string _filename)
+        {
+            CurrentState = "Run Rpogram : " + _filename;
+
+            Connect(RobotIP, "normal");
+
+            short[] _errorcode = new short[2];
+            int _socketreturn1 = fesIF.Cycle2Cycle(_errorcode); //循環模式
+            ExecuteError = _errorcode[0].ToString() + "," + _errorcode[1].ToString();
+
+            SelectJob _selectJob = new SelectJob();  //實作SelectJob()物件
+            _selectJob.name = _filename;
+            _selectJob.line = 0;
+            int _socketreturn2 = fesIF.JobSelect(1, _selectJob, _errorcode); //選擇工作
+            ExecuteError += "," + _errorcode[0].ToString() + "," + _errorcode[1].ToString();
+
+            int _socketreturn3 = fesIF.JobStart(_errorcode); //啟動工作
+            ExecuteError += "," + _errorcode[0].ToString() + "," + _errorcode[1].ToString();
+
+            CurrentState = "Idle";
+
+            Close();
+
+            if (_socketreturn1 == 0 && _socketreturn2 == 0 && _socketreturn3 == 0)
+                return 0;
+            else
+                return 1;
+        }
+
+        /// <summary>
+        /// 下載程式資料
+        /// </summary>
+        /// <param name="_filename"></param>
+        /// <returns></returns>
+        public int DonwloadFile(string _filename)
+        {
+            short[] _errorcode = new short[2];
+            int _socketreturn1 = fesIF.SaveFile(_filename, _errorcode); //下載程式
+            ExecuteError += "," + _errorcode[0].ToString() + "," + _errorcode[1].ToString();
+
+            CurrentState = "Idle";
+            Close();
+
+            if (_socketreturn1 == 0) { return 0; }
+            else { return 1; }
+                
+        }
+
+        #endregion
+
+
+        #region 其他控制
+
+        /// <summary>
+        /// 確認狀態
+        /// </summary>
+        /// <returns></returns>
         public int CheckStatus()
         {
             CurrentState = "Check status";
@@ -239,6 +374,10 @@ namespace RouteButler_Yaskawa
                 return 1;
         }
 
+        /// <summary>
+        /// Alarm 清除
+        /// </summary>
+        /// <returns></returns>
         public int ResetAlarm()
         {
             CurrentState = "Reset alarm";
@@ -262,35 +401,11 @@ namespace RouteButler_Yaskawa
                 return 1;
         }
 
-        public int RunProgram(string _filename)
-        {
-            CurrentState = "Run Rpogram : " + _filename;
-
-            Connect(RobotIP, "normal");
-
-            short[] _errorcode = new short[2];
-            int _socketreturn1 = fesIF.Cycle2Cycle(_errorcode);
-            ExecuteError = _errorcode[0].ToString() + "," + _errorcode[1].ToString();
-
-            SelectJob _selectJob = new SelectJob();
-            _selectJob.name = _filename;
-            _selectJob.line = 0;
-            int _socketreturn2 = fesIF.JobSelect(1, _selectJob, _errorcode);
-            ExecuteError += "," + _errorcode[0].ToString() + "," + _errorcode[1].ToString();
-
-            int _socketreturn3 = fesIF.JobStart(_errorcode);
-            ExecuteError += "," + _errorcode[0].ToString() + "," + _errorcode[1].ToString();
-
-            CurrentState = "Idle";
-
-            Close();
-
-            if (_socketreturn1 == 0 && _socketreturn2 == 0 && _socketreturn3 == 0)
-                return 0;
-            else
-                return 1;
-        }
-
+        /// <summary>
+        /// 伺服激磁
+        /// </summary>
+        /// <param name="_index"></param>
+        /// <returns></returns>
         public int ServoSwitch(int _index)//1 on ; 2 off
         {
             CurrentState = "Switch servo";
@@ -313,6 +428,11 @@ namespace RouteButler_Yaskawa
             return _socketreturn;
         }
 
+        /// <summary>
+        /// 示教盤(解鎖/開鎖)
+        /// </summary>
+        /// <param name="_index"></param>
+        /// <returns></returns>
         public int HoldSwitch(int _index)//1 hold ; 2 free
         {
             CurrentState = "Switch hold";
@@ -335,6 +455,17 @@ namespace RouteButler_Yaskawa
             return _socketreturn;
         }
 
+        /// <summary>
+        /// 取得各軸資料
+        /// </summary>
+        /// <param name="_index"></param>
+        /// <param name="_x"></param>
+        /// <param name="_y"></param>
+        /// <param name="_z"></param>
+        /// <param name="_a"></param>
+        /// <param name="_b"></param>
+        /// <param name="_c"></param>
+        /// <returns></returns>
         public int GetPosture(short _index, out float _x, out float _y, out float _z, out float _a, out float _b, out float _c)//1 pulse ; 101 base
         {
             CurrentState = "Get Posture";
@@ -387,52 +518,66 @@ namespace RouteButler_Yaskawa
             return _socketreturn;
         }
 
-        public int Upload2Controller(string _filename)
+        /// <summary>
+        /// 讀取整數資料 (起始點位 , 讀取資料量 , ref 匯入陣列)
+        /// </summary>
+        /// <param name="_startNum"></param>
+        /// <param name="_readNum"></param>
+        /// <param name="_IData"></param>
+        /// <returns></returns>
+        public int ReadIData(short _startNum , short _readNum , ref short[] _IData)
         {
-            CurrentState = "Upload JBI file";
-
-            Connect(RobotIP, "file");
-
+            short[] _I_read = new short[_readNum]; //宣告讀取陣列
             short[] _errorcode = new short[2];
-            int _socketreturn1 = fesIF.DelFile(_filename + ".JBI", _errorcode);
-            ExecuteError = _errorcode[0].ToString() + "," + _errorcode[1].ToString();
+            int _socketreturn1 = fesIF.NumMultR(_startNum, _I_read, _errorcode); //讀取資料
 
-            int _socketreturn2 = fesIF.LoadFile(_filename + ".JBI", _errorcode);
-            ExecuteError += "," + _errorcode[0].ToString() + "," + _errorcode[1].ToString();
-
-            CurrentState = "Idle";
 
             Close();
 
-            if (_socketreturn2 == 0)
-                return 0;
-            else
-                return 1;
-        }
 
-        private int Connect(string _ip, string _type)
-        {
-            int _socketreturn = 1;
-            try
+            for (int i = 0; i < _I_read.Length; i++)
             {
-                switch (_type)
-                {
-                    case "normal":
-                        _socketreturn = fesIF.Open(_ip, 10040);
-                        break;
-                    case "file":
-                        _socketreturn = fesIF.Open(_ip, 10041);
-                        break;
-                }
-                return _socketreturn;
+                 _IData[i] = _I_read[i]; //依次寫入並輸出
             }
-            catch
-            { return 1; }
+
+            if (_socketreturn1 == 0) { return 0; }
+            else { return 1; }
+
         }
 
+        /// <summary>
+        /// 寫入整數資料 (起始點位 , 寫入資料陣列 )
+        /// </summary>
+        /// <param name="_startNum"></param>
+        /// <param name="_IData"></param>
+        /// <returns></returns>
+        public int WriteIData(short _startNum, short[] _IData) 
+        {
+            int _dataRange = _IData.Length;
+            short[] _I_write = new short[_dataRange]; //宣告讀取陣列
+            short[] _errorcode = new short[2];
+            int _socketreturn1 = fesIF.NumMultR(_startNum, _I_write, _errorcode); //寫入資料
+
+            Close();
+
+            if (_socketreturn1 == 0) { return 0; }
+            else { return 1; }
+        }
+
+
+        #endregion
+
+
+        #region 物件關閉
+        /// <summary>
+        /// 關閉Yaskawa物件
+        /// </summary>
+        /// <returns></returns>
         private int Close()
         {
             return fesIF.Close();
         }
+
+        #endregion
     }
 }

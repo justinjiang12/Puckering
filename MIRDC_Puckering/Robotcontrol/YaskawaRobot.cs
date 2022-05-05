@@ -832,7 +832,7 @@ namespace FesIF_Demo
                 }
 
                 //程式寫入
-                int _rslt = YaskawaController.SaveFile(_routeBook_Welding, _programName, 1);
+                int _rslt = YaskawaController.CompileFile(_routeBook_Welding, _programName, 1);
                 MessageBox.Show("OK!!!"); 
                 return true;
             }
