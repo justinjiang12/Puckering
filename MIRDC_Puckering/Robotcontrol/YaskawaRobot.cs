@@ -16,7 +16,7 @@ namespace FesIF_Demo
 
 
         private readonly Yaskawa YaskawaController = new Yaskawa();
-
+        private int _Welding=0; 
 
         #endregion
 
@@ -816,7 +816,7 @@ namespace FesIF_Demo
                 for (int i = 0; i < dataGridView1.RowCount-1; i++)
                 {
                     //填入Point 資料屬性
-                    _routeBook_Welding.ProcessQueue[i] = 1;
+                    _routeBook_Welding.ProcessQueue[i] = 1;  // (1: Point  2: Dout  3: 註解   4: 焊接資料 )
                     _routeBook_Welding.MovingMode[i] = 2;
                     _routeBook_Welding.Tool[i] = 0;
                     _routeBook_Welding.Override[i] = 10;
@@ -832,7 +832,7 @@ namespace FesIF_Demo
                 }
 
                 //程式寫入
-                int _rslt = YaskawaController.CompileFile(_routeBook_Welding, _programName, 1);
+                int _rslt = YaskawaController.CompileFile(_routeBook_Welding, _programName, 1, _Welding=1);
                 MessageBox.Show("OK!!!"); 
                 return true;
             }

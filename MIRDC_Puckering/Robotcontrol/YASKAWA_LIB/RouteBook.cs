@@ -11,11 +11,15 @@ namespace RouteButler_Yaskawa
         public int PointCount { get; set; }
         public int DoutCount { get; set; }
         public int RobotCommandCount { get; set; }
+        public int WeldingCount { get; set; }  //Welding
 
         public string FileName;
         public int PointNumber { get; set; }
         public int DoutNumber { get; set; }
         public int RobotCommandNumber { get; set; }
+        public int WeldingNumber { get; set; } //Welding
+
+
         public int[] MovingMode { get; set; }//1 linear ; 2 spline;
         public int[] DOutMode { get; set; }//+ ON ; - OFF
         public string[] RobotCommand { get; set; }//+ ON ; - OFF
@@ -33,9 +37,11 @@ namespace RouteButler_Yaskawa
         public int FlipMode { get; set; }//0 flip ; 1 non-flip
         public int[] Tool { get; set; }//0 OFF ; 1~23
 
+
+
         public RouteBook_Yaskawa() { }
 
-        public RouteBook_Yaskawa(string _fileName = "None", int _pointNumber = 1, int _doutNumber = 0, int _robotCommandNumber = 0)
+        public RouteBook_Yaskawa(string _fileName = "None", int _pointNumber = 1, int _doutNumber = 0, int _robotCommandNumber = 0, int _WeldingNumber = 0)
         {
             CommandCount = 0;
             PointCount = 0;
@@ -46,11 +52,14 @@ namespace RouteButler_Yaskawa
             PointNumber = _pointNumber;
             DoutNumber = _doutNumber;
             RobotCommandNumber = _robotCommandNumber;
+            WeldingNumber = _WeldingNumber;
 
-            ProcessQueue = new int[_pointNumber + _doutNumber + _robotCommandNumber];
+            ProcessQueue = new int[_pointNumber + _doutNumber + _robotCommandNumber+ _WeldingNumber];
             MovingMode = new int[_pointNumber];
             DOutMode = new int[_doutNumber];
             RobotCommand = new string[_robotCommandNumber];
+
+
 
             Override = new double[_pointNumber];
             Accerlerate = new int[_pointNumber];

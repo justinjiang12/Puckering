@@ -41,7 +41,12 @@ namespace RouteButler_Yaskawa
                                 MovL = "MOVL ",//MOVL P2 BP2 V=10.1 ACC=50 DCC=80
                                 MovS = "MOVS ",//MOVS P2 BP2 V=10.1 ACC=50 DCC=80
                                 DOUTInitial = "DOUT OT#(",//1~2048 ; DOUT OT#(12) ON
-                                DOUTEnd = ")";//DOUTInitial + number + DOUTEnd
+                                DOUTEnd = ")",//DOUTInitial + number + DOUTEnd
+                                ARCON = "ARCON ",  //Welding Start
+                                ARCSET = "ARCSET ", //Welding set
+                                ARCOF = "ARCOF ", // Welding Off
+                                AC = "AC=I001 ",
+                                AVP = "AVP=I002";
         #endregion
 
         #region 連線
@@ -96,8 +101,7 @@ namespace RouteButler_Yaskawa
 
         #endregion
 
-
-        #region 程式編譯(撰寫/上載)
+        #region 程式資料(撰寫/上載/下載/讀取/啟動)
 
         /// <summary>
         /// 編寫JBI檔案
@@ -106,7 +110,7 @@ namespace RouteButler_Yaskawa
         /// <param name="_filename"></param>
         /// <param name="_initialpoint"></param>
         /// <returns></returns>
-        public int CompileFile(RouteBook_Yaskawa _routeBook, string _filename, int _initialpoint)
+        public int CompileFile(RouteBook_Yaskawa _routeBook, string _filename, int _initialpoint,int _welding)
         {
             CurrentState = "Tanslate to JBI format & upload to controller";
 
@@ -150,11 +154,15 @@ namespace RouteButler_Yaskawa
             if (_routeBook.Workspace != 0)
                 _streamWriter.Write(Frame + "USER " + _routeBook.Workspace.ToString() + Environment.NewLine);     
             _streamWriter.Write(SecondDefineEnd); //      <///GROUP1 RB1   NOP>
+            if (_welding == 1) { _streamWriter.Write(ARCON + AC + AVP + Environment.NewLine); } // CHECK Welding (ex.ARCON AC=I001 AVP=I002)
+
+
 
             //寫入控制語法    <ex. MOVS P0001 V=10.0 ACC=70 DEC=70>
-            _routeBook.CommandCount = 0;
-            _routeBook.PointCount = 0;
-            _routeBook.DoutCount = 0;
+            _routeBook.CommandCount = 0;  //總計數
+            _routeBook.PointCount = 0; //點位計數
+            _routeBook.DoutCount = 0; //輸出計數
+            
             for (_routeBook.CommandCount = 0; _routeBook.CommandCount < _routeBook.PointNumber + _routeBook.DoutNumber + _routeBook.RobotCommandNumber; _routeBook.CommandCount++)
             {
                 switch (_routeBook.ProcessQueue[_routeBook.CommandCount])
@@ -171,6 +179,7 @@ namespace RouteButler_Yaskawa
                                                                    + ACC + _routeBook.Accerlerate[_routeBook.PointCount].ToString()
                                                                    + DEC + _routeBook.Decerlerate[_routeBook.PointCount].ToString()
                                                                    + Environment.NewLine);
+                                if (_welding==1) { _streamWriter.Write(ARCSET + AC + AVP + Environment.NewLine); } //  CHECK Welding (ex.ARCSET AC=I001 AVP=I002)
                                 break;
 
                             #endregion
@@ -185,6 +194,7 @@ namespace RouteButler_Yaskawa
                                                                    + ACC + _routeBook.Accerlerate[_routeBook.PointCount].ToString()
                                                                    + DEC + _routeBook.Decerlerate[_routeBook.PointCount].ToString()
                                                                    + Environment.NewLine);
+                                if (_welding == 1) { _streamWriter.Write(ARCSET + AC + AVP + Environment.NewLine); } //  CHECK Welding (ex.ARCSET AC=I001 AVP=I002)
                                 break;
 
                             #endregion
@@ -206,15 +216,20 @@ namespace RouteButler_Yaskawa
 
                     #endregion
 
+                    #region 註解
 
                     case 3:
                         _streamWriter.Write(_routeBook.RobotCommand[_routeBook.RobotCommandCount] + Environment.NewLine);
 
                         _routeBook.RobotCommandCount++;
                         break;
+
+                    #endregion
+
+
                 }
             }
-
+            if (_welding == 1) { _streamWriter.Write(ARCOF+ Environment.NewLine); }// CHECK Welding (ex.ARCOF)
             _streamWriter.Write(ProgramEnd);   //      <END>
 
             _streamWriter.Close();
@@ -292,6 +307,7 @@ namespace RouteButler_Yaskawa
         /// <returns></returns>
         public int DonwloadFile(string _filename)
         {
+            Connect(RobotIP, "normal");
             short[] _errorcode = new short[2];
             int _socketreturn1 = fesIF.SaveFile(_filename, _errorcode); //下載程式
             ExecuteError += "," + _errorcode[0].ToString() + "," + _errorcode[1].ToString();
@@ -304,8 +320,148 @@ namespace RouteButler_Yaskawa
                 
         }
 
+        /// <summary>
+        /// 取得程式資料表單
+        /// </summary>
+        /// <param name="_filename"></param>
+        /// <returns></returns>
+        public int ReadFileList(ref string _fileList)
+        {
+            Connect(RobotIP, "normal");
+            short[] _err_code = new short[2];
+            int _socketreturn1 = fesIF.ListFile("*.JBI", _err_code, ref _fileList); //取得資料程式表單
+            ExecuteError += "," + _err_code[0].ToString() + "," + _err_code[1].ToString();
+
+            CurrentState = "Idle";
+            Close();
+
+            if (_socketreturn1 == 0) { return 0; }
+            else { return 1; }
+
+        }
+
+        /// <summary>
+        /// 刪除程式資料
+        /// </summary>
+        /// <param name="_filename"></param>
+        /// <returns></returns>
+        public int DeleteFile(string _filename)
+        {
+            Connect(RobotIP, "normal");
+            short[] _err_code = new short[2];
+            int _socketreturn1 = fesIF.DelFile(_filename, _err_code); //刪除得資料程式
+            ExecuteError += "," + _err_code[0].ToString() + "," + _err_code[1].ToString();
+
+            CurrentState = "Idle";
+            Close();
+
+            if (_socketreturn1 == 0) { return 0; }
+            else { return 1; }
+
+        }
+
+
         #endregion
 
+        #region 控制暫存器(R/W)
+
+        /// <summary>
+        /// 讀取整數資料 (起始點位 , 讀取資料量 , ref 匯入陣列) --多形
+        /// </summary>
+        /// <param name="_startNum"></param>
+        /// <param name="_readNum"></param>
+        /// <param name="_IData"></param>
+        /// <returns></returns>
+        public int ReadIData(short _startNum, short _readNum, ref int[] _IData)
+        {
+            Connect(RobotIP, "file");
+            int[] _I_read = new int[_readNum]; //宣告讀取陣列
+            short[] _errorcode = new short[2];
+            int _socketreturn1 = fesIF.NumMultR(_startNum, _I_read, _errorcode); //讀取資料
+
+
+            Close();
+
+
+            for (int i = 0; i < _I_read.Length; i++)
+            {
+                _IData[i] = _I_read[i]; //依次寫入並輸出
+            }
+
+            if (_socketreturn1 == 0) { return 0; }
+            else { return 1; }
+
+        }
+
+        /// <summary>
+        /// 讀取整數資料 (起始點位 , 讀取資料量 , ref 匯入陣列) --多形
+        /// </summary>
+        /// <param name="_startNum"></param>
+        /// <param name="_readNum"></param>
+        /// <param name="_IData"></param>
+        /// <returns></returns>
+        public int ReadIData(short _startNum, short _readNum, ref short[] _IData)
+        {
+            Connect(RobotIP, "file");
+            short[] _I_read = new short[_readNum]; //宣告讀取陣列
+            short[] _errorcode = new short[2];
+            int _socketreturn1 = fesIF.NumMultR(_startNum, _I_read, _errorcode); //讀取資料
+
+
+            Close();
+
+
+            for (int i = 0; i < _I_read.Length; i++)
+            {
+                _IData[i] = _I_read[i]; //依次寫入並輸出
+            }
+
+            if (_socketreturn1 == 0) { return 0; }
+            else { return 1; }
+
+        }
+
+        /// <summary>
+        /// 寫入整數資料 (起始點位 , 寫入資料陣列 ) --多形
+        /// </summary>
+        /// <param name="_startNum"></param>
+        /// <param name="_IData"></param>
+        /// <returns></returns>
+        public int WriteIData(short _startNum, int[] _IData)
+        {
+            Connect(RobotIP, "file");
+            int _dataRange = _IData.Length;
+            int[] _I_write = new int[_dataRange]; //宣告讀取陣列
+            short[] _errorcode = new short[2];
+            int _socketreturn1 = fesIF.NumMultR(_startNum, _I_write, _errorcode); //寫入資料
+
+            Close();
+
+            if (_socketreturn1 == 0) { return 0; }
+            else { return 1; }
+        }
+
+        /// <summary>
+        /// 寫入整數資料 (起始點位 , 寫入資料陣列 ) --多形
+        /// </summary>
+        /// <param name="_startNum"></param>
+        /// <param name="_IData"></param>
+        /// <returns></returns>
+        public int WriteIData(short _startNum, short[] _IData)
+        {
+            Connect(RobotIP, "file");
+            int _dataRange = _IData.Length;
+            short[] _I_write = new short[_dataRange]; //宣告讀取陣列
+            short[] _errorcode = new short[2];
+            int _socketreturn1 = fesIF.NumMultR(_startNum, _I_write, _errorcode); //寫入資料
+
+            Close();
+
+            if (_socketreturn1 == 0) { return 0; }
+            else { return 1; }
+        }
+
+        #endregion
 
         #region 其他控制
 
@@ -429,11 +585,11 @@ namespace RouteButler_Yaskawa
         }
 
         /// <summary>
-        /// 示教盤(解鎖/開鎖)
+        /// 啟動/暫停
         /// </summary>
         /// <param name="_index"></param>
         /// <returns></returns>
-        public int HoldSwitch(int _index)//1 hold ; 2 free
+        public int RobotStopSwitch(int _index) //1: ON 2: OFF
         {
             CurrentState = "Switch hold";
 
@@ -517,53 +673,6 @@ namespace RouteButler_Yaskawa
 
             return _socketreturn;
         }
-
-        /// <summary>
-        /// 讀取整數資料 (起始點位 , 讀取資料量 , ref 匯入陣列)
-        /// </summary>
-        /// <param name="_startNum"></param>
-        /// <param name="_readNum"></param>
-        /// <param name="_IData"></param>
-        /// <returns></returns>
-        public int ReadIData(short _startNum , short _readNum , ref short[] _IData)
-        {
-            short[] _I_read = new short[_readNum]; //宣告讀取陣列
-            short[] _errorcode = new short[2];
-            int _socketreturn1 = fesIF.NumMultR(_startNum, _I_read, _errorcode); //讀取資料
-
-
-            Close();
-
-
-            for (int i = 0; i < _I_read.Length; i++)
-            {
-                 _IData[i] = _I_read[i]; //依次寫入並輸出
-            }
-
-            if (_socketreturn1 == 0) { return 0; }
-            else { return 1; }
-
-        }
-
-        /// <summary>
-        /// 寫入整數資料 (起始點位 , 寫入資料陣列 )
-        /// </summary>
-        /// <param name="_startNum"></param>
-        /// <param name="_IData"></param>
-        /// <returns></returns>
-        public int WriteIData(short _startNum, short[] _IData) 
-        {
-            int _dataRange = _IData.Length;
-            short[] _I_write = new short[_dataRange]; //宣告讀取陣列
-            short[] _errorcode = new short[2];
-            int _socketreturn1 = fesIF.NumMultR(_startNum, _I_write, _errorcode); //寫入資料
-
-            Close();
-
-            if (_socketreturn1 == 0) { return 0; }
-            else { return 1; }
-        }
-
 
         #endregion
 
