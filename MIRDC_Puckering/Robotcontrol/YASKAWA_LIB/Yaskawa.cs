@@ -45,14 +45,14 @@ namespace RouteButler_Yaskawa
                                 ARCON = "ARCON ",  //Welding Start
                                 ARCSET = "ARCSET ", //Welding set
                                 ARCOF = "ARCOF ", // Welding Off
-                                AC = "AC=I001 ",
-                                AVP = "AVP=I002";
+                                AC = "AC=I", //Welding AC Setting
+                                AVP = "AVP=I"; //Welding AVP Setting
         #endregion
 
         #region 連線
 
         /// <summary>
-        /// 連線(多形)
+        /// 連線(多載)
         /// </summary>
         /// <param name="_ip"></param>
         /// <param name="_type"></param>
@@ -78,7 +78,7 @@ namespace RouteButler_Yaskawa
         }
 
         /// <summary>
-        /// 連線(多形)
+        /// 連線(多載)
         /// </summary>
         /// <param name="ip"></param>
         /// <returns></returns>
@@ -104,13 +104,13 @@ namespace RouteButler_Yaskawa
         #region 程式資料(撰寫/上載/下載/讀取/啟動)
 
         /// <summary>
-        /// 編寫JBI檔案
+        /// 編寫JBI檔案 (多載-基本)
         /// </summary>
         /// <param name="_routeBook"></param>
         /// <param name="_filename"></param>
         /// <param name="_initialpoint"></param>
         /// <returns></returns>
-        public int CompileFile(RouteBook_Yaskawa _routeBook, string _filename, int _initialpoint,int _welding)
+        public int CompileFile(RouteBook_Yaskawa _routeBook, string _filename, int _initialpoint)
         {
             CurrentState = "Tanslate to JBI format & upload to controller";
 
@@ -154,8 +154,6 @@ namespace RouteButler_Yaskawa
             if (_routeBook.Workspace != 0)
                 _streamWriter.Write(Frame + "USER " + _routeBook.Workspace.ToString() + Environment.NewLine);     
             _streamWriter.Write(SecondDefineEnd); //      <///GROUP1 RB1   NOP>
-            if (_welding == 1) { _streamWriter.Write(ARCON + AC + AVP + Environment.NewLine); } // CHECK Welding (ex.ARCON AC=I001 AVP=I002)
-
 
 
             //寫入控制語法    <ex. MOVS P0001 V=10.0 ACC=70 DEC=70>
@@ -179,7 +177,7 @@ namespace RouteButler_Yaskawa
                                                                    + ACC + _routeBook.Accerlerate[_routeBook.PointCount].ToString()
                                                                    + DEC + _routeBook.Decerlerate[_routeBook.PointCount].ToString()
                                                                    + Environment.NewLine);
-                                if (_welding==1) { _streamWriter.Write(ARCSET + AC + AVP + Environment.NewLine); } //  CHECK Welding (ex.ARCSET AC=I001 AVP=I002)
+                                
                                 break;
 
                             #endregion
@@ -194,7 +192,7 @@ namespace RouteButler_Yaskawa
                                                                    + ACC + _routeBook.Accerlerate[_routeBook.PointCount].ToString()
                                                                    + DEC + _routeBook.Decerlerate[_routeBook.PointCount].ToString()
                                                                    + Environment.NewLine);
-                                if (_welding == 1) { _streamWriter.Write(ARCSET + AC + AVP + Environment.NewLine); } //  CHECK Welding (ex.ARCSET AC=I001 AVP=I002)
+                                
                                 break;
 
                             #endregion
@@ -229,7 +227,459 @@ namespace RouteButler_Yaskawa
 
                 }
             }
-            if (_welding == 1) { _streamWriter.Write(ARCOF+ Environment.NewLine); }// CHECK Welding (ex.ARCOF)
+            
+            _streamWriter.Write(ProgramEnd);   //      <END>
+
+            _streamWriter.Close();
+            _streamWriter.Dispose();
+
+            return 0;
+        }
+
+        /// <summary>
+        /// 編寫JBI檔案 (多載-點位移動[速度])
+        /// </summary>
+        /// <param name="_routeBook"></param>
+        /// <param name="_filename"></param>
+        /// <param name="_initialpoint"></param>
+        /// <returns></returns>
+        public int CompileFile(RouteBook_Yaskawa _routeBook, string _filename, int _initialpoint, int _speed_RegNum)
+        {
+            CurrentState = "Tanslate to JBI format & upload to controller";
+
+            string path = ".\\" + _filename + ".JBI";
+            StreamWriter _streamWriter = new StreamWriter(path, false);
+            _streamWriter.Write(JobInitial); // </JOB>
+            _streamWriter.Write(FileName + _filename + Environment.NewLine); // <//NAME WedingProgrm>
+            _streamWriter.Write(PoseInitial); // <//POS>
+            _streamWriter.Write(PointNumber + "0,0,0,{0},0,0" + Environment.NewLine, _routeBook.PointNumber);   //  <///NPOS 0,0,0,256,0,0>
+            if (_routeBook.Workspace != 0)
+                _streamWriter.Write(UserGroup + _routeBook.Workspace.ToString() + Environment.NewLine);
+            if (_routeBook.Workspace != 0)
+                _streamWriter.Write(PoseType + "USER" + Environment.NewLine);    //   <///POSTYPE USER>
+            else
+                _streamWriter.Write(PoseType + "ROBOT" + Environment.NewLine);   //   <///POSTYPE ROBOT>
+            if (_routeBook.FlipMode == 0)
+                _streamWriter.Write(FirstDefineEnd + FlipMode);
+            else
+                _streamWriter.Write(FirstDefineEnd + NonFlipMode);  //   <///RCONF 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0>
+
+            //寫入點位數據(Data)    <ex. ///TOOL 0  P0001 = 265.320,187.550,-152.780,0.0000,0.0000,0.0000 >
+            _routeBook.PointCount = 0;
+            for (int i = 0; i < _routeBook.PointNumber; i++)
+            {
+                _streamWriter.Write(Tool + _routeBook.Tool[_routeBook.PointCount].ToString() + Environment.NewLine);
+
+                _streamWriter.Write(PointInitial + (_routeBook.PointCount + _initialpoint).ToString().PadLeft(4, '0') + PointEnd
+                                  + (Math.Round(_routeBook.X[_routeBook.PointCount], 3, MidpointRounding.AwayFromZero)).ToString("#0.000") + ","
+                                  + (Math.Round(_routeBook.Y[_routeBook.PointCount], 3, MidpointRounding.AwayFromZero)).ToString("#0.000") + ","
+                                  + (Math.Round(_routeBook.Z[_routeBook.PointCount], 3, MidpointRounding.AwayFromZero)).ToString("#0.000") + ","
+                                  + (Math.Round(_routeBook.A[_routeBook.PointCount], 4, MidpointRounding.AwayFromZero)).ToString("#0.0000") + ","
+                                  + (Math.Round(_routeBook.B[_routeBook.PointCount], 4, MidpointRounding.AwayFromZero)).ToString("#0.0000") + ","
+                                  + (Math.Round(_routeBook.C[_routeBook.PointCount], 4, MidpointRounding.AwayFromZero)).ToString("#0.0000")
+                                  + Environment.NewLine);
+
+                _routeBook.PointCount++;
+            }
+
+            _streamWriter.Write(CommandInitial + DateTime.Now.ToString("yyyy/MM/dd HH:mm") + Environment.NewLine);  //    <//INST///DATE 2022/05/03 14:18>
+            _streamWriter.Write(JobAttribute);    //    <///ATTR SC,RW,RJ>
+            if (_routeBook.Workspace != 0)
+                _streamWriter.Write(Frame + "USER " + _routeBook.Workspace.ToString() + Environment.NewLine);
+            _streamWriter.Write(SecondDefineEnd); //      <///GROUP1 RB1   NOP>
+            
+            //寫入控制語法    <ex. MOVS P0001 V=10.0 ACC=70 DEC=70>
+            _routeBook.CommandCount = 0;  //總計數
+            _routeBook.PointCount = 0; //點位計數
+            _routeBook.DoutCount = 0; //輸出計數
+
+            for (_routeBook.CommandCount = 0; _routeBook.CommandCount < _routeBook.PointNumber + _routeBook.DoutNumber + _routeBook.RobotCommandNumber; _routeBook.CommandCount++)
+            {
+                switch (_routeBook.ProcessQueue[_routeBook.CommandCount])
+                {
+                    #region Point 語法
+                    case 1:
+                        switch (_routeBook.MovingMode[_routeBook.PointCount])
+                        {
+                            #region MovL Point
+                            case 1:
+                                _streamWriter.Write(MovL
+                                                                   + PointInitial + (_routeBook.PointCount + _initialpoint).ToString().PadLeft(4, '0')
+                                                                   + Override + "I" + (_speed_RegNum.ToString()).PadLeft(3, '0')
+                                                                   + ACC + _routeBook.Accerlerate[_routeBook.PointCount].ToString()
+                                                                   + DEC + _routeBook.Decerlerate[_routeBook.PointCount].ToString()
+                                                                   + Environment.NewLine);
+
+                                break;
+
+                            #endregion
+
+
+                            #region MovS Point
+
+                            case 2:
+                                _streamWriter.Write(MovS
+                                                                   + PointInitial + (_routeBook.PointCount + _initialpoint).ToString().PadLeft(4, '0')
+                                                                   + Override + "I" + (_speed_RegNum.ToString()).PadLeft(3, '0')
+                                                                   + ACC + _routeBook.Accerlerate[_routeBook.PointCount].ToString()
+                                                                   + DEC + _routeBook.Decerlerate[_routeBook.PointCount].ToString()
+                                                                   + Environment.NewLine);
+                           
+                                break;
+
+                                #endregion
+                        }
+
+                        _routeBook.PointCount++;
+                        break;
+                    #endregion
+
+                    #region Dout 語法
+                    case 2:
+                        if (_routeBook.DOutMode[_routeBook.DoutCount] > 0)
+                            _streamWriter.Write(DOUTInitial + _routeBook.DOutMode[_routeBook.DoutCount].ToString() + DOUTEnd + " ON" + Environment.NewLine);
+                        else
+                            _streamWriter.Write(DOUTInitial + (0 - _routeBook.DOutMode[_routeBook.DoutCount]).ToString() + DOUTEnd + " OFF" + Environment.NewLine);
+
+                        _routeBook.DoutCount++;
+                        break;
+
+                    #endregion
+
+                    #region 註解
+
+                    case 3:
+                        _streamWriter.Write(_routeBook.RobotCommand[_routeBook.RobotCommandCount] + Environment.NewLine);
+
+                        _routeBook.RobotCommandCount++;
+                        break;
+
+                        #endregion
+
+
+                }
+            }
+            
+            _streamWriter.Write(ProgramEnd);   //      <END>
+
+            _streamWriter.Close();
+            _streamWriter.Dispose();
+
+            return 0;
+        }
+
+        /// <summary>
+        /// 編寫JBI檔案 (多載-焊接[電流/電壓])
+        /// </summary>
+        /// <param name="_routeBook"></param>
+        /// <param name="_filename"></param>
+        /// <param name="_initialpoint"></param>
+        /// <returns></returns>
+        public int CompileFile(RouteBook_Yaskawa _routeBook, string _filename, int _initialpoint, int _welding_A_RegNum, int _welding_V_RegNum)
+        {
+            CurrentState = "Tanslate to JBI format & upload to controller";
+
+            string path = ".\\" + _filename + ".JBI";
+            StreamWriter _streamWriter = new StreamWriter(path, false);
+            _streamWriter.Write(JobInitial); // </JOB>
+            _streamWriter.Write(FileName + _filename + Environment.NewLine); // <//NAME WedingProgrm>
+            _streamWriter.Write(PoseInitial); // <//POS>
+            _streamWriter.Write(PointNumber + "0,0,0,{0},0,0" + Environment.NewLine, _routeBook.PointNumber);   //  <///NPOS 0,0,0,256,0,0>
+            if (_routeBook.Workspace != 0)
+                _streamWriter.Write(UserGroup + _routeBook.Workspace.ToString() + Environment.NewLine);
+            if (_routeBook.Workspace != 0)
+                _streamWriter.Write(PoseType + "USER" + Environment.NewLine);    //   <///POSTYPE USER>
+            else
+                _streamWriter.Write(PoseType + "ROBOT" + Environment.NewLine);   //   <///POSTYPE ROBOT>
+            if (_routeBook.FlipMode == 0)
+                _streamWriter.Write(FirstDefineEnd + FlipMode);
+            else
+                _streamWriter.Write(FirstDefineEnd + NonFlipMode);  //   <///RCONF 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0>
+
+            //寫入點位數據(Data)    <ex. ///TOOL 0  P0001 = 265.320,187.550,-152.780,0.0000,0.0000,0.0000 >
+            _routeBook.PointCount = 0;
+            for (int i = 0; i < _routeBook.PointNumber; i++)
+            {
+                _streamWriter.Write(Tool + _routeBook.Tool[_routeBook.PointCount].ToString() + Environment.NewLine);
+
+                _streamWriter.Write(PointInitial + (_routeBook.PointCount + _initialpoint).ToString().PadLeft(4, '0') + PointEnd
+                                  + (Math.Round(_routeBook.X[_routeBook.PointCount], 3, MidpointRounding.AwayFromZero)).ToString("#0.000") + ","
+                                  + (Math.Round(_routeBook.Y[_routeBook.PointCount], 3, MidpointRounding.AwayFromZero)).ToString("#0.000") + ","
+                                  + (Math.Round(_routeBook.Z[_routeBook.PointCount], 3, MidpointRounding.AwayFromZero)).ToString("#0.000") + ","
+                                  + (Math.Round(_routeBook.A[_routeBook.PointCount], 4, MidpointRounding.AwayFromZero)).ToString("#0.0000") + ","
+                                  + (Math.Round(_routeBook.B[_routeBook.PointCount], 4, MidpointRounding.AwayFromZero)).ToString("#0.0000") + ","
+                                  + (Math.Round(_routeBook.C[_routeBook.PointCount], 4, MidpointRounding.AwayFromZero)).ToString("#0.0000")
+                                  + Environment.NewLine);
+
+                _routeBook.PointCount++;
+            }
+
+            _streamWriter.Write(CommandInitial + DateTime.Now.ToString("yyyy/MM/dd HH:mm") + Environment.NewLine);  //    <//INST///DATE 2022/05/03 14:18>
+            _streamWriter.Write(JobAttribute);    //    <///ATTR SC,RW,RJ>
+            if (_routeBook.Workspace != 0)
+                _streamWriter.Write(Frame + "USER " + _routeBook.Workspace.ToString() + Environment.NewLine);
+            _streamWriter.Write(SecondDefineEnd); //      <///GROUP1 RB1   NOP>
+            // 起始焊接(起弧)
+            _streamWriter.Write(ARCON
+                                       + AC
+                                       + (_welding_A_RegNum.ToString()).PadLeft(3, '0')
+                                       + " "
+                                       + AVP
+                                       + (_welding_V_RegNum.ToString()).PadLeft(3, '0')
+                                       + Environment.NewLine);
+            
+            //寫入控制語法    <ex. MOVS P0001 V=10.0 ACC=70 DEC=70>
+            _routeBook.CommandCount = 0;  //總計數
+            _routeBook.PointCount = 0; //點位計數
+            _routeBook.DoutCount = 0; //輸出計數
+
+            for (_routeBook.CommandCount = 0; _routeBook.CommandCount < _routeBook.PointNumber + _routeBook.DoutNumber + _routeBook.RobotCommandNumber; _routeBook.CommandCount++)
+            {
+                switch (_routeBook.ProcessQueue[_routeBook.CommandCount])
+                {
+                    #region Point 語法
+                    case 1:
+                        switch (_routeBook.MovingMode[_routeBook.PointCount])
+                        {
+                            #region MovL Point
+                            case 1:
+                                _streamWriter.Write(MovL
+                                                                   + PointInitial + (_routeBook.PointCount + _initialpoint).ToString().PadLeft(4, '0')
+                                                                   + Override + _routeBook.Override[_routeBook.PointCount].ToString("#0.0")
+                                                                   + ACC + _routeBook.Accerlerate[_routeBook.PointCount].ToString()
+                                                                   + DEC + _routeBook.Decerlerate[_routeBook.PointCount].ToString()
+                                                                   + Environment.NewLine);
+
+                                //Welding
+                                _streamWriter.Write(ARCSET
+                                                                    + AC
+                                                                    + (_welding_A_RegNum.ToString()).PadLeft(3, '0')
+                                                                    + " "
+                                                                    + AVP
+                                                                    + (_welding_V_RegNum.ToString()).PadLeft(3, '0')
+                                                                    + Environment.NewLine);
+
+                                
+                                break;
+
+                            #endregion
+
+
+                            #region MovS Point
+
+                            case 2:
+                                _streamWriter.Write(MovS
+                                                                   + PointInitial + (_routeBook.PointCount + _initialpoint).ToString().PadLeft(4, '0')
+                                                                   + Override + _routeBook.Override[_routeBook.PointCount].ToString("#0.0")
+                                                                   + ACC + _routeBook.Accerlerate[_routeBook.PointCount].ToString()
+                                                                   + DEC + _routeBook.Decerlerate[_routeBook.PointCount].ToString()
+                                                                   + Environment.NewLine);
+
+                                //Welding
+                                _streamWriter.Write(ARCSET
+                                                                    + AC
+                                                                    + (_welding_A_RegNum.ToString()).PadLeft(3, '0')
+                                                                    + " "
+                                                                    + AVP
+                                                                    + (_welding_V_RegNum.ToString()).PadLeft(3, '0')
+                                                                    + Environment.NewLine);
+                               
+                                break;
+
+                                #endregion
+                        }
+
+                        _routeBook.PointCount++;
+                        break;
+                    #endregion
+
+                    #region Dout 語法
+                    case 2:
+                        if (_routeBook.DOutMode[_routeBook.DoutCount] > 0)
+                            _streamWriter.Write(DOUTInitial + _routeBook.DOutMode[_routeBook.DoutCount].ToString() + DOUTEnd + " ON" + Environment.NewLine);
+                        else
+                            _streamWriter.Write(DOUTInitial + (0 - _routeBook.DOutMode[_routeBook.DoutCount]).ToString() + DOUTEnd + " OFF" + Environment.NewLine);
+
+                        _routeBook.DoutCount++;
+                        break;
+
+                    #endregion
+
+                    #region 註解
+
+                    case 3:
+                        _streamWriter.Write(_routeBook.RobotCommand[_routeBook.RobotCommandCount] + Environment.NewLine);
+
+                        _routeBook.RobotCommandCount++;
+                        break;
+
+                        #endregion
+
+
+                }
+            }
+            //收弧
+            _streamWriter.Write(ARCOF + Environment.NewLine);// CHECK Welding (ex.ARCOF)
+            _streamWriter.Write(ProgramEnd);   //      <END>
+
+            _streamWriter.Close();
+            _streamWriter.Dispose();
+
+            return 0;
+        }
+
+        /// <summary>
+        /// 編寫JBI檔案 (多載-點位移動[速度]+焊接[電流/電壓])
+        /// </summary>
+        /// <param name="_routeBook"></param>
+        /// <param name="_filename"></param>
+        /// <param name="_initialpoint"></param>
+        /// <returns></returns>
+        public int CompileFile(RouteBook_Yaskawa _routeBook, string _filename, int _initialpoint,int _speed_RegNum, int _welding_A_RegNum, int _welding_V_RegNum)
+        {
+            CurrentState = "Tanslate to JBI format & upload to controller";
+
+            string path = ".\\" + _filename + ".JBI";
+            StreamWriter _streamWriter = new StreamWriter(path, false);
+            _streamWriter.Write(JobInitial); // </JOB>
+            _streamWriter.Write(FileName + _filename + Environment.NewLine); // <//NAME WedingProgrm>
+            _streamWriter.Write(PoseInitial); // <//POS>
+            _streamWriter.Write(PointNumber + "0,0,0,{0},0,0" + Environment.NewLine, _routeBook.PointNumber);   //  <///NPOS 0,0,0,256,0,0>
+            if (_routeBook.Workspace != 0)
+                _streamWriter.Write(UserGroup + _routeBook.Workspace.ToString() + Environment.NewLine);
+            if (_routeBook.Workspace != 0)
+                _streamWriter.Write(PoseType + "USER" + Environment.NewLine);    //   <///POSTYPE USER>
+            else
+                _streamWriter.Write(PoseType + "ROBOT" + Environment.NewLine);   //   <///POSTYPE ROBOT>
+            if (_routeBook.FlipMode == 0)
+                _streamWriter.Write(FirstDefineEnd + FlipMode);
+            else
+                _streamWriter.Write(FirstDefineEnd + NonFlipMode);  //   <///RCONF 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0>
+
+            //寫入點位數據(Data)    <ex. ///TOOL 0  P0001 = 265.320,187.550,-152.780,0.0000,0.0000,0.0000 >
+            _routeBook.PointCount = 0;
+            for (int i = 0; i < _routeBook.PointNumber; i++)
+            {
+                _streamWriter.Write(Tool + _routeBook.Tool[_routeBook.PointCount].ToString() + Environment.NewLine);
+
+                _streamWriter.Write(PointInitial + (_routeBook.PointCount + _initialpoint).ToString().PadLeft(4, '0') + PointEnd
+                                  + (Math.Round(_routeBook.X[_routeBook.PointCount], 3, MidpointRounding.AwayFromZero)).ToString("#0.000") + ","
+                                  + (Math.Round(_routeBook.Y[_routeBook.PointCount], 3, MidpointRounding.AwayFromZero)).ToString("#0.000") + ","
+                                  + (Math.Round(_routeBook.Z[_routeBook.PointCount], 3, MidpointRounding.AwayFromZero)).ToString("#0.000") + ","
+                                  + (Math.Round(_routeBook.A[_routeBook.PointCount], 4, MidpointRounding.AwayFromZero)).ToString("#0.0000") + ","
+                                  + (Math.Round(_routeBook.B[_routeBook.PointCount], 4, MidpointRounding.AwayFromZero)).ToString("#0.0000") + ","
+                                  + (Math.Round(_routeBook.C[_routeBook.PointCount], 4, MidpointRounding.AwayFromZero)).ToString("#0.0000")
+                                  + Environment.NewLine);
+
+                _routeBook.PointCount++;
+            }
+
+            _streamWriter.Write(CommandInitial + DateTime.Now.ToString("yyyy/MM/dd HH:mm") + Environment.NewLine);  //    <//INST///DATE 2022/05/03 14:18>
+            _streamWriter.Write(JobAttribute);    //    <///ATTR SC,RW,RJ>
+            if (_routeBook.Workspace != 0)
+                _streamWriter.Write(Frame + "USER " + _routeBook.Workspace.ToString() + Environment.NewLine);
+            _streamWriter.Write(SecondDefineEnd); //      <///GROUP1 RB1   NOP>
+            // 起始焊接(起弧)
+            _streamWriter.Write(ARCON
+                                       + AC
+                                       + (_welding_A_RegNum.ToString()).PadLeft(3, '0')
+                                       + " "
+                                       + AVP
+                                       + (_welding_V_RegNum.ToString()).PadLeft(3, '0')
+                                       + Environment.NewLine);
+
+            //寫入控制語法    <ex. MOVS P0001 V=10.0 ACC=70 DEC=70>
+            _routeBook.CommandCount = 0;  //總計數
+            _routeBook.PointCount = 0; //點位計數
+            _routeBook.DoutCount = 0; //輸出計數
+
+            for (_routeBook.CommandCount = 0; _routeBook.CommandCount < _routeBook.PointNumber + _routeBook.DoutNumber + _routeBook.RobotCommandNumber; _routeBook.CommandCount++)
+            {
+                switch (_routeBook.ProcessQueue[_routeBook.CommandCount])
+                {
+                    #region Point 語法
+                    case 1:
+                        switch (_routeBook.MovingMode[_routeBook.PointCount])
+                        {
+                            #region MovL Point
+                            case 1:
+                                _streamWriter.Write(MovL
+                                                                   + PointInitial + (_routeBook.PointCount + _initialpoint).ToString().PadLeft(4, '0')
+                                                                   + Override +"I"+(_speed_RegNum.ToString()).PadLeft(3, '0')
+                                                                   + ACC + _routeBook.Accerlerate[_routeBook.PointCount].ToString()
+                                                                   + DEC + _routeBook.Decerlerate[_routeBook.PointCount].ToString()
+                                                                   + Environment.NewLine);
+
+                                //Welding
+                                _streamWriter.Write(ARCSET
+                                                                    + AC
+                                                                    + (_welding_A_RegNum.ToString()).PadLeft(3, '0')
+                                                                    + " "
+                                                                    + AVP
+                                                                    + (_welding_V_RegNum.ToString()).PadLeft(3, '0')
+                                                                    + Environment.NewLine);
+
+
+                                break;
+
+                            #endregion
+
+
+                            #region MovS Point
+
+                            case 2:
+                                _streamWriter.Write(MovS
+                                                                   + PointInitial + (_routeBook.PointCount + _initialpoint).ToString().PadLeft(4, '0')
+                                                                   + Override + "I" + (_speed_RegNum.ToString()).PadLeft(3, '0')
+                                                                   + ACC + _routeBook.Accerlerate[_routeBook.PointCount].ToString()
+                                                                   + DEC + _routeBook.Decerlerate[_routeBook.PointCount].ToString()
+                                                                   + Environment.NewLine);
+
+                                //Welding
+                                _streamWriter.Write(ARCSET
+                                                                    + AC
+                                                                    + (_welding_A_RegNum.ToString()).PadLeft(3, '0')
+                                                                    + " "
+                                                                    + AVP
+                                                                    + (_welding_V_RegNum.ToString()).PadLeft(3, '0')
+                                                                    + Environment.NewLine);
+
+                                break;
+
+                                #endregion
+                        }
+
+                        _routeBook.PointCount++;
+                        break;
+                    #endregion
+
+                    #region Dout 語法
+                    case 2:
+                        if (_routeBook.DOutMode[_routeBook.DoutCount] > 0)
+                            _streamWriter.Write(DOUTInitial + _routeBook.DOutMode[_routeBook.DoutCount].ToString() + DOUTEnd + " ON" + Environment.NewLine);
+                        else
+                            _streamWriter.Write(DOUTInitial + (0 - _routeBook.DOutMode[_routeBook.DoutCount]).ToString() + DOUTEnd + " OFF" + Environment.NewLine);
+
+                        _routeBook.DoutCount++;
+                        break;
+
+                    #endregion
+
+                    #region 註解
+
+                    case 3:
+                        _streamWriter.Write(_routeBook.RobotCommand[_routeBook.RobotCommandCount] + Environment.NewLine);
+
+                        _routeBook.RobotCommandCount++;
+                        break;
+
+                        #endregion
+
+
+                }
+            }
+            //收弧
+            _streamWriter.Write(ARCOF + Environment.NewLine);// CHECK Welding (ex.ARCOF)
             _streamWriter.Write(ProgramEnd);   //      <END>
 
             _streamWriter.Close();
@@ -366,7 +816,7 @@ namespace RouteButler_Yaskawa
         #region 控制暫存器(R/W)
 
         /// <summary>
-        /// 讀取整數資料 (起始點位 , 讀取資料量 , ref 匯入陣列) --多形
+        /// 讀取整數資料 (起始點位 , 讀取資料量 , ref 匯入陣列) --多載
         /// </summary>
         /// <param name="_startNum"></param>
         /// <param name="_readNum"></param>
@@ -394,7 +844,7 @@ namespace RouteButler_Yaskawa
         }
 
         /// <summary>
-        /// 讀取整數資料 (起始點位 , 讀取資料量 , ref 匯入陣列) --多形
+        /// 讀取整數資料 (起始點位 , 讀取資料量 , ref 匯入陣列) --多載
         /// </summary>
         /// <param name="_startNum"></param>
         /// <param name="_readNum"></param>
@@ -422,7 +872,7 @@ namespace RouteButler_Yaskawa
         }
 
         /// <summary>
-        /// 寫入整數資料 (起始點位 , 寫入資料陣列 ) --多形
+        /// 寫入整數資料 (起始點位 , 寫入資料陣列 ) --多載
         /// </summary>
         /// <param name="_startNum"></param>
         /// <param name="_IData"></param>
@@ -442,7 +892,7 @@ namespace RouteButler_Yaskawa
         }
 
         /// <summary>
-        /// 寫入整數資料 (起始點位 , 寫入資料陣列 ) --多形
+        /// 寫入整數資料 (起始點位 , 寫入資料陣列 ) --多載
         /// </summary>
         /// <param name="_startNum"></param>
         /// <param name="_IData"></param>

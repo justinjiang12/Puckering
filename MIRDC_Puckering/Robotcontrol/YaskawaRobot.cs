@@ -16,8 +16,8 @@ namespace FesIF_Demo
 
 
         private readonly Yaskawa YaskawaController = new Yaskawa();
-        private int _Welding=0; 
-
+        private int _Welding=0;
+        private int _TimmerCunt = 0;
         #endregion
 
 
@@ -705,61 +705,91 @@ namespace FesIF_Demo
 
                         break;
 
-                    case "btn_STOP":
-
-
-                        break;
-
-                    case "btn_START":
-
-
-                        break;
-
-                    case "btn_PROLOAD":
-
-
-                        break;
-
-                    case "btn_PRORUN":
-
-
-                        break;
 
                     case "btn_BRO":
 
-                        try
-                        {
                             OpenFileDialog dlg = new OpenFileDialog();
                             dlg.ShowDialog();
                             Browse_textbox.Text = dlg.FileName;
-                        }
-                        catch { MessageBox.Show("system error"); }
-
+                        
                         break;
 
                     case "btn_LOADDATA":
-                        try
-                        {
+                        
                             dataGridView1.Rows.Clear();
                             LoadCSV(Browse_textbox.Text);
-                        }
-                        catch { MessageBox.Show("system error"); }
-
-                        break;
-
-                    case "btn_PROWRITE":
-
-
+                        
                         break;
 
 
+                    case "btn_PROCOOMPILE":
+                        
+                        tex_ProgramTXT.Clear();
+                        RobotCompileProgram(tex_ProgramName.Text);
+                        
+                        string path = ".\\" + tex_ProgramName.Text + ".JBI";
+                        tex_ProgramTXT.Text = File.ReadAllText(path);
+                        MessageBox.Show("完成");
+                        break;
 
                     case "btn_PRODLOAD":
 
-                        RobotCompileProgram(textBox4.Text);
-                        int rslt1 = YaskawaController.Upload2Controller(textBox4.Text);
+                        _rslt = YaskawaController.Upload2Controller(tex_ProgramName.Text);
                         MessageBox.Show("完成");
                         break;
+
+                        
+
+                   case "btn_RefProgram":
+                        if (listBox2.Items.Count > 0) { listBox2.Items.Clear(); }
+                        RobotProgramRefresh();
+
+                        break;
+
+
+                    case "btn_ProgramGO": //ProgramRun
+                        _rslt = YaskawaController.RunProgram(tex_ProgramName.Text);
+
+                        break;
+
+                    case "btn_GoCycle": //start
+                        _rslt = YaskawaController.RobotStopSwitch(1);
+
+                        break;
+
+                    case "btn_Stop": //stop
+                        _rslt = YaskawaController.RobotStopSwitch(2);
+
+                        break;
+
+                    case "btn_RegWrite": //RegWrite
+
+                        RobotRegWrite(Convert.ToInt16(tex_RegData.Text),Convert.ToInt32(tex_RegNum.Text));
+
+                        break;
+
+                    case "btn_RegRead": //RegRead
+                        int _var = 0;
+                        RobotRegRead(Convert.ToInt16(tex_RegData.Text),ref _var);
+                        lab_RegData.Text = "Reg Data: " + _var.ToString();
+                        break;
+
+                    case "btn_RegScanStart": //RegScanStart
+
+                        RegScanTimer.Interval = Convert.ToInt32(tex_RegTimerScan.Text);
+                        RegScanTimer.Enabled = true;
+
+
+                        break;
+
+                    case "btn_RegScanStop": //RegScanStop
+
+                        
+                        RegScanTimer.Enabled = false;
+
+                        break;
+
+
 
                 }
             }
@@ -777,7 +807,7 @@ namespace FesIF_Demo
 
             var listOfStrings = new List<string>();
             string[] ss = listOfStrings.ToArray();
-            int p_num = 0;
+            //int p_num = 0;
 
             dataGridView1.DataSource = PathDataList;
 
@@ -815,34 +845,131 @@ namespace FesIF_Demo
 
                 for (int i = 0; i < dataGridView1.RowCount-1; i++)
                 {
-                    //填入Point 資料屬性
-                    _routeBook_Welding.ProcessQueue[i] = 1;  // (1: Point  2: Dout  3: 註解   4: 焊接資料 )
-                    _routeBook_Welding.MovingMode[i] = 2;
-                    _routeBook_Welding.Tool[i] = 0;
-                    _routeBook_Welding.Override[i] = 10;
-                    _routeBook_Welding.Accerlerate[i] = 70;
-                    _routeBook_Welding.Decerlerate[i] = 70;
-                    //填入Point 資料數值
-                    _routeBook_Welding.X[i] = (double)dataGridView1.Rows[i].Cells[1].Value;
-                    _routeBook_Welding.Y[i] = (double)dataGridView1.Rows[i].Cells[2].Value;
-                    _routeBook_Welding.Z[i] = (double)dataGridView1.Rows[i].Cells[3].Value;
-                    _routeBook_Welding.A[i] = (double)dataGridView1.Rows[i].Cells[4].Value;
-                    _routeBook_Welding.B[i] = (double)dataGridView1.Rows[i].Cells[5].Value;
-                    _routeBook_Welding.C[i] = (double)dataGridView1.Rows[i].Cells[6].Value;                    
+                    if (rad_MOVL.Checked)
+                    {
+                        //填入Point 資料屬性
+                        _routeBook_Welding.ProcessQueue[i] = 1;  // (1: Point  2: Dout  3: 註解)
+                        _routeBook_Welding.MovingMode[i] = 1; //  (1: MOVL  2: MOVS )
+                        _routeBook_Welding.Tool[i] = 0;
+                        _routeBook_Welding.Override[i] = 10;
+                        _routeBook_Welding.Accerlerate[i] = 70;
+                        _routeBook_Welding.Decerlerate[i] = 70;
+                        //填入Point 資料數值
+                        _routeBook_Welding.X[i] = (double)dataGridView1.Rows[i].Cells[1].Value;
+                        _routeBook_Welding.Y[i] = (double)dataGridView1.Rows[i].Cells[2].Value;
+                        _routeBook_Welding.Z[i] = (double)dataGridView1.Rows[i].Cells[3].Value;
+                        _routeBook_Welding.A[i] = (double)dataGridView1.Rows[i].Cells[4].Value;
+                        _routeBook_Welding.B[i] = (double)dataGridView1.Rows[i].Cells[5].Value;
+                        _routeBook_Welding.C[i] = (double)dataGridView1.Rows[i].Cells[6].Value;
+                    }
+                    if (rad_MOVS.Checked)
+                    {
+                        //填入Point 資料屬性
+                        _routeBook_Welding.ProcessQueue[i] = 1;  // (1: Point  2: Dout  3: 註解)
+                        _routeBook_Welding.MovingMode[i] = 2; //  (1: MOVL  2: MOVS )
+                        _routeBook_Welding.Tool[i] = 0;
+                        _routeBook_Welding.Override[i] = 10;
+                        _routeBook_Welding.Accerlerate[i] = 70;
+                        _routeBook_Welding.Decerlerate[i] = 70;
+                        //填入Point 資料數值
+                        _routeBook_Welding.X[i] = (double)dataGridView1.Rows[i].Cells[1].Value;
+                        _routeBook_Welding.Y[i] = (double)dataGridView1.Rows[i].Cells[2].Value;
+                        _routeBook_Welding.Z[i] = (double)dataGridView1.Rows[i].Cells[3].Value;
+                        _routeBook_Welding.A[i] = (double)dataGridView1.Rows[i].Cells[4].Value;
+                        _routeBook_Welding.B[i] = (double)dataGridView1.Rows[i].Cells[5].Value;
+                        _routeBook_Welding.C[i] = (double)dataGridView1.Rows[i].Cells[6].Value;
+                    }
+                                     
                 }
 
                 //程式寫入
-                int _rslt = YaskawaController.CompileFile(_routeBook_Welding, _programName, 1, _Welding=1);
+                int _rslt;
+                if (rad_Base.Checked) 
+                { _rslt = YaskawaController.CompileFile(_routeBook_Welding, _programName, 1); }
+                if (rad_Speed.Checked) 
+                { _rslt = YaskawaController.CompileFile(_routeBook_Welding, _programName, 1,Convert.ToInt32(tex_SpeedReg.Text)); }
+                if (rad_Welding.Checked) 
+                { _rslt = YaskawaController.CompileFile(_routeBook_Welding, _programName, 1, Convert.ToInt32(tex_WAReg.Text), Convert.ToInt32(tex_WVReg.Text)); }
+                if (rad_SpeedWelding.Checked) 
+                { _rslt = YaskawaController.CompileFile(_routeBook_Welding, _programName, 1, Convert.ToInt32(tex_SpeedReg.Text), Convert.ToInt32(tex_WAReg.Text), Convert.ToInt32(tex_WVReg.Text)); }
+
+
                 MessageBox.Show("OK!!!"); 
                 return true;
             }
             catch { MessageBox.Show("system error"); return false; }
         }
 
-        #endregion
+
+        /// <summary>
+        /// Robot Program Refresh
+        /// </summary>
+        /// <returns></returns>
+        private void RobotProgramRefresh()
+        {
+            try
+            {
+                string _fileName= String.Empty;
+                YaskawaController.ReadFileList(ref _fileName);
+                listBox2.Items.Add(_fileName);
+
+            }
+            catch { MessageBox.Show("system error"); }
+            
+        }
+
+        /// <summary>
+        /// Write robot [I***] data
+        /// </summary>
+        /// <param name="_num"></param>
+        /// <param name="_data"></param>
+        private void RobotRegWrite(short _num,int _data )
+        {
+            int _rslt;
+            int[] _var = new int[50];
+            _var[_num] = _data;
+            _rslt = YaskawaController.WriteIData(0, _var);
+        }
+
+        /// <summary>
+        /// Read robot [I***] data
+        /// </summary>
+        /// <param name="_num"></param>
+        /// <param name="_data"></param>
+        private void RobotRegRead(short _num,ref int _data)
+        {
+            int _rslt;
+            int[] _getNum = new int[1];
+            _rslt = YaskawaController.ReadIData(_num, 1, ref _getNum);
+            _data = _getNum[0];
+        }
+
+
+
 
         #endregion
 
+        #endregion
+
+        /// <summary>
+        /// RegScanTimer (Test)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RegScanTimer_Tick(object sender, EventArgs e)
+        {
+            
+            if (_TimmerCunt < 50)
+            {
+                RobotRegWrite(Convert.ToInt16(tex_RegData.Text), _TimmerCunt); //Write
+
+                int _var = 0;
+                RobotRegRead(Convert.ToInt16(tex_RegData.Text), ref _var); //Read
+                lab_RegData.Text = "Reg Data: " + _var.ToString();
+                _TimmerCunt++;
+            }
+            else { _TimmerCunt = 0; }
+        }
     }
 
 
