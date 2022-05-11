@@ -8,7 +8,6 @@ using RouteButler_Yaskawa;
 
 namespace FesIF_Demo
 {
-
     public partial class YaskawRobot : Form
 	{
 
@@ -19,7 +18,6 @@ namespace FesIF_Demo
         private int _Welding=0;
         private int _TimmerCunt = 0;
         #endregion
-
 
         #region yaskawa <官方>
         /*必要宣告項目*/
@@ -47,7 +45,8 @@ namespace FesIF_Demo
 		{
 			InitializeComponent();
 			tbMsg.Text = "請先輸入IP Address以及Port"+"\r\n"+"輸入後請按輸入完成";
-		}
+            PCFileRefresh();
+        }
 
         //取得異常碼
 		public string GetErr (short[] err_code)
@@ -669,6 +668,7 @@ namespace FesIF_Demo
 
                 switch (tag)
                 {
+                    #region 連線
                     case "btn_connect":
 
                         _rslt = YaskawaController.Connect(textBox1.Text);
@@ -680,7 +680,9 @@ namespace FesIF_Demo
                         }
 
                         break;
+                    #endregion
 
+                    #region 激磁
                     case "btn_SVON":
 
                         _rslt = YaskawaController.ServoSwitch(1);
@@ -693,6 +695,9 @@ namespace FesIF_Demo
 
                         break;
 
+                    #endregion
+
+                    #region 激磁關閉
                     case "btn_SVOFF":
 
                         _rslt = YaskawaController.ServoSwitch(2);
@@ -704,8 +709,9 @@ namespace FesIF_Demo
                         }
 
                         break;
+                    #endregion
 
-
+                    #region 取得點位資料路徑
                     case "btn_BRO":
 
                             OpenFileDialog dlg = new OpenFileDialog();
@@ -714,14 +720,18 @@ namespace FesIF_Demo
                         
                         break;
 
+                    #endregion 
+
+                    #region 寫入 dataGridView
                     case "btn_LOADDATA":
                         
                             dataGridView1.Rows.Clear();
                             LoadCSV(Browse_textbox.Text);
                         
                         break;
+                    #endregion
 
-
+                    #region 編輯成JBI檔案，並顯示於tex_ProgramTXT
                     case "btn_PROCOOMPILE":
                         
                         tex_ProgramTXT.Clear();
@@ -729,51 +739,61 @@ namespace FesIF_Demo
                         
                         string path = ".\\" + tex_ProgramName.Text + ".JBI";
                         tex_ProgramTXT.Text = File.ReadAllText(path);
+                        if (listBox1.Items.Count > 0) { listBox1.Items.Clear(); }
+                        PCFileRefresh();
                         MessageBox.Show("完成");
                         break;
+                    #endregion
 
-                    case "btn_PRODLOAD":
 
-                        _rslt = YaskawaController.Upload2Controller(tex_ProgramName.Text);
-                        MessageBox.Show("完成");
-                        break;
 
-                        
-
-                   case "btn_RefProgram":
+                    #region 更新Contriller內部程式資料
+                    case "btn_RefProgram":
                         if (listBox2.Items.Count > 0) { listBox2.Items.Clear(); }
                         RobotProgramRefresh();
 
                         break;
+                    #endregion
 
-
+                    #region 啟動程式
                     case "btn_ProgramGO": //ProgramRun
                         _rslt = YaskawaController.RunProgram(tex_ProgramName.Text);
 
                         break;
+                    #endregion
 
+                    #region Auto(啟動)
                     case "btn_GoCycle": //start
                         _rslt = YaskawaController.RobotStopSwitch(1);
 
                         break;
+                    #endregion
 
+                    #region Auto(停止)
                     case "btn_Stop": //stop
                         _rslt = YaskawaController.RobotStopSwitch(2);
 
                         break;
+                    #endregion
 
+                    #region Reg Write
                     case "btn_RegWrite": //RegWrite
 
                         RobotRegWrite(Convert.ToInt16(tex_RegData.Text),Convert.ToInt32(tex_RegNum.Text));
 
                         break;
+                    #endregion
 
+                    #region Reg Read
                     case "btn_RegRead": //RegRead
                         int _var = 0;
                         RobotRegRead(Convert.ToInt16(tex_RegData.Text),ref _var);
                         lab_RegData.Text = "Reg Data: " + _var.ToString();
                         break;
 
+                    #endregion
+
+                    #region Reg Scan Start
                     case "btn_RegScanStart": //RegScanStart
 
                         RegScanTimer.Interval = Convert.ToInt32(tex_RegTimerScan.Text);
@@ -781,14 +801,63 @@ namespace FesIF_Demo
 
 
                         break;
+                    #endregion
 
+                    #region Reg Scan Stop
                     case "btn_RegScanStop": //RegScanStop
 
                         
                         RegScanTimer.Enabled = false;
+                    
+                        break;
+                    #endregion
+
+                    #region 程序刷新按鈕觸發 (PC_JBI)
+                    case "btn_RefPCFile":
+
+                        PCFileRefresh();
 
                         break;
+                        #endregion
 
+                        
+                    #region 資料刪除按鈕 (PC_JBI)
+                    case "btn_DeletePCFile":
+
+                        PCFileDelete(listBox1.SelectedItem.ToString());
+                        PCFileRefresh();
+
+                        break;
+                    #endregion
+
+
+                    #region 資料上載 (PC --> Controller)
+                    case "btn_PROLoad":
+
+                        _rslt = YaskawaController.Upload2Controller(tex_ProgramName.Text);
+                        MessageBox.Show("完成");
+
+                        break;
+                    #endregion
+
+
+                    #region 資料下載 (Controller --> PC)
+                    case "btn_PRODonload":
+
+                        _rslt = YaskawaController.DonwloadFile(listBox2.SelectedItem.ToString());
+                        PCFileRefresh();
+
+                        break;
+                    #endregion
+
+
+                    #region 資料刪除按鈕 (Controller_JBI)
+                    case "btn_DeleteRobotFile":
+
+                        ContrillerFileDelete(listBox2.SelectedItem.ToString());
+
+                        break;
+                        #endregion
 
 
                 }
@@ -900,7 +969,6 @@ namespace FesIF_Demo
             catch { MessageBox.Show("system error"); return false; }
         }
 
-
         /// <summary>
         /// Robot Program Refresh
         /// </summary>
@@ -944,12 +1012,74 @@ namespace FesIF_Demo
             _data = _getNum[0];
         }
 
+        #endregion
+
+        #region File ListBox
+
+        /// <summary>
+        /// PC File Refresh
+        /// </summary>
+        /// <returns></returns>
+        private void PCFileRefresh()
+        {
+            var _CurrentDirectory = Directory.GetCurrentDirectory(); //取得目前執行路徑
+            string[] _files = Directory.GetFiles(_CurrentDirectory, "*.JBI"); //取得目前.JBI 路徑
+            if (listBox1.Items.Count > 0) { listBox1.Items.Clear(); }
+            //依序寫入 listBox1 Items 
+            foreach (var _file in _files)
+            {                
+                listBox1.Items.Add(Path.GetFileNameWithoutExtension(_file)); //不含副檔名
+                //listBox1.Items.Add(Path.GetFileName(_file)); //含副檔名
+            }
+
+        }
+
+        /// <summary>
+        /// PC 刪除JBI資料
+        /// </summary>
+        /// <param name="_fileName"></param>
+        private void PCFileDelete(string _fileName)
+        {
+            var _CurrentDirectory = Directory.GetCurrentDirectory(); //取得目前執行路徑
+            string path = _CurrentDirectory+"\\"+ _fileName+".JBI";
+            bool result = File.Exists(path);
+            if (result == true)
+            {
+                Console.WriteLine("File Found");
+                File.Delete(path);
+                Console.WriteLine("File Deleted Successfully");
+            }
+            else
+            {
+                Console.WriteLine("File Not Found");
+            }
+        }
+
+        /// <summary>
+        /// Yaskawa Controller 刪除JBI資料
+        /// </summary>
+        /// <param name="_fileName"></param>
+        private void ContrillerFileDelete(string _fileName)
+        {
+            int _rslt = YaskawaController.DeleteFile(_fileName);
+            if (_rslt == 1)
+            {
+                Console.WriteLine("File Found");
+                Console.WriteLine("File Deleted Successfully");
+            }
+            else
+            {
+                Console.WriteLine("File Not Found");
+            }
+        }
 
 
 
         #endregion
 
-        #endregion
+
+
+        #region Timer Funtion
 
         /// <summary>
         /// RegScanTimer (Test)
@@ -958,7 +1088,7 @@ namespace FesIF_Demo
         /// <param name="e"></param>
         private void RegScanTimer_Tick(object sender, EventArgs e)
         {
-            
+
             if (_TimmerCunt < 50)
             {
                 RobotRegWrite(Convert.ToInt16(tex_RegData.Text), _TimmerCunt); //Write
@@ -970,8 +1100,24 @@ namespace FesIF_Demo
             }
             else { _TimmerCunt = 0; }
         }
-    }
 
+        /// <summary>
+        /// Robot ListBoxTimer Tick
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RobotListBoxTimer_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+
+        #endregion
+
+        #endregion
+
+
+    }
 
     /// <summary>
     /// 新增一個類別For 點位 Data 欄位
@@ -1055,7 +1201,6 @@ namespace FesIF_Demo
                 NotifyPropertyChanged(nameof(B));
             }
         }
-
 
         public double C
         {

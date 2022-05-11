@@ -1126,7 +1126,6 @@ namespace RouteButler_Yaskawa
 
         #endregion
 
-
         #region 物件關閉
         /// <summary>
         /// 關閉Yaskawa物件
