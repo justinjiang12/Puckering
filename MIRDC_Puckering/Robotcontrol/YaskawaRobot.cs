@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.IO;
 using System.Collections.Generic;
+using System.Text;
 using FESIFS;
 using RouteButler_Yaskawa;
 
@@ -672,12 +673,12 @@ namespace FesIF_Demo
                     case "btn_connect":
 
                         _rslt = YaskawaController.Connect(textBox1.Text);
+                        RobotProgramRefresh();
                         if (_rslt == 0)
                         {
-                            //FormStart();
-                            //timer_robot.Start();
-                            //timer_UI.Start();
+
                         }
+                        RobotListBoxTimer.Enabled = true;
 
                         break;
                     #endregion
@@ -735,9 +736,9 @@ namespace FesIF_Demo
                     case "btn_PROCOOMPILE":
                         
                         tex_ProgramTXT.Clear();
-                        RobotCompileProgram(tex_ProgramName.Text);
+                        RobotCompileProgram(tex_ProgramName.Text.ToUpper());
                         
-                        string path = ".\\" + tex_ProgramName.Text + ".JBI";
+                        string path = ".\\" + tex_ProgramName.Text.ToUpper() + ".JBI";
                         tex_ProgramTXT.Text = File.ReadAllText(path);
                         if (listBox1.Items.Count > 0) { listBox1.Items.Clear(); }
                         PCFileRefresh();
@@ -818,14 +819,30 @@ namespace FesIF_Demo
                         PCFileRefresh();
 
                         break;
-                        #endregion
+                    #endregion
 
-                        
+                    #region 程序刷新按鈕觸發 (Controller_JBI)
+                    case "btn_RefRobotFile":
+
+                        RobotProgramRefresh();
+
+                        break;
+                    #endregion
+
                     #region 資料刪除按鈕 (PC_JBI)
                     case "btn_DeletePCFile":
-
-                        PCFileDelete(listBox1.SelectedItem.ToString());
-                        PCFileRefresh();
+                        if (listBox1.SelectedIndex != -1)
+                        {
+                            DialogResult dr = MessageBox.Show("確定要刪除 " + listBox1.SelectedItem.ToString() + " ???"
+                                , "Closing event!", MessageBoxButtons.YesNo);
+                            if (dr == DialogResult.Yes)
+                            {
+                                PCFileDelete(listBox1.SelectedItem.ToString());
+                                PCFileRefresh();
+                            }
+                        }
+                        else { MessageBox.Show("請點選 PC File!!!"); }
+                        
 
                         break;
                     #endregion
@@ -833,9 +850,19 @@ namespace FesIF_Demo
 
                     #region 資料上載 (PC --> Controller)
                     case "btn_PROLoad":
+                        if (listBox1.SelectedIndex != -1)
+                        {
+                            DialogResult dr = MessageBox.Show("確定要上載 " + listBox1.SelectedItem.ToString() + " ???"
+                            , "Closing event!", MessageBoxButtons.YesNo);
+                            if (dr == DialogResult.Yes)
+                            {
+                                _rslt = YaskawaController.Upload2Controller(listBox1.SelectedItem.ToString());
+                                MessageBox.Show("完成");
+                                RobotProgramRefresh();
+                            }
 
-                        _rslt = YaskawaController.Upload2Controller(tex_ProgramName.Text);
-                        MessageBox.Show("完成");
+                        }
+                        else { MessageBox.Show("請點選 PC File!!!"); }
 
                         break;
                     #endregion
@@ -844,8 +871,18 @@ namespace FesIF_Demo
                     #region 資料下載 (Controller --> PC)
                     case "btn_PRODonload":
 
-                        _rslt = YaskawaController.DonwloadFile(listBox2.SelectedItem.ToString());
-                        PCFileRefresh();
+                        if (listBox2.SelectedIndex != -1)
+                        {
+                            DialogResult dr = MessageBox.Show("確定要下載 " + listBox2.SelectedItem.ToString() + " ???"
+                                , "Closing event!", MessageBoxButtons.YesNo);
+                            if (dr == DialogResult.Yes)
+                            {
+                                _rslt = YaskawaController.DonwloadFile(listBox2.SelectedItem.ToString() + ".JBI");
+                                PCFileRefresh();
+                            }
+                        }
+                        else { MessageBox.Show("請點選 Controller File!!!"); }
+                            
 
                         break;
                     #endregion
@@ -854,9 +891,20 @@ namespace FesIF_Demo
                     #region 資料刪除按鈕 (Controller_JBI)
                     case "btn_DeleteRobotFile":
 
-                        ContrillerFileDelete(listBox2.SelectedItem.ToString());
+                        if (listBox2.SelectedIndex != -1)
+                        {
+                            DialogResult dr = MessageBox.Show("確定要刪除 "+ listBox2.SelectedItem.ToString()+" ???"
+                                , "Closing event!", MessageBoxButtons.YesNo);
+                            if (dr == DialogResult.Yes)
+                            {
+                                ContrillerFileDelete(listBox2.SelectedItem.ToString() + ".JBI");
+                                RobotProgramRefresh();
+                            }
+                        }
+                        else { MessageBox.Show("請點選 Controller File!!!"); }
 
                         break;
+
                         #endregion
 
 
@@ -978,8 +1026,23 @@ namespace FesIF_Demo
             try
             {
                 string _fileName= String.Empty;
+                string _txtPath = "RobotProgeamFile.txt";
+                var _CurrentDirectory = Directory.GetCurrentDirectory(); //取得目前執行路徑
+                string _rtxtpath = _CurrentDirectory + "\\" + _txtPath;
+                int _counter = 0;
+                string _robotFileName = String.Empty;
+                if (listBox2.Items.Count > 0) { listBox2.Items.Clear(); }
+                if (comboBox_RobotFile.Items.Count > 0) { comboBox_RobotFile.Items.Clear(); }
                 YaskawaController.ReadFileList(ref _fileName);
-                listBox2.Items.Add(_fileName);
+                File.WriteAllText(_txtPath, _fileName, Encoding.UTF8);
+
+                foreach (string line in File.ReadLines(_rtxtpath))
+                {
+                    _robotFileName = line.Remove(line.Length - 4, 4);
+                    listBox2.Items.Add(_robotFileName);
+                    comboBox_RobotFile.Items.Add(_robotFileName);
+                    _counter++;
+                }
 
             }
             catch { MessageBox.Show("system error"); }
@@ -1073,11 +1136,7 @@ namespace FesIF_Demo
             }
         }
 
-
-
         #endregion
-
-
 
         #region Timer Funtion
 
@@ -1115,7 +1174,6 @@ namespace FesIF_Demo
         #endregion
 
         #endregion
-
 
     }
 

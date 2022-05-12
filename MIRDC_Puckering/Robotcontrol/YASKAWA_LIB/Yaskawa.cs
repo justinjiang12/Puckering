@@ -757,7 +757,7 @@ namespace RouteButler_Yaskawa
         /// <returns></returns>
         public int DonwloadFile(string _filename)
         {
-            Connect(RobotIP, "normal");
+            Connect(RobotIP, "file");
             short[] _errorcode = new short[2];
             int _socketreturn1 = fesIF.SaveFile(_filename, _errorcode); //下載程式
             ExecuteError += "," + _errorcode[0].ToString() + "," + _errorcode[1].ToString();
@@ -777,7 +777,7 @@ namespace RouteButler_Yaskawa
         /// <returns></returns>
         public int ReadFileList(ref string _fileList)
         {
-            Connect(RobotIP, "normal");
+            Connect(RobotIP, "file");
             short[] _err_code = new short[2];
             int _socketreturn1 = fesIF.ListFile("*.JBI", _err_code, ref _fileList); //取得資料程式表單
             ExecuteError += "," + _err_code[0].ToString() + "," + _err_code[1].ToString();
@@ -797,7 +797,7 @@ namespace RouteButler_Yaskawa
         /// <returns></returns>
         public int DeleteFile(string _filename)
         {
-            Connect(RobotIP, "normal");
+            Connect(RobotIP, "file");
             short[] _err_code = new short[2];
             int _socketreturn1 = fesIF.DelFile(_filename, _err_code); //刪除得資料程式
             ExecuteError += "," + _err_code[0].ToString() + "," + _err_code[1].ToString();
@@ -824,14 +824,12 @@ namespace RouteButler_Yaskawa
         /// <returns></returns>
         public int ReadIData(short _startNum, short _readNum, ref int[] _IData)
         {
-            Connect(RobotIP, "file");
+            Connect(RobotIP, "normal");
             int[] _I_read = new int[_readNum]; //宣告讀取陣列
             short[] _errorcode = new short[2];
             int _socketreturn1 = fesIF.NumMultR(_startNum, _I_read, _errorcode); //讀取資料
 
-
             Close();
-
 
             for (int i = 0; i < _I_read.Length; i++)
             {
@@ -852,7 +850,7 @@ namespace RouteButler_Yaskawa
         /// <returns></returns>
         public int ReadIData(short _startNum, short _readNum, ref short[] _IData)
         {
-            Connect(RobotIP, "file");
+            Connect(RobotIP, "normal");
             short[] _I_read = new short[_readNum]; //宣告讀取陣列
             short[] _errorcode = new short[2];
             int _socketreturn1 = fesIF.NumMultR(_startNum, _I_read, _errorcode); //讀取資料
@@ -879,7 +877,7 @@ namespace RouteButler_Yaskawa
         /// <returns></returns>
         public int WriteIData(short _startNum, int[] _IData)
         {
-            Connect(RobotIP, "file");
+            Connect(RobotIP, "normal");
             int _dataRange = _IData.Length;
             int[] _I_write = new int[_dataRange]; //宣告讀取陣列
             short[] _errorcode = new short[2];
@@ -899,7 +897,7 @@ namespace RouteButler_Yaskawa
         /// <returns></returns>
         public int WriteIData(short _startNum, short[] _IData)
         {
-            Connect(RobotIP, "file");
+            Connect(RobotIP, "normal");
             int _dataRange = _IData.Length;
             short[] _I_write = new short[_dataRange]; //宣告讀取陣列
             short[] _errorcode = new short[2];
