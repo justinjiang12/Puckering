@@ -174,6 +174,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.RegScanTimer = new System.Windows.Forms.Timer(this.components);
             this.RobotListBoxTimer = new System.Windows.Forms.Timer(this.components);
+            this.button36 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox10.SuspendLayout();
@@ -1357,6 +1358,7 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.button36);
             this.groupBox6.Controls.Add(this.groupBox11);
             this.groupBox6.Controls.Add(this.groupBox9);
             this.groupBox6.Location = new System.Drawing.Point(871, 24);
@@ -1381,7 +1383,7 @@
             this.groupBox11.Controls.Add(this.button11);
             this.groupBox11.Location = new System.Drawing.Point(9, 24);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(482, 429);
+            this.groupBox11.Size = new System.Drawing.Size(482, 411);
             this.groupBox11.TabIndex = 177;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Progeam";
@@ -1393,7 +1395,7 @@
             this.groupBox12.Controls.Add(this.button20);
             this.groupBox12.Controls.Add(this.button31);
             this.groupBox12.Controls.Add(this.button18);
-            this.groupBox12.Location = new System.Drawing.Point(13, 300);
+            this.groupBox12.Location = new System.Drawing.Point(12, 277);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Size = new System.Drawing.Size(463, 123);
             this.groupBox12.TabIndex = 178;
@@ -1456,30 +1458,35 @@
             // 
             // button35
             // 
-            this.button35.Location = new System.Drawing.Point(296, 258);
+            this.button35.BackColor = System.Drawing.Color.White;
+            this.button35.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button35.BackgroundImage")));
+            this.button35.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button35.Location = new System.Drawing.Point(371, 234);
             this.button35.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button35.Name = "button35";
-            this.button35.Size = new System.Drawing.Size(172, 38);
+            this.button35.Size = new System.Drawing.Size(45, 38);
             this.button35.TabIndex = 180;
             this.button35.Tag = "btn_DeleteRobotFile";
-            this.button35.Text = "Delete";
-            this.button35.UseVisualStyleBackColor = true;
+            this.button35.UseVisualStyleBackColor = false;
             this.button35.Click += new System.EventHandler(this.button_Click);
             // 
             // button34
             // 
-            this.button34.Location = new System.Drawing.Point(15, 257);
+            this.button34.BackColor = System.Drawing.Color.White;
+            this.button34.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button34.BackgroundImage")));
+            this.button34.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button34.Location = new System.Drawing.Point(94, 233);
             this.button34.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button34.Name = "button34";
-            this.button34.Size = new System.Drawing.Size(175, 38);
+            this.button34.Size = new System.Drawing.Size(45, 39);
             this.button34.TabIndex = 179;
             this.button34.Tag = "btn_DeletePCFile";
-            this.button34.Text = "Delete";
-            this.button34.UseVisualStyleBackColor = true;
+            this.button34.UseVisualStyleBackColor = false;
             this.button34.Click += new System.EventHandler(this.button_Click);
             // 
             // button33
             // 
+            this.button33.BackColor = System.Drawing.Color.White;
             this.button33.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button33.BackgroundImage")));
             this.button33.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button33.Font = new System.Drawing.Font("新細明體", 12F);
@@ -1489,19 +1496,21 @@
             this.button33.Size = new System.Drawing.Size(92, 50);
             this.button33.TabIndex = 178;
             this.button33.Tag = "btn_PRODonload";
-            this.button33.UseVisualStyleBackColor = true;
+            this.button33.UseVisualStyleBackColor = false;
             this.button33.Click += new System.EventHandler(this.button_Click);
             // 
             // button32
             // 
-            this.button32.Location = new System.Drawing.Point(16, 215);
+            this.button32.BackColor = System.Drawing.Color.White;
+            this.button32.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button32.BackgroundImage")));
+            this.button32.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button32.Location = new System.Drawing.Point(145, 233);
             this.button32.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button32.Name = "button32";
-            this.button32.Size = new System.Drawing.Size(174, 38);
+            this.button32.Size = new System.Drawing.Size(45, 38);
             this.button32.TabIndex = 177;
             this.button32.Tag = "btn_RefPCFile";
-            this.button32.Text = "Refresh";
-            this.button32.UseVisualStyleBackColor = true;
+            this.button32.UseVisualStyleBackColor = false;
             this.button32.Click += new System.EventHandler(this.button_Click);
             // 
             // label33
@@ -1520,7 +1529,7 @@
             this.listBox1.Location = new System.Drawing.Point(16, 42);
             this.listBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(174, 169);
+            this.listBox1.Size = new System.Drawing.Size(174, 184);
             this.listBox1.TabIndex = 175;
             // 
             // label27
@@ -1539,23 +1548,26 @@
             this.listBox2.Location = new System.Drawing.Point(296, 43);
             this.listBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(172, 169);
+            this.listBox2.Size = new System.Drawing.Size(172, 184);
             this.listBox2.TabIndex = 169;
             // 
             // RefreshProgram
             // 
-            this.RefreshProgram.Location = new System.Drawing.Point(296, 216);
+            this.RefreshProgram.BackColor = System.Drawing.Color.White;
+            this.RefreshProgram.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("RefreshProgram.BackgroundImage")));
+            this.RefreshProgram.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.RefreshProgram.Location = new System.Drawing.Point(422, 234);
             this.RefreshProgram.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RefreshProgram.Name = "RefreshProgram";
-            this.RefreshProgram.Size = new System.Drawing.Size(172, 38);
+            this.RefreshProgram.Size = new System.Drawing.Size(45, 38);
             this.RefreshProgram.TabIndex = 173;
             this.RefreshProgram.Tag = "btn_RefRobotFile";
-            this.RefreshProgram.Text = "Refresh";
-            this.RefreshProgram.UseVisualStyleBackColor = true;
+            this.RefreshProgram.UseVisualStyleBackColor = false;
             this.RefreshProgram.Click += new System.EventHandler(this.button_Click);
             // 
             // button11
             // 
+            this.button11.BackColor = System.Drawing.Color.White;
             this.button11.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button11.BackgroundImage")));
             this.button11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button11.Font = new System.Drawing.Font("新細明體", 12F);
@@ -1565,7 +1577,7 @@
             this.button11.Size = new System.Drawing.Size(92, 50);
             this.button11.TabIndex = 168;
             this.button11.Tag = "btn_PROLoad";
-            this.button11.UseVisualStyleBackColor = true;
+            this.button11.UseVisualStyleBackColor = false;
             this.button11.Click += new System.EventHandler(this.button_Click);
             // 
             // groupBox9
@@ -1862,6 +1874,18 @@
             // 
             this.RobotListBoxTimer.Tick += new System.EventHandler(this.RobotListBoxTimer_Tick);
             // 
+            // button36
+            // 
+            this.button36.Location = new System.Drawing.Point(341, 478);
+            this.button36.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button36.Name = "button36";
+            this.button36.Size = new System.Drawing.Size(151, 57);
+            this.button36.TabIndex = 178;
+            this.button36.Tag = "btn_GetPos";
+            this.button36.Text = "Get Pos";
+            this.button36.UseVisualStyleBackColor = true;
+            this.button36.Click += new System.EventHandler(this.button_Click);
+            // 
             // YaskawRobot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -2048,6 +2072,7 @@
         private System.Windows.Forms.GroupBox groupBox12;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.ComboBox comboBox_RobotFile;
+        private System.Windows.Forms.Button button36;
     }
 }
 

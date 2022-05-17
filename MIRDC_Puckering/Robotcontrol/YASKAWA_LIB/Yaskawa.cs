@@ -815,8 +815,9 @@ namespace RouteButler_Yaskawa
 
         #region 控制暫存器(R/W)
 
+        #region Read 
         /// <summary>
-        /// 讀取整數資料 (起始點位 , 讀取資料量 , ref 匯入陣列) --多載
+        /// 讀取整數(批次)資料 (起始點位 , 讀取資料量 , ref 匯入陣列) --多載
         /// </summary>
         /// <param name="_startNum"></param>
         /// <param name="_readNum"></param>
@@ -842,7 +843,7 @@ namespace RouteButler_Yaskawa
         }
 
         /// <summary>
-        /// 讀取整數資料 (起始點位 , 讀取資料量 , ref 匯入陣列) --多載
+        /// 讀取整數(批次)資料 (起始點位 , 讀取資料量 , ref 匯入陣列) --多載
         /// </summary>
         /// <param name="_startNum"></param>
         /// <param name="_readNum"></param>
@@ -868,21 +869,28 @@ namespace RouteButler_Yaskawa
             else { return 1; }
 
         }
+        #endregion
+
+        #region Write
+
+        #region 批次
+        /* 寫入參數設定 (Robot Controller)
+        Robot Controller 須設定參數 (S2C0541=0 / S2C0542=0) 開放權限
+        */
 
         /// <summary>
-        /// 寫入整數資料 (起始點位 , 寫入資料陣列 ) --多載
+        /// 寫入整數(批次)資料 (起始點位 , 寫入資料陣列 ) --多載
         /// </summary>
         /// <param name="_startNum"></param>
         /// <param name="_IData"></param>
         /// <returns></returns>
-        public int WriteIData(short _startNum, int[] _IData)
+        public int WriteIData(short _startNum, int[] _IData) 
         {
             Connect(RobotIP, "normal");
-            int _dataRange = _IData.Length;
-            int[] _I_write = new int[_dataRange]; //宣告讀取陣列
+            int[] _I_write = new int[_IData.Length]; //宣告讀取陣列
             short[] _errorcode = new short[2];
-            int _socketreturn1 = fesIF.NumMultR(_startNum, _I_write, _errorcode); //寫入資料
-
+            int _socketreturn1 = fesIF.NumMultW(_startNum, _I_write, _errorcode); //寫入資料
+            
             Close();
 
             if (_socketreturn1 == 0) { return 0; }
@@ -890,26 +898,146 @@ namespace RouteButler_Yaskawa
         }
 
         /// <summary>
-        /// 寫入整數資料 (起始點位 , 寫入資料陣列 ) --多載
+        /// 寫入整數(批次)資料 (起始點位 , 寫入資料陣列 ) --多載
         /// </summary>
         /// <param name="_startNum"></param>
         /// <param name="_IData"></param>
         /// <returns></returns>
-        public int WriteIData(short _startNum, short[] _IData)
+        public int WriteIData(short _startNum, short[] _IData) 
         {
             Connect(RobotIP, "normal");
-            int _dataRange = _IData.Length;
-            short[] _I_write = new short[_dataRange]; //宣告讀取陣列
+            short[] _I_write = new short[_IData.Length]; //宣告讀取陣列
             short[] _errorcode = new short[2];
-            int _socketreturn1 = fesIF.NumMultR(_startNum, _I_write, _errorcode); //寫入資料
+            int _WStartNum = _startNum;
+
+            for (int i = 0; i < _I_write.Length; i++)
+            {
+                _I_write[i] = _IData[i];
+            }
+
+            int _socketreturn1 = fesIF.NumMultW(Convert.ToInt16(_WStartNum+1), _I_write, _errorcode); //寫入資料
+            Console.WriteLine("result=0x{0:x2} error_code=0x{1:x4},0x{2:x4}", _socketreturn1, _errorcode[0], _errorcode[1]);
 
             Close();
 
             if (_socketreturn1 == 0) { return 0; }
             else { return 1; }
+        
         }
+        #endregion
+
+        #region 單筆
+        /// <summary>
+        /// 寫入整數(單筆)資料 (起始點位 , 寫入資料) --多載
+        /// </summary>
+        /// <param name="_startNum"></param>
+        /// <param name="_IData"></param>
+        /// <returns></returns>
+        public int WriteIData(short _startNum, short _IData) 
+        {
+            Connect(RobotIP, "normal");
+            short[] _errorcode = new short[2];
+            int _result = fesIF.NumSnglW(_startNum, _IData, _errorcode);
+
+            Console.WriteLine("result=0x{0:x2} error_code=0x{1:x4},0x{2:x4}", _result, _errorcode[0], _errorcode[1]);
+
+            Close();
+
+            if (_result == 0) { return 0; }
+            else { return 1; }
+
+        }
+
+        /// <summary>
+        /// 寫入整數(單筆)資料 (起始點位 , 寫入資料) --多載
+        /// </summary>
+        /// <param name="_startNum"></param>
+        /// <param name="_IData"></param>
+        /// <returns></returns>
+        public int WriteIData(short _startNum, int _IData)
+        {
+            Connect(RobotIP, "normal");
+            short[] _errorcode = new short[2];
+            int _result = fesIF.NumSnglW(_startNum, _IData, _errorcode);
+
+            Console.WriteLine("result=0x{0:x2} error_code=0x{1:x4},0x{2:x4}", _result, _errorcode[0], _errorcode[1]);
+
+            Close();
+
+            if (_result == 0) { return 0; }
+            else { return 1; }
+
+        }
+
+        /// <summary>
+        /// 寫入整數(單筆)資料 (起始點位 , 寫入資料) --多載
+        /// </summary>
+        /// <param name="_startNum"></param>
+        /// <param name="_IData"></param>
+        /// <returns></returns>
+        public int WriteIData(short _startNum, float _IData)
+        {
+            Connect(RobotIP, "normal");
+            short[] _errorcode = new short[2];
+            int _result = fesIF.NumSnglW(_startNum, _IData, _errorcode);
+
+            Console.WriteLine("result=0x{0:x2} error_code=0x{1:x4},0x{2:x4}", _result, _errorcode[0], _errorcode[1]);
+
+            Close();
+
+            if (_result == 0) { return 0; }
+            else { return 1; }
+
+        }
+
+
+
+
 
         #endregion
+
+        #endregion
+
+
+        #endregion
+
+        #region Position Point Data
+
+        /// <summary>
+        /// 取得P[***]變數
+        /// </summary>
+        /// <param name="_PosNum"></param>
+        /// <returns></returns>
+        public int GetPosData(short _PosNum)
+        {
+            
+            int _result;
+            PosData read_data = new PosData();
+            short[] err_code = new short[2];
+
+            Connect(RobotIP, "normal");
+            _result = fesIF.PosSnglR(_PosNum, ref read_data, err_code);
+            Close();
+
+            Console.WriteLine("result=0x{0:x2} error_code=0x{1:x4},0x{2:x4}", _result, err_code[0], err_code[1]);
+            Console.WriteLine("type={0},形態={1},tool number={2},user number={3},擴張形態={4},1st={5},2nd={6},3rd={7},4th={8},5th={9},6th={10},7th={11},8th={12}",
+                                    read_data.type, read_data.pattern, read_data.tool_no, read_data.user_coord_no, read_data.ex_pattern,
+                                    read_data.axis[0], read_data.axis[1], read_data.axis[2], read_data.axis[3],
+                                    read_data.axis[4], read_data.axis[5], read_data.axis[6], read_data.axis[7]);
+
+
+            if (_result == 0) { return 0; }
+            else { return 1; }
+        }
+
+
+
+
+
+
+        #endregion
+
+
 
         #region 其他控制
 

@@ -780,15 +780,16 @@ namespace FesIF_Demo
                     #region Reg Write
                     case "btn_RegWrite": //RegWrite
 
-                        RobotRegWrite(Convert.ToInt16(tex_RegData.Text),Convert.ToInt32(tex_RegNum.Text));
+                        RobotRegWrite(Convert.ToInt16(tex_RegData.Text),Convert.ToInt16(tex_RegNum.Text));
 
                         break;
                     #endregion
 
                     #region Reg Read
                     case "btn_RegRead": //RegRead
-                        int _var = 0;
-                        RobotRegRead(Convert.ToInt16(tex_RegData.Text),ref _var);
+                        short _var = 0;
+                        int _RegDataNum = Convert.ToInt32(tex_RegData.Text) + 1;
+                        RobotRegRead(Convert.ToInt16(_RegDataNum),ref _var);
                         lab_RegData.Text = "Reg Data: " + _var.ToString();
                         break;
 
@@ -902,6 +903,17 @@ namespace FesIF_Demo
                             }
                         }
                         else { MessageBox.Show("請點選 Controller File!!!"); }
+
+                        break;
+
+                        #endregion
+
+                        
+
+                    #region 取得點位資料按鈕 
+                    case "btn_GetPos":
+
+                        YaskawaController.GetPosData(1);
 
                         break;
 
@@ -1054,12 +1066,17 @@ namespace FesIF_Demo
         /// </summary>
         /// <param name="_num"></param>
         /// <param name="_data"></param>
-        private void RobotRegWrite(short _num,int _data )
+        private void RobotRegWrite(short _num,short _data )
         {
             int _rslt;
-            int[] _var = new int[50];
+            int _Dnum = _num;
+            _rslt = YaskawaController.WriteIData(Convert.ToInt16(_Dnum+1), _data);
+
+            /*
+            short[] _var = new short[_num+1];
             _var[_num] = _data;
             _rslt = YaskawaController.WriteIData(0, _var);
+            */
         }
 
         /// <summary>
@@ -1067,10 +1084,10 @@ namespace FesIF_Demo
         /// </summary>
         /// <param name="_num"></param>
         /// <param name="_data"></param>
-        private void RobotRegRead(short _num,ref int _data)
+        private void RobotRegRead(short _num,ref short _data)
         {
             int _rslt;
-            int[] _getNum = new int[1];
+            short[] _getNum = new short[1];
             _rslt = YaskawaController.ReadIData(_num, 1, ref _getNum);
             _data = _getNum[0];
         }
@@ -1147,17 +1164,19 @@ namespace FesIF_Demo
         /// <param name="e"></param>
         private void RegScanTimer_Tick(object sender, EventArgs e)
         {
+            /*
 
             if (_TimmerCunt < 50)
             {
                 RobotRegWrite(Convert.ToInt16(tex_RegData.Text), _TimmerCunt); //Write
 
-                int _var = 0;
+                short _var = 0;
                 RobotRegRead(Convert.ToInt16(tex_RegData.Text), ref _var); //Read
                 lab_RegData.Text = "Reg Data: " + _var.ToString();
                 _TimmerCunt++;
             }
             else { _TimmerCunt = 0; }
+            */
         }
 
         /// <summary>
