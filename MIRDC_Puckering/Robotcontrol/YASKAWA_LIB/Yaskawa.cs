@@ -1004,11 +1004,11 @@ namespace RouteButler_Yaskawa
         #region Position Point Data
 
         /// <summary>
-        /// 取得P[***]變數
+        /// 取得(單筆)P[***]變數
         /// </summary>
         /// <param name="_PosNum"></param>
         /// <returns></returns>
-        public int GetPosData(short _PosNum)
+        public int GetPosData(short _PosNum ,ref PosData _posData) 
         {
             
             int _result;
@@ -1017,6 +1017,7 @@ namespace RouteButler_Yaskawa
 
             Connect(RobotIP, "normal");
             _result = fesIF.PosSnglR(_PosNum, ref read_data, err_code);
+            _posData = read_data;
             Close();
 
             Console.WriteLine("result=0x{0:x2} error_code=0x{1:x4},0x{2:x4}", _result, err_code[0], err_code[1]);
@@ -1030,9 +1031,30 @@ namespace RouteButler_Yaskawa
             else { return 1; }
         }
 
+        /// <summary>
+        /// 寫入(單筆)P[***]變數
+        /// </summary>
+        /// <param name="_PosNum"></param>
+        /// <param name="_posData"></param>
+        /// <returns></returns>
+        public int SetPosData(short _PosNum, PosData _posData)
+        {
+
+            int _result;
+            short[] _err_code = new short[2];
+            
+
+            Connect(RobotIP, "normal");
+            _result = fesIF.PosSnglW(_PosNum, _posData, _err_code);
+
+            Close();
+
+            Console.WriteLine("result=0x{0:x2} error_code=0x{1:x4},0x{2:x4}", _result, _err_code[0], _err_code[1]);
 
 
-
+            if (_result == 0) { return 0; }
+            else { return 1; }
+        }
 
 
         #endregion
