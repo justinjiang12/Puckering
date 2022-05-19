@@ -10,11 +10,19 @@ namespace RouteButler_Yaskawa
         #region 欄位宣告
         public string CurrentState = "null";
         public string ExecuteError = "null";
-        public bool Error = false, Alarm = false, isBusy = false, ServoON = false, HoldON = false;
+        
 
         private string RobotIP;
-
         private FesIF fesIF = new FesIF();
+
+        #region bool
+        public bool Error = false, Alarm = false, isBusy = false, 
+            ServoON = false, HoldON = false, Step=false ,OneCycle=false, AutomaticAndContinuos=false, Teach=false,
+            InGuardSafeOperation = false , Play = false, CommendRemote = false, HoldStatusE = false, HoldStatusC = false;
+
+        #endregion
+
+        #region readonly string
         private readonly string JobInitial = "/JOB" + Environment.NewLine,
                                 FileName = "//NAME ",//NAME filename
                                 PoseInitial = "//POS" + Environment.NewLine,
@@ -47,6 +55,10 @@ namespace RouteButler_Yaskawa
                                 ARCOF = "ARCOF ", // Welding Off
                                 AC = "AC=I", //Welding AC Setting
                                 AVP = "AVP=I"; //Welding AVP Setting
+
+        #endregion
+
+
         #endregion
 
         #region 連線
@@ -1031,6 +1043,37 @@ namespace RouteButler_Yaskawa
             else { return 1; }
         }
 
+
+        /// <summary>
+        /// Get Cur Pos Data
+        /// </summary>
+        /// <param name="_PosNum"></param>
+        /// <param name="_posData"></param>
+        /// <returns></returns>
+        public int GetCurPosData(short _PosNum, ref PosData _posData)
+        {
+
+            int _result;
+            PosData read_data = new PosData();
+            short[] err_code = new short[2];
+
+            Connect(RobotIP, "normal");
+            _result = fesIF.RobPosSnglR(_PosNum, ref read_data, err_code);
+            _posData = read_data;
+            Close();
+
+            Console.WriteLine("result=0x{0:x2} error_code=0x{1:x4},0x{2:x4}", _result, err_code[0], err_code[1]);
+            Console.WriteLine("type={0},形態={1},tool number={2},user number={3},擴張形態={4},1st={5},2nd={6},3rd={7},4th={8},5th={9},6th={10},7th={11},8th={12}",
+                                    read_data.type, read_data.pattern, read_data.tool_no, read_data.user_coord_no, read_data.ex_pattern,
+                                    read_data.axis[0], read_data.axis[1], read_data.axis[2], read_data.axis[3],
+                                    read_data.axis[4], read_data.axis[5], read_data.axis[6], read_data.axis[7]);
+
+
+            if (_result == 0) { return 0; }
+            else { return 1; }
+        }
+
+
         /// <summary>
         /// 寫入(單筆)P[***]變數
         /// </summary>
@@ -1056,6 +1099,48 @@ namespace RouteButler_Yaskawa
             else { return 1; }
         }
 
+        /// <summary>
+        /// Robot Move Pls (S,L,U,R,B,T) 各軸
+        /// </summary>
+        /// <param name="_pulseMoveData"></param>
+        /// <returns></returns>
+        public int RobotMovePls(PulseMove _pulseMoveData)
+        {
+            int _result;
+            short[] _err_code = new short[2];
+            Connect(RobotIP, "normal");
+
+            _result = fesIF.MovePulse(1, _pulseMoveData, _err_code);
+
+            Close();
+            if (_result == 0) { return 0; }
+            else { return 1; }
+        }
+
+
+
+        /// <summary>
+        /// Robot Move Base (X,Y,Z,A,B,C) 基座標
+        /// </summary>
+        /// <param name="_pulseMoveData"></param>
+        /// <returns></returns>
+        public int RobotMoveBase(CoordMove _pulseMoveData)
+        {
+            int _result;
+            short[] _err_code = new short[2];
+            Connect(RobotIP, "normal");
+
+            _result = fesIF.MoveCoord(1, _pulseMoveData, _err_code);
+
+            Close();
+            if (_result == 0) { return 0; }
+            else { return 1; }
+
+        }
+
+
+
+
 
         #endregion
 
@@ -1070,8 +1155,9 @@ namespace RouteButler_Yaskawa
         public int CheckStatus()
         {
             CurrentState = "Check status";
-
             Connect(RobotIP, "normal");
+
+            //=================================== < _decode1 > ============================================
 
             short[] _errorcode = new short[2];
             uint _readData = 0;
@@ -1089,10 +1175,21 @@ namespace RouteButler_Yaskawa
             _binary1 = _binary1.PadLeft(8, '0');
             char[] _binaryarray1 = _binary1.ToCharArray();
             byte[] _decode1 = new byte[8];
-            for (int i = 0; i < _binaryarray1.Length; i++)
-                _decode1[i] = (byte)_binaryarray1[_binaryarray1.Length - 1 - i];
+            for (int i = 0; i < _binaryarray1.Length; i++) 
+            { _decode1[i] = (byte)_binaryarray1[_binaryarray1.Length - 1 - i]; }
 
+
+            Step = (_decode1[0] == 49) ? true : false;
+            OneCycle = (_decode1[1] == 49) ? true : false;
+            AutomaticAndContinuos = (_decode1[2] == 49) ? true : false;
             isBusy = (_decode1[3] == 49) ? true : false;
+            InGuardSafeOperation = (_decode1[4] == 49) ? true : false;
+            Teach = (_decode1[5] == 49) ? true : false;
+            Play = (_decode1[6] == 49) ? true : false;
+            CommendRemote = (_decode1[7] == 49) ? true : false;
+
+
+            //=================================== < _decode2 > ============================================
 
             _errorcode = new short[2];
             _readData = 0;
@@ -1110,22 +1207,25 @@ namespace RouteButler_Yaskawa
             _binary2 = _binary2.PadLeft(8, '0');
             char[] _binaryarray2 = _binary2.ToCharArray();
             byte[] _decode2 = new byte[8];
-            for (int i = 0; i < _binaryarray1.Length; i++)
-                _decode2[i] = (byte)_binaryarray2[_binaryarray2.Length - 1 - i];
+            for (int i = 0; i < _binaryarray1.Length; i++) { _decode2[i] = (byte)_binaryarray2[_binaryarray2.Length - 1 - i]; }
+                
 
             HoldON = (_decode2[1] == 49) ? true : false;
+            HoldStatusE = (_decode2[2] == 49) ? true : false;
+            HoldStatusC = (_decode2[3] == 49) ? true : false;
             Alarm = (_decode2[4] == 49) ? true : false;
             Error = (_decode2[5] == 49) ? true : false;
             ServoON = (_decode2[6] == 49) ? true : false;
+
+            //=============================================================================================
 
             CurrentState = "Idle";
 
             Close();
 
-            if (_socketreturn1 == 0 && _socketreturn2 == 0)
-                return 0;
-            else
-                return 1;
+            if (_socketreturn1 == 0 && _socketreturn2 == 0) { return 0; }
+            else { return 1; }
+               
         }
 
         /// <summary>
@@ -1149,10 +1249,9 @@ namespace RouteButler_Yaskawa
 
             Close();
 
-            if (_socketreturn1 == 0 && _socketreturn2 == 0)
-                return 0;
-            else
-                return 1;
+            if (_socketreturn1 == 0 && _socketreturn2 == 0) { return 0; }
+            else { return 1; }
+                
         }
 
         /// <summary>
@@ -1170,10 +1269,9 @@ namespace RouteButler_Yaskawa
             int _socketreturn = fesIF.ServoSwitch(_index, _errorcode);
             ExecuteError = _errorcode[0].ToString() + "," + _errorcode[1].ToString();
 
-            if (_socketreturn == 0 && _index == 1)
-                CurrentState = "Servo ON";
-            else if (_socketreturn == 0 && _index == 2)
-                CurrentState = "Servo OFF";
+            if (_socketreturn == 0 && _index == 1) { CurrentState = "Servo ON"; }
+            else if (_socketreturn == 0 && _index == 2) { CurrentState = "Servo OFF"; }
+                
 
             CurrentState = "Idle";
 
@@ -1197,11 +1295,9 @@ namespace RouteButler_Yaskawa
             int _socketreturn = fesIF.HoldSwitch(_index, _errorcode);
             ExecuteError = _errorcode[0].ToString() + "," + _errorcode[1].ToString();
 
-            if (_socketreturn == 0 && _index == 1)
-                CurrentState = "Hold robot";
-            else if (_socketreturn == 0 && _index == 2)
-                CurrentState = "Robot free";
-
+            if (_socketreturn == 0 && _index == 1) { CurrentState = "Hold robot"; }    
+            else if (_socketreturn == 0 && _index == 2) { CurrentState = "Robot free"; }
+            
             CurrentState = "Idle";
 
             Close();

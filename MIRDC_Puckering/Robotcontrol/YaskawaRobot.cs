@@ -12,7 +12,7 @@ namespace FesIF_Demo
     public partial class YaskawRobot : Form
 	{
 
-        #region Justin 欄位
+        #region  欄位
 
 
         private readonly Yaskawa YaskawaController = new Yaskawa();
@@ -26,15 +26,15 @@ namespace FesIF_Demo
         PosData _GetPosData = new PosData();
         #endregion
 
-
+        /// <summary>
+        /// 建構子
+        /// </summary>
         public YaskawRobot()
         {
             InitializeComponent();
             PCFileRefresh();
         }
 
-
-        #region Justin test
 
         #region 控制物件管理
         /// <summary>
@@ -61,8 +61,10 @@ namespace FesIF_Demo
                         {
 
                         }
-                        RobotListBoxTimer.Enabled = true;
 
+                        RobotListBoxTimer.Enabled = true;
+                        StateTimer.Enabled = true;
+                        
                         break;
                     #endregion
 
@@ -302,6 +304,18 @@ namespace FesIF_Demo
 
                         break;
 
+                        #endregion
+
+
+                    #region 取得目前點位資料按鈕 
+                    case "btn_GetCurPos":
+
+
+                        RobotCurPosGet(Convert.ToInt16(tex_PointDataNum.Text));
+
+
+                        break;
+
                     #endregion
 
                     #region 寫入點位資料按鈕 
@@ -309,6 +323,25 @@ namespace FesIF_Demo
 
 
                         RobotPosSet_TestBtn(Convert.ToInt16(tex_WPointNum.Text));
+
+                        break;
+
+                    #endregion
+
+                    #region 定位觸發(Base)
+                    case "btn_PosBaseGo":
+
+                        RobotPosMoveBase();
+
+                        break;
+
+                    #endregion
+
+                    #region 定位觸發(Pluse)
+                    case "btn_PosPlsGo":
+
+                        RobotPosMovePluse();
+
 
                         break;
 
@@ -509,6 +542,27 @@ namespace FesIF_Demo
 
 
         /// <summary>
+        /// Robot Position Data Get [P***]
+        /// </summary>
+        /// <param name="_posnum"></param>
+        private void RobotCurPosGet(short _posnum)
+        {
+            YaskawaController.GetCurPosData(_posnum, ref _GetPosData);
+            lab_posData.Text =
+                ("P[ " + _posnum.ToString() + " ]:" + "\n\n Type = " + _GetPosData.type + ", 形態 = " + _GetPosData.pattern + ",\n Tool number = " + _GetPosData.tool_no
+                + ", User number = " + _GetPosData.user_coord_no + ",\n 擴張形態 = " + _GetPosData.ex_pattern
+                + "\n\n X = " + _GetPosData.axis[0]
+                + "\n Y = " + _GetPosData.axis[1]
+                + "\n Z = " + _GetPosData.axis[2]
+                + "\n A = " + _GetPosData.axis[3]
+                + "\n B = " + _GetPosData.axis[4]
+                + "\n C = " + _GetPosData.axis[5]
+                + "\n NULL = " + _GetPosData.axis[6]
+                + "\n NULL = " + _GetPosData.axis[7]);
+        }
+
+
+        /// <summary>
         /// Robot Pos Set_Test Btn
         /// </summary>
         /// <param name="_pointNum"></param>
@@ -516,22 +570,108 @@ namespace FesIF_Demo
         {
             PosData _posD = new PosData();
             int _axisValue = 0;
-            _posD.type = Convert.ToUInt16(tex_WPointType.Text);
-            _posD.pattern = Convert.ToInt32(tex_WPointPattern.Text);
-            _posD.tool_no = Convert.ToUInt16(tex_WPointToolNum.Text);
-            _posD.user_coord_no = Convert.ToUInt16(tex_WPointUserNum.Text);
-            _posD.ex_pattern = Convert.ToInt32(tex_WPointExPattern.Text);
-            _posD.axis[0] = Convert.ToInt32(tex_WPoinX.Text);
-            _posD.axis[1] = Convert.ToInt32(tex_WPoinY.Text);
-            _posD.axis[2] = Convert.ToInt32(tex_WPoinZ.Text);
-            _posD.axis[3] = Convert.ToInt32(tex_WPoinA.Text);
-            _posD.axis[4] = Convert.ToInt32(tex_WPoinB.Text);
-            _posD.axis[5] = Convert.ToInt32(tex_WPoinC.Text);
+            _posD.type = uint.Parse(tex_WPointType.Text);
+            _posD.pattern = int.Parse(tex_WPointPattern.Text);
+            _posD.tool_no = uint.Parse(tex_WPointToolNum.Text);
+            _posD.user_coord_no = uint.Parse(tex_WPointUserNum.Text);
+            _posD.ex_pattern = int.Parse(tex_WPointExPattern.Text);
+            _posD.axis[0] = int.Parse(tex_WPoinX.Text);
+            _posD.axis[1] = int.Parse(tex_WPoinY.Text);
+            _posD.axis[2] = int.Parse(tex_WPoinZ.Text);
+            _posD.axis[3] = int.Parse(tex_WPoinA.Text);
+            _posD.axis[4] = int.Parse(tex_WPoinB.Text);
+            _posD.axis[5] = int.Parse(tex_WPoinC.Text);
             _posD.axis[6] = _axisValue;
             _posD.axis[7] = _axisValue;
             YaskawaController.SetPosData(_pointNum, _posD);
 
         }
+
+
+
+        /// <summary>
+        /// Robot Pos Move Base (XYZ)
+        /// </summary>
+        private void RobotPosMoveBase()
+        {
+            CoordMove _baseData = new CoordMove();
+            _baseData.des.robot_group = 1;
+            _baseData.des.station_group = 0;
+            if (combox_BMovetype.Text== "MoveJ") { _baseData.des.speed_class = 0; }
+            if (combox_BMovetype.Text == "MoveL") { _baseData.des.speed_class = 1; }
+            _baseData.des.speed = uint.Parse(tex_PosP_Speed.Text);
+            _baseData.act_coord_des = 16;
+            _baseData.x_coord = int.Parse(tex_PosP_S.Text);
+            _baseData.y_coord = int.Parse(tex_PosP_L.Text);
+            _baseData.z_coord = int.Parse(tex_PosP_U.Text);
+            _baseData.Tx_coord = int.Parse(tex_PosP_R.Text);
+            _baseData.Ty_coord = int.Parse(tex_PosP_B.Text);
+            _baseData.Tz_coord = int.Parse(tex_PosP_T.Text);
+
+            _baseData.reserve = 0;
+            _baseData.reserve2 = 0;
+            _baseData.ex_pattern = 0;
+            _baseData.tool_no = 0;
+            _baseData.user_coord_no = 1;
+            _baseData.axis.base_pos[0] = 0;
+            _baseData.axis.base_pos[1] = 0;
+            _baseData.axis.base_pos[2] = 0;
+            _baseData.axis.station_pos[0] = 0;
+            _baseData.axis.station_pos[1] = 0;
+            _baseData.axis.station_pos[2] = 0;
+            _baseData.axis.station_pos[3] = 0;
+            _baseData.axis.station_pos[4] = 0;
+            _baseData.axis.station_pos[5] = 0;
+
+            YaskawaController.RobotMoveBase(_baseData);
+
+        }
+
+        /// <summary>
+        /// Robot Pos Move Pluse (J1/J2/J3)
+        /// </summary>
+        private void RobotPosMovePluse()
+        {
+            PulseMove _plsData = new PulseMove();
+            _plsData.des.robot_group = 1;
+            _plsData.des.station_group = 0; 
+            if (combox_PMovetype.Text == "MoveJ") { _plsData.des.speed_class = 0; }
+            if (combox_PMovetype.Text == "MoveL") { _plsData.des.speed_class = 1; }
+            _plsData.des.speed = uint.Parse(tex_PosP_Speed.Text);
+            _plsData.robot_pulse[0] = int.Parse(tex_PosP_S.Text);
+            _plsData.robot_pulse[1] = int.Parse(tex_PosP_L.Text);
+            _plsData.robot_pulse[2] = int.Parse(tex_PosP_U.Text);
+            _plsData.robot_pulse[3] = int.Parse(tex_PosP_R.Text);
+            _plsData.robot_pulse[4] = int.Parse(tex_PosP_B.Text);
+            _plsData.robot_pulse[5] = int.Parse(tex_PosP_T.Text);
+            _plsData.robot_pulse[6] = 0;
+            _plsData.robot_pulse[7] = 0;
+            YaskawaController.RobotMovePls(_plsData);
+
+        }
+
+
+        private void RobotStateCheck()
+        {
+            YaskawaController.CheckStatus();
+            lab_Step.Text = "Step : " + YaskawaController.Step.ToString();
+            lab_OneCycle.Text = "Step : " + YaskawaController.OneCycle.ToString();
+            lab_Automatic.Text = "Step : " + YaskawaController.AutomaticAndContinuos.ToString();
+            lab_Running.Text = "Step : " + YaskawaController.isBusy.ToString();
+            lab_GuardSafeOp.Text = "Step : " + YaskawaController.InGuardSafeOperation.ToString();
+            lab_Teach.Text = "Step : " + YaskawaController.Teach.ToString();
+            lab_Play.Text = "Step : " + YaskawaController.Play.ToString();
+            lab_ComRemote.Text = "Step : " + YaskawaController.CommendRemote.ToString();
+            lab_HoldP.Text = "Step : " + YaskawaController.HoldON.ToString();
+            lab_HoldE.Text = "Step : " + YaskawaController.HoldStatusE.ToString();
+            lab_HoldC.Text = "Step : " + YaskawaController.HoldStatusC.ToString();
+            lab_Alarm.Text = "Step : " + YaskawaController.Alarm.ToString();
+            lab_Error.Text = "Step : " + YaskawaController.Error.ToString();
+            lab_SVON.Text = "Step : " + YaskawaController.ServoON.ToString();
+
+        }
+
+
 
 
         #endregion
@@ -631,10 +771,16 @@ namespace FesIF_Demo
 
         }
 
+        private void StateTimer_Tick(object sender, EventArgs e)
+        {
+            RobotStateCheck();
+
+        }
+
+
 
         #endregion
 
-        #endregion
 
     }
 
