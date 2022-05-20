@@ -1050,7 +1050,7 @@ namespace RouteButler_Yaskawa
         /// <param name="_PosNum"></param>
         /// <param name="_posData"></param>
         /// <returns></returns>
-        public int GetCurPosData(short _PosNum, ref PosData _posData)
+        public int GetCurPosData( ref PosData _posData)
         {
 
             int _result;
@@ -1058,7 +1058,7 @@ namespace RouteButler_Yaskawa
             short[] err_code = new short[2];
 
             Connect(RobotIP, "normal");
-            _result = fesIF.RobPosSnglR(_PosNum, ref read_data, err_code);
+            _result = fesIF.RobPosSnglR(101, ref read_data, err_code);
             _posData = read_data;
             Close();
 

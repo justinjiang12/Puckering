@@ -13,11 +13,11 @@ namespace MIRDC_Puckering.AutoLoop
     {
         #region 委派專用欄位
         public event A_PUSH_DO e_Signal_output_1;
-        public event A_PUSH_DO e_Signal_output_2;
-        public event A_PUSH_DO e_Signal_output_3;
-        public event A_PUSH_DO e_Signal_output_4;
-        public event A_PUSH_DO e_Signal_output_5;
-        public event A_PUSH_DO e_Signal_output_6;
+        //public event A_PUSH_DO e_Signal_output_2;
+        //public event A_PUSH_DO e_Signal_output_3;
+        //public event A_PUSH_DO e_Signal_output_4;
+        //public event A_PUSH_DO e_Signal_output_5;
+        //public event A_PUSH_DO e_Signal_output_6;
 
         #endregion
 

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Threading;
 using System.IO;
-using System.Linq;
+//using System.Linq;
 
 namespace MIRDC_Puckering.Robotcontrol
 {

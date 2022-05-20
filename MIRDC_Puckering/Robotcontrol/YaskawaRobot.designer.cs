@@ -31,21 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(YaskawRobot));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox17 = new System.Windows.Forms.GroupBox();
-            this.lab_SVON = new System.Windows.Forms.Label();
-            this.lab_Error = new System.Windows.Forms.Label();
-            this.lab_Alarm = new System.Windows.Forms.Label();
-            this.lab_HoldC = new System.Windows.Forms.Label();
-            this.lab_HoldE = new System.Windows.Forms.Label();
-            this.lab_HoldP = new System.Windows.Forms.Label();
-            this.lab_ComRemote = new System.Windows.Forms.Label();
-            this.lab_Play = new System.Windows.Forms.Label();
-            this.lab_Teach = new System.Windows.Forms.Label();
-            this.lab_GuardSafeOp = new System.Windows.Forms.Label();
-            this.lab_Running = new System.Windows.Forms.Label();
-            this.lab_Automatic = new System.Windows.Forms.Label();
-            this.lab_OneCycle = new System.Windows.Forms.Label();
-            this.lab_Step = new System.Windows.Forms.Label();
+            this.button37 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
             this.combox_PMovetype = new System.Windows.Forms.ComboBox();
@@ -117,12 +104,6 @@
             this.tex_PointDataNum = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button36 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.rad_robotJoint = new System.Windows.Forms.RadioButton();
             this.rad_robotxyz = new System.Windows.Forms.RadioButton();
@@ -152,6 +133,27 @@
             this.tex_RegNum = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.tex_RegData = new System.Windows.Forms.TextBox();
+            this.groupBox17 = new System.Windows.Forms.GroupBox();
+            this.lab_SVON = new System.Windows.Forms.Label();
+            this.lab_Error = new System.Windows.Forms.Label();
+            this.lab_Alarm = new System.Windows.Forms.Label();
+            this.lab_HoldC = new System.Windows.Forms.Label();
+            this.lab_HoldE = new System.Windows.Forms.Label();
+            this.lab_HoldP = new System.Windows.Forms.Label();
+            this.lab_ComRemote = new System.Windows.Forms.Label();
+            this.lab_Play = new System.Windows.Forms.Label();
+            this.lab_Teach = new System.Windows.Forms.Label();
+            this.lab_GuardSafeOp = new System.Windows.Forms.Label();
+            this.lab_Running = new System.Windows.Forms.Label();
+            this.lab_Automatic = new System.Windows.Forms.Label();
+            this.lab_OneCycle = new System.Windows.Forms.Label();
+            this.lab_Step = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -207,16 +209,23 @@
             this.RegScanTimer = new System.Windows.Forms.Timer(this.components);
             this.RobotListBoxTimer = new System.Windows.Forms.Timer(this.components);
             this.StateTimer = new System.Windows.Forms.Timer(this.components);
+            this.JogLoopTimer = new System.Windows.Forms.Timer(this.components);
+            this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.button40 = new System.Windows.Forms.Button();
+            this.button41 = new System.Windows.Forms.Button();
+            this.button38 = new System.Windows.Forms.Button();
+            this.button39 = new System.Windows.Forms.Button();
+            this.tex_SYSMsg = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
-            this.groupBox17.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox16.SuspendLayout();
             this.groupBox15.SuspendLayout();
             this.groupBox14.SuspendLayout();
             this.groupBox13.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
+            this.groupBox17.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -228,186 +237,50 @@
             this.groupBox5.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox18.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.groupBox17);
+            this.groupBox2.Controls.Add(this.button37);
+            this.groupBox2.Controls.Add(this.button13);
             this.groupBox2.Controls.Add(this.groupBox6);
-            this.groupBox2.Controls.Add(this.groupBox1);
             this.groupBox2.Controls.Add(this.groupBox10);
             this.groupBox2.Controls.Add(this.groupBox9);
             this.groupBox2.Location = new System.Drawing.Point(5, 6);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(1373, 742);
+            this.groupBox2.Size = new System.Drawing.Size(1112, 742);
             this.groupBox2.TabIndex = 149;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "JustinTest";
             // 
-            // groupBox17
+            // button37
             // 
-            this.groupBox17.Controls.Add(this.lab_SVON);
-            this.groupBox17.Controls.Add(this.lab_Error);
-            this.groupBox17.Controls.Add(this.lab_Alarm);
-            this.groupBox17.Controls.Add(this.lab_HoldC);
-            this.groupBox17.Controls.Add(this.lab_HoldE);
-            this.groupBox17.Controls.Add(this.lab_HoldP);
-            this.groupBox17.Controls.Add(this.lab_ComRemote);
-            this.groupBox17.Controls.Add(this.lab_Play);
-            this.groupBox17.Controls.Add(this.lab_Teach);
-            this.groupBox17.Controls.Add(this.lab_GuardSafeOp);
-            this.groupBox17.Controls.Add(this.lab_Running);
-            this.groupBox17.Controls.Add(this.lab_Automatic);
-            this.groupBox17.Controls.Add(this.lab_OneCycle);
-            this.groupBox17.Controls.Add(this.lab_Step);
-            this.groupBox17.Location = new System.Drawing.Point(1131, 20);
-            this.groupBox17.Name = "groupBox17";
-            this.groupBox17.Size = new System.Drawing.Size(236, 371);
-            this.groupBox17.TabIndex = 181;
-            this.groupBox17.TabStop = false;
-            this.groupBox17.Text = "State";
+            this.button37.Location = new System.Drawing.Point(880, 370);
+            this.button37.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button37.Name = "button37";
+            this.button37.Size = new System.Drawing.Size(147, 62);
+            this.button37.TabIndex = 183;
+            this.button37.Tag = "btn_JogLoopTest";
+            this.button37.Text = "Jog Loop(Test)";
+            this.button37.UseVisualStyleBackColor = true;
+            this.button37.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_MouseDown);
+            this.button37.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_MouseUp);
             // 
-            // lab_SVON
+            // button13
             // 
-            this.lab_SVON.AutoSize = true;
-            this.lab_SVON.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_SVON.Location = new System.Drawing.Point(17, 334);
-            this.lab_SVON.Name = "lab_SVON";
-            this.lab_SVON.Size = new System.Drawing.Size(94, 15);
-            this.lab_SVON.TabIndex = 195;
-            this.lab_SVON.Text = "Servo On : ***";
-            // 
-            // lab_Error
-            // 
-            this.lab_Error.AutoSize = true;
-            this.lab_Error.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_Error.Location = new System.Drawing.Point(17, 310);
-            this.lab_Error.Name = "lab_Error";
-            this.lab_Error.Size = new System.Drawing.Size(71, 15);
-            this.lab_Error.TabIndex = 194;
-            this.lab_Error.Text = "Error : ***";
-            // 
-            // lab_Alarm
-            // 
-            this.lab_Alarm.AutoSize = true;
-            this.lab_Alarm.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_Alarm.Location = new System.Drawing.Point(17, 286);
-            this.lab_Alarm.Name = "lab_Alarm";
-            this.lab_Alarm.Size = new System.Drawing.Size(94, 15);
-            this.lab_Alarm.TabIndex = 193;
-            this.lab_Alarm.Text = "Alarming : ***";
-            // 
-            // lab_HoldC
-            // 
-            this.lab_HoldC.AutoSize = true;
-            this.lab_HoldC.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_HoldC.Location = new System.Drawing.Point(17, 261);
-            this.lab_HoldC.Name = "lab_HoldC";
-            this.lab_HoldC.Size = new System.Drawing.Size(129, 15);
-            this.lab_HoldC.TabIndex = 192;
-            this.lab_HoldC.Text = "Hold Status (C) : ***";
-            // 
-            // lab_HoldE
-            // 
-            this.lab_HoldE.AutoSize = true;
-            this.lab_HoldE.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_HoldE.Location = new System.Drawing.Point(17, 237);
-            this.lab_HoldE.Name = "lab_HoldE";
-            this.lab_HoldE.Size = new System.Drawing.Size(129, 15);
-            this.lab_HoldE.TabIndex = 191;
-            this.lab_HoldE.Text = "Hold Status (E) : ***";
-            // 
-            // lab_HoldP
-            // 
-            this.lab_HoldP.AutoSize = true;
-            this.lab_HoldP.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_HoldP.Location = new System.Drawing.Point(17, 214);
-            this.lab_HoldP.Name = "lab_HoldP";
-            this.lab_HoldP.Size = new System.Drawing.Size(128, 15);
-            this.lab_HoldP.TabIndex = 190;
-            this.lab_HoldP.Text = "Hold Status (P) : ***";
-            // 
-            // lab_ComRemote
-            // 
-            this.lab_ComRemote.AutoSize = true;
-            this.lab_ComRemote.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_ComRemote.Location = new System.Drawing.Point(17, 191);
-            this.lab_ComRemote.Name = "lab_ComRemote";
-            this.lab_ComRemote.Size = new System.Drawing.Size(144, 15);
-            this.lab_ComRemote.TabIndex = 189;
-            this.lab_ComRemote.Text = "Cammand Remote : ***";
-            // 
-            // lab_Play
-            // 
-            this.lab_Play.AutoSize = true;
-            this.lab_Play.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_Play.Location = new System.Drawing.Point(16, 168);
-            this.lab_Play.Name = "lab_Play";
-            this.lab_Play.Size = new System.Drawing.Size(65, 15);
-            this.lab_Play.TabIndex = 188;
-            this.lab_Play.Text = "Play : ***";
-            // 
-            // lab_Teach
-            // 
-            this.lab_Teach.AutoSize = true;
-            this.lab_Teach.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_Teach.Location = new System.Drawing.Point(15, 145);
-            this.lab_Teach.Name = "lab_Teach";
-            this.lab_Teach.Size = new System.Drawing.Size(74, 15);
-            this.lab_Teach.TabIndex = 187;
-            this.lab_Teach.Text = "Teach : ***";
-            // 
-            // lab_GuardSafeOp
-            // 
-            this.lab_GuardSafeOp.AutoSize = true;
-            this.lab_GuardSafeOp.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_GuardSafeOp.Location = new System.Drawing.Point(15, 121);
-            this.lab_GuardSafeOp.Name = "lab_GuardSafeOp";
-            this.lab_GuardSafeOp.Size = new System.Drawing.Size(168, 15);
-            this.lab_GuardSafeOp.TabIndex = 186;
-            this.lab_GuardSafeOp.Text = "InGuardSafeOperation : ***";
-            // 
-            // lab_Running
-            // 
-            this.lab_Running.AutoSize = true;
-            this.lab_Running.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_Running.Location = new System.Drawing.Point(15, 97);
-            this.lab_Running.Name = "lab_Running";
-            this.lab_Running.Size = new System.Drawing.Size(88, 15);
-            this.lab_Running.TabIndex = 185;
-            this.lab_Running.Text = "Running : ***";
-            // 
-            // lab_Automatic
-            // 
-            this.lab_Automatic.AutoSize = true;
-            this.lab_Automatic.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_Automatic.Location = new System.Drawing.Point(15, 72);
-            this.lab_Automatic.Name = "lab_Automatic";
-            this.lab_Automatic.Size = new System.Drawing.Size(168, 15);
-            this.lab_Automatic.TabIndex = 184;
-            this.lab_Automatic.Text = "Automatic / Continuos : ***";
-            // 
-            // lab_OneCycle
-            // 
-            this.lab_OneCycle.AutoSize = true;
-            this.lab_OneCycle.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_OneCycle.Location = new System.Drawing.Point(15, 48);
-            this.lab_OneCycle.Name = "lab_OneCycle";
-            this.lab_OneCycle.Size = new System.Drawing.Size(95, 15);
-            this.lab_OneCycle.TabIndex = 183;
-            this.lab_OneCycle.Text = "OneCycle : ***";
-            // 
-            // lab_Step
-            // 
-            this.lab_Step.AutoSize = true;
-            this.lab_Step.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_Step.Location = new System.Drawing.Point(15, 25);
-            this.lab_Step.Name = "lab_Step";
-            this.lab_Step.Size = new System.Drawing.Size(65, 15);
-            this.lab_Step.TabIndex = 182;
-            this.lab_Step.Text = "Step : ***";
+            this.button13.Location = new System.Drawing.Point(880, 304);
+            this.button13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(147, 62);
+            this.button13.TabIndex = 182;
+            this.button13.Tag = "btn_JogTest";
+            this.button13.Text = "Jog(Test)";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_MouseDown);
+            this.button13.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_MouseUp);
             // 
             // groupBox6
             // 
@@ -415,7 +288,7 @@
             this.groupBox6.Controls.Add(this.groupBox15);
             this.groupBox6.Controls.Add(this.groupBox14);
             this.groupBox6.Controls.Add(this.groupBox13);
-            this.groupBox6.Location = new System.Drawing.Point(246, 23);
+            this.groupBox6.Location = new System.Drawing.Point(226, 23);
             this.groupBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1189,83 +1062,6 @@
             this.button36.UseVisualStyleBackColor = true;
             this.button36.Click += new System.EventHandler(this.button_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label18);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Controls.Add(this.button8);
-            this.groupBox1.Controls.Add(this.button7);
-            this.groupBox1.Location = new System.Drawing.Point(5, 20);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(235, 182);
-            this.groupBox1.TabIndex = 179;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Connect";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label18.Location = new System.Drawing.Point(7, 20);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(25, 20);
-            this.label18.TabIndex = 92;
-            this.label18.Text = "IP";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("新細明體", 12F);
-            this.textBox1.Location = new System.Drawing.Point(7, 44);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(220, 34);
-            this.textBox1.TabIndex = 91;
-            this.textBox1.Text = "192.168.255.200";
-            // 
-            // button5
-            // 
-            this.button5.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button5.Location = new System.Drawing.Point(7, 86);
-            this.button5.Margin = new System.Windows.Forms.Padding(4);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(220, 41);
-            this.button5.TabIndex = 97;
-            this.button5.Tag = "btn_connect";
-            this.button5.Text = "連線";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button_Click);
-            // 
-            // button8
-            // 
-            this.button8.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button8.Location = new System.Drawing.Point(116, 135);
-            this.button8.Margin = new System.Windows.Forms.Padding(4);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(111, 41);
-            this.button8.TabIndex = 150;
-            this.button8.Tag = "btn_SVOFF";
-            this.button8.Text = "伺服OFF";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button_Click);
-            // 
-            // button7
-            // 
-            this.button7.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button7.Location = new System.Drawing.Point(7, 135);
-            this.button7.Margin = new System.Windows.Forms.Padding(4);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(101, 41);
-            this.button7.TabIndex = 149;
-            this.button7.Tag = "btn_SVON";
-            this.button7.Text = "伺服ON";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button_Click);
-            // 
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.rad_robotJoint);
@@ -1284,11 +1080,11 @@
             this.groupBox10.Controls.Add(this.button30);
             this.groupBox10.Controls.Add(this.speed_label);
             this.groupBox10.Controls.Add(this.speed_Scroll);
-            this.groupBox10.Location = new System.Drawing.Point(8, 209);
+            this.groupBox10.Location = new System.Drawing.Point(14, 23);
             this.groupBox10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox10.Size = new System.Drawing.Size(232, 462);
+            this.groupBox10.Size = new System.Drawing.Size(206, 465);
             this.groupBox10.TabIndex = 160;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "JOG";
@@ -1464,7 +1260,7 @@
             this.speed_Scroll.Location = new System.Drawing.Point(8, 44);
             this.speed_Scroll.Maximum = 110;
             this.speed_Scroll.Name = "speed_Scroll";
-            this.speed_Scroll.Size = new System.Drawing.Size(217, 22);
+            this.speed_Scroll.Size = new System.Drawing.Size(189, 22);
             this.speed_Scroll.TabIndex = 2;
             this.speed_Scroll.Value = 10;
             // 
@@ -1481,7 +1277,7 @@
             this.groupBox9.Controls.Add(this.tex_RegNum);
             this.groupBox9.Controls.Add(this.label31);
             this.groupBox9.Controls.Add(this.tex_RegData);
-            this.groupBox9.Location = new System.Drawing.Point(900, 23);
+            this.groupBox9.Location = new System.Drawing.Point(880, 23);
             this.groupBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1605,15 +1401,253 @@
             this.tex_RegData.TabIndex = 161;
             this.tex_RegData.Text = "1";
             // 
+            // groupBox17
+            // 
+            this.groupBox17.Controls.Add(this.lab_SVON);
+            this.groupBox17.Controls.Add(this.lab_Error);
+            this.groupBox17.Controls.Add(this.lab_Alarm);
+            this.groupBox17.Controls.Add(this.lab_HoldC);
+            this.groupBox17.Controls.Add(this.lab_HoldE);
+            this.groupBox17.Controls.Add(this.lab_HoldP);
+            this.groupBox17.Controls.Add(this.lab_ComRemote);
+            this.groupBox17.Controls.Add(this.lab_Play);
+            this.groupBox17.Controls.Add(this.lab_Teach);
+            this.groupBox17.Controls.Add(this.lab_GuardSafeOp);
+            this.groupBox17.Controls.Add(this.lab_Running);
+            this.groupBox17.Controls.Add(this.lab_Automatic);
+            this.groupBox17.Controls.Add(this.lab_OneCycle);
+            this.groupBox17.Controls.Add(this.lab_Step);
+            this.groupBox17.Location = new System.Drawing.Point(7, 11);
+            this.groupBox17.Name = "groupBox17";
+            this.groupBox17.Size = new System.Drawing.Size(236, 363);
+            this.groupBox17.TabIndex = 181;
+            this.groupBox17.TabStop = false;
+            this.groupBox17.Text = "State";
+            // 
+            // lab_SVON
+            // 
+            this.lab_SVON.AutoSize = true;
+            this.lab_SVON.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_SVON.Location = new System.Drawing.Point(17, 334);
+            this.lab_SVON.Name = "lab_SVON";
+            this.lab_SVON.Size = new System.Drawing.Size(94, 15);
+            this.lab_SVON.TabIndex = 195;
+            this.lab_SVON.Text = "Servo On : ***";
+            // 
+            // lab_Error
+            // 
+            this.lab_Error.AutoSize = true;
+            this.lab_Error.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_Error.Location = new System.Drawing.Point(17, 310);
+            this.lab_Error.Name = "lab_Error";
+            this.lab_Error.Size = new System.Drawing.Size(71, 15);
+            this.lab_Error.TabIndex = 194;
+            this.lab_Error.Text = "Error : ***";
+            // 
+            // lab_Alarm
+            // 
+            this.lab_Alarm.AutoSize = true;
+            this.lab_Alarm.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_Alarm.Location = new System.Drawing.Point(17, 286);
+            this.lab_Alarm.Name = "lab_Alarm";
+            this.lab_Alarm.Size = new System.Drawing.Size(94, 15);
+            this.lab_Alarm.TabIndex = 193;
+            this.lab_Alarm.Text = "Alarming : ***";
+            // 
+            // lab_HoldC
+            // 
+            this.lab_HoldC.AutoSize = true;
+            this.lab_HoldC.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_HoldC.Location = new System.Drawing.Point(17, 261);
+            this.lab_HoldC.Name = "lab_HoldC";
+            this.lab_HoldC.Size = new System.Drawing.Size(129, 15);
+            this.lab_HoldC.TabIndex = 192;
+            this.lab_HoldC.Text = "Hold Status (C) : ***";
+            // 
+            // lab_HoldE
+            // 
+            this.lab_HoldE.AutoSize = true;
+            this.lab_HoldE.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_HoldE.Location = new System.Drawing.Point(17, 237);
+            this.lab_HoldE.Name = "lab_HoldE";
+            this.lab_HoldE.Size = new System.Drawing.Size(129, 15);
+            this.lab_HoldE.TabIndex = 191;
+            this.lab_HoldE.Text = "Hold Status (E) : ***";
+            // 
+            // lab_HoldP
+            // 
+            this.lab_HoldP.AutoSize = true;
+            this.lab_HoldP.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_HoldP.Location = new System.Drawing.Point(17, 214);
+            this.lab_HoldP.Name = "lab_HoldP";
+            this.lab_HoldP.Size = new System.Drawing.Size(128, 15);
+            this.lab_HoldP.TabIndex = 190;
+            this.lab_HoldP.Text = "Hold Status (P) : ***";
+            // 
+            // lab_ComRemote
+            // 
+            this.lab_ComRemote.AutoSize = true;
+            this.lab_ComRemote.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_ComRemote.Location = new System.Drawing.Point(17, 191);
+            this.lab_ComRemote.Name = "lab_ComRemote";
+            this.lab_ComRemote.Size = new System.Drawing.Size(144, 15);
+            this.lab_ComRemote.TabIndex = 189;
+            this.lab_ComRemote.Text = "Cammand Remote : ***";
+            // 
+            // lab_Play
+            // 
+            this.lab_Play.AutoSize = true;
+            this.lab_Play.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_Play.Location = new System.Drawing.Point(16, 168);
+            this.lab_Play.Name = "lab_Play";
+            this.lab_Play.Size = new System.Drawing.Size(65, 15);
+            this.lab_Play.TabIndex = 188;
+            this.lab_Play.Text = "Play : ***";
+            // 
+            // lab_Teach
+            // 
+            this.lab_Teach.AutoSize = true;
+            this.lab_Teach.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_Teach.Location = new System.Drawing.Point(15, 145);
+            this.lab_Teach.Name = "lab_Teach";
+            this.lab_Teach.Size = new System.Drawing.Size(74, 15);
+            this.lab_Teach.TabIndex = 187;
+            this.lab_Teach.Text = "Teach : ***";
+            // 
+            // lab_GuardSafeOp
+            // 
+            this.lab_GuardSafeOp.AutoSize = true;
+            this.lab_GuardSafeOp.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_GuardSafeOp.Location = new System.Drawing.Point(15, 121);
+            this.lab_GuardSafeOp.Name = "lab_GuardSafeOp";
+            this.lab_GuardSafeOp.Size = new System.Drawing.Size(168, 15);
+            this.lab_GuardSafeOp.TabIndex = 186;
+            this.lab_GuardSafeOp.Text = "InGuardSafeOperation : ***";
+            // 
+            // lab_Running
+            // 
+            this.lab_Running.AutoSize = true;
+            this.lab_Running.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_Running.Location = new System.Drawing.Point(15, 97);
+            this.lab_Running.Name = "lab_Running";
+            this.lab_Running.Size = new System.Drawing.Size(88, 15);
+            this.lab_Running.TabIndex = 185;
+            this.lab_Running.Text = "Running : ***";
+            // 
+            // lab_Automatic
+            // 
+            this.lab_Automatic.AutoSize = true;
+            this.lab_Automatic.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_Automatic.Location = new System.Drawing.Point(15, 72);
+            this.lab_Automatic.Name = "lab_Automatic";
+            this.lab_Automatic.Size = new System.Drawing.Size(168, 15);
+            this.lab_Automatic.TabIndex = 184;
+            this.lab_Automatic.Text = "Automatic / Continuos : ***";
+            // 
+            // lab_OneCycle
+            // 
+            this.lab_OneCycle.AutoSize = true;
+            this.lab_OneCycle.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_OneCycle.Location = new System.Drawing.Point(15, 48);
+            this.lab_OneCycle.Name = "lab_OneCycle";
+            this.lab_OneCycle.Size = new System.Drawing.Size(95, 15);
+            this.lab_OneCycle.TabIndex = 183;
+            this.lab_OneCycle.Text = "OneCycle : ***";
+            // 
+            // lab_Step
+            // 
+            this.lab_Step.AutoSize = true;
+            this.lab_Step.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_Step.Location = new System.Drawing.Point(15, 25);
+            this.lab_Step.Name = "lab_Step";
+            this.lab_Step.Size = new System.Drawing.Size(65, 15);
+            this.lab_Step.TabIndex = 182;
+            this.lab_Step.Text = "Step : ***";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label18);
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.button5);
+            this.groupBox1.Location = new System.Drawing.Point(260, 11);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(235, 116);
+            this.groupBox1.TabIndex = 179;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Connect";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label18.Location = new System.Drawing.Point(13, 26);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(25, 20);
+            this.label18.TabIndex = 92;
+            this.label18.Text = "IP";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("新細明體", 12F);
+            this.textBox1.Location = new System.Drawing.Point(46, 21);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(179, 34);
+            this.textBox1.TabIndex = 91;
+            this.textBox1.Text = "192.168.255.200";
+            // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("新細明體", 12F);
+            this.button5.Location = new System.Drawing.Point(17, 63);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(208, 41);
+            this.button5.TabIndex = 97;
+            this.button5.Tag = "btn_connect";
+            this.button5.Text = "Connect";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button_Click);
+            // 
+            // button8
+            // 
+            this.button8.Font = new System.Drawing.Font("新細明體", 12F);
+            this.button8.Location = new System.Drawing.Point(15, 68);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(101, 36);
+            this.button8.TabIndex = 150;
+            this.button8.Tag = "btn_SVOFF";
+            this.button8.Text = "Servo Off";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button_Click);
+            // 
+            // button7
+            // 
+            this.button7.Font = new System.Drawing.Font("新細明體", 12F);
+            this.button7.Location = new System.Drawing.Point(15, 26);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(101, 37);
+            this.button7.TabIndex = 149;
+            this.button7.Tag = "btn_SVON";
+            this.button7.Text = "Servo On";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button_Click);
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 6);
+            this.tabControl1.Location = new System.Drawing.Point(256, 132);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1395, 782);
+            this.tabControl1.Size = new System.Drawing.Size(1137, 652);
             this.tabControl1.TabIndex = 150;
             // 
             // tabPage1
@@ -1623,7 +1657,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage1.Size = new System.Drawing.Size(1387, 753);
+            this.tabPage1.Size = new System.Drawing.Size(1129, 623);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Robot Controller";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1637,7 +1671,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage2.Size = new System.Drawing.Size(1387, 753);
+            this.tabPage2.Size = new System.Drawing.Size(1129, 623);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Program(.JBI)";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1655,11 +1689,11 @@
             this.groupBox11.Controls.Add(this.listBox2);
             this.groupBox11.Controls.Add(this.RefreshProgram);
             this.groupBox11.Controls.Add(this.button11);
-            this.groupBox11.Location = new System.Drawing.Point(643, 358);
+            this.groupBox11.Location = new System.Drawing.Point(524, 329);
             this.groupBox11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox11.Size = new System.Drawing.Size(483, 368);
+            this.groupBox11.Size = new System.Drawing.Size(599, 288);
             this.groupBox11.TabIndex = 177;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Progeam";
@@ -1671,11 +1705,11 @@
             this.groupBox12.Controls.Add(this.button20);
             this.groupBox12.Controls.Add(this.button31);
             this.groupBox12.Controls.Add(this.button18);
-            this.groupBox12.Location = new System.Drawing.Point(12, 278);
+            this.groupBox12.Location = new System.Drawing.Point(446, 22);
             this.groupBox12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox12.Size = new System.Drawing.Size(463, 81);
+            this.groupBox12.Size = new System.Drawing.Size(147, 231);
             this.groupBox12.TabIndex = 178;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Program Control";
@@ -1686,7 +1720,7 @@
             this.comboBox_RobotFile.Location = new System.Drawing.Point(9, 45);
             this.comboBox_RobotFile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox_RobotFile.Name = "comboBox_RobotFile";
-            this.comboBox_RobotFile.Size = new System.Drawing.Size(185, 23);
+            this.comboBox_RobotFile.Size = new System.Drawing.Size(124, 23);
             this.comboBox_RobotFile.TabIndex = 182;
             // 
             // label35
@@ -1701,10 +1735,10 @@
             // 
             // button20
             // 
-            this.button20.Location = new System.Drawing.Point(200, 21);
+            this.button20.Location = new System.Drawing.Point(9, 73);
             this.button20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(77, 46);
+            this.button20.Size = new System.Drawing.Size(124, 46);
             this.button20.TabIndex = 171;
             this.button20.Tag = "btn_ProgramGO";
             this.button20.Text = "GO";
@@ -1713,10 +1747,10 @@
             // 
             // button31
             // 
-            this.button31.Location = new System.Drawing.Point(280, 21);
+            this.button31.Location = new System.Drawing.Point(9, 123);
             this.button31.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button31.Name = "button31";
-            this.button31.Size = new System.Drawing.Size(92, 48);
+            this.button31.Size = new System.Drawing.Size(124, 46);
             this.button31.TabIndex = 172;
             this.button31.Tag = "btn_GoCycle";
             this.button31.Text = "GO Cycle";
@@ -1725,10 +1759,10 @@
             // 
             // button18
             // 
-            this.button18.Location = new System.Drawing.Point(379, 21);
+            this.button18.Location = new System.Drawing.Point(9, 172);
             this.button18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(76, 48);
+            this.button18.Size = new System.Drawing.Size(124, 48);
             this.button18.TabIndex = 174;
             this.button18.Tag = "btn_Stop";
             this.button18.Text = "Stop";
@@ -1740,7 +1774,7 @@
             this.button35.BackColor = System.Drawing.Color.White;
             this.button35.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button35.BackgroundImage")));
             this.button35.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button35.Location = new System.Drawing.Point(371, 234);
+            this.button35.Location = new System.Drawing.Point(338, 234);
             this.button35.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button35.Name = "button35";
             this.button35.Size = new System.Drawing.Size(45, 38);
@@ -1754,7 +1788,7 @@
             this.button34.BackColor = System.Drawing.Color.White;
             this.button34.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button34.BackgroundImage")));
             this.button34.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button34.Location = new System.Drawing.Point(93, 232);
+            this.button34.Location = new System.Drawing.Point(88, 234);
             this.button34.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button34.Name = "button34";
             this.button34.Size = new System.Drawing.Size(45, 39);
@@ -1769,10 +1803,10 @@
             this.button33.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button33.BackgroundImage")));
             this.button33.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button33.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button33.Location = new System.Drawing.Point(197, 142);
+            this.button33.Location = new System.Drawing.Point(192, 144);
             this.button33.Margin = new System.Windows.Forms.Padding(4);
             this.button33.Name = "button33";
-            this.button33.Size = new System.Drawing.Size(92, 50);
+            this.button33.Size = new System.Drawing.Size(64, 50);
             this.button33.TabIndex = 178;
             this.button33.Tag = "btn_PRODonload";
             this.button33.UseVisualStyleBackColor = false;
@@ -1783,7 +1817,7 @@
             this.button32.BackColor = System.Drawing.Color.White;
             this.button32.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button32.BackgroundImage")));
             this.button32.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button32.Location = new System.Drawing.Point(145, 232);
+            this.button32.Location = new System.Drawing.Point(140, 234);
             this.button32.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button32.Name = "button32";
             this.button32.Size = new System.Drawing.Size(45, 38);
@@ -1795,7 +1829,7 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(15, 22);
+            this.label33.Location = new System.Drawing.Point(10, 24);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(96, 15);
             this.label33.TabIndex = 176;
@@ -1805,7 +1839,7 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(16, 42);
+            this.listBox1.Location = new System.Drawing.Point(11, 44);
             this.listBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(175, 184);
@@ -1814,7 +1848,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(320, 26);
+            this.label27.Location = new System.Drawing.Point(287, 26);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(113, 15);
             this.label27.TabIndex = 170;
@@ -1824,7 +1858,7 @@
             // 
             this.listBox2.FormattingEnabled = true;
             this.listBox2.ItemHeight = 15;
-            this.listBox2.Location = new System.Drawing.Point(296, 42);
+            this.listBox2.Location = new System.Drawing.Point(263, 42);
             this.listBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(172, 184);
@@ -1835,7 +1869,7 @@
             this.RefreshProgram.BackColor = System.Drawing.Color.White;
             this.RefreshProgram.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("RefreshProgram.BackgroundImage")));
             this.RefreshProgram.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.RefreshProgram.Location = new System.Drawing.Point(421, 234);
+            this.RefreshProgram.Location = new System.Drawing.Point(388, 234);
             this.RefreshProgram.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RefreshProgram.Name = "RefreshProgram";
             this.RefreshProgram.Size = new System.Drawing.Size(45, 38);
@@ -1850,10 +1884,10 @@
             this.button11.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button11.BackgroundImage")));
             this.button11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button11.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button11.Location = new System.Drawing.Point(197, 84);
+            this.button11.Location = new System.Drawing.Point(192, 86);
             this.button11.Margin = new System.Windows.Forms.Padding(4);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(92, 50);
+            this.button11.Size = new System.Drawing.Size(64, 50);
             this.button11.TabIndex = 168;
             this.button11.Tag = "btn_PROLoad";
             this.button11.UseVisualStyleBackColor = false;
@@ -1869,11 +1903,11 @@
             this.groupBox8.Controls.Add(this.button14);
             this.groupBox8.Controls.Add(this.label26);
             this.groupBox8.Controls.Add(this.tex_ProgramTXT);
-            this.groupBox8.Location = new System.Drawing.Point(643, 6);
+            this.groupBox8.Location = new System.Drawing.Point(524, 6);
             this.groupBox8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox8.Size = new System.Drawing.Size(631, 346);
+            this.groupBox8.Size = new System.Drawing.Size(599, 315);
             this.groupBox8.TabIndex = 160;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Program Compile";
@@ -1882,7 +1916,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label19.Location = new System.Drawing.Point(15, 38);
+            this.label19.Location = new System.Drawing.Point(18, 21);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(93, 15);
@@ -1892,11 +1926,11 @@
             // tex_ProgramName
             // 
             this.tex_ProgramName.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tex_ProgramName.Location = new System.Drawing.Point(121, 38);
+            this.tex_ProgramName.Location = new System.Drawing.Point(134, 20);
             this.tex_ProgramName.Margin = new System.Windows.Forms.Padding(4);
             this.tex_ProgramName.Multiline = true;
             this.tex_ProgramName.Name = "tex_ProgramName";
-            this.tex_ProgramName.Size = new System.Drawing.Size(228, 34);
+            this.tex_ProgramName.Size = new System.Drawing.Size(188, 27);
             this.tex_ProgramName.TabIndex = 155;
             this.tex_ProgramName.Text = "YASK_TEST";
             // 
@@ -1906,11 +1940,11 @@
             this.groupBox4.Controls.Add(this.rad_Welding);
             this.groupBox4.Controls.Add(this.rad_Speed);
             this.groupBox4.Controls.Add(this.rad_Base);
-            this.groupBox4.Location = new System.Drawing.Point(11, 71);
+            this.groupBox4.Location = new System.Drawing.Point(11, 49);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox4.Size = new System.Drawing.Size(339, 61);
+            this.groupBox4.Size = new System.Drawing.Size(317, 61);
             this.groupBox4.TabIndex = 157;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Program Type";
@@ -1918,7 +1952,7 @@
             // rad_SpeedWelding
             // 
             this.rad_SpeedWelding.AutoSize = true;
-            this.rad_SpeedWelding.Location = new System.Drawing.Point(211, 24);
+            this.rad_SpeedWelding.Location = new System.Drawing.Point(201, 24);
             this.rad_SpeedWelding.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rad_SpeedWelding.Name = "rad_SpeedWelding";
             this.rad_SpeedWelding.Size = new System.Drawing.Size(118, 19);
@@ -1929,7 +1963,7 @@
             // rad_Welding
             // 
             this.rad_Welding.AutoSize = true;
-            this.rad_Welding.Location = new System.Drawing.Point(129, 24);
+            this.rad_Welding.Location = new System.Drawing.Point(121, 24);
             this.rad_Welding.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rad_Welding.Name = "rad_Welding";
             this.rad_Welding.Size = new System.Drawing.Size(76, 19);
@@ -1940,7 +1974,7 @@
             // rad_Speed
             // 
             this.rad_Speed.AutoSize = true;
-            this.rad_Speed.Location = new System.Drawing.Point(61, 24);
+            this.rad_Speed.Location = new System.Drawing.Point(57, 24);
             this.rad_Speed.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rad_Speed.Name = "rad_Speed";
             this.rad_Speed.Size = new System.Drawing.Size(62, 19);
@@ -1975,11 +2009,11 @@
             this.groupBox7.Controls.Add(this.label21);
             this.groupBox7.Controls.Add(this.label30);
             this.groupBox7.Controls.Add(this.label22);
-            this.groupBox7.Location = new System.Drawing.Point(11, 138);
+            this.groupBox7.Location = new System.Drawing.Point(11, 116);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox7.Size = new System.Drawing.Size(339, 132);
+            this.groupBox7.Size = new System.Drawing.Size(317, 126);
             this.groupBox7.TabIndex = 165;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Robot Register";
@@ -2097,7 +2131,7 @@
             // 
             this.groupBox5.Controls.Add(this.rad_MOVS);
             this.groupBox5.Controls.Add(this.rad_MOVL);
-            this.groupBox5.Location = new System.Drawing.Point(11, 278);
+            this.groupBox5.Location = new System.Drawing.Point(11, 246);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -2133,10 +2167,10 @@
             // button14
             // 
             this.button14.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button14.Location = new System.Drawing.Point(195, 291);
+            this.button14.Location = new System.Drawing.Point(195, 255);
             this.button14.Margin = new System.Windows.Forms.Padding(4);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(155, 38);
+            this.button14.Size = new System.Drawing.Size(133, 38);
             this.button14.TabIndex = 154;
             this.button14.Tag = "btn_PROCOOMPILE";
             this.button14.Text = "Compile";
@@ -2146,7 +2180,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(356, 21);
+            this.label26.Location = new System.Drawing.Point(338, 27);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(56, 15);
             this.label26.TabIndex = 167;
@@ -2154,12 +2188,12 @@
             // 
             // tex_ProgramTXT
             // 
-            this.tex_ProgramTXT.Location = new System.Drawing.Point(359, 38);
+            this.tex_ProgramTXT.Location = new System.Drawing.Point(336, 49);
             this.tex_ProgramTXT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tex_ProgramTXT.Multiline = true;
             this.tex_ProgramTXT.Name = "tex_ProgramTXT";
             this.tex_ProgramTXT.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tex_ProgramTXT.Size = new System.Drawing.Size(265, 294);
+            this.tex_ProgramTXT.Size = new System.Drawing.Size(257, 252);
             this.tex_ProgramTXT.TabIndex = 166;
             // 
             // groupBox3
@@ -2172,7 +2206,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox3.Size = new System.Drawing.Size(631, 719);
+            this.groupBox3.Size = new System.Drawing.Size(513, 611);
             this.groupBox3.TabIndex = 158;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Point/Robot Program";
@@ -2182,7 +2216,7 @@
             this.Browse_textbox.Location = new System.Drawing.Point(5, 22);
             this.Browse_textbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Browse_textbox.Name = "Browse_textbox";
-            this.Browse_textbox.Size = new System.Drawing.Size(421, 25);
+            this.Browse_textbox.Size = new System.Drawing.Size(302, 25);
             this.Browse_textbox.TabIndex = 151;
             this.Browse_textbox.Text = "C:\\Users\\j0910\\Google 雲端硬碟\\工作\\專案\\MIRDC\\預浸布雙機協作_科學專案\\程式\\MIRDC_Puckering(20220427)\\" +
     "MIRDC_Puckering\\PathData";
@@ -2198,12 +2232,12 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(619, 655);
+            this.dataGridView1.Size = new System.Drawing.Size(499, 545);
             this.dataGridView1.TabIndex = 150;
             // 
             // button25
             // 
-            this.button25.Location = new System.Drawing.Point(433, 22);
+            this.button25.Location = new System.Drawing.Point(313, 21);
             this.button25.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button25.Name = "button25";
             this.button25.Size = new System.Drawing.Size(99, 28);
@@ -2215,7 +2249,7 @@
             // 
             // button26
             // 
-            this.button26.Location = new System.Drawing.Point(537, 22);
+            this.button26.Location = new System.Drawing.Point(417, 21);
             this.button26.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button26.Name = "button26";
             this.button26.Size = new System.Drawing.Size(87, 28);
@@ -2237,18 +2271,99 @@
             // 
             this.StateTimer.Tick += new System.EventHandler(this.StateTimer_Tick);
             // 
+            // JogLoopTimer
+            // 
+            this.JogLoopTimer.Tick += new System.EventHandler(this.JogLoopTimer_Tick);
+            // 
+            // groupBox18
+            // 
+            this.groupBox18.Controls.Add(this.button40);
+            this.groupBox18.Controls.Add(this.button7);
+            this.groupBox18.Controls.Add(this.button38);
+            this.groupBox18.Controls.Add(this.button8);
+            this.groupBox18.Controls.Add(this.button39);
+            this.groupBox18.Controls.Add(this.button41);
+            this.groupBox18.Location = new System.Drawing.Point(501, 11);
+            this.groupBox18.Name = "groupBox18";
+            this.groupBox18.Size = new System.Drawing.Size(344, 116);
+            this.groupBox18.TabIndex = 184;
+            this.groupBox18.TabStop = false;
+            this.groupBox18.Text = " SYS Control";
+            // 
+            // button40
+            // 
+            this.button40.Font = new System.Drawing.Font("新細明體", 12F);
+            this.button40.Location = new System.Drawing.Point(124, 68);
+            this.button40.Margin = new System.Windows.Forms.Padding(4);
+            this.button40.Name = "button40";
+            this.button40.Size = new System.Drawing.Size(101, 36);
+            this.button40.TabIndex = 153;
+            this.button40.Tag = "btn_SVON";
+            this.button40.Text = "Stop";
+            this.button40.UseVisualStyleBackColor = true;
+            // 
+            // button41
+            // 
+            this.button41.Font = new System.Drawing.Font("新細明體", 12F);
+            this.button41.Location = new System.Drawing.Point(124, 26);
+            this.button41.Margin = new System.Windows.Forms.Padding(4);
+            this.button41.Name = "button41";
+            this.button41.Size = new System.Drawing.Size(101, 37);
+            this.button41.TabIndex = 154;
+            this.button41.Tag = "btn_SVOFF";
+            this.button41.Text = "Run";
+            this.button41.UseVisualStyleBackColor = true;
+            // 
+            // button38
+            // 
+            this.button38.Font = new System.Drawing.Font("新細明體", 12F);
+            this.button38.Location = new System.Drawing.Point(233, 68);
+            this.button38.Margin = new System.Windows.Forms.Padding(4);
+            this.button38.Name = "button38";
+            this.button38.Size = new System.Drawing.Size(101, 36);
+            this.button38.TabIndex = 151;
+            this.button38.Tag = "btn_SVON";
+            this.button38.Text = "Error Rst";
+            this.button38.UseVisualStyleBackColor = true;
+            // 
+            // button39
+            // 
+            this.button39.Font = new System.Drawing.Font("新細明體", 12F);
+            this.button39.Location = new System.Drawing.Point(233, 26);
+            this.button39.Margin = new System.Windows.Forms.Padding(4);
+            this.button39.Name = "button39";
+            this.button39.Size = new System.Drawing.Size(101, 37);
+            this.button39.TabIndex = 152;
+            this.button39.Tag = "btn_SVOFF";
+            this.button39.Text = "Alarm Rst";
+            this.button39.UseVisualStyleBackColor = true;
+            // 
+            // tex_SYSMsg
+            // 
+            this.tex_SYSMsg.BackColor = System.Drawing.SystemColors.WindowText;
+            this.tex_SYSMsg.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.tex_SYSMsg.Location = new System.Drawing.Point(1011, 11);
+            this.tex_SYSMsg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_SYSMsg.Multiline = true;
+            this.tex_SYSMsg.Name = "tex_SYSMsg";
+            this.tex_SYSMsg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tex_SYSMsg.Size = new System.Drawing.Size(382, 116);
+            this.tex_SYSMsg.TabIndex = 185;
+            // 
             // YaskawRobot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1412, 795);
+            this.ClientSize = new System.Drawing.Size(1405, 795);
+            this.Controls.Add(this.tex_SYSMsg);
+            this.Controls.Add(this.groupBox18);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox17);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "YaskawRobot";
             this.Text = "台灣安川電機";
             this.groupBox2.ResumeLayout(false);
-            this.groupBox17.ResumeLayout(false);
-            this.groupBox17.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox16.ResumeLayout(false);
             this.groupBox16.PerformLayout();
@@ -2258,12 +2373,14 @@
             this.groupBox14.PerformLayout();
             this.groupBox13.ResumeLayout(false);
             this.groupBox13.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
+            this.groupBox17.ResumeLayout(false);
+            this.groupBox17.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -2282,7 +2399,9 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox18.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 
@@ -2464,6 +2583,15 @@
         private System.Windows.Forms.Label lab_OneCycle;
         private System.Windows.Forms.Label lab_Step;
         private System.Windows.Forms.Timer StateTimer;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button37;
+        private System.Windows.Forms.Timer JogLoopTimer;
+        private System.Windows.Forms.GroupBox groupBox18;
+        private System.Windows.Forms.Button button40;
+        private System.Windows.Forms.Button button41;
+        private System.Windows.Forms.Button button38;
+        private System.Windows.Forms.Button button39;
+        private System.Windows.Forms.TextBox tex_SYSMsg;
     }
 }
 

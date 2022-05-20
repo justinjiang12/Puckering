@@ -14,7 +14,6 @@ namespace FesIF_Demo
 
         #region  欄位
 
-
         private readonly Yaskawa YaskawaController = new Yaskawa();
         private int _Welding=0;
         private int _TimmerCunt = 0;
@@ -24,6 +23,13 @@ namespace FesIF_Demo
         FileSystemWatcher _watch = new FileSystemWatcher();
         BindingList<PathData> PathDataList = new BindingList<PathData>();
         PosData _GetPosData = new PosData();
+        PosData _GetCurPosData = new PosData();
+
+        //Robot State
+        string _Step = string.Empty, _OneCycle = string.Empty, _AutomaticAndContinuos = string.Empty, _isBusy = string.Empty, _InGuardSafeOperation = string.Empty,
+            _Teach = string.Empty, _Play = string.Empty, _CommendRemote = string.Empty, _HoldON = string.Empty, _HoldStatusE = string.Empty,
+            _HoldStatusC = string.Empty, _Alarm = string.Empty, _Error = string.Empty, _ServoON = string.Empty;
+
         #endregion
 
         /// <summary>
@@ -35,10 +41,10 @@ namespace FesIF_Demo
             PCFileRefresh();
         }
 
-
         #region 控制物件管理
+
         /// <summary>
-        /// 按鈕管理巨集
+        /// 按鈕管理巨集 (Click)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -49,7 +55,6 @@ namespace FesIF_Demo
             string tag = (string)btn.Tag;
             try
             {
-
                 switch (tag)
                 {
                     #region 連線
@@ -57,13 +62,13 @@ namespace FesIF_Demo
 
                         _rslt = YaskawaController.Connect(textBox1.Text);
                         RobotProgramRefresh();
-                        if (_rslt == 0)
+                        if (_rslt != 0)
                         {
-
+                            RobotListBoxTimer.Enabled = true;
+                            StateTimer.Enabled = true;
                         }
-
-                        RobotListBoxTimer.Enabled = true;
-                        StateTimer.Enabled = true;
+                        else { MessageBox.Show("連線失敗"); }
+                        
                         
                         break;
                     #endregion
@@ -100,19 +105,20 @@ namespace FesIF_Demo
                     #region 取得點位資料路徑
                     case "btn_BRO":
 
-                            OpenFileDialog dlg = new OpenFileDialog();
-                            dlg.ShowDialog();
-                            Browse_textbox.Text = dlg.FileName;
-                        
+                        tex_SYSMsg.Text += "<btn_t> Get Data Path\r\n";
+                        OpenFileDialog dlg = new OpenFileDialog();
+                        dlg.ShowDialog();
+                        Browse_textbox.Text = dlg.FileName;
+
                         break;
 
                     #endregion 
 
                     #region 寫入 dataGridView
                     case "btn_LOADDATA":
-                        
-                            dataGridView1.Rows.Clear();
-                            LoadCSV(Browse_textbox.Text);
+                        tex_SYSMsg.Text += "<btn_t> Load Data\r\n";
+                        dataGridView1.Rows.Clear();
+                        LoadCSV(Browse_textbox.Text);
                         
                         break;
                     #endregion
@@ -130,8 +136,6 @@ namespace FesIF_Demo
                         MessageBox.Show("完成");
                         break;
                     #endregion
-
-
 
                     #region 更新Contriller內部程式資料
                     case "btn_RefProgram":
@@ -233,7 +237,6 @@ namespace FesIF_Demo
                         break;
                     #endregion
 
-
                     #region 資料上載 (PC --> Controller)
                     case "btn_PROLoad":
                         if (listBox1.SelectedIndex != -1)
@@ -252,7 +255,6 @@ namespace FesIF_Demo
 
                         break;
                     #endregion
-
 
                     #region 資料下載 (Controller --> PC)
                     case "btn_PRODonload":
@@ -273,7 +275,6 @@ namespace FesIF_Demo
                         break;
                     #endregion
 
-
                     #region 資料刪除按鈕 (Controller_JBI)
                     case "btn_DeleteRobotFile":
 
@@ -293,8 +294,6 @@ namespace FesIF_Demo
 
                         #endregion
 
-                        
-
                     #region 取得點位資料按鈕 
                     case "btn_GetPos":
 
@@ -306,12 +305,12 @@ namespace FesIF_Demo
 
                         #endregion
 
-
                     #region 取得目前點位資料按鈕 
                     case "btn_GetCurPos":
 
-
-                        RobotCurPosGet(Convert.ToInt16(tex_PointDataNum.Text));
+                        PosData _PosData = new PosData();
+                        RobotCurPosGet(ref _PosData);
+                        CurPosWriteLab(_PosData);
 
 
                         break;
@@ -331,7 +330,9 @@ namespace FesIF_Demo
                     #region 定位觸發(Base)
                     case "btn_PosBaseGo":
 
-                        RobotPosMoveBase();
+                        if (combox_BMovetype.Text=="MoveJ") { RobotSetPosMoveBase(0); }
+                        else { RobotSetPosMoveBase(1); }
+                        
 
                         break;
 
@@ -347,11 +348,109 @@ namespace FesIF_Demo
 
                         #endregion
 
+                }
+            }
+            catch (Exception x) { MessageBox.Show(x.ToString(), "systen error!!!"); }
+        }
+
+        /// <summary>
+        /// 按鈕管理巨集 (Mouse Down)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_MouseDown(object sender, MouseEventArgs e)
+        {
+            int _rslt;
+            Button btn = (Button)sender;
+            string tag = (string)btn.Tag;
+            try
+            {
+                switch (tag)
+                {
+                    #region JogTest
+                    case "btn_JogTest":
+                        RobotStart();
+                        JogTest(1000);
+
+                        break;
+                    #endregion
+
+
+
+
+                    #region Jog Loop Test
+                    case "btn_JogLoopTest":
+
+                        RobotStart();
+                        JogLoopTimer.Enabled = true;
+
+                        break;
+
+                    #endregion
+
+
+                    #region Other
+                    case "Other":
+
+
+                        break;
+
+                    #endregion
+
+
 
                 }
             }
             catch (Exception x) { MessageBox.Show(x.ToString(), "systen error!!!"); }
         }
+
+        /// <summary>
+        /// 按鈕管理巨集 (Mouse Up)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_MouseUp(object sender, MouseEventArgs e)
+        {
+            int _rslt;
+            Button btn = (Button)sender;
+            string tag = (string)btn.Tag;
+            try
+            {
+                switch (tag)
+                {
+                    #region JogTest
+                    case "btn_JogTest":
+
+                        RobotStop();
+
+                        break;
+                    #endregion
+
+                    #region Jog Loop Test
+                    case "btn_JogLoopTest":
+
+                        JogLoopTimer.Enabled = false;
+                        RobotStop();
+
+                        break;
+
+                    #endregion
+
+                    #region Other
+                    case "Other":
+
+
+                        break;
+
+                        #endregion
+
+
+
+                }
+            }
+            catch (Exception x) { MessageBox.Show(x.ToString(), "systen error!!!"); }
+        }
+
         #endregion
 
         #region 程式編寫內容
@@ -540,30 +639,37 @@ namespace FesIF_Demo
                 + "\n NULL = " + _GetPosData.axis[7]);
         }
 
-
         /// <summary>
         /// Robot Position Data Get [P***]
         /// </summary>
         /// <param name="_posnum"></param>
-        private void RobotCurPosGet(short _posnum)
+        private void RobotCurPosGet(ref PosData  _GetCurPosData)
         {
-            YaskawaController.GetCurPosData(_posnum, ref _GetPosData);
-            lab_posData.Text =
-                ("P[ " + _posnum.ToString() + " ]:" + "\n\n Type = " + _GetPosData.type + ", 形態 = " + _GetPosData.pattern + ",\n Tool number = " + _GetPosData.tool_no
-                + ", User number = " + _GetPosData.user_coord_no + ",\n 擴張形態 = " + _GetPosData.ex_pattern
-                + "\n\n X = " + _GetPosData.axis[0]
-                + "\n Y = " + _GetPosData.axis[1]
-                + "\n Z = " + _GetPosData.axis[2]
-                + "\n A = " + _GetPosData.axis[3]
-                + "\n B = " + _GetPosData.axis[4]
-                + "\n C = " + _GetPosData.axis[5]
-                + "\n NULL = " + _GetPosData.axis[6]
-                + "\n NULL = " + _GetPosData.axis[7]);
+            YaskawaController.GetCurPosData(ref _GetCurPosData);
         }
 
+        /// <summary>
+        /// Cur Pos Write Lab 寫入TXT
+        /// </summary>
+        /// <param name="_PosData"></param>
+        private void CurPosWriteLab(PosData _PosData)
+        {
+
+            lab_posData.Text =
+                ("P[ " + "Cur" + " ]:" + "\n\n Type = " + _PosData.type + ", 形態 = " + _PosData.pattern + ",\n Tool number = " + _PosData.tool_no
+                + ", User number = " + _PosData.user_coord_no + ",\n 擴張形態 = " + _PosData.ex_pattern
+                + "\n\n X = " + _PosData.axis[0]
+                + "\n Y = " + _PosData.axis[1]
+                + "\n Z = " + _PosData.axis[2]
+                + "\n A = " + _PosData.axis[3]
+                + "\n B = " + _PosData.axis[4]
+                + "\n C = " + _PosData.axis[5]
+                + "\n NULL = " + _PosData.axis[6]
+                + "\n NULL = " + _PosData.axis[7]);
+        }
 
         /// <summary>
-        /// Robot Pos Set_Test Btn
+        /// Robot Pos Set_Test
         /// </summary>
         /// <param name="_pointNum"></param>
         private void RobotPosSet_TestBtn(short _pointNum)
@@ -587,18 +693,26 @@ namespace FesIF_Demo
 
         }
 
-
-
         /// <summary>
         /// Robot Pos Move Base (XYZ)
         /// </summary>
-        private void RobotPosMoveBase()
+        private void RobotPosMoveBase(CoordMove _baseData)
+        {
+            YaskawaController.RobotMoveBase(_baseData);
+
+        }
+
+        /// <summary>
+        /// Robot Set Pos Move Base
+        /// </summary>
+        /// <param name="_moveType"></param>
+        private void RobotSetPosMoveBase(short _moveType)
         {
             CoordMove _baseData = new CoordMove();
             _baseData.des.robot_group = 1;
             _baseData.des.station_group = 0;
-            if (combox_BMovetype.Text== "MoveJ") { _baseData.des.speed_class = 0; }
-            if (combox_BMovetype.Text == "MoveL") { _baseData.des.speed_class = 1; }
+            if (_moveType == 0) { _baseData.des.speed_class = 0; }
+            if (_moveType == 1) { _baseData.des.speed_class = 1; }
             _baseData.des.speed = uint.Parse(tex_PosP_Speed.Text);
             _baseData.act_coord_des = 16;
             _baseData.x_coord = int.Parse(tex_PosP_S.Text);
@@ -623,7 +737,7 @@ namespace FesIF_Demo
             _baseData.axis.station_pos[4] = 0;
             _baseData.axis.station_pos[5] = 0;
 
-            YaskawaController.RobotMoveBase(_baseData);
+            RobotPosMoveBase(_baseData);
 
         }
 
@@ -650,29 +764,150 @@ namespace FesIF_Demo
 
         }
 
-
+        /// <summary>
+        /// Robot State Check
+        /// </summary>
         private void RobotStateCheck()
         {
+            //get robot state
             YaskawaController.CheckStatus();
-            lab_Step.Text = "Step : " + YaskawaController.Step.ToString();
-            lab_OneCycle.Text = "Step : " + YaskawaController.OneCycle.ToString();
-            lab_Automatic.Text = "Step : " + YaskawaController.AutomaticAndContinuos.ToString();
-            lab_Running.Text = "Step : " + YaskawaController.isBusy.ToString();
-            lab_GuardSafeOp.Text = "Step : " + YaskawaController.InGuardSafeOperation.ToString();
-            lab_Teach.Text = "Step : " + YaskawaController.Teach.ToString();
-            lab_Play.Text = "Step : " + YaskawaController.Play.ToString();
-            lab_ComRemote.Text = "Step : " + YaskawaController.CommendRemote.ToString();
-            lab_HoldP.Text = "Step : " + YaskawaController.HoldON.ToString();
-            lab_HoldE.Text = "Step : " + YaskawaController.HoldStatusE.ToString();
-            lab_HoldC.Text = "Step : " + YaskawaController.HoldStatusC.ToString();
-            lab_Alarm.Text = "Step : " + YaskawaController.Alarm.ToString();
-            lab_Error.Text = "Step : " + YaskawaController.Error.ToString();
-            lab_SVON.Text = "Step : " + YaskawaController.ServoON.ToString();
+            
+            //check state
+            _Step = YaskawaController.Step ? "True": "False";
+            _OneCycle = YaskawaController.OneCycle ? "True" : "False";
+            _AutomaticAndContinuos = YaskawaController.AutomaticAndContinuos ? "True" : "False";
+            _isBusy = YaskawaController.isBusy ? "True" : "False";
+            _InGuardSafeOperation = YaskawaController.InGuardSafeOperation ? "True" : "False";
+            _Teach = YaskawaController.Teach ? "True" : "False";
+            _Play = YaskawaController.Play ? "True" : "False";
+            _CommendRemote = YaskawaController.CommendRemote ? "True" : "False";
+            _HoldON = YaskawaController.HoldON ? "True" : "False";
+            _HoldStatusE = YaskawaController.HoldStatusE ? "True" : "False";
+            _HoldStatusC = YaskawaController.HoldStatusC ? "True" : "False";
+            _Alarm = YaskawaController.Alarm ? "True" : "False";
+            _Error = YaskawaController.Error ? "True" : "False";
+            _ServoON = YaskawaController.ServoON ? "True" : "False";
+
+            //chang string coler
+            if (YaskawaController.Step){ lab_Step.ForeColor = System.Drawing.Color.Green; }
+            else { lab_Step.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.OneCycle) { lab_OneCycle.ForeColor = System.Drawing.Color.Green; }
+            else { lab_OneCycle.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.AutomaticAndContinuos) { lab_Automatic.ForeColor = System.Drawing.Color.Green; }
+            else { lab_Automatic.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.isBusy) { lab_Running.ForeColor = System.Drawing.Color.Green; }
+            else  { lab_Running.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.InGuardSafeOperation) { lab_GuardSafeOp.ForeColor = System.Drawing.Color.Green; }
+            else { lab_GuardSafeOp.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.Teach) { lab_Teach.ForeColor = System.Drawing.Color.Green; }
+            else { lab_Teach.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.Play) { lab_Play.ForeColor = System.Drawing.Color.Green; }
+            else { lab_Play.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.CommendRemote) { lab_ComRemote.ForeColor = System.Drawing.Color.Green; }
+            else { lab_ComRemote.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.HoldON) { lab_HoldP.ForeColor = System.Drawing.Color.Green; }
+            else { lab_HoldP.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.HoldStatusE) { lab_HoldE.ForeColor = System.Drawing.Color.Green; }
+            else { lab_HoldE.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.HoldStatusC) { lab_HoldC.ForeColor = System.Drawing.Color.Green; }
+            else { lab_HoldC.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.Alarm) { lab_Alarm.ForeColor = System.Drawing.Color.Green; }
+            else { lab_Alarm.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.Error) { lab_Error.ForeColor = System.Drawing.Color.Green; }
+            else { lab_Error.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.ServoON) { lab_SVON.ForeColor = System.Drawing.Color.Green; }
+            else { lab_SVON.ForeColor = System.Drawing.Color.Red; }
+
+
+            //write lab.text
+            lab_Step.Text = "Step : "+ _Step;
+            lab_OneCycle.Text = "OneCycle : " + _OneCycle;
+            lab_Automatic.Text = "Automatic / Continuos : " + _AutomaticAndContinuos;
+            lab_Running.Text = "Running : " + _isBusy;
+            lab_GuardSafeOp.Text = "InGuardSafeOperation : " + _InGuardSafeOperation;
+            lab_Teach.Text = "Teach : " + _Teach;
+            lab_Play.Text = "Play : " + _Play;
+            lab_ComRemote.Text = "Cammand Remote : " + _CommendRemote;
+            lab_HoldP.Text = "Hold Status (P) : " + _HoldON;
+            lab_HoldE.Text = "Hold Status (E) : " + _HoldStatusE;
+            lab_HoldC.Text = "Hold Status (C) : " + _HoldStatusC;
+            lab_Alarm.Text = "Alarming : " + _Alarm;
+            lab_Error.Text = "Error : " + _Error;
+            lab_SVON.Text = "Servo On : " + _ServoON;
 
         }
 
+        /// <summary>
+        /// 測試Jog動作
+        /// </summary>
+        /// <param name="_moveValue"></param>
+        private void JogTest(int _moveValue)
+        {
+            PosData _PosData = new PosData();
+            CoordMove _PosData2 = new CoordMove();
+            RobotCurPosGet(ref _PosData);
+            _PosData2 = JogMath(_PosData, _moveValue, 100);
+            RobotPosMoveBase(_PosData2);
+        }
+
+        /// <summary>
+        /// Jog 演算匯入增益數值及速度
+        /// </summary>
+        /// <param name="_LJMPosData"></param>
+        /// <param name="_moveValue"></param>
+        /// <param name="_speed"></param>
+        /// <returns></returns>
+        private CoordMove JogMath(PosData _LJMPosData,int _moveValue,uint _speed)
+        {
+            CoordMove _JMPosData = new CoordMove();
+            _JMPosData.des.robot_group = 1;
+            _JMPosData.des.station_group = 0;
+            _JMPosData.des.speed_class = 0;
+            _JMPosData.des.speed = _speed;
+            _JMPosData.act_coord_des = 16;
+            _JMPosData.x_coord = _LJMPosData.axis[0]+ _moveValue;
+            _JMPosData.y_coord = _LJMPosData.axis[1];
+            _JMPosData.z_coord = _LJMPosData.axis[2];
+            _JMPosData.Tx_coord = _LJMPosData.axis[3];
+            _JMPosData.Ty_coord = _LJMPosData.axis[4];
+            _JMPosData.Tz_coord = _LJMPosData.axis[5];
+
+            _JMPosData.reserve = 0;
+            _JMPosData.reserve2 = 0;
+            _JMPosData.ex_pattern = 0;
+            _JMPosData.tool_no = 0;
+            _JMPosData.user_coord_no = 1;
+            _JMPosData.axis.base_pos[0] = 0;
+            _JMPosData.axis.base_pos[1] = 0;
+            _JMPosData.axis.base_pos[2] = 0;
+            _JMPosData.axis.station_pos[0] = 0;
+            _JMPosData.axis.station_pos[1] = 0;
+            _JMPosData.axis.station_pos[2] = 0;
+            _JMPosData.axis.station_pos[3] = 0;
+            _JMPosData.axis.station_pos[4] = 0;
+            _JMPosData.axis.station_pos[5] = 0;
 
 
+
+
+            return _JMPosData;
+        }
+
+        /// <summary>
+        /// Robot Stop
+        /// </summary>
+        private void RobotStop()
+        {
+            YaskawaController.RobotStopSwitch(1); //1: ON 2: OFF
+        }
+
+        /// <summary>
+        /// Robot Start
+        /// </summary>
+        private void RobotStart()
+        {
+            YaskawaController.RobotStopSwitch(0); //1: ON 2: OFF
+        }
 
         #endregion
 
@@ -771,16 +1006,31 @@ namespace FesIF_Demo
 
         }
 
+        /// <summary>
+        /// Robot State timer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StateTimer_Tick(object sender, EventArgs e)
         {
             RobotStateCheck();
 
         }
 
-
+        /// <summary>
+        /// Jog Loop Timer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void JogLoopTimer_Tick(object sender, EventArgs e)
+        {
+            if (YaskawaController.isBusy==true)
+            {
+                JogTest(1000);
+            }
+        }
 
         #endregion
-
 
     }
 
