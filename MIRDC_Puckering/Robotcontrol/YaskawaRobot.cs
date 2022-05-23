@@ -23,12 +23,25 @@ namespace FesIF_Demo
         FileSystemWatcher _watch = new FileSystemWatcher();
         BindingList<PathData> PathDataList = new BindingList<PathData>();
         PosData _GetPosData = new PosData();
-        PosData _GetCurPosData = new PosData();
+        PosData _GetCurXYZPosData = new PosData();
+        PosData _GetCurSLUPosData = new PosData();
+        PosData _GetJOGCurXYZPosData = new PosData();
+        PosData _GetJOGCurSLUPosData = new PosData();
+
 
         //Robot State
         string _Step = string.Empty, _OneCycle = string.Empty, _AutomaticAndContinuos = string.Empty, _isBusy = string.Empty, _InGuardSafeOperation = string.Empty,
             _Teach = string.Empty, _Play = string.Empty, _CommendRemote = string.Empty, _HoldON = string.Empty, _HoldStatusE = string.Empty,
             _HoldStatusC = string.Empty, _Alarm = string.Empty, _Error = string.Empty, _ServoON = string.Empty;
+
+        //Jog Lim (-)
+        int _JogLimM_X = 0, _JogLimM_Y = 0, _JogLimM_Z = 0, _JogLimM_RX = 0, _JogLimM_RY = 0, _JogLimM_RZ = 0, 
+            _JogLimM_S = 0, _JogLimM_L = 0, _JogLimM_U = 0,_JogLimM_R = 0, _JogLimM_B = 0, _JogLimM_T = 0;
+        //Jog Lim (+)
+        int _JogLimP_X = 0, _JogLimP_Y = 0, _JogLimP_Z = 0, _JogLimP_RX = 0, _JogLimP_RY = 0, _JogLimP_RZ = 0,
+            _JogLimP_S = 0, _JogLimP_L = 0, _JogLimP_U = 0, _JogLimP_R = 0, _JogLimP_B = 0, _JogLimP_T = 0;
+
+
 
         #endregion
 
@@ -62,14 +75,16 @@ namespace FesIF_Demo
 
                         _rslt = YaskawaController.Connect(textBox1.Text);
                         RobotProgramRefresh();
+                        StateTimer.Enabled = true;
+                        /*
                         if (_rslt != 0)
                         {
                             RobotListBoxTimer.Enabled = true;
                             StateTimer.Enabled = true;
                         }
                         else { MessageBox.Show("連線失敗"); }
-                        
-                        
+                        */
+
                         break;
                     #endregion
 
@@ -303,20 +318,19 @@ namespace FesIF_Demo
 
                         break;
 
-                        #endregion
+                    #endregion
 
-                    #region 取得目前點位資料按鈕 
+                    #region 取得目前點位資料按鈕  (暫無用)
                     case "btn_GetCurPos":
-
-                        PosData _PosData = new PosData();
-                        RobotCurPosGet(ref _PosData);
-                        CurPosWriteLab(_PosData);
-
+                        /*
+                        RobotCurPosGet("XYZ" , ref _GetCurXYZPosData);
+                        CurPosWriteLab(_GetCurXYZPosData);
+                        */
 
                         break;
 
                     #endregion
-
+                   
                     #region 寫入點位資料按鈕 
                     case "btn_SetPos":
 
@@ -332,7 +346,7 @@ namespace FesIF_Demo
 
                         if (combox_BMovetype.Text=="MoveJ") { RobotSetPosMoveBase(0); }
                         else { RobotSetPosMoveBase(1); }
-                        
+                        PositionXYZDataColerRest();
 
                         break;
 
@@ -346,12 +360,384 @@ namespace FesIF_Demo
 
                         break;
 
+                    #endregion
+
+                    #region 取得目前手臂位置並寫入(點位設定欄位)
+                    case "btn_GetCPosW":
+
+                        RobotCurPosGet("XYZ" , ref _GetCurXYZPosData);
+                        tex_WPointType.Text = _GetCurXYZPosData.type.ToString();
+                        tex_WPointPattern.Text = _GetCurXYZPosData.pattern.ToString();
+                        tex_WPointToolNum.Text = _GetCurXYZPosData.tool_no.ToString();
+                        tex_WPointUserNum.Text = _GetCurXYZPosData.user_coord_no.ToString();
+                        tex_WPointExPattern.Text = _GetCurXYZPosData.ex_pattern.ToString();
+                        tex_WPoinX.Text = _GetCurXYZPosData.axis[0].ToString();
+                        tex_WPoinY.Text = _GetCurXYZPosData.axis[1].ToString();
+                        tex_WPoinZ.Text = _GetCurXYZPosData.axis[2].ToString();
+                        tex_WPoinA.Text = _GetCurXYZPosData.axis[3].ToString();
+                        tex_WPoinB.Text = _GetCurXYZPosData.axis[4].ToString();
+                        tex_WPoinC.Text = _GetCurXYZPosData.axis[5].ToString();
+
+
+                        break;
+
+                    #endregion
+
+                    #region 取得目前手臂位置並寫入(點位定位基底座標欄位)
+                    case "btn_GetCPosBP":
+                        RobotCurPosGet("XYZ", ref _GetCurXYZPosData);
+                        tex_PosB_X.Text = ((float)_GetCurXYZPosData.axis[0]/1000).ToString();
+                        tex_PosB_Y.Text = ((float)_GetCurXYZPosData.axis[1]/1000).ToString();
+                        tex_PosB_Z.Text = ((float)_GetCurXYZPosData.axis[2]/1000).ToString();
+                        tex_PosB_RX.Text = ((float)_GetCurXYZPosData.axis[3]/10000).ToString();
+                        tex_PosB_RY.Text = ((float)_GetCurXYZPosData.axis[4]/10000).ToString();
+                        tex_PosB_RZ.Text = ((float)_GetCurXYZPosData.axis[5]/10000).ToString();
+                        PositionXYZDataColerRest();
+                        break;
+
+                        #endregion
+
+                    #region 取得手臂Home點並寫入(點位定位基底座標欄位)
+                    case "btn_GetHomePosBP":
+                        RobotCurPosGet("XYZ", ref _GetCurXYZPosData);
+                        tex_PosB_X.Text = "500";
+                        tex_PosB_Y.Text = "0";
+                        tex_PosB_Z.Text = "250";
+                        tex_PosB_RX.Text = "180";
+                        tex_PosB_RY.Text = "30";
+                        tex_PosB_RZ.Text = "0";
+                        PositionXYZDataColerRest();
+                        break;
+
+                    #endregion
+                    
+                    #region 取得手臂Welding點並寫入(點位定位基底座標欄位)
+                    case "btn_GetWeldingPosBP":
+                        RobotCurPosGet("XYZ", ref _GetCurXYZPosData);
+                        tex_PosB_X.Text = "630";
+                        tex_PosB_Y.Text = "210";
+                        tex_PosB_Z.Text = "140";
+                        tex_PosB_RX.Text = "180";
+                        tex_PosB_RY.Text = "0";
+                        tex_PosB_RZ.Text = "90";
+                        PositionXYZDataColerRest();
+                        break;
+
+                    #endregion
+
+                    #region 取得目前手臂位置並寫入(點位定位軸欄位)
+                    case "btn_GetCPosPP":
+                        RobotCurPosGet("SLU", ref _GetCurSLUPosData);
+                        tex_PosP_S.Text = _GetCurSLUPosData.axis[0].ToString();
+                        tex_PosP_L.Text = _GetCurSLUPosData.axis[1].ToString();
+                        tex_PosP_U.Text = _GetCurSLUPosData.axis[2].ToString();
+                        tex_PosP_R.Text = _GetCurSLUPosData.axis[3].ToString();
+                        tex_PosP_B.Text = _GetCurSLUPosData.axis[4].ToString();
+                        tex_PosP_T.Text = _GetCurSLUPosData.axis[5].ToString();
+                        break;
+
+                    #endregion
+
+                    #region 手臂(啟動)
+                    case "btn_RobotStart":
+
+                        RobotStart();
+
+                        break;
+
+                    #endregion
+
+                    #region 手臂(暫停)
+                    case "btn_RobotStop":
+
+                        RobotStop();
+
+                        break;
+
+                    #endregion
+
+                    #region 手臂(Alarm Rst)
+                    case "btn_RobotAlarmRst":
+                        RobotAlarmRst();
+
+                        break;
+
+                    #endregion
+
+                    #region 手臂(Error Rst)
+                    case "btn_RobotErrorRst":
+
+
+                        break;
+
+                    #endregion
+
+                    #region Jog lim (XYZ) Set
+                    case "btn_JogXYZLimSet":
+
+                        SetJogXYZLimData();
+                        break;
+
+                    #endregion
+
+                    #region Jog lim (SLU) Set
+                    case "btn_JogSLULimSet":
+
+                        SetJogSLULimData();
+
+                        break;
+
                         #endregion
 
                 }
             }
             catch (Exception x) { MessageBox.Show(x.ToString(), "systen error!!!"); }
         }
+
+
+        /// <summary>
+        /// 按鈕管理巨集 (Position Offset Click)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_OFFSET_Click(object sender, EventArgs e)
+        {
+            int _rslt;
+            Button btn = (Button)sender;
+            string tag = (string)btn.Tag;
+            try
+            {
+                switch (tag)
+                {
+                    #region XYZ_Offset
+
+                    #region B_Offset_X_-
+                    case "btn_OffsetBM_X":
+
+                        tex_PosB_X.Text = (Convert.ToDouble(tex_PosB_X.Text) - Convert.ToDouble(tex_OFS_X.Text)).ToString();
+                        tex_PosB_X.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region B_Offset_X_+
+                    case "btn_OffsetBP_X":
+
+                        tex_PosB_X.Text = (Convert.ToDouble(tex_PosB_X.Text) + Convert.ToDouble(tex_OFS_X.Text)).ToString();
+                        tex_PosB_X.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region B_Offset_Y_-
+                    case "btn_OffsetBM_Y":
+
+                        tex_PosB_Y.Text = (Convert.ToDouble(tex_PosB_Y.Text) - Convert.ToDouble(tex_OFS_Y.Text)).ToString();
+                        tex_PosB_Y.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region B_Offset_Y_+
+                    case "btn_OffsetBP_Y":
+
+                        tex_PosB_Y.Text = (Convert.ToDouble(tex_PosB_Y.Text) + Convert.ToDouble(tex_OFS_Y.Text)).ToString();
+                        tex_PosB_Y.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region B_Offset_Z_-
+                    case "btn_OffsetBM_Z":
+
+                        tex_PosB_Z.Text = (Convert.ToDouble(tex_PosB_Z.Text) - Convert.ToDouble(tex_OFS_Z.Text)).ToString();
+                        tex_PosB_Z.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region B_Offset_Z_+
+                    case "btn_OffsetBP_Z":
+
+                        tex_PosB_Z.Text = (Convert.ToDouble(tex_PosB_Z.Text) + Convert.ToDouble(tex_OFS_Z.Text)).ToString();
+                        tex_PosB_Z.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region B_Offset_RX_-
+                    case "btn_OffsetBM_RX":
+
+                        tex_PosB_RX.Text = (Convert.ToDouble(tex_PosB_RX.Text) - Convert.ToDouble(tex_OFS_RX.Text)).ToString();
+                        tex_PosB_RX.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region B_Offset_RX_+
+                    case "btn_OffsetBP_RX":
+
+                        tex_PosB_RX.Text = (Convert.ToDouble(tex_PosB_RX.Text) + Convert.ToDouble(tex_OFS_RX.Text)).ToString();
+                        tex_PosB_RX.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region B_Offset_RY_-
+                    case "btn_OffsetBM_RY":
+
+                        tex_PosB_RY.Text = (Convert.ToDouble(tex_PosB_RY.Text) - Convert.ToDouble(tex_OFS_RY.Text)).ToString();
+                        tex_PosB_RY.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region B_Offset_RY_+
+                    case "btn_OffsetBP_RY":
+
+                        tex_PosB_RY.Text = (Convert.ToDouble(tex_PosB_RY.Text) + Convert.ToDouble(tex_OFS_RY.Text)).ToString();
+                        tex_PosB_RY.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region B_Offset_RZ_-
+                    case "btn_OffsetBM_RZ":
+
+                        tex_PosB_RZ.Text = (Convert.ToDouble(tex_PosB_RZ.Text) - Convert.ToDouble(tex_OFS_RZ.Text)).ToString();
+                        tex_PosB_RZ.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region B_Offset_RZ_+
+                    case "btn_OffsetBP_RZ":
+
+                        tex_PosB_RZ.Text = (Convert.ToDouble(tex_PosB_RZ.Text) + Convert.ToDouble(tex_OFS_RZ.Text)).ToString();
+                        tex_PosB_RZ.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+
+                    #endregion
+                    #region SLU_Offset
+
+                    #region P_Offset_S_-
+                    case "btn_OffsetPM_S":
+
+                        tex_PosP_S.Text = (Convert.ToDouble(tex_PosP_S.Text) - Convert.ToDouble(tex_OFS_S.Text)).ToString();
+                        tex_PosP_S.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region P_Offset_S_+
+                    case "btn_OffsetPP_S":
+
+                        tex_PosP_S.Text = (Convert.ToDouble(tex_PosP_S.Text) + Convert.ToDouble(tex_OFS_S.Text)).ToString();
+                        tex_PosP_S.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region P_Offset_L_-
+                    case "btn_OffsetPM_L":
+
+                        tex_PosP_L.Text = (Convert.ToDouble(tex_PosP_L.Text) - Convert.ToDouble(tex_OFS_L.Text)).ToString();
+                        tex_PosP_L.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region P_Offset_L_+
+                    case "btn_OffsetPP_L":
+
+                        tex_PosP_L.Text = (Convert.ToDouble(tex_PosP_L.Text) + Convert.ToDouble(tex_OFS_L.Text)).ToString();
+                        tex_PosP_L.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region P_Offset_U_-
+                    case "btn_OffsetPM_U":
+
+                        tex_PosP_U.Text = (Convert.ToDouble(tex_PosP_U.Text) - Convert.ToDouble(tex_OFS_U.Text)).ToString();
+                        tex_PosP_U.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region P_Offset_U_+
+                    case "btn_OffsetPP_U":
+
+                        tex_PosP_U.Text = (Convert.ToDouble(tex_PosP_U.Text) + Convert.ToDouble(tex_OFS_U.Text)).ToString();
+                        tex_PosP_U.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region P_Offset_R_-
+                    case "btn_OffsetPM_R":
+
+                        tex_PosP_R.Text = (Convert.ToDouble(tex_PosP_R.Text) - Convert.ToDouble(tex_OFS_R.Text)).ToString();
+                        tex_PosP_R.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region P_Offset_R_+
+                    case "btn_OffsetPP_R":
+
+                        tex_PosP_R.Text = (Convert.ToDouble(tex_PosP_R.Text) + Convert.ToDouble(tex_OFS_R.Text)).ToString();
+                        tex_PosP_R.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region P_Offset_B_-
+                    case "btn_OffsetPM_B":
+
+                        tex_PosP_B.Text = (Convert.ToDouble(tex_PosP_B.Text) - Convert.ToDouble(tex_OFS_B.Text)).ToString();
+                        tex_PosP_B.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region P_Offset_B_+
+                    case "btn_OffsetPP_B":
+
+                        tex_PosP_B.Text = (Convert.ToDouble(tex_PosP_B.Text) + Convert.ToDouble(tex_OFS_B.Text)).ToString();
+                        tex_PosP_B.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region P_Offset_T_-
+                    case "btn_OffsetPM_T":
+
+                        tex_PosP_T.Text = (Convert.ToDouble(tex_PosP_T.Text) - Convert.ToDouble(tex_OFS_T.Text)).ToString();
+                        tex_PosP_T.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                    #endregion
+
+                    #region P_Offset_T_+
+                    case "btn_OffsetPP_T":
+
+                        tex_PosP_T.Text = (Convert.ToDouble(tex_PosP_T.Text) + Convert.ToDouble(tex_OFS_T.Text)).ToString();
+                        tex_PosP_T.ForeColor = System.Drawing.Color.Red;
+
+                        break;
+                        #endregion
+
+
+                        #endregion
+                }
+            }
+            catch (Exception x) { MessageBox.Show(x.ToString(), "systen error!!!"); }
+        }
+
 
         /// <summary>
         /// 按鈕管理巨集 (Mouse Down)
@@ -363,31 +749,102 @@ namespace FesIF_Demo
             int _rslt;
             Button btn = (Button)sender;
             string tag = (string)btn.Tag;
+            RobotStart();
             try
             {
                 switch (tag)
                 {
-                    #region JogTest
-                    case "btn_JogTest":
-                        RobotStart();
-                        JogTest(1000);
+                    #region JOG_X/S_-
+                    case "btn_xj1-":
+
+                        RobotJog("X", 0);
+
+                        break;
+                    #endregion
+
+                    #region JOG_X/S_+
+                    case "btn_xj1+":
+
+                        RobotJog("X", 1);
+
+                        break;
+                    #endregion
+
+                    #region JOG_Y/L_-
+                    case "btn_xj2-":
+
+                        RobotJog("Y", 0);
+
+                        break;
+                    #endregion
+
+                    #region JOG_Y/L_+
+                    case "btn_xj2+":
+
+                        RobotJog("Y", 1);
 
                         break;
                     #endregion
 
 
+                    #region JOG_Z/U_-
+                    case "btn_xj3-":
 
-
-                    #region Jog Loop Test
-                    case "btn_JogLoopTest":
-
-                        RobotStart();
-                        JogLoopTimer.Enabled = true;
+                        RobotJog("Z", 0);
 
                         break;
-
                     #endregion
 
+                    #region JOG_Z/U_+
+                    case "btn_xj3+":
+
+                        RobotJog("Z", 1);
+
+                        break;
+                    #endregion
+
+
+                    #region JOG_RX/R_-
+                    case "btn_xj4-":
+
+
+                        break;
+                    #endregion
+
+                    #region JOG_RX/R_+
+                    case "btn_xj4+":
+
+
+                        break;
+                    #endregion
+
+                    #region JOG_RY/B_-
+                    case "btn_xj5-":
+
+
+                        break;
+                    #endregion
+
+                    #region JOG_RY/B_+
+                    case "btn_xj5+":
+
+
+                        break;
+                    #endregion
+
+
+                    #region JOG_RZ/T_-
+                    case "btn_xj6-":
+
+
+                        break;
+                    #endregion
+
+                    #region JOG_RZ/T_+
+                    case "btn_xj6+":
+
+                        break;
+                    #endregion
 
                     #region Other
                     case "Other":
@@ -396,8 +853,6 @@ namespace FesIF_Demo
                         break;
 
                     #endregion
-
-
 
                 }
             }
@@ -418,22 +873,96 @@ namespace FesIF_Demo
             {
                 switch (tag)
                 {
-                    #region JogTest
-                    case "btn_JogTest":
+                    #region JOG_X/S_-
+                    case "btn_xj1-":
 
                         RobotStop();
 
                         break;
                     #endregion
 
-                    #region Jog Loop Test
-                    case "btn_JogLoopTest":
+                    #region JOG_X/S_+
+                    case "btn_xj1+":
 
-                        JogLoopTimer.Enabled = false;
                         RobotStop();
 
                         break;
+                    #endregion
 
+                    #region JOG_Y/L_-
+                    case "btn_xj2-":
+
+                        RobotStop();
+
+                        break;
+                    #endregion
+
+                    #region JOG_Y/L_+
+                    case "btn_xj2+":
+
+                        RobotStop();
+
+                        break;
+                    #endregion
+
+
+                    #region JOG_Z/U_-
+                    case "btn_xj3-":
+
+                        RobotStop();
+
+                        break;
+                    #endregion
+
+                    #region JOG_Z/U_+
+                    case "btn_xj3+":
+
+                        RobotStop();
+
+                        break;
+                    #endregion
+
+
+                    #region JOG_RX/R_-
+                    case "btn_xj4-":
+
+
+                        break;
+                    #endregion
+
+                    #region JOG_RX/R_+
+                    case "btn_xj4+":
+
+
+                        break;
+                    #endregion
+
+                    #region JOG_RY/B_-
+                    case "btn_xj5-":
+
+
+                        break;
+                    #endregion
+
+                    #region JOG_RY/B_+
+                    case "btn_xj5+":
+
+
+                        break;
+                    #endregion
+
+
+                    #region JOG_RZ/T_-
+                    case "btn_xj6-":
+
+
+                        break;
+                    #endregion
+
+                    #region JOG_RZ/T_+
+                    case "btn_xj6+":
+
+                        break;
                     #endregion
 
                     #region Other
@@ -443,8 +972,6 @@ namespace FesIF_Demo
                         break;
 
                         #endregion
-
-
 
                 }
             }
@@ -625,7 +1152,8 @@ namespace FesIF_Demo
         /// <param name="_posnum"></param>
         private void RobotPosGet(short _posnum)
         {
-            YaskawaController.GetPosData(_posnum, ref _GetPosData);
+            int _fposnum = _posnum + 1;
+            YaskawaController.GetPosData((short)_fposnum, ref _GetPosData);
             lab_posData.Text =
                 ("P[ " + _posnum.ToString() + " ]:" + "\n\n Type = " + _GetPosData.type + ", 形態 = " + _GetPosData.pattern + ",\n Tool number = " + _GetPosData.tool_no
                 + ", User number = " + _GetPosData.user_coord_no + ",\n 擴張形態 = " + _GetPosData.ex_pattern
@@ -643,9 +1171,11 @@ namespace FesIF_Demo
         /// Robot Position Data Get [P***]
         /// </summary>
         /// <param name="_posnum"></param>
-        private void RobotCurPosGet(ref PosData  _GetCurPosData)
+        private void RobotCurPosGet(string _type, ref PosData  _GetCurPosData)
         {
-            YaskawaController.GetCurPosData(ref _GetCurPosData);
+            if (_type=="XYZ"){YaskawaController.GetCurPosData(0, ref _GetCurPosData);}
+            else if(_type == "SLU") { YaskawaController.GetCurPosData(1, ref _GetCurPosData); }
+            
         }
 
         /// <summary>
@@ -668,6 +1198,37 @@ namespace FesIF_Demo
                 + "\n NULL = " + _PosData.axis[7]);
         }
 
+
+        /// <summary>
+        /// Cur Pos Write Lab 寫入TXT
+        /// </summary>
+        /// <param name="_PosData"></param>
+        private void CurPosShowLab(PosData _PosDataXYZ, PosData _PosDataSLU)
+        {
+
+            lab_CurPosXYZData.Text =
+                ("P[ X,Y,Z ]:" + "\n\n Type = " + _PosDataXYZ.type + " \n 形態 = " + _PosDataXYZ.pattern + "\n Tool num = " + _PosDataXYZ.tool_no
+                + "\n User num = " + _PosDataXYZ.user_coord_no + "\n 擴張形態 = " + _PosDataXYZ.ex_pattern
+                + "\n\n X = " + _PosDataXYZ.axis[0]
+                + "\n Y = " + _PosDataXYZ.axis[1]
+                + "\n Z = " + _PosDataXYZ.axis[2]
+                + "\n A = " + _PosDataXYZ.axis[3]
+                + "\n B = " + _PosDataXYZ.axis[4]
+                + "\n C = " + _PosDataXYZ.axis[5]);
+
+            lab_CurPosSLUData.Text =
+                ("P[ S,L,U ]:" + "\n\n Type = " + _PosDataSLU.type + " \n 形態 = " + _PosDataSLU.pattern + "\n Tool num = " + _PosDataSLU.tool_no
+                + "\n User num = " + _PosDataSLU.user_coord_no + "\n 擴張形態 = " + _PosDataSLU.ex_pattern
+                + "\n\n S = " + _PosDataSLU.axis[0]
+                + "\n L = " + _PosDataSLU.axis[1]
+                + "\n U = " + _PosDataSLU.axis[2]
+                + "\n R = " + _PosDataSLU.axis[3]
+                + "\n B = " + _PosDataSLU.axis[4]
+                + "\n T = " + _PosDataSLU.axis[5]);
+        }
+
+        
+
         /// <summary>
         /// Robot Pos Set_Test
         /// </summary>
@@ -676,19 +1237,19 @@ namespace FesIF_Demo
         {
             PosData _posD = new PosData();
             int _axisValue = 0;
-            _posD.type = uint.Parse(tex_WPointType.Text);
-            _posD.pattern = int.Parse(tex_WPointPattern.Text);
-            _posD.tool_no = uint.Parse(tex_WPointToolNum.Text);
-            _posD.user_coord_no = uint.Parse(tex_WPointUserNum.Text);
-            _posD.ex_pattern = int.Parse(tex_WPointExPattern.Text);
+            _posD.type = uint.Parse(tex_WPointType.Text);// 基座 (16) , Pluse (0) ,機器人(17),工具(18) ,使用者(19)
+            _posD.pattern = int.Parse(tex_WPointPattern.Text); //型態 (2進制) 常用為 4
+            _posD.tool_no = uint.Parse(tex_WPointToolNum.Text); //工具 no.
+            _posD.user_coord_no = uint.Parse(tex_WPointUserNum.Text); //工件座標(使用者座標用)
+            _posD.ex_pattern = int.Parse(tex_WPointExPattern.Text);  //暫定 0
             _posD.axis[0] = int.Parse(tex_WPoinX.Text);
             _posD.axis[1] = int.Parse(tex_WPoinY.Text);
             _posD.axis[2] = int.Parse(tex_WPoinZ.Text);
             _posD.axis[3] = int.Parse(tex_WPoinA.Text);
             _posD.axis[4] = int.Parse(tex_WPoinB.Text);
             _posD.axis[5] = int.Parse(tex_WPoinC.Text);
-            _posD.axis[6] = _axisValue;
-            _posD.axis[7] = _axisValue;
+            _posD.axis[6] = _axisValue; //預設 0
+            _posD.axis[7] = _axisValue; //預設 0
             YaskawaController.SetPosData(_pointNum, _posD);
 
         }
@@ -715,18 +1276,58 @@ namespace FesIF_Demo
             if (_moveType == 1) { _baseData.des.speed_class = 1; }
             _baseData.des.speed = uint.Parse(tex_PosP_Speed.Text);
             _baseData.act_coord_des = 16;
-            _baseData.x_coord = int.Parse(tex_PosP_S.Text);
-            _baseData.y_coord = int.Parse(tex_PosP_L.Text);
-            _baseData.z_coord = int.Parse(tex_PosP_U.Text);
-            _baseData.Tx_coord = int.Parse(tex_PosP_R.Text);
-            _baseData.Ty_coord = int.Parse(tex_PosP_B.Text);
-            _baseData.Tz_coord = int.Parse(tex_PosP_T.Text);
+            _baseData.x_coord = (int)Math.Ceiling(Convert.ToDouble(tex_PosB_X.Text) * 1000);
+            _baseData.y_coord = (int)Math.Ceiling(Convert.ToDouble(tex_PosB_Y.Text) * 1000);
+            _baseData.z_coord = (int)Math.Ceiling(Convert.ToDouble(tex_PosB_Z.Text) * 1000);
+            _baseData.Tx_coord = (int)Math.Ceiling(Convert.ToDouble(tex_PosB_RX.Text) * 10000);
+            _baseData.Ty_coord = (int)Math.Ceiling(Convert.ToDouble(tex_PosB_RY.Text) * 10000);
+            _baseData.Tz_coord = (int)Math.Ceiling(Convert.ToDouble(tex_PosB_RZ.Text) * 10000);
+
 
             _baseData.reserve = 0;
             _baseData.reserve2 = 0;
             _baseData.ex_pattern = 0;
             _baseData.tool_no = 0;
             _baseData.user_coord_no = 1;
+            _baseData.axis.base_pos[0] = 0;
+            _baseData.axis.base_pos[1] = 0;
+            _baseData.axis.base_pos[2] = 0;
+            _baseData.axis.station_pos[0] = 0;
+            _baseData.axis.station_pos[1] = 0;
+            _baseData.axis.station_pos[2] = 0;
+            _baseData.axis.station_pos[3] = 0;
+            _baseData.axis.station_pos[4] = 0;
+            _baseData.axis.station_pos[5] = 0;
+
+            RobotPosMoveBase(_baseData);
+
+        }
+
+        /// <summary>
+        /// Robot Set JOG Pos Move Base
+        /// </summary>
+        /// <param name="_moveType"></param>
+        private void RobotSetJOGPosMoveBase(PosData _SetJOGPosData)
+        {
+            CoordMove _baseData = new CoordMove();
+            _baseData.des.robot_group = 1;
+            _baseData.des.station_group = 0;
+            _baseData.des.speed_class = 0; 
+            _baseData.des.speed = 100;
+            _baseData.act_coord_des = 16;
+            _baseData.x_coord = _SetJOGPosData.axis[0];
+            _baseData.y_coord = _SetJOGPosData.axis[1];
+            _baseData.z_coord = _SetJOGPosData.axis[2];
+            _baseData.Tx_coord = _SetJOGPosData.axis[3];
+            _baseData.Ty_coord = _SetJOGPosData.axis[4];
+            _baseData.Tz_coord = _SetJOGPosData.axis[5];
+
+
+            _baseData.reserve = 0;
+            _baseData.reserve2 = 0;
+            _baseData.ex_pattern = 0;
+            _baseData.tool_no = 0;
+            _baseData.user_coord_no = 0;
             _baseData.axis.base_pos[0] = 0;
             _baseData.axis.base_pos[1] = 0;
             _baseData.axis.base_pos[2] = 0;
@@ -845,7 +1446,7 @@ namespace FesIF_Demo
         {
             PosData _PosData = new PosData();
             CoordMove _PosData2 = new CoordMove();
-            RobotCurPosGet(ref _PosData);
+            RobotCurPosGet("XYZ", ref _PosData);
             _PosData2 = JogMath(_PosData, _moveValue, 100);
             RobotPosMoveBase(_PosData2);
         }
@@ -906,7 +1507,178 @@ namespace FesIF_Demo
         /// </summary>
         private void RobotStart()
         {
-            YaskawaController.RobotStopSwitch(0); //1: ON 2: OFF
+            YaskawaController.RobotStopSwitch(2); //1: ON 2: OFF
+        }
+        
+        /// <summary>
+        /// Robot Alarm Rst
+        /// </summary>
+        private void RobotAlarmRst()
+        {
+            YaskawaController.ResetAlarm();
+        }
+       
+        /// <summary>
+        /// Robot Error Rst
+        /// </summary>
+        private void RobotErrorRst()
+        {
+
+        }
+
+
+        private void PositionXYZDataColerRest()
+        {
+            tex_PosB_X.ForeColor = System.Drawing.Color.Black;
+            tex_PosB_Y.ForeColor = System.Drawing.Color.Black;
+            tex_PosB_Z.ForeColor = System.Drawing.Color.Black;
+            tex_PosB_RX.ForeColor = System.Drawing.Color.Black;
+            tex_PosB_RY.ForeColor = System.Drawing.Color.Black;
+            tex_PosB_RZ.ForeColor = System.Drawing.Color.Black;
+        }
+
+
+        private void SetJogXYZLimData()
+        {
+            _JogLimM_X = int.Parse(tex_JogLimM_X.Text);
+            _JogLimM_Y = int.Parse(tex_JogLimM_Y.Text);
+            _JogLimM_Z = int.Parse(tex_JogLimM_Z.Text);
+            _JogLimM_RX = int.Parse(tex_JogLimM_RX.Text);
+            _JogLimM_RY = int.Parse(tex_JogLimM_RY.Text);
+            _JogLimM_RZ = int.Parse(tex_JogLimM_RZ.Text);
+            _JogLimP_X = int.Parse(tex_JogLimP_X.Text);
+            _JogLimP_Y = int.Parse(tex_JogLimP_Y.Text);
+            _JogLimP_Z = int.Parse(tex_JogLimP_Z.Text);
+            _JogLimP_RX = int.Parse(tex_JogLimP_RX.Text);
+            _JogLimP_RY = int.Parse(tex_JogLimP_RY.Text);
+            _JogLimP_RZ = int.Parse(tex_JogLimP_RZ.Text);
+
+        }
+
+        private void SetJogSLULimData()
+        {
+
+            _JogLimM_S = int.Parse(tex_JogLimM_S.Text);
+            _JogLimM_L = int.Parse(tex_JogLimM_L.Text);
+            _JogLimM_U = int.Parse(tex_JogLimM_U.Text);
+            _JogLimM_R = int.Parse(tex_JogLimM_R.Text);
+            _JogLimM_B = int.Parse(tex_JogLimM_B.Text);
+            _JogLimM_T = int.Parse(tex_JogLimM_T.Text);
+            _JogLimP_S = int.Parse(tex_JogLimP_S.Text);
+            _JogLimP_L = int.Parse(tex_JogLimP_L.Text);
+            _JogLimP_U = int.Parse(tex_JogLimP_U.Text);
+            _JogLimP_R = int.Parse(tex_JogLimP_R.Text);
+            _JogLimP_B = int.Parse(tex_JogLimP_B.Text);
+            _JogLimP_T = int.Parse(tex_JogLimP_T.Text);
+
+        }
+
+
+        private void RobotJog(string _name , short _state)
+        {
+            _GetJOGCurXYZPosData = _GetCurXYZPosData;
+            _GetJOGCurSLUPosData = _GetCurSLUPosData;
+
+            switch (_name)
+            {
+                #region X
+                case "X":
+                    
+                    if (_state == 0 ) { _GetJOGCurXYZPosData.axis[0] = int.Parse(tex_JogLimM_X.Text)*1000; } 
+                    else if(_state == 1) { _GetJOGCurXYZPosData.axis[0] = int.Parse(tex_JogLimP_X.Text)*1000; }
+                    RobotSetJOGPosMoveBase(_GetJOGCurXYZPosData);
+
+                    break;
+
+                #endregion
+
+                #region Y
+                case "Y":
+
+                    if (_state == 0) { _GetJOGCurXYZPosData.axis[1] = int.Parse(tex_JogLimM_Y.Text) * 1000; }
+                    else if (_state == 1) { _GetJOGCurXYZPosData.axis[1] = int.Parse(tex_JogLimP_Y.Text) * 1000; }
+                    RobotSetJOGPosMoveBase(_GetJOGCurXYZPosData);
+
+                    break;
+
+                #endregion
+
+                #region Z
+                case "Z":
+
+                    if (_state == 0) { _GetJOGCurXYZPosData.axis[2] = int.Parse(tex_JogLimM_Z.Text) * 1000; }
+                    else if (_state == 1) { _GetJOGCurXYZPosData.axis[2] = int.Parse(tex_JogLimP_Z.Text) * 1000; }
+                    RobotSetJOGPosMoveBase(_GetJOGCurXYZPosData);
+                    break;
+
+                #endregion
+
+                #region RX
+                case "RX":
+
+                    break;
+
+                #endregion
+
+                #region RY
+                case "RY":
+
+                    break;
+
+                #endregion
+
+                #region RZ
+                case "RZ":
+
+                    break;
+
+                #endregion
+
+                #region S
+                case "S":
+
+                    break;
+
+                #endregion
+
+                #region L
+                case "L":
+
+                    break;
+
+                #endregion
+
+                #region U
+                case "U":
+
+                    break;
+
+                #endregion
+
+                #region R
+                case "R":
+
+                    break;
+
+                #endregion
+
+                #region B
+                case "B":
+
+                    break;
+
+                #endregion
+
+                #region T
+                case "T":
+
+                    break;
+
+                    #endregion
+
+            }
+
+
         }
 
         #endregion
@@ -1014,7 +1786,9 @@ namespace FesIF_Demo
         private void StateTimer_Tick(object sender, EventArgs e)
         {
             RobotStateCheck();
-
+            RobotCurPosGet("XYZ", ref _GetCurXYZPosData);
+            RobotCurPosGet("SLU", ref _GetCurSLUPosData);
+            CurPosShowLab(_GetCurXYZPosData, _GetCurSLUPosData);
         }
 
         /// <summary>

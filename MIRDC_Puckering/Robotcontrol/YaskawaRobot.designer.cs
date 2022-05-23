@@ -30,49 +30,9 @@
 		{
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(YaskawRobot));
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button37 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.groupBox16 = new System.Windows.Forms.GroupBox();
-            this.combox_PMovetype = new System.Windows.Forms.ComboBox();
-            this.label51 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
-            this.tex_PosP_Speed = new System.Windows.Forms.TextBox();
-            this.tex_PosP_T = new System.Windows.Forms.TextBox();
-            this.tex_PosP_B = new System.Windows.Forms.TextBox();
-            this.tex_PosP_R = new System.Windows.Forms.TextBox();
-            this.tex_PosP_U = new System.Windows.Forms.TextBox();
-            this.tex_PosP_L = new System.Windows.Forms.TextBox();
-            this.tex_PosP_S = new System.Windows.Forms.TextBox();
-            this.groupBox15 = new System.Windows.Forms.GroupBox();
-            this.combox_BMovetype = new System.Windows.Forms.ComboBox();
-            this.label50 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.tex_PosB_Speed = new System.Windows.Forms.TextBox();
-            this.tex_PosB_RZ = new System.Windows.Forms.TextBox();
-            this.tex_PosB_RY = new System.Windows.Forms.TextBox();
-            this.tex_PosB_RX = new System.Windows.Forms.TextBox();
-            this.tex_PosB_Z = new System.Windows.Forms.TextBox();
-            this.tex_PosB_Y = new System.Windows.Forms.TextBox();
-            this.tex_PosB_X = new System.Windows.Forms.TextBox();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.button42 = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.tex_WPointExPattern = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -99,11 +59,96 @@
             this.tex_WPoinY = new System.Windows.Forms.TextBox();
             this.tex_WPoinX = new System.Windows.Forms.TextBox();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.lab_posData = new System.Windows.Forms.Label();
             this.tex_PointDataNum = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button36 = new System.Windows.Forms.Button();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.combox_PMovetype = new System.Windows.Forms.ComboBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.tex_PosP_Speed = new System.Windows.Forms.TextBox();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.tex_OFS_T = new System.Windows.Forms.TextBox();
+            this.label45 = new System.Windows.Forms.Label();
+            this.button56 = new System.Windows.Forms.Button();
+            this.label46 = new System.Windows.Forms.Label();
+            this.button57 = new System.Windows.Forms.Button();
+            this.label47 = new System.Windows.Forms.Label();
+            this.tex_OFS_B = new System.Windows.Forms.TextBox();
+            this.tex_PosP_T = new System.Windows.Forms.TextBox();
+            this.button58 = new System.Windows.Forms.Button();
+            this.button59 = new System.Windows.Forms.Button();
+            this.tex_PosP_B = new System.Windows.Forms.TextBox();
+            this.tex_OFS_R = new System.Windows.Forms.TextBox();
+            this.tex_PosP_R = new System.Windows.Forms.TextBox();
+            this.button60 = new System.Windows.Forms.Button();
+            this.tex_PosP_U = new System.Windows.Forms.TextBox();
+            this.button61 = new System.Windows.Forms.Button();
+            this.tex_PosP_L = new System.Windows.Forms.TextBox();
+            this.tex_OFS_U = new System.Windows.Forms.TextBox();
+            this.tex_PosP_S = new System.Windows.Forms.TextBox();
+            this.button62 = new System.Windows.Forms.Button();
+            this.button67 = new System.Windows.Forms.Button();
+            this.button63 = new System.Windows.Forms.Button();
+            this.button66 = new System.Windows.Forms.Button();
+            this.tex_OFS_L = new System.Windows.Forms.TextBox();
+            this.tex_OFS_S = new System.Windows.Forms.TextBox();
+            this.button64 = new System.Windows.Forms.Button();
+            this.label62 = new System.Windows.Forms.Label();
+            this.button65 = new System.Windows.Forms.Button();
+            this.button43 = new System.Windows.Forms.Button();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.tex_PosB_Speed = new System.Windows.Forms.TextBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.combox_BMovetype = new System.Windows.Forms.ComboBox();
+            this.tex_OFS_RZ = new System.Windows.Forms.TextBox();
+            this.button54 = new System.Windows.Forms.Button();
+            this.button55 = new System.Windows.Forms.Button();
+            this.tex_OFS_RY = new System.Windows.Forms.TextBox();
+            this.button52 = new System.Windows.Forms.Button();
+            this.button53 = new System.Windows.Forms.Button();
+            this.tex_OFS_RX = new System.Windows.Forms.TextBox();
+            this.button50 = new System.Windows.Forms.Button();
+            this.button51 = new System.Windows.Forms.Button();
+            this.tex_OFS_Z = new System.Windows.Forms.TextBox();
+            this.button48 = new System.Windows.Forms.Button();
+            this.button49 = new System.Windows.Forms.Button();
+            this.tex_OFS_Y = new System.Windows.Forms.TextBox();
+            this.button46 = new System.Windows.Forms.Button();
+            this.label39 = new System.Windows.Forms.Label();
+            this.button47 = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tex_OFS_X = new System.Windows.Forms.TextBox();
+            this.button45 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.tex_PosB_RZ = new System.Windows.Forms.TextBox();
+            this.tex_PosB_RY = new System.Windows.Forms.TextBox();
+            this.tex_PosB_RX = new System.Windows.Forms.TextBox();
+            this.tex_PosB_Z = new System.Windows.Forms.TextBox();
+            this.tex_PosB_Y = new System.Windows.Forms.TextBox();
+            this.tex_PosB_X = new System.Windows.Forms.TextBox();
+            this.button69 = new System.Windows.Forms.Button();
+            this.button68 = new System.Windows.Forms.Button();
+            this.button44 = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.rad_robotJoint = new System.Windows.Forms.RadioButton();
             this.rad_robotxyz = new System.Windows.Forms.RadioButton();
@@ -155,8 +200,10 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.JOG = new System.Windows.Forms.TabPage();
+            this.Position = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Program = new System.Windows.Forms.TabPage();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.comboBox_RobotFile = new System.Windows.Forms.ComboBox();
@@ -206,29 +253,92 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button25 = new System.Windows.Forms.Button();
             this.button26 = new System.Windows.Forms.Button();
+            this.JogDataSetting = new System.Windows.Forms.TabPage();
+            this.groupBox21 = new System.Windows.Forms.GroupBox();
+            this.button71 = new System.Windows.Forms.Button();
+            this.tex_JogLimM_T = new System.Windows.Forms.TextBox();
+            this.tex_JogLimM_R = new System.Windows.Forms.TextBox();
+            this.tex_JogLimM_B = new System.Windows.Forms.TextBox();
+            this.label78 = new System.Windows.Forms.Label();
+            this.tex_JogLimP_R = new System.Windows.Forms.TextBox();
+            this.tex_JogLimM_U = new System.Windows.Forms.TextBox();
+            this.label80 = new System.Windows.Forms.Label();
+            this.tex_JogLimP_B = new System.Windows.Forms.TextBox();
+            this.tex_JogLimP_U = new System.Windows.Forms.TextBox();
+            this.label82 = new System.Windows.Forms.Label();
+            this.label93 = new System.Windows.Forms.Label();
+            this.tex_JogLimM_L = new System.Windows.Forms.TextBox();
+            this.label84 = new System.Windows.Forms.Label();
+            this.label92 = new System.Windows.Forms.Label();
+            this.tex_JogLimP_T = new System.Windows.Forms.TextBox();
+            this.label86 = new System.Windows.Forms.Label();
+            this.label91 = new System.Windows.Forms.Label();
+            this.label87 = new System.Windows.Forms.Label();
+            this.tex_JogLimM_S = new System.Windows.Forms.TextBox();
+            this.label88 = new System.Windows.Forms.Label();
+            this.label90 = new System.Windows.Forms.Label();
+            this.tex_JogLimP_S = new System.Windows.Forms.TextBox();
+            this.tex_JogLimP_L = new System.Windows.Forms.TextBox();
+            this.label89 = new System.Windows.Forms.Label();
+            this.groupBox20 = new System.Windows.Forms.GroupBox();
+            this.button70 = new System.Windows.Forms.Button();
+            this.label70 = new System.Windows.Forms.Label();
+            this.label71 = new System.Windows.Forms.Label();
+            this.label69 = new System.Windows.Forms.Label();
+            this.label72 = new System.Windows.Forms.Label();
+            this.label68 = new System.Windows.Forms.Label();
+            this.label73 = new System.Windows.Forms.Label();
+            this.label67 = new System.Windows.Forms.Label();
+            this.label74 = new System.Windows.Forms.Label();
+            this.label66 = new System.Windows.Forms.Label();
+            this.label75 = new System.Windows.Forms.Label();
+            this.label65 = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.tex_JogLimP_X = new System.Windows.Forms.TextBox();
+            this.label58 = new System.Windows.Forms.Label();
+            this.tex_JogLimP_Y = new System.Windows.Forms.TextBox();
+            this.label59 = new System.Windows.Forms.Label();
+            this.tex_JogLimM_X = new System.Windows.Forms.TextBox();
+            this.label60 = new System.Windows.Forms.Label();
+            this.tex_JogLimP_RZ = new System.Windows.Forms.TextBox();
+            this.label61 = new System.Windows.Forms.Label();
+            this.tex_JogLimM_Y = new System.Windows.Forms.TextBox();
+            this.label63 = new System.Windows.Forms.Label();
+            this.tex_JogLimP_Z = new System.Windows.Forms.TextBox();
+            this.tex_JogLimM_RZ = new System.Windows.Forms.TextBox();
+            this.tex_JogLimP_RY = new System.Windows.Forms.TextBox();
+            this.tex_JogLimM_Z = new System.Windows.Forms.TextBox();
+            this.tex_JogLimP_RX = new System.Windows.Forms.TextBox();
+            this.tex_JogLimM_RY = new System.Windows.Forms.TextBox();
+            this.tex_JogLimM_RX = new System.Windows.Forms.TextBox();
             this.RegScanTimer = new System.Windows.Forms.Timer(this.components);
             this.RobotListBoxTimer = new System.Windows.Forms.Timer(this.components);
             this.StateTimer = new System.Windows.Forms.Timer(this.components);
             this.JogLoopTimer = new System.Windows.Forms.Timer(this.components);
             this.groupBox18 = new System.Windows.Forms.GroupBox();
             this.button40 = new System.Windows.Forms.Button();
-            this.button41 = new System.Windows.Forms.Button();
             this.button38 = new System.Windows.Forms.Button();
             this.button39 = new System.Windows.Forms.Button();
+            this.button41 = new System.Windows.Forms.Button();
             this.tex_SYSMsg = new System.Windows.Forms.TextBox();
-            this.groupBox2.SuspendLayout();
+            this.groupBox19 = new System.Windows.Forms.GroupBox();
+            this.lab_CurPosSLUData = new System.Windows.Forms.Label();
+            this.lab_CurPosXYZData = new System.Windows.Forms.Label();
             this.groupBox6.SuspendLayout();
-            this.groupBox16.SuspendLayout();
-            this.groupBox15.SuspendLayout();
             this.groupBox14.SuspendLayout();
             this.groupBox13.SuspendLayout();
+            this.groupBox16.SuspendLayout();
+            this.groupBox15.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox17.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.JOG.SuspendLayout();
+            this.Position.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.Program.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -237,488 +347,29 @@
             this.groupBox5.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.JogDataSetting.SuspendLayout();
+            this.groupBox21.SuspendLayout();
+            this.groupBox20.SuspendLayout();
             this.groupBox18.SuspendLayout();
+            this.groupBox19.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.button37);
-            this.groupBox2.Controls.Add(this.button13);
-            this.groupBox2.Controls.Add(this.groupBox6);
-            this.groupBox2.Controls.Add(this.groupBox10);
-            this.groupBox2.Controls.Add(this.groupBox9);
-            this.groupBox2.Location = new System.Drawing.Point(5, 6);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(1112, 742);
-            this.groupBox2.TabIndex = 149;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "JustinTest";
-            // 
-            // button37
-            // 
-            this.button37.Location = new System.Drawing.Point(880, 370);
-            this.button37.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button37.Name = "button37";
-            this.button37.Size = new System.Drawing.Size(147, 62);
-            this.button37.TabIndex = 183;
-            this.button37.Tag = "btn_JogLoopTest";
-            this.button37.Text = "Jog Loop(Test)";
-            this.button37.UseVisualStyleBackColor = true;
-            this.button37.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_MouseDown);
-            this.button37.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_MouseUp);
-            // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(880, 304);
-            this.button13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(147, 62);
-            this.button13.TabIndex = 182;
-            this.button13.Tag = "btn_JogTest";
-            this.button13.Text = "Jog(Test)";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_MouseDown);
-            this.button13.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_MouseUp);
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.groupBox16);
-            this.groupBox6.Controls.Add(this.groupBox15);
             this.groupBox6.Controls.Add(this.groupBox14);
             this.groupBox6.Controls.Add(this.groupBox13);
-            this.groupBox6.Location = new System.Drawing.Point(226, 23);
+            this.groupBox6.Location = new System.Drawing.Point(447, 5);
             this.groupBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox6.Size = new System.Drawing.Size(648, 586);
+            this.groupBox6.Size = new System.Drawing.Size(648, 316);
             this.groupBox6.TabIndex = 180;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Position Data";
             // 
-            // groupBox16
-            // 
-            this.groupBox16.Controls.Add(this.combox_PMovetype);
-            this.groupBox16.Controls.Add(this.label51);
-            this.groupBox16.Controls.Add(this.button4);
-            this.groupBox16.Controls.Add(this.label40);
-            this.groupBox16.Controls.Add(this.label41);
-            this.groupBox16.Controls.Add(this.label44);
-            this.groupBox16.Controls.Add(this.label45);
-            this.groupBox16.Controls.Add(this.label46);
-            this.groupBox16.Controls.Add(this.label47);
-            this.groupBox16.Controls.Add(this.label48);
-            this.groupBox16.Controls.Add(this.label49);
-            this.groupBox16.Controls.Add(this.tex_PosP_Speed);
-            this.groupBox16.Controls.Add(this.tex_PosP_T);
-            this.groupBox16.Controls.Add(this.tex_PosP_B);
-            this.groupBox16.Controls.Add(this.tex_PosP_R);
-            this.groupBox16.Controls.Add(this.tex_PosP_U);
-            this.groupBox16.Controls.Add(this.tex_PosP_L);
-            this.groupBox16.Controls.Add(this.tex_PosP_S);
-            this.groupBox16.Location = new System.Drawing.Point(325, 314);
-            this.groupBox16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox16.Size = new System.Drawing.Size(313, 258);
-            this.groupBox16.TabIndex = 184;
-            this.groupBox16.TabStop = false;
-            this.groupBox16.Text = "Position (Pluse)";
-            // 
-            // combox_PMovetype
-            // 
-            this.combox_PMovetype.AutoCompleteCustomSource.AddRange(new string[] {
-            "MoveJ",
-            "MoveL"});
-            this.combox_PMovetype.FormattingEnabled = true;
-            this.combox_PMovetype.Items.AddRange(new object[] {
-            "MoveJ",
-            "MoveL"});
-            this.combox_PMovetype.Location = new System.Drawing.Point(16, 55);
-            this.combox_PMovetype.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.combox_PMovetype.Name = "combox_PMovetype";
-            this.combox_PMovetype.Size = new System.Drawing.Size(82, 23);
-            this.combox_PMovetype.TabIndex = 184;
-            this.combox_PMovetype.Text = "MoveJ";
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label51.Location = new System.Drawing.Point(86, 119);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(50, 15);
-            this.label51.TabIndex = 206;
-            this.label51.Text = "mm/sec";
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(9, 211);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(295, 42);
-            this.button4.TabIndex = 181;
-            this.button4.Tag = "btn_PosPlsGo";
-            this.button4.Text = "Go";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button_Click);
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(182, 180);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(32, 15);
-            this.label40.TabIndex = 203;
-            this.label40.Text = "T = ";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(182, 152);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(32, 15);
-            this.label41.TabIndex = 202;
-            this.label41.Text = "B = ";
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(182, 119);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(32, 15);
-            this.label44.TabIndex = 201;
-            this.label44.Text = "R = ";
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(182, 88);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(33, 15);
-            this.label45.TabIndex = 200;
-            this.label45.Text = "U = ";
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.Location = new System.Drawing.Point(182, 59);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(32, 15);
-            this.label46.TabIndex = 199;
-            this.label46.Text = "L = ";
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(182, 28);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(31, 15);
-            this.label47.TabIndex = 198;
-            this.label47.Text = "S = ";
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(14, 93);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(49, 15);
-            this.label48.TabIndex = 184;
-            this.label48.Text = "Speed :";
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(14, 31);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(81, 15);
-            this.label49.TabIndex = 183;
-            this.label49.Text = "Move Type :";
-            // 
-            // tex_PosP_Speed
-            // 
-            this.tex_PosP_Speed.Location = new System.Drawing.Point(16, 114);
-            this.tex_PosP_Speed.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tex_PosP_Speed.Name = "tex_PosP_Speed";
-            this.tex_PosP_Speed.Size = new System.Drawing.Size(61, 25);
-            this.tex_PosP_Speed.TabIndex = 189;
-            this.tex_PosP_Speed.Text = "100";
-            // 
-            // tex_PosP_T
-            // 
-            this.tex_PosP_T.Location = new System.Drawing.Point(239, 176);
-            this.tex_PosP_T.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tex_PosP_T.Name = "tex_PosP_T";
-            this.tex_PosP_T.Size = new System.Drawing.Size(65, 25);
-            this.tex_PosP_T.TabIndex = 187;
-            this.tex_PosP_T.Text = "1";
-            // 
-            // tex_PosP_B
-            // 
-            this.tex_PosP_B.Location = new System.Drawing.Point(239, 145);
-            this.tex_PosP_B.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tex_PosP_B.Name = "tex_PosP_B";
-            this.tex_PosP_B.Size = new System.Drawing.Size(65, 25);
-            this.tex_PosP_B.TabIndex = 186;
-            this.tex_PosP_B.Text = "1";
-            // 
-            // tex_PosP_R
-            // 
-            this.tex_PosP_R.Location = new System.Drawing.Point(239, 114);
-            this.tex_PosP_R.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tex_PosP_R.Name = "tex_PosP_R";
-            this.tex_PosP_R.Size = new System.Drawing.Size(65, 25);
-            this.tex_PosP_R.TabIndex = 185;
-            this.tex_PosP_R.Text = "1";
-            // 
-            // tex_PosP_U
-            // 
-            this.tex_PosP_U.Location = new System.Drawing.Point(239, 83);
-            this.tex_PosP_U.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tex_PosP_U.Name = "tex_PosP_U";
-            this.tex_PosP_U.Size = new System.Drawing.Size(65, 25);
-            this.tex_PosP_U.TabIndex = 184;
-            this.tex_PosP_U.Text = "1";
-            // 
-            // tex_PosP_L
-            // 
-            this.tex_PosP_L.Location = new System.Drawing.Point(239, 53);
-            this.tex_PosP_L.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tex_PosP_L.Name = "tex_PosP_L";
-            this.tex_PosP_L.Size = new System.Drawing.Size(65, 25);
-            this.tex_PosP_L.TabIndex = 183;
-            this.tex_PosP_L.Text = "1";
-            // 
-            // tex_PosP_S
-            // 
-            this.tex_PosP_S.Location = new System.Drawing.Point(239, 22);
-            this.tex_PosP_S.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tex_PosP_S.Name = "tex_PosP_S";
-            this.tex_PosP_S.Size = new System.Drawing.Size(65, 25);
-            this.tex_PosP_S.TabIndex = 182;
-            this.tex_PosP_S.Text = "1";
-            // 
-            // groupBox15
-            // 
-            this.groupBox15.Controls.Add(this.combox_BMovetype);
-            this.groupBox15.Controls.Add(this.label50);
-            this.groupBox15.Controls.Add(this.button3);
-            this.groupBox15.Controls.Add(this.label14);
-            this.groupBox15.Controls.Add(this.label16);
-            this.groupBox15.Controls.Add(this.label17);
-            this.groupBox15.Controls.Add(this.label36);
-            this.groupBox15.Controls.Add(this.label37);
-            this.groupBox15.Controls.Add(this.label38);
-            this.groupBox15.Controls.Add(this.label42);
-            this.groupBox15.Controls.Add(this.label43);
-            this.groupBox15.Controls.Add(this.tex_PosB_Speed);
-            this.groupBox15.Controls.Add(this.tex_PosB_RZ);
-            this.groupBox15.Controls.Add(this.tex_PosB_RY);
-            this.groupBox15.Controls.Add(this.tex_PosB_RX);
-            this.groupBox15.Controls.Add(this.tex_PosB_Z);
-            this.groupBox15.Controls.Add(this.tex_PosB_Y);
-            this.groupBox15.Controls.Add(this.tex_PosB_X);
-            this.groupBox15.Location = new System.Drawing.Point(6, 314);
-            this.groupBox15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox15.Size = new System.Drawing.Size(313, 258);
-            this.groupBox15.TabIndex = 183;
-            this.groupBox15.TabStop = false;
-            this.groupBox15.Text = "Position (Base)";
-            // 
-            // combox_BMovetype
-            // 
-            this.combox_BMovetype.AutoCompleteCustomSource.AddRange(new string[] {
-            "MoveJ",
-            "MoveL"});
-            this.combox_BMovetype.FormattingEnabled = true;
-            this.combox_BMovetype.Items.AddRange(new object[] {
-            "MoveJ",
-            "MoveL"});
-            this.combox_BMovetype.Location = new System.Drawing.Point(21, 56);
-            this.combox_BMovetype.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.combox_BMovetype.Name = "combox_BMovetype";
-            this.combox_BMovetype.Size = new System.Drawing.Size(82, 23);
-            this.combox_BMovetype.TabIndex = 183;
-            this.combox_BMovetype.Text = "MoveJ";
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.Location = new System.Drawing.Point(93, 119);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(50, 15);
-            this.label50.TabIndex = 205;
-            this.label50.Text = "mm/sec";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(9, 211);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(295, 42);
-            this.button3.TabIndex = 181;
-            this.button3.Tag = "btn_PosBaseGo";
-            this.button3.Text = "Go";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button_Click);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(182, 180);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(41, 15);
-            this.label14.TabIndex = 203;
-            this.label14.Text = "RZ = ";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(182, 152);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(42, 15);
-            this.label16.TabIndex = 202;
-            this.label16.Text = "RY = ";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(182, 119);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(42, 15);
-            this.label17.TabIndex = 201;
-            this.label17.Text = "RX = ";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(182, 88);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(32, 15);
-            this.label36.TabIndex = 200;
-            this.label36.Text = "Z = ";
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(182, 59);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(33, 15);
-            this.label37.TabIndex = 199;
-            this.label37.Text = "Y = ";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(182, 28);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(33, 15);
-            this.label38.TabIndex = 198;
-            this.label38.Text = "X = ";
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(18, 94);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(49, 15);
-            this.label42.TabIndex = 184;
-            this.label42.Text = "Speed :";
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(18, 34);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(81, 15);
-            this.label43.TabIndex = 183;
-            this.label43.Text = "Move Type :";
-            // 
-            // tex_PosB_Speed
-            // 
-            this.tex_PosB_Speed.Location = new System.Drawing.Point(21, 114);
-            this.tex_PosB_Speed.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tex_PosB_Speed.Name = "tex_PosB_Speed";
-            this.tex_PosB_Speed.Size = new System.Drawing.Size(61, 25);
-            this.tex_PosB_Speed.TabIndex = 189;
-            this.tex_PosB_Speed.Text = "100";
-            // 
-            // tex_PosB_RZ
-            // 
-            this.tex_PosB_RZ.Location = new System.Drawing.Point(239, 176);
-            this.tex_PosB_RZ.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tex_PosB_RZ.Name = "tex_PosB_RZ";
-            this.tex_PosB_RZ.Size = new System.Drawing.Size(65, 25);
-            this.tex_PosB_RZ.TabIndex = 187;
-            this.tex_PosB_RZ.Text = "1";
-            // 
-            // tex_PosB_RY
-            // 
-            this.tex_PosB_RY.Location = new System.Drawing.Point(239, 145);
-            this.tex_PosB_RY.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tex_PosB_RY.Name = "tex_PosB_RY";
-            this.tex_PosB_RY.Size = new System.Drawing.Size(65, 25);
-            this.tex_PosB_RY.TabIndex = 186;
-            this.tex_PosB_RY.Text = "1";
-            // 
-            // tex_PosB_RX
-            // 
-            this.tex_PosB_RX.Location = new System.Drawing.Point(239, 114);
-            this.tex_PosB_RX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tex_PosB_RX.Name = "tex_PosB_RX";
-            this.tex_PosB_RX.Size = new System.Drawing.Size(65, 25);
-            this.tex_PosB_RX.TabIndex = 185;
-            this.tex_PosB_RX.Text = "1";
-            // 
-            // tex_PosB_Z
-            // 
-            this.tex_PosB_Z.Location = new System.Drawing.Point(239, 83);
-            this.tex_PosB_Z.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tex_PosB_Z.Name = "tex_PosB_Z";
-            this.tex_PosB_Z.Size = new System.Drawing.Size(65, 25);
-            this.tex_PosB_Z.TabIndex = 184;
-            this.tex_PosB_Z.Text = "1";
-            // 
-            // tex_PosB_Y
-            // 
-            this.tex_PosB_Y.Location = new System.Drawing.Point(239, 53);
-            this.tex_PosB_Y.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tex_PosB_Y.Name = "tex_PosB_Y";
-            this.tex_PosB_Y.Size = new System.Drawing.Size(65, 25);
-            this.tex_PosB_Y.TabIndex = 183;
-            this.tex_PosB_Y.Text = "1";
-            // 
-            // tex_PosB_X
-            // 
-            this.tex_PosB_X.Location = new System.Drawing.Point(239, 22);
-            this.tex_PosB_X.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tex_PosB_X.Name = "tex_PosB_X";
-            this.tex_PosB_X.Size = new System.Drawing.Size(65, 25);
-            this.tex_PosB_X.TabIndex = 182;
-            this.tex_PosB_X.Text = "1";
-            // 
             // groupBox14
             // 
+            this.groupBox14.Controls.Add(this.button42);
             this.groupBox14.Controls.Add(this.label15);
             this.groupBox14.Controls.Add(this.tex_WPointExPattern);
             this.groupBox14.Controls.Add(this.button1);
@@ -753,6 +404,18 @@
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "Write";
             // 
+            // button42
+            // 
+            this.button42.Location = new System.Drawing.Point(8, 238);
+            this.button42.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button42.Name = "button42";
+            this.button42.Size = new System.Drawing.Size(111, 42);
+            this.button42.TabIndex = 184;
+            this.button42.Tag = "btn_GetCPosW";
+            this.button42.Text = "Get Cur Pos";
+            this.button42.UseVisualStyleBackColor = true;
+            this.button42.Click += new System.EventHandler(this.button_Click);
+            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -774,10 +437,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(9, 238);
+            this.button1.Location = new System.Drawing.Point(125, 238);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(298, 42);
+            this.button1.Size = new System.Drawing.Size(181, 42);
             this.button1.TabIndex = 181;
             this.button1.Tag = "btn_SetPos";
             this.button1.Text = "Write Pos";
@@ -995,7 +658,6 @@
             // 
             // groupBox13
             // 
-            this.groupBox13.Controls.Add(this.button2);
             this.groupBox13.Controls.Add(this.lab_posData);
             this.groupBox13.Controls.Add(this.tex_PointDataNum);
             this.groupBox13.Controls.Add(this.label1);
@@ -1008,18 +670,6 @@
             this.groupBox13.TabIndex = 181;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Get";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(221, 64);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(85, 42);
-            this.button2.TabIndex = 183;
-            this.button2.Tag = "btn_GetCurPos";
-            this.button2.Text = "Get Pos (CUR)";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button_Click);
             // 
             // lab_posData
             // 
@@ -1062,6 +712,994 @@
             this.button36.UseVisualStyleBackColor = true;
             this.button36.Click += new System.EventHandler(this.button_Click);
             // 
+            // groupBox16
+            // 
+            this.groupBox16.Controls.Add(this.combox_PMovetype);
+            this.groupBox16.Controls.Add(this.label51);
+            this.groupBox16.Controls.Add(this.button4);
+            this.groupBox16.Controls.Add(this.tex_PosP_Speed);
+            this.groupBox16.Controls.Add(this.label49);
+            this.groupBox16.Controls.Add(this.label48);
+            this.groupBox16.Controls.Add(this.label40);
+            this.groupBox16.Controls.Add(this.label41);
+            this.groupBox16.Controls.Add(this.label44);
+            this.groupBox16.Controls.Add(this.tex_OFS_T);
+            this.groupBox16.Controls.Add(this.label45);
+            this.groupBox16.Controls.Add(this.button56);
+            this.groupBox16.Controls.Add(this.label46);
+            this.groupBox16.Controls.Add(this.button57);
+            this.groupBox16.Controls.Add(this.label47);
+            this.groupBox16.Controls.Add(this.tex_OFS_B);
+            this.groupBox16.Controls.Add(this.tex_PosP_T);
+            this.groupBox16.Controls.Add(this.button58);
+            this.groupBox16.Controls.Add(this.button59);
+            this.groupBox16.Controls.Add(this.tex_PosP_B);
+            this.groupBox16.Controls.Add(this.tex_OFS_R);
+            this.groupBox16.Controls.Add(this.tex_PosP_R);
+            this.groupBox16.Controls.Add(this.button60);
+            this.groupBox16.Controls.Add(this.tex_PosP_U);
+            this.groupBox16.Controls.Add(this.button61);
+            this.groupBox16.Controls.Add(this.tex_PosP_L);
+            this.groupBox16.Controls.Add(this.tex_OFS_U);
+            this.groupBox16.Controls.Add(this.tex_PosP_S);
+            this.groupBox16.Controls.Add(this.button62);
+            this.groupBox16.Controls.Add(this.button67);
+            this.groupBox16.Controls.Add(this.button63);
+            this.groupBox16.Controls.Add(this.button66);
+            this.groupBox16.Controls.Add(this.tex_OFS_L);
+            this.groupBox16.Controls.Add(this.tex_OFS_S);
+            this.groupBox16.Controls.Add(this.button64);
+            this.groupBox16.Controls.Add(this.label62);
+            this.groupBox16.Controls.Add(this.button65);
+            this.groupBox16.Location = new System.Drawing.Point(547, 75);
+            this.groupBox16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox16.Name = "groupBox16";
+            this.groupBox16.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox16.Size = new System.Drawing.Size(466, 264);
+            this.groupBox16.TabIndex = 184;
+            this.groupBox16.TabStop = false;
+            this.groupBox16.Text = "Pluse-Axis";
+            // 
+            // combox_PMovetype
+            // 
+            this.combox_PMovetype.AutoCompleteCustomSource.AddRange(new string[] {
+            "MoveJ",
+            "MoveL"});
+            this.combox_PMovetype.FormattingEnabled = true;
+            this.combox_PMovetype.Items.AddRange(new object[] {
+            "MoveJ",
+            "MoveL"});
+            this.combox_PMovetype.Location = new System.Drawing.Point(103, 29);
+            this.combox_PMovetype.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.combox_PMovetype.Name = "combox_PMovetype";
+            this.combox_PMovetype.Size = new System.Drawing.Size(81, 23);
+            this.combox_PMovetype.TabIndex = 184;
+            this.combox_PMovetype.Text = "MoveJ";
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.Location = new System.Drawing.Point(395, 160);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(50, 15);
+            this.label51.TabIndex = 206;
+            this.label51.Text = "mm/sec";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(327, 183);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(121, 64);
+            this.button4.TabIndex = 181;
+            this.button4.Tag = "btn_PosPlsGo";
+            this.button4.Text = "Go";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button_Click);
+            // 
+            // tex_PosP_Speed
+            // 
+            this.tex_PosP_Speed.Location = new System.Drawing.Point(327, 148);
+            this.tex_PosP_Speed.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_PosP_Speed.Name = "tex_PosP_Speed";
+            this.tex_PosP_Speed.Size = new System.Drawing.Size(61, 25);
+            this.tex_PosP_Speed.TabIndex = 189;
+            this.tex_PosP_Speed.Text = "100";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.Location = new System.Drawing.Point(16, 32);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(81, 15);
+            this.label49.TabIndex = 183;
+            this.label49.Text = "Move Type :";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label48.Location = new System.Drawing.Point(324, 127);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(49, 15);
+            this.label48.TabIndex = 184;
+            this.label48.Text = "Speed :";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(16, 226);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(32, 15);
+            this.label40.TabIndex = 203;
+            this.label40.Text = "T = ";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(16, 196);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(32, 15);
+            this.label41.TabIndex = 202;
+            this.label41.Text = "B = ";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Location = new System.Drawing.Point(16, 166);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(32, 15);
+            this.label44.TabIndex = 201;
+            this.label44.Text = "R = ";
+            // 
+            // tex_OFS_T
+            // 
+            this.tex_OFS_T.Location = new System.Drawing.Point(210, 220);
+            this.tex_OFS_T.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_OFS_T.Name = "tex_OFS_T";
+            this.tex_OFS_T.Size = new System.Drawing.Size(41, 25);
+            this.tex_OFS_T.TabIndex = 244;
+            this.tex_OFS_T.Text = "10";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(16, 136);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(33, 15);
+            this.label45.TabIndex = 200;
+            this.label45.Text = "U = ";
+            // 
+            // button56
+            // 
+            this.button56.Location = new System.Drawing.Point(172, 220);
+            this.button56.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button56.Name = "button56";
+            this.button56.Size = new System.Drawing.Size(32, 28);
+            this.button56.TabIndex = 243;
+            this.button56.Tag = "btn_OffsetPM_T";
+            this.button56.Text = "-";
+            this.button56.UseVisualStyleBackColor = true;
+            this.button56.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.Location = new System.Drawing.Point(16, 106);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(32, 15);
+            this.label46.TabIndex = 199;
+            this.label46.Text = "L = ";
+            // 
+            // button57
+            // 
+            this.button57.Location = new System.Drawing.Point(258, 220);
+            this.button57.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button57.Name = "button57";
+            this.button57.Size = new System.Drawing.Size(32, 28);
+            this.button57.TabIndex = 242;
+            this.button57.Tag = "btn_OffsetPP_T";
+            this.button57.Text = "+";
+            this.button57.UseVisualStyleBackColor = true;
+            this.button57.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(16, 76);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(31, 15);
+            this.label47.TabIndex = 198;
+            this.label47.Text = "S = ";
+            // 
+            // tex_OFS_B
+            // 
+            this.tex_OFS_B.Location = new System.Drawing.Point(210, 189);
+            this.tex_OFS_B.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_OFS_B.Name = "tex_OFS_B";
+            this.tex_OFS_B.Size = new System.Drawing.Size(41, 25);
+            this.tex_OFS_B.TabIndex = 241;
+            this.tex_OFS_B.Text = "10";
+            // 
+            // tex_PosP_T
+            // 
+            this.tex_PosP_T.Location = new System.Drawing.Point(73, 222);
+            this.tex_PosP_T.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_PosP_T.Name = "tex_PosP_T";
+            this.tex_PosP_T.Size = new System.Drawing.Size(89, 25);
+            this.tex_PosP_T.TabIndex = 187;
+            this.tex_PosP_T.Text = "1";
+            // 
+            // button58
+            // 
+            this.button58.Location = new System.Drawing.Point(172, 189);
+            this.button58.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button58.Name = "button58";
+            this.button58.Size = new System.Drawing.Size(32, 28);
+            this.button58.TabIndex = 240;
+            this.button58.Tag = "btn_OffsetPM_B";
+            this.button58.Text = "-";
+            this.button58.UseVisualStyleBackColor = true;
+            this.button58.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // button59
+            // 
+            this.button59.Location = new System.Drawing.Point(258, 189);
+            this.button59.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button59.Name = "button59";
+            this.button59.Size = new System.Drawing.Size(32, 28);
+            this.button59.TabIndex = 239;
+            this.button59.Tag = "btn_OffsetPP_B";
+            this.button59.Text = "+";
+            this.button59.UseVisualStyleBackColor = true;
+            this.button59.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // tex_PosP_B
+            // 
+            this.tex_PosP_B.Location = new System.Drawing.Point(73, 191);
+            this.tex_PosP_B.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_PosP_B.Name = "tex_PosP_B";
+            this.tex_PosP_B.Size = new System.Drawing.Size(89, 25);
+            this.tex_PosP_B.TabIndex = 186;
+            this.tex_PosP_B.Text = "1";
+            // 
+            // tex_OFS_R
+            // 
+            this.tex_OFS_R.Location = new System.Drawing.Point(210, 158);
+            this.tex_OFS_R.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_OFS_R.Name = "tex_OFS_R";
+            this.tex_OFS_R.Size = new System.Drawing.Size(41, 25);
+            this.tex_OFS_R.TabIndex = 238;
+            this.tex_OFS_R.Text = "10";
+            // 
+            // tex_PosP_R
+            // 
+            this.tex_PosP_R.Location = new System.Drawing.Point(73, 160);
+            this.tex_PosP_R.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_PosP_R.Name = "tex_PosP_R";
+            this.tex_PosP_R.Size = new System.Drawing.Size(89, 25);
+            this.tex_PosP_R.TabIndex = 185;
+            this.tex_PosP_R.Text = "1";
+            // 
+            // button60
+            // 
+            this.button60.Location = new System.Drawing.Point(172, 158);
+            this.button60.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button60.Name = "button60";
+            this.button60.Size = new System.Drawing.Size(32, 28);
+            this.button60.TabIndex = 237;
+            this.button60.Tag = "btn_OffsetPM_R";
+            this.button60.Text = "-";
+            this.button60.UseVisualStyleBackColor = true;
+            this.button60.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // tex_PosP_U
+            // 
+            this.tex_PosP_U.Location = new System.Drawing.Point(73, 129);
+            this.tex_PosP_U.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_PosP_U.Name = "tex_PosP_U";
+            this.tex_PosP_U.Size = new System.Drawing.Size(89, 25);
+            this.tex_PosP_U.TabIndex = 184;
+            this.tex_PosP_U.Text = "1";
+            // 
+            // button61
+            // 
+            this.button61.Location = new System.Drawing.Point(258, 158);
+            this.button61.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button61.Name = "button61";
+            this.button61.Size = new System.Drawing.Size(32, 28);
+            this.button61.TabIndex = 236;
+            this.button61.Tag = "btn_OffsetPP_R";
+            this.button61.Text = "+";
+            this.button61.UseVisualStyleBackColor = true;
+            this.button61.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // tex_PosP_L
+            // 
+            this.tex_PosP_L.Location = new System.Drawing.Point(73, 99);
+            this.tex_PosP_L.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_PosP_L.Name = "tex_PosP_L";
+            this.tex_PosP_L.Size = new System.Drawing.Size(89, 25);
+            this.tex_PosP_L.TabIndex = 183;
+            this.tex_PosP_L.Text = "1";
+            // 
+            // tex_OFS_U
+            // 
+            this.tex_OFS_U.Location = new System.Drawing.Point(210, 127);
+            this.tex_OFS_U.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_OFS_U.Name = "tex_OFS_U";
+            this.tex_OFS_U.Size = new System.Drawing.Size(41, 25);
+            this.tex_OFS_U.TabIndex = 235;
+            this.tex_OFS_U.Text = "10";
+            // 
+            // tex_PosP_S
+            // 
+            this.tex_PosP_S.Location = new System.Drawing.Point(73, 69);
+            this.tex_PosP_S.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_PosP_S.Name = "tex_PosP_S";
+            this.tex_PosP_S.Size = new System.Drawing.Size(89, 25);
+            this.tex_PosP_S.TabIndex = 182;
+            this.tex_PosP_S.Text = "1";
+            // 
+            // button62
+            // 
+            this.button62.Location = new System.Drawing.Point(172, 127);
+            this.button62.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button62.Name = "button62";
+            this.button62.Size = new System.Drawing.Size(32, 28);
+            this.button62.TabIndex = 234;
+            this.button62.Tag = "btn_OffsetPM_U";
+            this.button62.Text = "-";
+            this.button62.UseVisualStyleBackColor = true;
+            this.button62.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // button67
+            // 
+            this.button67.Location = new System.Drawing.Point(258, 67);
+            this.button67.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button67.Name = "button67";
+            this.button67.Size = new System.Drawing.Size(32, 28);
+            this.button67.TabIndex = 224;
+            this.button67.Tag = "btn_OffsetPP_S";
+            this.button67.Text = "+";
+            this.button67.UseVisualStyleBackColor = true;
+            this.button67.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // button63
+            // 
+            this.button63.Location = new System.Drawing.Point(258, 127);
+            this.button63.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button63.Name = "button63";
+            this.button63.Size = new System.Drawing.Size(32, 28);
+            this.button63.TabIndex = 233;
+            this.button63.Tag = "btn_OffsetPP_U";
+            this.button63.Text = "+";
+            this.button63.UseVisualStyleBackColor = true;
+            this.button63.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // button66
+            // 
+            this.button66.Location = new System.Drawing.Point(172, 67);
+            this.button66.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button66.Name = "button66";
+            this.button66.Size = new System.Drawing.Size(32, 28);
+            this.button66.TabIndex = 225;
+            this.button66.Tag = "btn_OffsetPM_S";
+            this.button66.Text = "-";
+            this.button66.UseVisualStyleBackColor = true;
+            this.button66.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // tex_OFS_L
+            // 
+            this.tex_OFS_L.Location = new System.Drawing.Point(210, 97);
+            this.tex_OFS_L.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_OFS_L.Name = "tex_OFS_L";
+            this.tex_OFS_L.Size = new System.Drawing.Size(41, 25);
+            this.tex_OFS_L.TabIndex = 229;
+            this.tex_OFS_L.Text = "10";
+            // 
+            // tex_OFS_S
+            // 
+            this.tex_OFS_S.Location = new System.Drawing.Point(210, 67);
+            this.tex_OFS_S.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_OFS_S.Name = "tex_OFS_S";
+            this.tex_OFS_S.Size = new System.Drawing.Size(41, 25);
+            this.tex_OFS_S.TabIndex = 226;
+            this.tex_OFS_S.Text = "10";
+            // 
+            // button64
+            // 
+            this.button64.Location = new System.Drawing.Point(172, 97);
+            this.button64.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button64.Name = "button64";
+            this.button64.Size = new System.Drawing.Size(32, 28);
+            this.button64.TabIndex = 228;
+            this.button64.Tag = "btn_OffsetPM_L";
+            this.button64.Text = "-";
+            this.button64.UseVisualStyleBackColor = true;
+            this.button64.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label62.Location = new System.Drawing.Point(207, 46);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(42, 15);
+            this.label62.TabIndex = 232;
+            this.label62.Text = "Offset";
+            // 
+            // button65
+            // 
+            this.button65.Location = new System.Drawing.Point(258, 97);
+            this.button65.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button65.Name = "button65";
+            this.button65.Size = new System.Drawing.Size(32, 28);
+            this.button65.TabIndex = 227;
+            this.button65.Tag = "btn_OffsetPP_L";
+            this.button65.Text = "+";
+            this.button65.UseVisualStyleBackColor = true;
+            this.button65.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // button43
+            // 
+            this.button43.Location = new System.Drawing.Point(547, 23);
+            this.button43.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button43.Name = "button43";
+            this.button43.Size = new System.Drawing.Size(145, 36);
+            this.button43.TabIndex = 207;
+            this.button43.Tag = "btn_GetCPosPP";
+            this.button43.Text = "Get Cur Pos";
+            this.button43.UseVisualStyleBackColor = true;
+            this.button43.Click += new System.EventHandler(this.button_Click);
+            // 
+            // groupBox15
+            // 
+            this.groupBox15.Controls.Add(this.label56);
+            this.groupBox15.Controls.Add(this.label55);
+            this.groupBox15.Controls.Add(this.tex_PosB_Speed);
+            this.groupBox15.Controls.Add(this.label43);
+            this.groupBox15.Controls.Add(this.label54);
+            this.groupBox15.Controls.Add(this.label42);
+            this.groupBox15.Controls.Add(this.label53);
+            this.groupBox15.Controls.Add(this.label50);
+            this.groupBox15.Controls.Add(this.label52);
+            this.groupBox15.Controls.Add(this.combox_BMovetype);
+            this.groupBox15.Controls.Add(this.tex_OFS_RZ);
+            this.groupBox15.Controls.Add(this.button54);
+            this.groupBox15.Controls.Add(this.button55);
+            this.groupBox15.Controls.Add(this.tex_OFS_RY);
+            this.groupBox15.Controls.Add(this.button52);
+            this.groupBox15.Controls.Add(this.button53);
+            this.groupBox15.Controls.Add(this.tex_OFS_RX);
+            this.groupBox15.Controls.Add(this.button50);
+            this.groupBox15.Controls.Add(this.button51);
+            this.groupBox15.Controls.Add(this.tex_OFS_Z);
+            this.groupBox15.Controls.Add(this.button48);
+            this.groupBox15.Controls.Add(this.button49);
+            this.groupBox15.Controls.Add(this.tex_OFS_Y);
+            this.groupBox15.Controls.Add(this.button46);
+            this.groupBox15.Controls.Add(this.label39);
+            this.groupBox15.Controls.Add(this.button47);
+            this.groupBox15.Controls.Add(this.label13);
+            this.groupBox15.Controls.Add(this.tex_OFS_X);
+            this.groupBox15.Controls.Add(this.button45);
+            this.groupBox15.Controls.Add(this.button2);
+            this.groupBox15.Controls.Add(this.button3);
+            this.groupBox15.Controls.Add(this.label14);
+            this.groupBox15.Controls.Add(this.label16);
+            this.groupBox15.Controls.Add(this.label17);
+            this.groupBox15.Controls.Add(this.label36);
+            this.groupBox15.Controls.Add(this.label37);
+            this.groupBox15.Controls.Add(this.label38);
+            this.groupBox15.Controls.Add(this.tex_PosB_RZ);
+            this.groupBox15.Controls.Add(this.tex_PosB_RY);
+            this.groupBox15.Controls.Add(this.tex_PosB_RX);
+            this.groupBox15.Controls.Add(this.tex_PosB_Z);
+            this.groupBox15.Controls.Add(this.tex_PosB_Y);
+            this.groupBox15.Controls.Add(this.tex_PosB_X);
+            this.groupBox15.Location = new System.Drawing.Point(14, 75);
+            this.groupBox15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox15.Size = new System.Drawing.Size(528, 264);
+            this.groupBox15.TabIndex = 183;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "Base-XYZ";
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label56.Location = new System.Drawing.Point(182, 227);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(41, 15);
+            this.label56.TabIndex = 223;
+            this.label56.Text = "(deg.)";
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.Location = new System.Drawing.Point(182, 196);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(41, 15);
+            this.label55.TabIndex = 222;
+            this.label55.Text = "(deg.)";
+            // 
+            // tex_PosB_Speed
+            // 
+            this.tex_PosB_Speed.Location = new System.Drawing.Point(382, 143);
+            this.tex_PosB_Speed.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_PosB_Speed.Name = "tex_PosB_Speed";
+            this.tex_PosB_Speed.Size = new System.Drawing.Size(61, 25);
+            this.tex_PosB_Speed.TabIndex = 189;
+            this.tex_PosB_Speed.Text = "100";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.Location = new System.Drawing.Point(26, 26);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(81, 15);
+            this.label43.TabIndex = 183;
+            this.label43.Text = "Move Type :";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label54.Location = new System.Drawing.Point(182, 165);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(41, 15);
+            this.label54.TabIndex = 221;
+            this.label54.Text = "(deg.)";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(379, 123);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(49, 15);
+            this.label42.TabIndex = 184;
+            this.label42.Text = "Speed :";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label53.Location = new System.Drawing.Point(182, 134);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(39, 15);
+            this.label53.TabIndex = 220;
+            this.label53.Text = "(mm)";
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label50.Location = new System.Drawing.Point(449, 153);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(50, 15);
+            this.label50.TabIndex = 205;
+            this.label50.Text = "mm/sec";
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label52.Location = new System.Drawing.Point(182, 104);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(39, 15);
+            this.label52.TabIndex = 207;
+            this.label52.Text = "(mm)";
+            // 
+            // combox_BMovetype
+            // 
+            this.combox_BMovetype.AutoCompleteCustomSource.AddRange(new string[] {
+            "MoveJ",
+            "MoveL"});
+            this.combox_BMovetype.FormattingEnabled = true;
+            this.combox_BMovetype.Items.AddRange(new object[] {
+            "MoveJ",
+            "MoveL"});
+            this.combox_BMovetype.Location = new System.Drawing.Point(113, 24);
+            this.combox_BMovetype.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.combox_BMovetype.Name = "combox_BMovetype";
+            this.combox_BMovetype.Size = new System.Drawing.Size(81, 23);
+            this.combox_BMovetype.TabIndex = 183;
+            this.combox_BMovetype.Text = "MoveJ";
+            // 
+            // tex_OFS_RZ
+            // 
+            this.tex_OFS_RZ.Location = new System.Drawing.Point(275, 215);
+            this.tex_OFS_RZ.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_OFS_RZ.Name = "tex_OFS_RZ";
+            this.tex_OFS_RZ.Size = new System.Drawing.Size(41, 25);
+            this.tex_OFS_RZ.TabIndex = 219;
+            this.tex_OFS_RZ.Text = "10";
+            // 
+            // button54
+            // 
+            this.button54.Location = new System.Drawing.Point(238, 215);
+            this.button54.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button54.Name = "button54";
+            this.button54.Size = new System.Drawing.Size(32, 28);
+            this.button54.TabIndex = 218;
+            this.button54.Tag = "btn_OffsetBM_RZ";
+            this.button54.Text = "-";
+            this.button54.UseVisualStyleBackColor = true;
+            this.button54.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // button55
+            // 
+            this.button55.Location = new System.Drawing.Point(323, 215);
+            this.button55.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button55.Name = "button55";
+            this.button55.Size = new System.Drawing.Size(32, 28);
+            this.button55.TabIndex = 217;
+            this.button55.Tag = "btn_OffsetBP_RZ";
+            this.button55.Text = "+";
+            this.button55.UseVisualStyleBackColor = true;
+            this.button55.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // tex_OFS_RY
+            // 
+            this.tex_OFS_RY.Location = new System.Drawing.Point(275, 184);
+            this.tex_OFS_RY.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_OFS_RY.Name = "tex_OFS_RY";
+            this.tex_OFS_RY.Size = new System.Drawing.Size(41, 25);
+            this.tex_OFS_RY.TabIndex = 216;
+            this.tex_OFS_RY.Text = "10";
+            // 
+            // button52
+            // 
+            this.button52.Location = new System.Drawing.Point(238, 184);
+            this.button52.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button52.Name = "button52";
+            this.button52.Size = new System.Drawing.Size(32, 28);
+            this.button52.TabIndex = 215;
+            this.button52.Tag = "btn_OffsetBM_RY";
+            this.button52.Text = "-";
+            this.button52.UseVisualStyleBackColor = true;
+            this.button52.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // button53
+            // 
+            this.button53.Location = new System.Drawing.Point(323, 184);
+            this.button53.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button53.Name = "button53";
+            this.button53.Size = new System.Drawing.Size(32, 28);
+            this.button53.TabIndex = 214;
+            this.button53.Tag = "btn_OffsetBP_RY";
+            this.button53.Text = "+";
+            this.button53.UseVisualStyleBackColor = true;
+            this.button53.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // tex_OFS_RX
+            // 
+            this.tex_OFS_RX.Location = new System.Drawing.Point(275, 152);
+            this.tex_OFS_RX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_OFS_RX.Name = "tex_OFS_RX";
+            this.tex_OFS_RX.Size = new System.Drawing.Size(41, 25);
+            this.tex_OFS_RX.TabIndex = 213;
+            this.tex_OFS_RX.Text = "10";
+            // 
+            // button50
+            // 
+            this.button50.Location = new System.Drawing.Point(238, 152);
+            this.button50.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button50.Name = "button50";
+            this.button50.Size = new System.Drawing.Size(32, 28);
+            this.button50.TabIndex = 212;
+            this.button50.Tag = "btn_OffsetBM_RX";
+            this.button50.Text = "-";
+            this.button50.UseVisualStyleBackColor = true;
+            this.button50.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // button51
+            // 
+            this.button51.Location = new System.Drawing.Point(323, 152);
+            this.button51.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button51.Name = "button51";
+            this.button51.Size = new System.Drawing.Size(32, 28);
+            this.button51.TabIndex = 211;
+            this.button51.Tag = "btn_OffsetBP_RX";
+            this.button51.Text = "+";
+            this.button51.UseVisualStyleBackColor = true;
+            this.button51.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // tex_OFS_Z
+            // 
+            this.tex_OFS_Z.Location = new System.Drawing.Point(275, 121);
+            this.tex_OFS_Z.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_OFS_Z.Name = "tex_OFS_Z";
+            this.tex_OFS_Z.Size = new System.Drawing.Size(41, 25);
+            this.tex_OFS_Z.TabIndex = 210;
+            this.tex_OFS_Z.Text = "10";
+            // 
+            // button48
+            // 
+            this.button48.Location = new System.Drawing.Point(238, 121);
+            this.button48.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button48.Name = "button48";
+            this.button48.Size = new System.Drawing.Size(32, 28);
+            this.button48.TabIndex = 209;
+            this.button48.Tag = "btn_OffsetBM_Z";
+            this.button48.Text = "-";
+            this.button48.UseVisualStyleBackColor = true;
+            this.button48.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // button49
+            // 
+            this.button49.Location = new System.Drawing.Point(323, 121);
+            this.button49.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button49.Name = "button49";
+            this.button49.Size = new System.Drawing.Size(32, 28);
+            this.button49.TabIndex = 208;
+            this.button49.Tag = "btn_OffsetBP_Z";
+            this.button49.Text = "+";
+            this.button49.UseVisualStyleBackColor = true;
+            this.button49.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // tex_OFS_Y
+            // 
+            this.tex_OFS_Y.Location = new System.Drawing.Point(275, 91);
+            this.tex_OFS_Y.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_OFS_Y.Name = "tex_OFS_Y";
+            this.tex_OFS_Y.Size = new System.Drawing.Size(41, 25);
+            this.tex_OFS_Y.TabIndex = 190;
+            this.tex_OFS_Y.Text = "10";
+            // 
+            // button46
+            // 
+            this.button46.Location = new System.Drawing.Point(238, 91);
+            this.button46.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button46.Name = "button46";
+            this.button46.Size = new System.Drawing.Size(32, 28);
+            this.button46.TabIndex = 189;
+            this.button46.Tag = "btn_OffsetBM_Y";
+            this.button46.Text = "-";
+            this.button46.UseVisualStyleBackColor = true;
+            this.button46.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Location = new System.Drawing.Point(256, 42);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(78, 15);
+            this.label39.TabIndex = 207;
+            this.label39.Text = "Offset (mm)";
+            // 
+            // button47
+            // 
+            this.button47.Location = new System.Drawing.Point(323, 91);
+            this.button47.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button47.Name = "button47";
+            this.button47.Size = new System.Drawing.Size(32, 28);
+            this.button47.TabIndex = 188;
+            this.button47.Tag = "btn_OffsetBP_Y";
+            this.button47.Text = "+";
+            this.button47.UseVisualStyleBackColor = true;
+            this.button47.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(182, 74);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(39, 15);
+            this.label13.TabIndex = 206;
+            this.label13.Text = "(mm)";
+            // 
+            // tex_OFS_X
+            // 
+            this.tex_OFS_X.Location = new System.Drawing.Point(275, 61);
+            this.tex_OFS_X.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_OFS_X.Name = "tex_OFS_X";
+            this.tex_OFS_X.Size = new System.Drawing.Size(41, 25);
+            this.tex_OFS_X.TabIndex = 187;
+            this.tex_OFS_X.Text = "10";
+            // 
+            // button45
+            // 
+            this.button45.Location = new System.Drawing.Point(238, 61);
+            this.button45.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button45.Name = "button45";
+            this.button45.Size = new System.Drawing.Size(32, 28);
+            this.button45.TabIndex = 186;
+            this.button45.Tag = "btn_OffsetBM_X";
+            this.button45.Text = "-";
+            this.button45.UseVisualStyleBackColor = true;
+            this.button45.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(323, 61);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(32, 28);
+            this.button2.TabIndex = 185;
+            this.button2.Tag = "btn_OffsetBP_X";
+            this.button2.Text = "+";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button_OFFSET_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(382, 178);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(111, 65);
+            this.button3.TabIndex = 181;
+            this.button3.Tag = "btn_PosBaseGo";
+            this.button3.Text = "Go";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(28, 218);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(41, 15);
+            this.label14.TabIndex = 203;
+            this.label14.Text = "RZ = ";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(28, 188);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(42, 15);
+            this.label16.TabIndex = 202;
+            this.label16.Text = "RY = ";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(28, 158);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(42, 15);
+            this.label17.TabIndex = 201;
+            this.label17.Text = "RX = ";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.Location = new System.Drawing.Point(28, 128);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(32, 15);
+            this.label36.TabIndex = 200;
+            this.label36.Text = "Z = ";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(28, 98);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(33, 15);
+            this.label37.TabIndex = 199;
+            this.label37.Text = "Y = ";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(28, 68);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(33, 15);
+            this.label38.TabIndex = 198;
+            this.label38.Text = "X = ";
+            // 
+            // tex_PosB_RZ
+            // 
+            this.tex_PosB_RZ.Location = new System.Drawing.Point(86, 215);
+            this.tex_PosB_RZ.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_PosB_RZ.Name = "tex_PosB_RZ";
+            this.tex_PosB_RZ.Size = new System.Drawing.Size(89, 25);
+            this.tex_PosB_RZ.TabIndex = 187;
+            this.tex_PosB_RZ.Text = "1";
+            // 
+            // tex_PosB_RY
+            // 
+            this.tex_PosB_RY.Location = new System.Drawing.Point(86, 184);
+            this.tex_PosB_RY.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_PosB_RY.Name = "tex_PosB_RY";
+            this.tex_PosB_RY.Size = new System.Drawing.Size(89, 25);
+            this.tex_PosB_RY.TabIndex = 186;
+            this.tex_PosB_RY.Text = "1";
+            // 
+            // tex_PosB_RX
+            // 
+            this.tex_PosB_RX.Location = new System.Drawing.Point(86, 152);
+            this.tex_PosB_RX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_PosB_RX.Name = "tex_PosB_RX";
+            this.tex_PosB_RX.Size = new System.Drawing.Size(89, 25);
+            this.tex_PosB_RX.TabIndex = 185;
+            this.tex_PosB_RX.Text = "1";
+            // 
+            // tex_PosB_Z
+            // 
+            this.tex_PosB_Z.Location = new System.Drawing.Point(86, 121);
+            this.tex_PosB_Z.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_PosB_Z.Name = "tex_PosB_Z";
+            this.tex_PosB_Z.Size = new System.Drawing.Size(89, 25);
+            this.tex_PosB_Z.TabIndex = 184;
+            this.tex_PosB_Z.Text = "1";
+            // 
+            // tex_PosB_Y
+            // 
+            this.tex_PosB_Y.Location = new System.Drawing.Point(86, 91);
+            this.tex_PosB_Y.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_PosB_Y.Name = "tex_PosB_Y";
+            this.tex_PosB_Y.Size = new System.Drawing.Size(89, 25);
+            this.tex_PosB_Y.TabIndex = 183;
+            this.tex_PosB_Y.Text = "1";
+            // 
+            // tex_PosB_X
+            // 
+            this.tex_PosB_X.Location = new System.Drawing.Point(86, 61);
+            this.tex_PosB_X.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_PosB_X.Name = "tex_PosB_X";
+            this.tex_PosB_X.Size = new System.Drawing.Size(89, 25);
+            this.tex_PosB_X.TabIndex = 182;
+            this.tex_PosB_X.Text = "1";
+            // 
+            // button69
+            // 
+            this.button69.Location = new System.Drawing.Point(88, 23);
+            this.button69.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button69.Name = "button69";
+            this.button69.Size = new System.Drawing.Size(76, 36);
+            this.button69.TabIndex = 187;
+            this.button69.Tag = "btn_GetWeldingPosBP";
+            this.button69.Text = "Welding";
+            this.button69.UseVisualStyleBackColor = true;
+            this.button69.Click += new System.EventHandler(this.button_Click);
+            // 
+            // button68
+            // 
+            this.button68.Location = new System.Drawing.Point(14, 23);
+            this.button68.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button68.Name = "button68";
+            this.button68.Size = new System.Drawing.Size(68, 35);
+            this.button68.TabIndex = 186;
+            this.button68.Tag = "btn_GetHomePosBP";
+            this.button68.Text = "Home";
+            this.button68.UseVisualStyleBackColor = true;
+            this.button68.Click += new System.EventHandler(this.button_Click);
+            // 
+            // button44
+            // 
+            this.button44.Location = new System.Drawing.Point(170, 23);
+            this.button44.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button44.Name = "button44";
+            this.button44.Size = new System.Drawing.Size(97, 35);
+            this.button44.TabIndex = 185;
+            this.button44.Tag = "btn_GetCPosBP";
+            this.button44.Text = "Get Cur Pos";
+            this.button44.UseVisualStyleBackColor = true;
+            this.button44.Click += new System.EventHandler(this.button_Click);
+            // 
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.rad_robotJoint);
@@ -1080,11 +1718,11 @@
             this.groupBox10.Controls.Add(this.button30);
             this.groupBox10.Controls.Add(this.speed_label);
             this.groupBox10.Controls.Add(this.speed_Scroll);
-            this.groupBox10.Location = new System.Drawing.Point(14, 23);
+            this.groupBox10.Location = new System.Drawing.Point(5, 5);
             this.groupBox10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox10.Size = new System.Drawing.Size(206, 465);
+            this.groupBox10.Size = new System.Drawing.Size(205, 465);
             this.groupBox10.TabIndex = 160;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "JOG";
@@ -1190,6 +1828,8 @@
             this.button23.Tag = "btn_xj3+";
             this.button23.Text = "J3 / Z (+)";
             this.button23.UseVisualStyleBackColor = true;
+            this.button23.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_MouseDown);
+            this.button23.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_MouseUp);
             // 
             // button24
             // 
@@ -1201,6 +1841,8 @@
             this.button24.Tag = "btn_xj3-";
             this.button24.Text = "J3 / Z (-)";
             this.button24.UseVisualStyleBackColor = true;
+            this.button24.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_MouseDown);
+            this.button24.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_MouseUp);
             // 
             // button27
             // 
@@ -1212,6 +1854,8 @@
             this.button27.Tag = "btn_xj2+";
             this.button27.Text = "J2 / Y (+)";
             this.button27.UseVisualStyleBackColor = true;
+            this.button27.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_MouseDown);
+            this.button27.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_MouseUp);
             // 
             // button28
             // 
@@ -1223,6 +1867,8 @@
             this.button28.Tag = "btn_xj2-";
             this.button28.Text = "J2 / Y (-)";
             this.button28.UseVisualStyleBackColor = true;
+            this.button28.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_MouseDown);
+            this.button28.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_MouseUp);
             // 
             // button29
             // 
@@ -1234,6 +1880,8 @@
             this.button29.Tag = "btn_xj1+";
             this.button29.Text = "J1 / X (+)";
             this.button29.UseVisualStyleBackColor = true;
+            this.button29.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_MouseDown);
+            this.button29.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_MouseUp);
             // 
             // button30
             // 
@@ -1245,6 +1893,8 @@
             this.button30.Tag = "btn_xj1-";
             this.button30.Text = "J1 / X (-)";
             this.button30.UseVisualStyleBackColor = true;
+            this.button30.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_MouseDown);
+            this.button30.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_MouseUp);
             // 
             // speed_label
             // 
@@ -1277,7 +1927,7 @@
             this.groupBox9.Controls.Add(this.tex_RegNum);
             this.groupBox9.Controls.Add(this.label31);
             this.groupBox9.Controls.Add(this.tex_RegData);
-            this.groupBox9.Location = new System.Drawing.Point(880, 23);
+            this.groupBox9.Location = new System.Drawing.Point(216, 5);
             this.groupBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1288,7 +1938,7 @@
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(117, 237);
+            this.button12.Location = new System.Drawing.Point(117, 238);
             this.button12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(97, 25);
@@ -1334,7 +1984,7 @@
             this.button9.Location = new System.Drawing.Point(117, 164);
             this.button9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(98, 38);
+            this.button9.Size = new System.Drawing.Size(99, 38);
             this.button9.TabIndex = 175;
             this.button9.Tag = "btn_RegRead";
             this.button9.Text = "Read";
@@ -1386,7 +2036,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(14, 85);
+            this.label31.Location = new System.Drawing.Point(13, 85);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(85, 15);
             this.label31.TabIndex = 162;
@@ -1418,8 +2068,10 @@
             this.groupBox17.Controls.Add(this.lab_OneCycle);
             this.groupBox17.Controls.Add(this.lab_Step);
             this.groupBox17.Location = new System.Drawing.Point(7, 11);
+            this.groupBox17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox17.Name = "groupBox17";
-            this.groupBox17.Size = new System.Drawing.Size(236, 363);
+            this.groupBox17.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox17.Size = new System.Drawing.Size(236, 362);
             this.groupBox17.TabIndex = 181;
             this.groupBox17.TabStop = false;
             this.groupBox17.Text = "State";
@@ -1468,7 +2120,7 @@
             // 
             this.lab_HoldE.AutoSize = true;
             this.lab_HoldE.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_HoldE.Location = new System.Drawing.Point(17, 237);
+            this.lab_HoldE.Location = new System.Drawing.Point(17, 238);
             this.lab_HoldE.Name = "lab_HoldE";
             this.lab_HoldE.Size = new System.Drawing.Size(129, 15);
             this.lab_HoldE.TabIndex = 191;
@@ -1528,7 +2180,7 @@
             // 
             this.lab_Running.AutoSize = true;
             this.lab_Running.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_Running.Location = new System.Drawing.Point(15, 97);
+            this.lab_Running.Location = new System.Drawing.Point(15, 98);
             this.lab_Running.Name = "lab_Running";
             this.lab_Running.Size = new System.Drawing.Size(88, 15);
             this.lab_Running.TabIndex = 185;
@@ -1592,7 +2244,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("新細明體", 12F);
-            this.textBox1.Location = new System.Drawing.Point(46, 21);
+            this.textBox1.Location = new System.Drawing.Point(45, 21);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -1603,7 +2255,7 @@
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button5.Location = new System.Drawing.Point(17, 63);
+            this.button5.Location = new System.Drawing.Point(17, 62);
             this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(208, 41);
@@ -1619,7 +2271,7 @@
             this.button8.Location = new System.Drawing.Point(15, 68);
             this.button8.Margin = new System.Windows.Forms.Padding(4);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(101, 36);
+            this.button8.Size = new System.Drawing.Size(112, 36);
             this.button8.TabIndex = 150;
             this.button8.Tag = "btn_SVOFF";
             this.button8.Text = "Servo Off";
@@ -1632,7 +2284,7 @@
             this.button7.Location = new System.Drawing.Point(15, 26);
             this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(101, 37);
+            this.button7.Size = new System.Drawing.Size(112, 38);
             this.button7.TabIndex = 149;
             this.button7.Tag = "btn_SVON";
             this.button7.Text = "Servo On";
@@ -1641,8 +2293,10 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.JOG);
+            this.tabControl1.Controls.Add(this.Position);
+            this.tabControl1.Controls.Add(this.Program);
+            this.tabControl1.Controls.Add(this.JogDataSetting);
             this.tabControl1.Location = new System.Drawing.Point(256, 132);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
@@ -1650,31 +2304,59 @@
             this.tabControl1.Size = new System.Drawing.Size(1137, 652);
             this.tabControl1.TabIndex = 150;
             // 
-            // tabPage1
+            // JOG
             // 
-            this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage1.Size = new System.Drawing.Size(1129, 623);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Robot Controller";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.JOG.Controls.Add(this.groupBox6);
+            this.JOG.Controls.Add(this.groupBox10);
+            this.JOG.Controls.Add(this.groupBox9);
+            this.JOG.Location = new System.Drawing.Point(4, 25);
+            this.JOG.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.JOG.Name = "JOG";
+            this.JOG.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.JOG.Size = new System.Drawing.Size(1129, 623);
+            this.JOG.TabIndex = 0;
+            this.JOG.Text = "Robot Controller";
+            this.JOG.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // Position
             // 
-            this.tabPage2.Controls.Add(this.groupBox11);
-            this.tabPage2.Controls.Add(this.groupBox8);
-            this.tabPage2.Controls.Add(this.groupBox3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage2.Size = new System.Drawing.Size(1129, 623);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Program(.JBI)";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.Position.Controls.Add(this.groupBox2);
+            this.Position.Location = new System.Drawing.Point(4, 25);
+            this.Position.Margin = new System.Windows.Forms.Padding(4);
+            this.Position.Name = "Position";
+            this.Position.Size = new System.Drawing.Size(1129, 623);
+            this.Position.TabIndex = 2;
+            this.Position.Text = "Position";
+            this.Position.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button69);
+            this.groupBox2.Controls.Add(this.button43);
+            this.groupBox2.Controls.Add(this.groupBox16);
+            this.groupBox2.Controls.Add(this.button68);
+            this.groupBox2.Controls.Add(this.groupBox15);
+            this.groupBox2.Controls.Add(this.button44);
+            this.groupBox2.Location = new System.Drawing.Point(17, 18);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(1029, 352);
+            this.groupBox2.TabIndex = 185;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Robot Position";
+            // 
+            // Program
+            // 
+            this.Program.Controls.Add(this.groupBox11);
+            this.Program.Controls.Add(this.groupBox8);
+            this.Program.Controls.Add(this.groupBox3);
+            this.Program.Location = new System.Drawing.Point(4, 25);
+            this.Program.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Program.Name = "Program";
+            this.Program.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Program.Size = new System.Drawing.Size(1129, 623);
+            this.Program.TabIndex = 1;
+            this.Program.Text = "Program(.JBI)";
+            this.Program.UseVisualStyleBackColor = true;
             // 
             // groupBox11
             // 
@@ -1705,7 +2387,7 @@
             this.groupBox12.Controls.Add(this.button20);
             this.groupBox12.Controls.Add(this.button31);
             this.groupBox12.Controls.Add(this.button18);
-            this.groupBox12.Location = new System.Drawing.Point(446, 22);
+            this.groupBox12.Location = new System.Drawing.Point(445, 22);
             this.groupBox12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1726,7 +2408,7 @@
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("新細明體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label35.Font = new System.Drawing.Font("新細明體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label35.Location = new System.Drawing.Point(5, 21);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(128, 17);
@@ -1735,7 +2417,7 @@
             // 
             // button20
             // 
-            this.button20.Location = new System.Drawing.Point(9, 73);
+            this.button20.Location = new System.Drawing.Point(9, 72);
             this.button20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(124, 46);
@@ -1747,7 +2429,7 @@
             // 
             // button31
             // 
-            this.button31.Location = new System.Drawing.Point(9, 123);
+            this.button31.Location = new System.Drawing.Point(9, 122);
             this.button31.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button31.Name = "button31";
             this.button31.Size = new System.Drawing.Size(124, 46);
@@ -1774,7 +2456,7 @@
             this.button35.BackColor = System.Drawing.Color.White;
             this.button35.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button35.BackgroundImage")));
             this.button35.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button35.Location = new System.Drawing.Point(338, 234);
+            this.button35.Location = new System.Drawing.Point(339, 234);
             this.button35.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button35.Name = "button35";
             this.button35.Size = new System.Drawing.Size(45, 38);
@@ -1829,7 +2511,7 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(10, 24);
+            this.label33.Location = new System.Drawing.Point(11, 24);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(96, 15);
             this.label33.TabIndex = 176;
@@ -1916,7 +2598,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label19.Location = new System.Drawing.Point(18, 21);
+            this.label19.Location = new System.Drawing.Point(19, 21);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(93, 15);
@@ -1926,11 +2608,11 @@
             // tex_ProgramName
             // 
             this.tex_ProgramName.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tex_ProgramName.Location = new System.Drawing.Point(134, 20);
+            this.tex_ProgramName.Location = new System.Drawing.Point(133, 20);
             this.tex_ProgramName.Margin = new System.Windows.Forms.Padding(4);
             this.tex_ProgramName.Multiline = true;
             this.tex_ProgramName.Name = "tex_ProgramName";
-            this.tex_ProgramName.Size = new System.Drawing.Size(188, 27);
+            this.tex_ProgramName.Size = new System.Drawing.Size(188, 26);
             this.tex_ProgramName.TabIndex = 155;
             this.tex_ProgramName.Text = "YASK_TEST";
             // 
@@ -1952,10 +2634,11 @@
             // rad_SpeedWelding
             // 
             this.rad_SpeedWelding.AutoSize = true;
-            this.rad_SpeedWelding.Location = new System.Drawing.Point(201, 24);
+            this.rad_SpeedWelding.Font = new System.Drawing.Font("新細明體", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rad_SpeedWelding.Location = new System.Drawing.Point(199, 24);
             this.rad_SpeedWelding.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rad_SpeedWelding.Name = "rad_SpeedWelding";
-            this.rad_SpeedWelding.Size = new System.Drawing.Size(118, 19);
+            this.rad_SpeedWelding.Size = new System.Drawing.Size(115, 18);
             this.rad_SpeedWelding.TabIndex = 3;
             this.rad_SpeedWelding.Text = "Speed+Welding";
             this.rad_SpeedWelding.UseVisualStyleBackColor = true;
@@ -1963,10 +2646,11 @@
             // rad_Welding
             // 
             this.rad_Welding.AutoSize = true;
-            this.rad_Welding.Location = new System.Drawing.Point(121, 24);
+            this.rad_Welding.Font = new System.Drawing.Font("新細明體", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rad_Welding.Location = new System.Drawing.Point(123, 24);
             this.rad_Welding.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rad_Welding.Name = "rad_Welding";
-            this.rad_Welding.Size = new System.Drawing.Size(76, 19);
+            this.rad_Welding.Size = new System.Drawing.Size(75, 18);
             this.rad_Welding.TabIndex = 2;
             this.rad_Welding.Text = "Welding";
             this.rad_Welding.UseVisualStyleBackColor = true;
@@ -1974,10 +2658,11 @@
             // rad_Speed
             // 
             this.rad_Speed.AutoSize = true;
-            this.rad_Speed.Location = new System.Drawing.Point(57, 24);
+            this.rad_Speed.Font = new System.Drawing.Font("新細明體", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rad_Speed.Location = new System.Drawing.Point(61, 24);
             this.rad_Speed.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rad_Speed.Name = "rad_Speed";
-            this.rad_Speed.Size = new System.Drawing.Size(62, 19);
+            this.rad_Speed.Size = new System.Drawing.Size(61, 18);
             this.rad_Speed.TabIndex = 1;
             this.rad_Speed.Text = "Speed";
             this.rad_Speed.UseVisualStyleBackColor = true;
@@ -1986,10 +2671,11 @@
             // 
             this.rad_Base.AutoSize = true;
             this.rad_Base.Checked = true;
+            this.rad_Base.Font = new System.Drawing.Font("新細明體", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rad_Base.Location = new System.Drawing.Point(5, 24);
             this.rad_Base.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rad_Base.Name = "rad_Base";
-            this.rad_Base.Size = new System.Drawing.Size(54, 19);
+            this.rad_Base.Size = new System.Drawing.Size(54, 18);
             this.rad_Base.TabIndex = 0;
             this.rad_Base.TabStop = true;
             this.rad_Base.Text = "Base";
@@ -2167,10 +2853,10 @@
             // button14
             // 
             this.button14.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button14.Location = new System.Drawing.Point(195, 255);
+            this.button14.Location = new System.Drawing.Point(195, 249);
             this.button14.Margin = new System.Windows.Forms.Padding(4);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(133, 38);
+            this.button14.Size = new System.Drawing.Size(133, 52);
             this.button14.TabIndex = 154;
             this.button14.Tag = "btn_PROCOOMPILE";
             this.button14.Text = "Compile";
@@ -2180,7 +2866,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(338, 27);
+            this.label26.Location = new System.Drawing.Point(339, 28);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(56, 15);
             this.label26.TabIndex = 167;
@@ -2216,7 +2902,7 @@
             this.Browse_textbox.Location = new System.Drawing.Point(5, 22);
             this.Browse_textbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Browse_textbox.Name = "Browse_textbox";
-            this.Browse_textbox.Size = new System.Drawing.Size(302, 25);
+            this.Browse_textbox.Size = new System.Drawing.Size(303, 25);
             this.Browse_textbox.TabIndex = 151;
             this.Browse_textbox.Text = "C:\\Users\\j0910\\Google 雲端硬碟\\工作\\專案\\MIRDC\\預浸布雙機協作_科學專案\\程式\\MIRDC_Puckering(20220427)\\" +
     "MIRDC_Puckering\\PathData";
@@ -2259,6 +2945,631 @@
             this.button26.UseVisualStyleBackColor = true;
             this.button26.Click += new System.EventHandler(this.button_Click);
             // 
+            // JogDataSetting
+            // 
+            this.JogDataSetting.Controls.Add(this.groupBox21);
+            this.JogDataSetting.Controls.Add(this.groupBox20);
+            this.JogDataSetting.Location = new System.Drawing.Point(4, 25);
+            this.JogDataSetting.Name = "JogDataSetting";
+            this.JogDataSetting.Size = new System.Drawing.Size(1129, 623);
+            this.JogDataSetting.TabIndex = 3;
+            this.JogDataSetting.Text = "Jog Data Setting";
+            this.JogDataSetting.UseVisualStyleBackColor = true;
+            // 
+            // groupBox21
+            // 
+            this.groupBox21.Controls.Add(this.button71);
+            this.groupBox21.Controls.Add(this.tex_JogLimM_T);
+            this.groupBox21.Controls.Add(this.tex_JogLimM_R);
+            this.groupBox21.Controls.Add(this.tex_JogLimM_B);
+            this.groupBox21.Controls.Add(this.label78);
+            this.groupBox21.Controls.Add(this.tex_JogLimP_R);
+            this.groupBox21.Controls.Add(this.tex_JogLimM_U);
+            this.groupBox21.Controls.Add(this.label80);
+            this.groupBox21.Controls.Add(this.tex_JogLimP_B);
+            this.groupBox21.Controls.Add(this.tex_JogLimP_U);
+            this.groupBox21.Controls.Add(this.label82);
+            this.groupBox21.Controls.Add(this.label93);
+            this.groupBox21.Controls.Add(this.tex_JogLimM_L);
+            this.groupBox21.Controls.Add(this.label84);
+            this.groupBox21.Controls.Add(this.label92);
+            this.groupBox21.Controls.Add(this.tex_JogLimP_T);
+            this.groupBox21.Controls.Add(this.label86);
+            this.groupBox21.Controls.Add(this.label91);
+            this.groupBox21.Controls.Add(this.label87);
+            this.groupBox21.Controls.Add(this.tex_JogLimM_S);
+            this.groupBox21.Controls.Add(this.label88);
+            this.groupBox21.Controls.Add(this.label90);
+            this.groupBox21.Controls.Add(this.tex_JogLimP_S);
+            this.groupBox21.Controls.Add(this.tex_JogLimP_L);
+            this.groupBox21.Controls.Add(this.label89);
+            this.groupBox21.Location = new System.Drawing.Point(414, 22);
+            this.groupBox21.Name = "groupBox21";
+            this.groupBox21.Size = new System.Drawing.Size(345, 268);
+            this.groupBox21.TabIndex = 195;
+            this.groupBox21.TabStop = false;
+            this.groupBox21.Text = "Axis";
+            // 
+            // button71
+            // 
+            this.button71.Location = new System.Drawing.Point(198, 213);
+            this.button71.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button71.Name = "button71";
+            this.button71.Size = new System.Drawing.Size(134, 42);
+            this.button71.TabIndex = 237;
+            this.button71.Tag = "btn_JogSLULimSet";
+            this.button71.Text = "Setting";
+            this.button71.UseVisualStyleBackColor = true;
+            this.button71.Click += new System.EventHandler(this.button_Click);
+            // 
+            // tex_JogLimM_T
+            // 
+            this.tex_JogLimM_T.Location = new System.Drawing.Point(68, 179);
+            this.tex_JogLimM_T.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimM_T.Name = "tex_JogLimM_T";
+            this.tex_JogLimM_T.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimM_T.TabIndex = 235;
+            this.tex_JogLimM_T.Text = "1";
+            // 
+            // tex_JogLimM_R
+            // 
+            this.tex_JogLimM_R.Location = new System.Drawing.Point(68, 119);
+            this.tex_JogLimM_R.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimM_R.Name = "tex_JogLimM_R";
+            this.tex_JogLimM_R.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimM_R.TabIndex = 233;
+            this.tex_JogLimM_R.Text = "1";
+            // 
+            // tex_JogLimM_B
+            // 
+            this.tex_JogLimM_B.Location = new System.Drawing.Point(68, 149);
+            this.tex_JogLimM_B.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimM_B.Name = "tex_JogLimM_B";
+            this.tex_JogLimM_B.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimM_B.TabIndex = 234;
+            this.tex_JogLimM_B.Text = "1";
+            // 
+            // label78
+            // 
+            this.label78.AutoSize = true;
+            this.label78.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label78.Location = new System.Drawing.Point(163, 182);
+            this.label78.Name = "label78";
+            this.label78.Size = new System.Drawing.Size(66, 19);
+            this.label78.TabIndex = 254;
+            this.label78.Text = "<----->";
+            // 
+            // tex_JogLimP_R
+            // 
+            this.tex_JogLimP_R.Location = new System.Drawing.Point(243, 119);
+            this.tex_JogLimP_R.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimP_R.Name = "tex_JogLimP_R";
+            this.tex_JogLimP_R.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimP_R.TabIndex = 240;
+            this.tex_JogLimP_R.Text = "1";
+            // 
+            // tex_JogLimM_U
+            // 
+            this.tex_JogLimM_U.Location = new System.Drawing.Point(68, 89);
+            this.tex_JogLimM_U.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimM_U.Name = "tex_JogLimM_U";
+            this.tex_JogLimM_U.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimM_U.TabIndex = 232;
+            this.tex_JogLimM_U.Text = "1";
+            // 
+            // label80
+            // 
+            this.label80.AutoSize = true;
+            this.label80.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label80.Location = new System.Drawing.Point(163, 152);
+            this.label80.Name = "label80";
+            this.label80.Size = new System.Drawing.Size(66, 19);
+            this.label80.TabIndex = 253;
+            this.label80.Text = "<----->";
+            // 
+            // tex_JogLimP_B
+            // 
+            this.tex_JogLimP_B.Location = new System.Drawing.Point(243, 149);
+            this.tex_JogLimP_B.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimP_B.Name = "tex_JogLimP_B";
+            this.tex_JogLimP_B.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimP_B.TabIndex = 241;
+            this.tex_JogLimP_B.Text = "1";
+            // 
+            // tex_JogLimP_U
+            // 
+            this.tex_JogLimP_U.Location = new System.Drawing.Point(243, 89);
+            this.tex_JogLimP_U.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimP_U.Name = "tex_JogLimP_U";
+            this.tex_JogLimP_U.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimP_U.TabIndex = 239;
+            this.tex_JogLimP_U.Text = "1";
+            // 
+            // label82
+            // 
+            this.label82.AutoSize = true;
+            this.label82.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label82.Location = new System.Drawing.Point(163, 122);
+            this.label82.Name = "label82";
+            this.label82.Size = new System.Drawing.Size(66, 19);
+            this.label82.TabIndex = 252;
+            this.label82.Text = "<----->";
+            // 
+            // label93
+            // 
+            this.label93.AutoSize = true;
+            this.label93.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label93.Location = new System.Drawing.Point(24, 34);
+            this.label93.Name = "label93";
+            this.label93.Size = new System.Drawing.Size(31, 15);
+            this.label93.TabIndex = 243;
+            this.label93.Text = "S = ";
+            // 
+            // tex_JogLimM_L
+            // 
+            this.tex_JogLimM_L.Location = new System.Drawing.Point(68, 59);
+            this.tex_JogLimM_L.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimM_L.Name = "tex_JogLimM_L";
+            this.tex_JogLimM_L.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimM_L.TabIndex = 231;
+            this.tex_JogLimM_L.Text = "1";
+            // 
+            // label84
+            // 
+            this.label84.AutoSize = true;
+            this.label84.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label84.Location = new System.Drawing.Point(163, 92);
+            this.label84.Name = "label84";
+            this.label84.Size = new System.Drawing.Size(66, 19);
+            this.label84.TabIndex = 251;
+            this.label84.Text = "<----->";
+            // 
+            // label92
+            // 
+            this.label92.AutoSize = true;
+            this.label92.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label92.Location = new System.Drawing.Point(24, 64);
+            this.label92.Name = "label92";
+            this.label92.Size = new System.Drawing.Size(32, 15);
+            this.label92.TabIndex = 245;
+            this.label92.Text = "L = ";
+            // 
+            // tex_JogLimP_T
+            // 
+            this.tex_JogLimP_T.Location = new System.Drawing.Point(243, 179);
+            this.tex_JogLimP_T.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimP_T.Name = "tex_JogLimP_T";
+            this.tex_JogLimP_T.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimP_T.TabIndex = 242;
+            this.tex_JogLimP_T.Text = "1";
+            // 
+            // label86
+            // 
+            this.label86.AutoSize = true;
+            this.label86.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label86.Location = new System.Drawing.Point(163, 62);
+            this.label86.Name = "label86";
+            this.label86.Size = new System.Drawing.Size(66, 19);
+            this.label86.TabIndex = 247;
+            this.label86.Text = "<----->";
+            // 
+            // label91
+            // 
+            this.label91.AutoSize = true;
+            this.label91.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label91.Location = new System.Drawing.Point(24, 94);
+            this.label91.Name = "label91";
+            this.label91.Size = new System.Drawing.Size(33, 15);
+            this.label91.TabIndex = 246;
+            this.label91.Text = "U = ";
+            // 
+            // label87
+            // 
+            this.label87.AutoSize = true;
+            this.label87.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label87.Location = new System.Drawing.Point(163, 32);
+            this.label87.Name = "label87";
+            this.label87.Size = new System.Drawing.Size(66, 19);
+            this.label87.TabIndex = 244;
+            this.label87.Text = "<----->";
+            // 
+            // tex_JogLimM_S
+            // 
+            this.tex_JogLimM_S.Location = new System.Drawing.Point(68, 29);
+            this.tex_JogLimM_S.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimM_S.Name = "tex_JogLimM_S";
+            this.tex_JogLimM_S.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimM_S.TabIndex = 230;
+            this.tex_JogLimM_S.Text = "1";
+            // 
+            // label88
+            // 
+            this.label88.AutoSize = true;
+            this.label88.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label88.Location = new System.Drawing.Point(24, 184);
+            this.label88.Name = "label88";
+            this.label88.Size = new System.Drawing.Size(32, 15);
+            this.label88.TabIndex = 250;
+            this.label88.Text = "T = ";
+            // 
+            // label90
+            // 
+            this.label90.AutoSize = true;
+            this.label90.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label90.Location = new System.Drawing.Point(24, 124);
+            this.label90.Name = "label90";
+            this.label90.Size = new System.Drawing.Size(32, 15);
+            this.label90.TabIndex = 248;
+            this.label90.Text = "R = ";
+            // 
+            // tex_JogLimP_S
+            // 
+            this.tex_JogLimP_S.Location = new System.Drawing.Point(243, 29);
+            this.tex_JogLimP_S.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimP_S.Name = "tex_JogLimP_S";
+            this.tex_JogLimP_S.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimP_S.TabIndex = 236;
+            this.tex_JogLimP_S.Text = "1";
+            // 
+            // tex_JogLimP_L
+            // 
+            this.tex_JogLimP_L.Location = new System.Drawing.Point(243, 59);
+            this.tex_JogLimP_L.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimP_L.Name = "tex_JogLimP_L";
+            this.tex_JogLimP_L.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimP_L.TabIndex = 238;
+            this.tex_JogLimP_L.Text = "1";
+            // 
+            // label89
+            // 
+            this.label89.AutoSize = true;
+            this.label89.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label89.Location = new System.Drawing.Point(24, 154);
+            this.label89.Name = "label89";
+            this.label89.Size = new System.Drawing.Size(32, 15);
+            this.label89.TabIndex = 249;
+            this.label89.Text = "B = ";
+            // 
+            // groupBox20
+            // 
+            this.groupBox20.Controls.Add(this.button70);
+            this.groupBox20.Controls.Add(this.label70);
+            this.groupBox20.Controls.Add(this.label71);
+            this.groupBox20.Controls.Add(this.label69);
+            this.groupBox20.Controls.Add(this.label72);
+            this.groupBox20.Controls.Add(this.label68);
+            this.groupBox20.Controls.Add(this.label73);
+            this.groupBox20.Controls.Add(this.label67);
+            this.groupBox20.Controls.Add(this.label74);
+            this.groupBox20.Controls.Add(this.label66);
+            this.groupBox20.Controls.Add(this.label75);
+            this.groupBox20.Controls.Add(this.label65);
+            this.groupBox20.Controls.Add(this.label64);
+            this.groupBox20.Controls.Add(this.label57);
+            this.groupBox20.Controls.Add(this.tex_JogLimP_X);
+            this.groupBox20.Controls.Add(this.label58);
+            this.groupBox20.Controls.Add(this.tex_JogLimP_Y);
+            this.groupBox20.Controls.Add(this.label59);
+            this.groupBox20.Controls.Add(this.tex_JogLimM_X);
+            this.groupBox20.Controls.Add(this.label60);
+            this.groupBox20.Controls.Add(this.tex_JogLimP_RZ);
+            this.groupBox20.Controls.Add(this.label61);
+            this.groupBox20.Controls.Add(this.tex_JogLimM_Y);
+            this.groupBox20.Controls.Add(this.label63);
+            this.groupBox20.Controls.Add(this.tex_JogLimP_Z);
+            this.groupBox20.Controls.Add(this.tex_JogLimM_RZ);
+            this.groupBox20.Controls.Add(this.tex_JogLimP_RY);
+            this.groupBox20.Controls.Add(this.tex_JogLimM_Z);
+            this.groupBox20.Controls.Add(this.tex_JogLimP_RX);
+            this.groupBox20.Controls.Add(this.tex_JogLimM_RY);
+            this.groupBox20.Controls.Add(this.tex_JogLimM_RX);
+            this.groupBox20.Location = new System.Drawing.Point(17, 22);
+            this.groupBox20.Name = "groupBox20";
+            this.groupBox20.Size = new System.Drawing.Size(391, 268);
+            this.groupBox20.TabIndex = 194;
+            this.groupBox20.TabStop = false;
+            this.groupBox20.Text = "XYZ";
+            // 
+            // button70
+            // 
+            this.button70.Location = new System.Drawing.Point(244, 214);
+            this.button70.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button70.Name = "button70";
+            this.button70.Size = new System.Drawing.Size(134, 42);
+            this.button70.TabIndex = 196;
+            this.button70.Tag = "btn_JogXYZLimSet";
+            this.button70.Text = "Setting";
+            this.button70.UseVisualStyleBackColor = true;
+            this.button70.Click += new System.EventHandler(this.button_Click);
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label70.Location = new System.Drawing.Point(339, 189);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(41, 15);
+            this.label70.TabIndex = 229;
+            this.label70.Text = "(deg.)";
+            // 
+            // label71
+            // 
+            this.label71.AutoSize = true;
+            this.label71.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label71.Location = new System.Drawing.Point(339, 159);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(41, 15);
+            this.label71.TabIndex = 228;
+            this.label71.Text = "(deg.)";
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label69.Location = new System.Drawing.Point(164, 182);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(66, 19);
+            this.label69.TabIndex = 213;
+            this.label69.Text = "<----->";
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label72.Location = new System.Drawing.Point(339, 129);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(41, 15);
+            this.label72.TabIndex = 227;
+            this.label72.Text = "(deg.)";
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label68.Location = new System.Drawing.Point(164, 152);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(66, 19);
+            this.label68.TabIndex = 212;
+            this.label68.Text = "<----->";
+            // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label73.Location = new System.Drawing.Point(339, 99);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(39, 15);
+            this.label73.TabIndex = 226;
+            this.label73.Text = "(mm)";
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label67.Location = new System.Drawing.Point(164, 122);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(66, 19);
+            this.label67.TabIndex = 211;
+            this.label67.Text = "<----->";
+            // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label74.Location = new System.Drawing.Point(339, 69);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(39, 15);
+            this.label74.TabIndex = 225;
+            this.label74.Text = "(mm)";
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label66.Location = new System.Drawing.Point(164, 92);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(66, 19);
+            this.label66.TabIndex = 210;
+            this.label66.Text = "<----->";
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label75.Location = new System.Drawing.Point(339, 39);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(39, 15);
+            this.label75.TabIndex = 224;
+            this.label75.Text = "(mm)";
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label65.Location = new System.Drawing.Point(164, 62);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(66, 19);
+            this.label65.TabIndex = 206;
+            this.label65.Text = "<----->";
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label64.Location = new System.Drawing.Point(164, 32);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(66, 19);
+            this.label64.TabIndex = 205;
+            this.label64.Text = "<----->";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label57.Location = new System.Drawing.Point(25, 184);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(41, 15);
+            this.label57.TabIndex = 209;
+            this.label57.Text = "RZ = ";
+            // 
+            // tex_JogLimP_X
+            // 
+            this.tex_JogLimP_X.Location = new System.Drawing.Point(244, 29);
+            this.tex_JogLimP_X.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimP_X.Name = "tex_JogLimP_X";
+            this.tex_JogLimP_X.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimP_X.TabIndex = 196;
+            this.tex_JogLimP_X.Text = "900";
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label58.Location = new System.Drawing.Point(25, 154);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(42, 15);
+            this.label58.TabIndex = 208;
+            this.label58.Text = "RY = ";
+            // 
+            // tex_JogLimP_Y
+            // 
+            this.tex_JogLimP_Y.Location = new System.Drawing.Point(244, 59);
+            this.tex_JogLimP_Y.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimP_Y.Name = "tex_JogLimP_Y";
+            this.tex_JogLimP_Y.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimP_Y.TabIndex = 197;
+            this.tex_JogLimP_Y.Text = "650";
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label59.Location = new System.Drawing.Point(25, 124);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(42, 15);
+            this.label59.TabIndex = 207;
+            this.label59.Text = "RX = ";
+            // 
+            // tex_JogLimM_X
+            // 
+            this.tex_JogLimM_X.Location = new System.Drawing.Point(69, 29);
+            this.tex_JogLimM_X.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimM_X.Name = "tex_JogLimM_X";
+            this.tex_JogLimM_X.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimM_X.TabIndex = 188;
+            this.tex_JogLimM_X.Text = "300";
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label60.Location = new System.Drawing.Point(25, 94);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(32, 15);
+            this.label60.TabIndex = 206;
+            this.label60.Text = "Z = ";
+            // 
+            // tex_JogLimP_RZ
+            // 
+            this.tex_JogLimP_RZ.Location = new System.Drawing.Point(244, 179);
+            this.tex_JogLimP_RZ.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimP_RZ.Name = "tex_JogLimP_RZ";
+            this.tex_JogLimP_RZ.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimP_RZ.TabIndex = 201;
+            this.tex_JogLimP_RZ.Text = "1";
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label61.Location = new System.Drawing.Point(25, 64);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(33, 15);
+            this.label61.TabIndex = 205;
+            this.label61.Text = "Y = ";
+            // 
+            // tex_JogLimM_Y
+            // 
+            this.tex_JogLimM_Y.Location = new System.Drawing.Point(69, 59);
+            this.tex_JogLimM_Y.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimM_Y.Name = "tex_JogLimM_Y";
+            this.tex_JogLimM_Y.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimM_Y.TabIndex = 189;
+            this.tex_JogLimM_Y.Text = "-430";
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label63.Location = new System.Drawing.Point(25, 34);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(33, 15);
+            this.label63.TabIndex = 204;
+            this.label63.Text = "X = ";
+            // 
+            // tex_JogLimP_Z
+            // 
+            this.tex_JogLimP_Z.Location = new System.Drawing.Point(244, 89);
+            this.tex_JogLimP_Z.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimP_Z.Name = "tex_JogLimP_Z";
+            this.tex_JogLimP_Z.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimP_Z.TabIndex = 198;
+            this.tex_JogLimP_Z.Text = "550";
+            // 
+            // tex_JogLimM_RZ
+            // 
+            this.tex_JogLimM_RZ.Location = new System.Drawing.Point(69, 179);
+            this.tex_JogLimM_RZ.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimM_RZ.Name = "tex_JogLimM_RZ";
+            this.tex_JogLimM_RZ.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimM_RZ.TabIndex = 193;
+            this.tex_JogLimM_RZ.Text = "1";
+            // 
+            // tex_JogLimP_RY
+            // 
+            this.tex_JogLimP_RY.Location = new System.Drawing.Point(244, 149);
+            this.tex_JogLimP_RY.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimP_RY.Name = "tex_JogLimP_RY";
+            this.tex_JogLimP_RY.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimP_RY.TabIndex = 200;
+            this.tex_JogLimP_RY.Text = "1";
+            // 
+            // tex_JogLimM_Z
+            // 
+            this.tex_JogLimM_Z.Location = new System.Drawing.Point(69, 89);
+            this.tex_JogLimM_Z.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimM_Z.Name = "tex_JogLimM_Z";
+            this.tex_JogLimM_Z.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimM_Z.TabIndex = 190;
+            this.tex_JogLimM_Z.Text = "-180";
+            // 
+            // tex_JogLimP_RX
+            // 
+            this.tex_JogLimP_RX.Location = new System.Drawing.Point(244, 119);
+            this.tex_JogLimP_RX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimP_RX.Name = "tex_JogLimP_RX";
+            this.tex_JogLimP_RX.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimP_RX.TabIndex = 199;
+            this.tex_JogLimP_RX.Text = "1";
+            // 
+            // tex_JogLimM_RY
+            // 
+            this.tex_JogLimM_RY.Location = new System.Drawing.Point(69, 149);
+            this.tex_JogLimM_RY.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimM_RY.Name = "tex_JogLimM_RY";
+            this.tex_JogLimM_RY.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimM_RY.TabIndex = 192;
+            this.tex_JogLimM_RY.Text = "1";
+            // 
+            // tex_JogLimM_RX
+            // 
+            this.tex_JogLimM_RX.Location = new System.Drawing.Point(69, 119);
+            this.tex_JogLimM_RX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_JogLimM_RX.Name = "tex_JogLimM_RX";
+            this.tex_JogLimM_RX.Size = new System.Drawing.Size(89, 25);
+            this.tex_JogLimM_RX.TabIndex = 191;
+            this.tex_JogLimM_RX.Text = "1";
+            // 
             // RegScanTimer
             // 
             this.RegScanTimer.Tick += new System.EventHandler(this.RegScanTimer_Tick);
@@ -2284,8 +3595,10 @@
             this.groupBox18.Controls.Add(this.button39);
             this.groupBox18.Controls.Add(this.button41);
             this.groupBox18.Location = new System.Drawing.Point(501, 11);
+            this.groupBox18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(344, 116);
+            this.groupBox18.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox18.Size = new System.Drawing.Size(353, 116);
             this.groupBox18.TabIndex = 184;
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = " SYS Control";
@@ -2293,68 +3606,106 @@
             // button40
             // 
             this.button40.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button40.Location = new System.Drawing.Point(124, 68);
+            this.button40.Location = new System.Drawing.Point(132, 68);
             this.button40.Margin = new System.Windows.Forms.Padding(4);
             this.button40.Name = "button40";
             this.button40.Size = new System.Drawing.Size(101, 36);
             this.button40.TabIndex = 153;
-            this.button40.Tag = "btn_SVON";
+            this.button40.Tag = "btn_RobotStop";
             this.button40.Text = "Stop";
             this.button40.UseVisualStyleBackColor = true;
-            // 
-            // button41
-            // 
-            this.button41.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button41.Location = new System.Drawing.Point(124, 26);
-            this.button41.Margin = new System.Windows.Forms.Padding(4);
-            this.button41.Name = "button41";
-            this.button41.Size = new System.Drawing.Size(101, 37);
-            this.button41.TabIndex = 154;
-            this.button41.Tag = "btn_SVOFF";
-            this.button41.Text = "Run";
-            this.button41.UseVisualStyleBackColor = true;
+            this.button40.Click += new System.EventHandler(this.button_Click);
             // 
             // button38
             // 
             this.button38.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button38.Location = new System.Drawing.Point(233, 68);
+            this.button38.Location = new System.Drawing.Point(241, 68);
             this.button38.Margin = new System.Windows.Forms.Padding(4);
             this.button38.Name = "button38";
             this.button38.Size = new System.Drawing.Size(101, 36);
             this.button38.TabIndex = 151;
-            this.button38.Tag = "btn_SVON";
+            this.button38.Tag = "btn_RobotErrorRst";
             this.button38.Text = "Error Rst";
             this.button38.UseVisualStyleBackColor = true;
+            this.button38.Click += new System.EventHandler(this.button_Click);
             // 
             // button39
             // 
             this.button39.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button39.Location = new System.Drawing.Point(233, 26);
+            this.button39.Location = new System.Drawing.Point(241, 26);
             this.button39.Margin = new System.Windows.Forms.Padding(4);
             this.button39.Name = "button39";
-            this.button39.Size = new System.Drawing.Size(101, 37);
+            this.button39.Size = new System.Drawing.Size(101, 38);
             this.button39.TabIndex = 152;
-            this.button39.Tag = "btn_SVOFF";
+            this.button39.Tag = "btn_RobotAlarmRst";
             this.button39.Text = "Alarm Rst";
             this.button39.UseVisualStyleBackColor = true;
+            this.button39.Click += new System.EventHandler(this.button_Click);
+            // 
+            // button41
+            // 
+            this.button41.Font = new System.Drawing.Font("新細明體", 12F);
+            this.button41.Location = new System.Drawing.Point(132, 26);
+            this.button41.Margin = new System.Windows.Forms.Padding(4);
+            this.button41.Name = "button41";
+            this.button41.Size = new System.Drawing.Size(101, 38);
+            this.button41.TabIndex = 154;
+            this.button41.Tag = "btn_RobotStart";
+            this.button41.Text = "Run";
+            this.button41.UseVisualStyleBackColor = true;
+            this.button41.Click += new System.EventHandler(this.button_Click);
             // 
             // tex_SYSMsg
             // 
             this.tex_SYSMsg.BackColor = System.Drawing.SystemColors.WindowText;
             this.tex_SYSMsg.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.tex_SYSMsg.Location = new System.Drawing.Point(1011, 11);
+            this.tex_SYSMsg.Location = new System.Drawing.Point(1004, 11);
             this.tex_SYSMsg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tex_SYSMsg.Multiline = true;
             this.tex_SYSMsg.Name = "tex_SYSMsg";
             this.tex_SYSMsg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tex_SYSMsg.Size = new System.Drawing.Size(382, 116);
+            this.tex_SYSMsg.Size = new System.Drawing.Size(383, 115);
             this.tex_SYSMsg.TabIndex = 185;
+            // 
+            // groupBox19
+            // 
+            this.groupBox19.Controls.Add(this.lab_CurPosSLUData);
+            this.groupBox19.Controls.Add(this.lab_CurPosXYZData);
+            this.groupBox19.Location = new System.Drawing.Point(7, 380);
+            this.groupBox19.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox19.Name = "groupBox19";
+            this.groupBox19.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox19.Size = new System.Drawing.Size(236, 250);
+            this.groupBox19.TabIndex = 184;
+            this.groupBox19.TabStop = false;
+            this.groupBox19.Text = "Cur Position";
+            // 
+            // lab_CurPosSLUData
+            // 
+            this.lab_CurPosSLUData.AutoSize = true;
+            this.lab_CurPosSLUData.Location = new System.Drawing.Point(129, 26);
+            this.lab_CurPosSLUData.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lab_CurPosSLUData.Name = "lab_CurPosSLUData";
+            this.lab_CurPosSLUData.Size = new System.Drawing.Size(90, 15);
+            this.lab_CurPosSLUData.TabIndex = 185;
+            this.lab_CurPosSLUData.Text = "Position(SLU)";
+            // 
+            // lab_CurPosXYZData
+            // 
+            this.lab_CurPosXYZData.AutoSize = true;
+            this.lab_CurPosXYZData.Location = new System.Drawing.Point(9, 26);
+            this.lab_CurPosXYZData.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lab_CurPosXYZData.Name = "lab_CurPosXYZData";
+            this.lab_CurPosXYZData.Size = new System.Drawing.Size(92, 15);
+            this.lab_CurPosXYZData.TabIndex = 184;
+            this.lab_CurPosXYZData.Text = "Position(XYZ)";
             // 
             // YaskawRobot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1405, 795);
+            this.ClientSize = new System.Drawing.Size(1400, 795);
+            this.Controls.Add(this.groupBox19);
             this.Controls.Add(this.tex_SYSMsg);
             this.Controls.Add(this.groupBox18);
             this.Controls.Add(this.tabControl1);
@@ -2363,16 +3714,15 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "YaskawRobot";
             this.Text = "台灣安川電機";
-            this.groupBox2.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
-            this.groupBox16.ResumeLayout(false);
-            this.groupBox16.PerformLayout();
-            this.groupBox15.ResumeLayout(false);
-            this.groupBox15.PerformLayout();
             this.groupBox14.ResumeLayout(false);
             this.groupBox14.PerformLayout();
             this.groupBox13.ResumeLayout(false);
             this.groupBox13.PerformLayout();
+            this.groupBox16.ResumeLayout(false);
+            this.groupBox16.PerformLayout();
+            this.groupBox15.ResumeLayout(false);
+            this.groupBox15.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             this.groupBox9.ResumeLayout(false);
@@ -2382,8 +3732,10 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
+            this.JOG.ResumeLayout(false);
+            this.Position.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.Program.ResumeLayout(false);
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
             this.groupBox12.ResumeLayout(false);
@@ -2399,22 +3751,28 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.JogDataSetting.ResumeLayout(false);
+            this.groupBox21.ResumeLayout(false);
+            this.groupBox21.PerformLayout();
+            this.groupBox20.ResumeLayout(false);
+            this.groupBox20.PerformLayout();
             this.groupBox18.ResumeLayout(false);
+            this.groupBox19.ResumeLayout(false);
+            this.groupBox19.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
 		}
 
 		#endregion
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage JOG;
+        private System.Windows.Forms.TabPage Program;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Label lab_RegData;
@@ -2528,7 +3886,6 @@
         private System.Windows.Forms.TextBox tex_WPointToolNum;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox tex_WPointExPattern;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox15;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label14;
@@ -2583,8 +3940,6 @@
         private System.Windows.Forms.Label lab_OneCycle;
         private System.Windows.Forms.Label lab_Step;
         private System.Windows.Forms.Timer StateTimer;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button37;
         private System.Windows.Forms.Timer JogLoopTimer;
         private System.Windows.Forms.GroupBox groupBox18;
         private System.Windows.Forms.Button button40;
@@ -2592,6 +3947,119 @@
         private System.Windows.Forms.Button button38;
         private System.Windows.Forms.Button button39;
         private System.Windows.Forms.TextBox tex_SYSMsg;
+        private System.Windows.Forms.Button button43;
+        private System.Windows.Forms.Button button44;
+        private System.Windows.Forms.Button button42;
+        private System.Windows.Forms.GroupBox groupBox19;
+        private System.Windows.Forms.Label lab_CurPosXYZData;
+        private System.Windows.Forms.Label lab_CurPosSLUData;
+        private System.Windows.Forms.TabPage Position;
+        private System.Windows.Forms.TextBox tex_OFS_T;
+        private System.Windows.Forms.Button button56;
+        private System.Windows.Forms.Button button57;
+        private System.Windows.Forms.TextBox tex_OFS_B;
+        private System.Windows.Forms.Button button58;
+        private System.Windows.Forms.Button button59;
+        private System.Windows.Forms.TextBox tex_OFS_R;
+        private System.Windows.Forms.Button button60;
+        private System.Windows.Forms.Button button61;
+        private System.Windows.Forms.TextBox tex_OFS_U;
+        private System.Windows.Forms.Button button62;
+        private System.Windows.Forms.Button button67;
+        private System.Windows.Forms.Button button63;
+        private System.Windows.Forms.Button button66;
+        private System.Windows.Forms.TextBox tex_OFS_L;
+        private System.Windows.Forms.TextBox tex_OFS_S;
+        private System.Windows.Forms.Button button64;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.Button button65;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.TextBox tex_OFS_RZ;
+        private System.Windows.Forms.Button button54;
+        private System.Windows.Forms.Button button55;
+        private System.Windows.Forms.TextBox tex_OFS_RY;
+        private System.Windows.Forms.Button button52;
+        private System.Windows.Forms.Button button53;
+        private System.Windows.Forms.TextBox tex_OFS_RX;
+        private System.Windows.Forms.Button button50;
+        private System.Windows.Forms.Button button51;
+        private System.Windows.Forms.TextBox tex_OFS_Z;
+        private System.Windows.Forms.Button button48;
+        private System.Windows.Forms.Button button49;
+        private System.Windows.Forms.TextBox tex_OFS_Y;
+        private System.Windows.Forms.Button button46;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Button button47;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox tex_OFS_X;
+        private System.Windows.Forms.Button button45;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button68;
+        private System.Windows.Forms.Button button69;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TabPage JogDataSetting;
+        private System.Windows.Forms.GroupBox groupBox21;
+        private System.Windows.Forms.Button button71;
+        private System.Windows.Forms.TextBox tex_JogLimM_T;
+        private System.Windows.Forms.TextBox tex_JogLimM_R;
+        private System.Windows.Forms.TextBox tex_JogLimM_B;
+        private System.Windows.Forms.Label label78;
+        private System.Windows.Forms.TextBox tex_JogLimP_R;
+        private System.Windows.Forms.TextBox tex_JogLimM_U;
+        private System.Windows.Forms.Label label80;
+        private System.Windows.Forms.TextBox tex_JogLimP_B;
+        private System.Windows.Forms.TextBox tex_JogLimP_U;
+        private System.Windows.Forms.Label label82;
+        private System.Windows.Forms.Label label93;
+        private System.Windows.Forms.TextBox tex_JogLimM_L;
+        private System.Windows.Forms.Label label84;
+        private System.Windows.Forms.Label label92;
+        private System.Windows.Forms.TextBox tex_JogLimP_T;
+        private System.Windows.Forms.Label label86;
+        private System.Windows.Forms.Label label91;
+        private System.Windows.Forms.Label label87;
+        private System.Windows.Forms.TextBox tex_JogLimM_S;
+        private System.Windows.Forms.Label label88;
+        private System.Windows.Forms.Label label90;
+        private System.Windows.Forms.TextBox tex_JogLimP_S;
+        private System.Windows.Forms.TextBox tex_JogLimP_L;
+        private System.Windows.Forms.Label label89;
+        private System.Windows.Forms.GroupBox groupBox20;
+        private System.Windows.Forms.Button button70;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.Label label71;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.Label label72;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.Label label73;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.Label label74;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.Label label75;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.TextBox tex_JogLimP_X;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.TextBox tex_JogLimP_Y;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.TextBox tex_JogLimM_X;
+        private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.TextBox tex_JogLimP_RZ;
+        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.TextBox tex_JogLimM_Y;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.TextBox tex_JogLimP_Z;
+        private System.Windows.Forms.TextBox tex_JogLimM_RZ;
+        private System.Windows.Forms.TextBox tex_JogLimP_RY;
+        private System.Windows.Forms.TextBox tex_JogLimM_Z;
+        private System.Windows.Forms.TextBox tex_JogLimP_RX;
+        private System.Windows.Forms.TextBox tex_JogLimM_RY;
+        private System.Windows.Forms.TextBox tex_JogLimM_RX;
     }
 }
 

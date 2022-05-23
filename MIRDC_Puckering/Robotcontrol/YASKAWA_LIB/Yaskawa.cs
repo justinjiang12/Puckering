@@ -1050,7 +1050,7 @@ namespace RouteButler_Yaskawa
         /// <param name="_PosNum"></param>
         /// <param name="_posData"></param>
         /// <returns></returns>
-        public int GetCurPosData( ref PosData _posData)
+        public int GetCurPosData(short _type, ref PosData _posData)
         {
 
             int _result;
@@ -1058,17 +1058,20 @@ namespace RouteButler_Yaskawa
             short[] err_code = new short[2];
 
             Connect(RobotIP, "normal");
-            _result = fesIF.RobPosSnglR(101, ref read_data, err_code);
+            if (_type==0){ _result = fesIF.RobPosSnglR(101, ref read_data, err_code);}
+            else { _result = fesIF.RobPosSnglR(1, ref read_data, err_code); }
+            
+            
             _posData = read_data;
             Close();
-
+            /*
             Console.WriteLine("result=0x{0:x2} error_code=0x{1:x4},0x{2:x4}", _result, err_code[0], err_code[1]);
             Console.WriteLine("type={0},形態={1},tool number={2},user number={3},擴張形態={4},1st={5},2nd={6},3rd={7},4th={8},5th={9},6th={10},7th={11},8th={12}",
                                     read_data.type, read_data.pattern, read_data.tool_no, read_data.user_coord_no, read_data.ex_pattern,
                                     read_data.axis[0], read_data.axis[1], read_data.axis[2], read_data.axis[3],
                                     read_data.axis[4], read_data.axis[5], read_data.axis[6], read_data.axis[7]);
 
-
+            */
             if (_result == 0) { return 0; }
             else { return 1; }
         }

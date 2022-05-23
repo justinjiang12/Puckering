@@ -311,9 +311,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 589);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(168, 15);
+            this.label1.Size = new System.Drawing.Size(189, 15);
             this.label1.TabIndex = 28;
-            this.label1.Text = "Yaskawa_IP : 192.168.1.40 ";
+            this.label1.Text = "Yaskawa_IP : 192.168.255.200 ";
             // 
             // label9
             // 
