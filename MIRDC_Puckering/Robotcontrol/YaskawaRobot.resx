@@ -1226,19 +1226,13 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPzRDz/8P8JqRMXEzIVFAAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="RegScanTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>7, 6</value>
-  </metadata>
-  <metadata name="RobotListBoxTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>91, 6</value>
-  </metadata>
   <metadata name="StateTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>218, 6</value>
+    <value>38, 10</value>
   </metadata>
-  <metadata name="JogLoopTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>329, 6</value>
+  <metadata name="WTLoopTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>163, 12</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>45</value>
+    <value>64</value>
   </metadata>
 </root>

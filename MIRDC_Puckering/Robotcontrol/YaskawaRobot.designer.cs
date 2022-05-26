@@ -65,6 +65,7 @@
             this.button36 = new System.Windows.Forms.Button();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
             this.combox_PMovetype = new System.Windows.Forms.ComboBox();
+            this.button43 = new System.Windows.Forms.Button();
             this.label51 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.tex_PosP_Speed = new System.Windows.Forms.TextBox();
@@ -101,13 +102,13 @@
             this.button64 = new System.Windows.Forms.Button();
             this.label62 = new System.Windows.Forms.Label();
             this.button65 = new System.Windows.Forms.Button();
-            this.button43 = new System.Windows.Forms.Button();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.label56 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
             this.tex_PosB_Speed = new System.Windows.Forms.TextBox();
             this.label43 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
+            this.button44 = new System.Windows.Forms.Button();
             this.label42 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
@@ -148,7 +149,6 @@
             this.tex_PosB_X = new System.Windows.Forms.TextBox();
             this.button69 = new System.Windows.Forms.Button();
             this.button68 = new System.Windows.Forms.Button();
-            this.button44 = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.rad_robotJoint = new System.Windows.Forms.RadioButton();
             this.rad_robotxyz = new System.Windows.Forms.RadioButton();
@@ -312,10 +312,78 @@
             this.tex_JogLimP_RX = new System.Windows.Forms.TextBox();
             this.tex_JogLimM_RY = new System.Windows.Forms.TextBox();
             this.tex_JogLimM_RX = new System.Windows.Forms.TextBox();
-            this.RegScanTimer = new System.Windows.Forms.Timer(this.components);
-            this.RobotListBoxTimer = new System.Windows.Forms.Timer(this.components);
+            this.Welding = new System.Windows.Forms.TabPage();
+            this.groupBox25 = new System.Windows.Forms.GroupBox();
+            this.lab_WTAVPReg = new System.Windows.Forms.Label();
+            this.lab_WTACReg = new System.Windows.Forms.Label();
+            this.lab_WTSpeedReg = new System.Windows.Forms.Label();
+            this.lab_WTPSet_Unload = new System.Windows.Forms.Label();
+            this.lab_WTPSet_P2 = new System.Windows.Forms.Label();
+            this.lab_WTPSet_P1 = new System.Windows.Forms.Label();
+            this.lab_WTPSet_Load = new System.Windows.Forms.Label();
+            this.groupBox23 = new System.Windows.Forms.GroupBox();
+            this.groupBox26 = new System.Windows.Forms.GroupBox();
+            this.label105 = new System.Windows.Forms.Label();
+            this.label104 = new System.Windows.Forms.Label();
+            this.label83 = new System.Windows.Forms.Label();
+            this.button13 = new System.Windows.Forms.Button();
+            this.label81 = new System.Windows.Forms.Label();
+            this.tex_WTRedo_X = new System.Windows.Forms.TextBox();
+            this.tex_WTRedo_Z = new System.Windows.Forms.TextBox();
+            this.label76 = new System.Windows.Forms.Label();
+            this.tex_WTRedo_Y = new System.Windows.Forms.TextBox();
+            this.label77 = new System.Windows.Forms.Label();
+            this.label79 = new System.Windows.Forms.Label();
+            this.tex_WTAVP_ULD = new System.Windows.Forms.TextBox();
+            this.label85 = new System.Windows.Forms.Label();
+            this.label95 = new System.Windows.Forms.Label();
+            this.label97 = new System.Windows.Forms.Label();
+            this.tex_WTAC_ULD = new System.Windows.Forms.TextBox();
+            this.tex_WTSpeed_ULD = new System.Windows.Forms.TextBox();
+            this.label100 = new System.Windows.Forms.Label();
+            this.tex_WTAVP_P2 = new System.Windows.Forms.TextBox();
+            this.label94 = new System.Windows.Forms.Label();
+            this.label101 = new System.Windows.Forms.Label();
+            this.tex_WTAVP_P1 = new System.Windows.Forms.TextBox();
+            this.label102 = new System.Windows.Forms.Label();
+            this.label96 = new System.Windows.Forms.Label();
+            this.label103 = new System.Windows.Forms.Label();
+            this.label98 = new System.Windows.Forms.Label();
+            this.tex_WTAC_P2 = new System.Windows.Forms.TextBox();
+            this.label99 = new System.Windows.Forms.Label();
+            this.tex_WTSpeed_P2 = new System.Windows.Forms.TextBox();
+            this.tex_WTAC_P1 = new System.Windows.Forms.TextBox();
+            this.tex_WTSpeed_P1 = new System.Windows.Forms.TextBox();
+            this.btn_WTProgramRun = new System.Windows.Forms.Button();
+            this.lab_WldTestPLoad = new System.Windows.Forms.Label();
+            this.lab_WldTestP1 = new System.Windows.Forms.Label();
+            this.groupBox24 = new System.Windows.Forms.GroupBox();
+            this.rad_WTProgramType2 = new System.Windows.Forms.RadioButton();
+            this.rad_WTProgramType1 = new System.Windows.Forms.RadioButton();
+            this.btn_WTProgramCompile = new System.Windows.Forms.Button();
+            this.lab_WldTestP2 = new System.Windows.Forms.Label();
+            this.lab_WldTestPUnload = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btn_WTTeachP_1 = new System.Windows.Forms.Button();
+            this.btn_WTTeachP_Unload = new System.Windows.Forms.Button();
+            this.btn_WTTeachP_Load = new System.Windows.Forms.Button();
+            this.btn_WTTeachP_2 = new System.Windows.Forms.Button();
+            this.groupBox22 = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.button73 = new System.Windows.Forms.Button();
+            this.button75 = new System.Windows.Forms.Button();
+            this.button76 = new System.Windows.Forms.Button();
+            this.button77 = new System.Windows.Forms.Button();
+            this.button78 = new System.Windows.Forms.Button();
+            this.button79 = new System.Windows.Forms.Button();
+            this.button80 = new System.Windows.Forms.Button();
+            this.button81 = new System.Windows.Forms.Button();
+            this.button82 = new System.Windows.Forms.Button();
+            this.button83 = new System.Windows.Forms.Button();
+            this.button84 = new System.Windows.Forms.Button();
+            this.button85 = new System.Windows.Forms.Button();
             this.StateTimer = new System.Windows.Forms.Timer(this.components);
-            this.JogLoopTimer = new System.Windows.Forms.Timer(this.components);
             this.groupBox18 = new System.Windows.Forms.GroupBox();
             this.button40 = new System.Windows.Forms.Button();
             this.button38 = new System.Windows.Forms.Button();
@@ -325,6 +393,7 @@
             this.groupBox19 = new System.Windows.Forms.GroupBox();
             this.lab_CurPosSLUData = new System.Windows.Forms.Label();
             this.lab_CurPosXYZData = new System.Windows.Forms.Label();
+            this.WTLoopTimer = new System.Windows.Forms.Timer(this.components);
             this.groupBox6.SuspendLayout();
             this.groupBox14.SuspendLayout();
             this.groupBox13.SuspendLayout();
@@ -350,6 +419,13 @@
             this.JogDataSetting.SuspendLayout();
             this.groupBox21.SuspendLayout();
             this.groupBox20.SuspendLayout();
+            this.Welding.SuspendLayout();
+            this.groupBox25.SuspendLayout();
+            this.groupBox23.SuspendLayout();
+            this.groupBox26.SuspendLayout();
+            this.groupBox24.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox22.SuspendLayout();
             this.groupBox18.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.SuspendLayout();
@@ -715,6 +791,7 @@
             // groupBox16
             // 
             this.groupBox16.Controls.Add(this.combox_PMovetype);
+            this.groupBox16.Controls.Add(this.button43);
             this.groupBox16.Controls.Add(this.label51);
             this.groupBox16.Controls.Add(this.button4);
             this.groupBox16.Controls.Add(this.tex_PosP_Speed);
@@ -751,7 +828,7 @@
             this.groupBox16.Controls.Add(this.button64);
             this.groupBox16.Controls.Add(this.label62);
             this.groupBox16.Controls.Add(this.button65);
-            this.groupBox16.Location = new System.Drawing.Point(547, 75);
+            this.groupBox16.Location = new System.Drawing.Point(525, 75);
             this.groupBox16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox16.Name = "groupBox16";
             this.groupBox16.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -775,6 +852,18 @@
             this.combox_PMovetype.Size = new System.Drawing.Size(81, 23);
             this.combox_PMovetype.TabIndex = 184;
             this.combox_PMovetype.Text = "MoveJ";
+            // 
+            // button43
+            // 
+            this.button43.Location = new System.Drawing.Point(327, 17);
+            this.button43.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button43.Name = "button43";
+            this.button43.Size = new System.Drawing.Size(121, 36);
+            this.button43.TabIndex = 207;
+            this.button43.Tag = "btn_GetCPosPP";
+            this.button43.Text = "Get Cur Pos";
+            this.button43.UseVisualStyleBackColor = true;
+            this.button43.Click += new System.EventHandler(this.button_Click);
             // 
             // label51
             // 
@@ -1149,18 +1238,6 @@
             this.button65.UseVisualStyleBackColor = true;
             this.button65.Click += new System.EventHandler(this.button_OFFSET_Click);
             // 
-            // button43
-            // 
-            this.button43.Location = new System.Drawing.Point(547, 23);
-            this.button43.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button43.Name = "button43";
-            this.button43.Size = new System.Drawing.Size(145, 36);
-            this.button43.TabIndex = 207;
-            this.button43.Tag = "btn_GetCPosPP";
-            this.button43.Text = "Get Cur Pos";
-            this.button43.UseVisualStyleBackColor = true;
-            this.button43.Click += new System.EventHandler(this.button_Click);
-            // 
             // groupBox15
             // 
             this.groupBox15.Controls.Add(this.label56);
@@ -1168,6 +1245,7 @@
             this.groupBox15.Controls.Add(this.tex_PosB_Speed);
             this.groupBox15.Controls.Add(this.label43);
             this.groupBox15.Controls.Add(this.label54);
+            this.groupBox15.Controls.Add(this.button44);
             this.groupBox15.Controls.Add(this.label42);
             this.groupBox15.Controls.Add(this.label53);
             this.groupBox15.Controls.Add(this.label50);
@@ -1210,7 +1288,7 @@
             this.groupBox15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox15.Name = "groupBox15";
             this.groupBox15.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox15.Size = new System.Drawing.Size(528, 264);
+            this.groupBox15.Size = new System.Drawing.Size(505, 264);
             this.groupBox15.TabIndex = 183;
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "Base-XYZ";
@@ -1263,6 +1341,18 @@
             this.label54.Size = new System.Drawing.Size(41, 15);
             this.label54.TabIndex = 221;
             this.label54.Text = "(deg.)";
+            // 
+            // button44
+            // 
+            this.button44.Location = new System.Drawing.Point(382, 17);
+            this.button44.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button44.Name = "button44";
+            this.button44.Size = new System.Drawing.Size(111, 35);
+            this.button44.TabIndex = 185;
+            this.button44.Tag = "btn_GetCPosBP";
+            this.button44.Text = "Get Cur Pos";
+            this.button44.UseVisualStyleBackColor = true;
+            this.button44.Click += new System.EventHandler(this.button_Click);
             // 
             // label42
             // 
@@ -1666,10 +1756,10 @@
             // 
             // button69
             // 
-            this.button69.Location = new System.Drawing.Point(88, 23);
+            this.button69.Location = new System.Drawing.Point(113, 29);
             this.button69.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button69.Name = "button69";
-            this.button69.Size = new System.Drawing.Size(76, 36);
+            this.button69.Size = new System.Drawing.Size(95, 36);
             this.button69.TabIndex = 187;
             this.button69.Tag = "btn_GetWeldingPosBP";
             this.button69.Text = "Welding";
@@ -1678,27 +1768,15 @@
             // 
             // button68
             // 
-            this.button68.Location = new System.Drawing.Point(14, 23);
+            this.button68.Location = new System.Drawing.Point(14, 29);
             this.button68.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button68.Name = "button68";
-            this.button68.Size = new System.Drawing.Size(68, 35);
+            this.button68.Size = new System.Drawing.Size(93, 35);
             this.button68.TabIndex = 186;
             this.button68.Tag = "btn_GetHomePosBP";
             this.button68.Text = "Home";
             this.button68.UseVisualStyleBackColor = true;
             this.button68.Click += new System.EventHandler(this.button_Click);
-            // 
-            // button44
-            // 
-            this.button44.Location = new System.Drawing.Point(170, 23);
-            this.button44.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button44.Name = "button44";
-            this.button44.Size = new System.Drawing.Size(97, 35);
-            this.button44.TabIndex = 185;
-            this.button44.Tag = "btn_GetCPosBP";
-            this.button44.Text = "Get Cur Pos";
-            this.button44.UseVisualStyleBackColor = true;
-            this.button44.Click += new System.EventHandler(this.button_Click);
             // 
             // groupBox10
             // 
@@ -1828,8 +1906,8 @@
             this.button23.Tag = "btn_xj3+";
             this.button23.Text = "J3 / Z (+)";
             this.button23.UseVisualStyleBackColor = true;
-            this.button23.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_MouseDown);
-            this.button23.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_MouseUp);
+            this.button23.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseDown);
+            this.button23.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseUp);
             // 
             // button24
             // 
@@ -1841,8 +1919,8 @@
             this.button24.Tag = "btn_xj3-";
             this.button24.Text = "J3 / Z (-)";
             this.button24.UseVisualStyleBackColor = true;
-            this.button24.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_MouseDown);
-            this.button24.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_MouseUp);
+            this.button24.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseDown);
+            this.button24.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseUp);
             // 
             // button27
             // 
@@ -1854,8 +1932,8 @@
             this.button27.Tag = "btn_xj2+";
             this.button27.Text = "J2 / Y (+)";
             this.button27.UseVisualStyleBackColor = true;
-            this.button27.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_MouseDown);
-            this.button27.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_MouseUp);
+            this.button27.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseDown);
+            this.button27.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseUp);
             // 
             // button28
             // 
@@ -1867,8 +1945,8 @@
             this.button28.Tag = "btn_xj2-";
             this.button28.Text = "J2 / Y (-)";
             this.button28.UseVisualStyleBackColor = true;
-            this.button28.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_MouseDown);
-            this.button28.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_MouseUp);
+            this.button28.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseDown);
+            this.button28.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseUp);
             // 
             // button29
             // 
@@ -1880,8 +1958,8 @@
             this.button29.Tag = "btn_xj1+";
             this.button29.Text = "J1 / X (+)";
             this.button29.UseVisualStyleBackColor = true;
-            this.button29.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_MouseDown);
-            this.button29.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_MouseUp);
+            this.button29.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseDown);
+            this.button29.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseUp);
             // 
             // button30
             // 
@@ -1893,8 +1971,8 @@
             this.button30.Tag = "btn_xj1-";
             this.button30.Text = "J1 / X (-)";
             this.button30.UseVisualStyleBackColor = true;
-            this.button30.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_MouseDown);
-            this.button30.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_MouseUp);
+            this.button30.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseDown);
+            this.button30.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseUp);
             // 
             // speed_label
             // 
@@ -2297,6 +2375,7 @@
             this.tabControl1.Controls.Add(this.Position);
             this.tabControl1.Controls.Add(this.Program);
             this.tabControl1.Controls.Add(this.JogDataSetting);
+            this.tabControl1.Controls.Add(this.Welding);
             this.tabControl1.Location = new System.Drawing.Point(256, 132);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
@@ -2332,14 +2411,12 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button69);
-            this.groupBox2.Controls.Add(this.button43);
             this.groupBox2.Controls.Add(this.groupBox16);
             this.groupBox2.Controls.Add(this.button68);
             this.groupBox2.Controls.Add(this.groupBox15);
-            this.groupBox2.Controls.Add(this.button44);
             this.groupBox2.Location = new System.Drawing.Point(17, 18);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1029, 352);
+            this.groupBox2.Size = new System.Drawing.Size(1004, 352);
             this.groupBox2.TabIndex = 185;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Robot Position";
@@ -3570,21 +3647,877 @@
             this.tex_JogLimM_RX.TabIndex = 191;
             this.tex_JogLimM_RX.Text = "1";
             // 
-            // RegScanTimer
+            // Welding
             // 
-            this.RegScanTimer.Tick += new System.EventHandler(this.RegScanTimer_Tick);
+            this.Welding.Controls.Add(this.groupBox25);
+            this.Welding.Controls.Add(this.groupBox23);
+            this.Welding.Controls.Add(this.groupBox22);
+            this.Welding.Location = new System.Drawing.Point(4, 25);
+            this.Welding.Name = "Welding";
+            this.Welding.Size = new System.Drawing.Size(1129, 623);
+            this.Welding.TabIndex = 4;
+            this.Welding.Text = "Welding Test";
+            this.Welding.UseVisualStyleBackColor = true;
             // 
-            // RobotListBoxTimer
+            // groupBox25
             // 
-            this.RobotListBoxTimer.Tick += new System.EventHandler(this.RobotListBoxTimer_Tick);
+            this.groupBox25.Controls.Add(this.lab_WTAVPReg);
+            this.groupBox25.Controls.Add(this.lab_WTACReg);
+            this.groupBox25.Controls.Add(this.lab_WTSpeedReg);
+            this.groupBox25.Controls.Add(this.lab_WTPSet_Unload);
+            this.groupBox25.Controls.Add(this.lab_WTPSet_P2);
+            this.groupBox25.Controls.Add(this.lab_WTPSet_P1);
+            this.groupBox25.Controls.Add(this.lab_WTPSet_Load);
+            this.groupBox25.Location = new System.Drawing.Point(17, 377);
+            this.groupBox25.Name = "groupBox25";
+            this.groupBox25.Size = new System.Drawing.Size(179, 226);
+            this.groupBox25.TabIndex = 194;
+            this.groupBox25.TabStop = false;
+            this.groupBox25.Text = "State";
+            // 
+            // lab_WTAVPReg
+            // 
+            this.lab_WTAVPReg.AutoSize = true;
+            this.lab_WTAVPReg.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_WTAVPReg.Location = new System.Drawing.Point(15, 192);
+            this.lab_WTAVPReg.Name = "lab_WTAVPReg";
+            this.lab_WTAVPReg.Size = new System.Drawing.Size(68, 15);
+            this.lab_WTAVPReg.TabIndex = 214;
+            this.lab_WTAVPReg.Text = "AVP : ***";
+            // 
+            // lab_WTACReg
+            // 
+            this.lab_WTACReg.AutoSize = true;
+            this.lab_WTACReg.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_WTACReg.Location = new System.Drawing.Point(15, 168);
+            this.lab_WTACReg.Name = "lab_WTACReg";
+            this.lab_WTACReg.Size = new System.Drawing.Size(59, 15);
+            this.lab_WTACReg.TabIndex = 213;
+            this.lab_WTACReg.Text = "AC : ***";
+            // 
+            // lab_WTSpeedReg
+            // 
+            this.lab_WTSpeedReg.AutoSize = true;
+            this.lab_WTSpeedReg.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_WTSpeedReg.Location = new System.Drawing.Point(15, 144);
+            this.lab_WTSpeedReg.Name = "lab_WTSpeedReg";
+            this.lab_WTSpeedReg.Size = new System.Drawing.Size(74, 15);
+            this.lab_WTSpeedReg.TabIndex = 212;
+            this.lab_WTSpeedReg.Text = "Speed : ***";
+            // 
+            // lab_WTPSet_Unload
+            // 
+            this.lab_WTPSet_Unload.AutoSize = true;
+            this.lab_WTPSet_Unload.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_WTPSet_Unload.Location = new System.Drawing.Point(15, 104);
+            this.lab_WTPSet_Unload.Name = "lab_WTPSet_Unload";
+            this.lab_WTPSet_Unload.Size = new System.Drawing.Size(124, 15);
+            this.lab_WTPSet_Unload.TabIndex = 211;
+            this.lab_WTPSet_Unload.Text = "Unload Point (State)";
+            // 
+            // lab_WTPSet_P2
+            // 
+            this.lab_WTPSet_P2.AutoSize = true;
+            this.lab_WTPSet_P2.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_WTPSet_P2.Location = new System.Drawing.Point(15, 79);
+            this.lab_WTPSet_P2.Name = "lab_WTPSet_P2";
+            this.lab_WTPSet_P2.Size = new System.Drawing.Size(98, 15);
+            this.lab_WTPSet_P2.TabIndex = 210;
+            this.lab_WTPSet_P2.Text = "P2 Point (State)";
+            // 
+            // lab_WTPSet_P1
+            // 
+            this.lab_WTPSet_P1.AutoSize = true;
+            this.lab_WTPSet_P1.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_WTPSet_P1.Location = new System.Drawing.Point(15, 54);
+            this.lab_WTPSet_P1.Name = "lab_WTPSet_P1";
+            this.lab_WTPSet_P1.Size = new System.Drawing.Size(98, 15);
+            this.lab_WTPSet_P1.TabIndex = 209;
+            this.lab_WTPSet_P1.Text = "P1 Point (State)";
+            // 
+            // lab_WTPSet_Load
+            // 
+            this.lab_WTPSet_Load.AutoSize = true;
+            this.lab_WTPSet_Load.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_WTPSet_Load.Location = new System.Drawing.Point(15, 29);
+            this.lab_WTPSet_Load.Name = "lab_WTPSet_Load";
+            this.lab_WTPSet_Load.Size = new System.Drawing.Size(112, 15);
+            this.lab_WTPSet_Load.TabIndex = 208;
+            this.lab_WTPSet_Load.Text = "Load Point (State)";
+            // 
+            // groupBox23
+            // 
+            this.groupBox23.Controls.Add(this.groupBox26);
+            this.groupBox23.Controls.Add(this.label79);
+            this.groupBox23.Controls.Add(this.tex_WTAVP_ULD);
+            this.groupBox23.Controls.Add(this.label85);
+            this.groupBox23.Controls.Add(this.label95);
+            this.groupBox23.Controls.Add(this.label97);
+            this.groupBox23.Controls.Add(this.tex_WTAC_ULD);
+            this.groupBox23.Controls.Add(this.tex_WTSpeed_ULD);
+            this.groupBox23.Controls.Add(this.label100);
+            this.groupBox23.Controls.Add(this.tex_WTAVP_P2);
+            this.groupBox23.Controls.Add(this.label94);
+            this.groupBox23.Controls.Add(this.label101);
+            this.groupBox23.Controls.Add(this.tex_WTAVP_P1);
+            this.groupBox23.Controls.Add(this.label102);
+            this.groupBox23.Controls.Add(this.label96);
+            this.groupBox23.Controls.Add(this.label103);
+            this.groupBox23.Controls.Add(this.label98);
+            this.groupBox23.Controls.Add(this.tex_WTAC_P2);
+            this.groupBox23.Controls.Add(this.label99);
+            this.groupBox23.Controls.Add(this.tex_WTSpeed_P2);
+            this.groupBox23.Controls.Add(this.tex_WTAC_P1);
+            this.groupBox23.Controls.Add(this.tex_WTSpeed_P1);
+            this.groupBox23.Controls.Add(this.btn_WTProgramRun);
+            this.groupBox23.Controls.Add(this.lab_WldTestPLoad);
+            this.groupBox23.Controls.Add(this.lab_WldTestP1);
+            this.groupBox23.Controls.Add(this.groupBox24);
+            this.groupBox23.Controls.Add(this.lab_WldTestP2);
+            this.groupBox23.Controls.Add(this.lab_WldTestPUnload);
+            this.groupBox23.Controls.Add(this.pictureBox1);
+            this.groupBox23.Controls.Add(this.btn_WTTeachP_1);
+            this.groupBox23.Controls.Add(this.btn_WTTeachP_Unload);
+            this.groupBox23.Controls.Add(this.btn_WTTeachP_Load);
+            this.groupBox23.Controls.Add(this.btn_WTTeachP_2);
+            this.groupBox23.Location = new System.Drawing.Point(202, 13);
+            this.groupBox23.Name = "groupBox23";
+            this.groupBox23.Size = new System.Drawing.Size(907, 590);
+            this.groupBox23.TabIndex = 193;
+            this.groupBox23.TabStop = false;
+            this.groupBox23.Text = "Welding Point Teach";
+            // 
+            // groupBox26
+            // 
+            this.groupBox26.Controls.Add(this.label105);
+            this.groupBox26.Controls.Add(this.label104);
+            this.groupBox26.Controls.Add(this.label83);
+            this.groupBox26.Controls.Add(this.button13);
+            this.groupBox26.Controls.Add(this.label81);
+            this.groupBox26.Controls.Add(this.tex_WTRedo_X);
+            this.groupBox26.Controls.Add(this.tex_WTRedo_Z);
+            this.groupBox26.Controls.Add(this.label76);
+            this.groupBox26.Controls.Add(this.tex_WTRedo_Y);
+            this.groupBox26.Controls.Add(this.label77);
+            this.groupBox26.Location = new System.Drawing.Point(296, 482);
+            this.groupBox26.Name = "groupBox26";
+            this.groupBox26.Size = new System.Drawing.Size(288, 102);
+            this.groupBox26.TabIndex = 235;
+            this.groupBox26.TabStop = false;
+            this.groupBox26.Text = "Redo";
+            // 
+            // label105
+            // 
+            this.label105.AutoSize = true;
+            this.label105.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label105.Location = new System.Drawing.Point(115, 82);
+            this.label105.Name = "label105";
+            this.label105.Size = new System.Drawing.Size(39, 15);
+            this.label105.TabIndex = 238;
+            this.label105.Text = "(mm)";
+            // 
+            // label104
+            // 
+            this.label104.AutoSize = true;
+            this.label104.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label104.Location = new System.Drawing.Point(115, 52);
+            this.label104.Name = "label104";
+            this.label104.Size = new System.Drawing.Size(39, 15);
+            this.label104.TabIndex = 237;
+            this.label104.Text = "(mm)";
+            // 
+            // label83
+            // 
+            this.label83.AutoSize = true;
+            this.label83.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label83.Location = new System.Drawing.Point(115, 25);
+            this.label83.Name = "label83";
+            this.label83.Size = new System.Drawing.Size(39, 15);
+            this.label83.TabIndex = 236;
+            this.label83.Text = "(mm)";
+            // 
+            // button13
+            // 
+            this.button13.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button13.Location = new System.Drawing.Point(160, 14);
+            this.button13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(119, 80);
+            this.button13.TabIndex = 236;
+            this.button13.Tag = "btn_WTProgramRecompile";
+            this.button13.Text = "Recompile";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button_WeldingTest_Click);
+            // 
+            // label81
+            // 
+            this.label81.AutoSize = true;
+            this.label81.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label81.Location = new System.Drawing.Point(17, 21);
+            this.label81.Name = "label81";
+            this.label81.Size = new System.Drawing.Size(33, 15);
+            this.label81.TabIndex = 232;
+            this.label81.Text = "X = ";
+            // 
+            // tex_WTRedo_X
+            // 
+            this.tex_WTRedo_X.Font = new System.Drawing.Font("新細明體", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tex_WTRedo_X.Location = new System.Drawing.Point(61, 17);
+            this.tex_WTRedo_X.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_WTRedo_X.Name = "tex_WTRedo_X";
+            this.tex_WTRedo_X.Size = new System.Drawing.Size(48, 23);
+            this.tex_WTRedo_X.TabIndex = 229;
+            this.tex_WTRedo_X.Text = "100";
+            // 
+            // tex_WTRedo_Z
+            // 
+            this.tex_WTRedo_Z.Font = new System.Drawing.Font("新細明體", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tex_WTRedo_Z.Location = new System.Drawing.Point(61, 74);
+            this.tex_WTRedo_Z.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_WTRedo_Z.Name = "tex_WTRedo_Z";
+            this.tex_WTRedo_Z.Size = new System.Drawing.Size(48, 23);
+            this.tex_WTRedo_Z.TabIndex = 231;
+            this.tex_WTRedo_Z.Text = "100";
+            // 
+            // label76
+            // 
+            this.label76.AutoSize = true;
+            this.label76.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label76.Location = new System.Drawing.Point(17, 78);
+            this.label76.Name = "label76";
+            this.label76.Size = new System.Drawing.Size(32, 15);
+            this.label76.TabIndex = 234;
+            this.label76.Text = "Z = ";
+            // 
+            // tex_WTRedo_Y
+            // 
+            this.tex_WTRedo_Y.Font = new System.Drawing.Font("新細明體", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tex_WTRedo_Y.Location = new System.Drawing.Point(61, 44);
+            this.tex_WTRedo_Y.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_WTRedo_Y.Name = "tex_WTRedo_Y";
+            this.tex_WTRedo_Y.Size = new System.Drawing.Size(48, 23);
+            this.tex_WTRedo_Y.TabIndex = 230;
+            this.tex_WTRedo_Y.Text = "100";
+            // 
+            // label77
+            // 
+            this.label77.AutoSize = true;
+            this.label77.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label77.Location = new System.Drawing.Point(17, 48);
+            this.label77.Name = "label77";
+            this.label77.Size = new System.Drawing.Size(33, 15);
+            this.label77.TabIndex = 233;
+            this.label77.Text = "Y = ";
+            // 
+            // label79
+            // 
+            this.label79.AutoSize = true;
+            this.label79.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label79.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label79.ForeColor = System.Drawing.Color.Red;
+            this.label79.Location = new System.Drawing.Point(138, 320);
+            this.label79.Name = "label79";
+            this.label79.Size = new System.Drawing.Size(45, 22);
+            this.label79.TabIndex = 228;
+            this.label79.Text = "AVP";
+            this.label79.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tex_WTAVP_ULD
+            // 
+            this.tex_WTAVP_ULD.Location = new System.Drawing.Point(189, 321);
+            this.tex_WTAVP_ULD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_WTAVP_ULD.Name = "tex_WTAVP_ULD";
+            this.tex_WTAVP_ULD.Size = new System.Drawing.Size(59, 25);
+            this.tex_WTAVP_ULD.TabIndex = 227;
+            this.tex_WTAVP_ULD.Text = "130";
+            // 
+            // label85
+            // 
+            this.label85.AutoSize = true;
+            this.label85.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label85.Font = new System.Drawing.Font("微軟正黑體", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label85.ForeColor = System.Drawing.Color.Red;
+            this.label85.Location = new System.Drawing.Point(254, 272);
+            this.label85.Name = "label85";
+            this.label85.Size = new System.Drawing.Size(62, 18);
+            this.label85.TabIndex = 224;
+            this.label85.Text = "mm/sec";
+            this.label85.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label95
+            // 
+            this.label95.AutoSize = true;
+            this.label95.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label95.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label95.ForeColor = System.Drawing.Color.Red;
+            this.label95.Location = new System.Drawing.Point(150, 292);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(33, 22);
+            this.label95.TabIndex = 226;
+            this.label95.Text = "AC";
+            this.label95.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label97
+            // 
+            this.label97.AutoSize = true;
+            this.label97.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label97.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label97.ForeColor = System.Drawing.Color.Red;
+            this.label97.Location = new System.Drawing.Point(121, 265);
+            this.label97.Name = "label97";
+            this.label97.Size = new System.Drawing.Size(62, 22);
+            this.label97.TabIndex = 223;
+            this.label97.Text = "Speed";
+            this.label97.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tex_WTAC_ULD
+            // 
+            this.tex_WTAC_ULD.Location = new System.Drawing.Point(189, 291);
+            this.tex_WTAC_ULD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_WTAC_ULD.Name = "tex_WTAC_ULD";
+            this.tex_WTAC_ULD.Size = new System.Drawing.Size(59, 25);
+            this.tex_WTAC_ULD.TabIndex = 225;
+            this.tex_WTAC_ULD.Text = "170";
+            // 
+            // tex_WTSpeed_ULD
+            // 
+            this.tex_WTSpeed_ULD.Location = new System.Drawing.Point(189, 262);
+            this.tex_WTSpeed_ULD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_WTSpeed_ULD.Name = "tex_WTSpeed_ULD";
+            this.tex_WTSpeed_ULD.Size = new System.Drawing.Size(59, 25);
+            this.tex_WTSpeed_ULD.TabIndex = 222;
+            this.tex_WTSpeed_ULD.Text = "100";
+            // 
+            // label100
+            // 
+            this.label100.AutoSize = true;
+            this.label100.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label100.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label100.ForeColor = System.Drawing.Color.Red;
+            this.label100.Location = new System.Drawing.Point(370, 320);
+            this.label100.Name = "label100";
+            this.label100.Size = new System.Drawing.Size(45, 22);
+            this.label100.TabIndex = 221;
+            this.label100.Text = "AVP";
+            this.label100.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tex_WTAVP_P2
+            // 
+            this.tex_WTAVP_P2.Location = new System.Drawing.Point(421, 321);
+            this.tex_WTAVP_P2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_WTAVP_P2.Name = "tex_WTAVP_P2";
+            this.tex_WTAVP_P2.Size = new System.Drawing.Size(59, 25);
+            this.tex_WTAVP_P2.TabIndex = 220;
+            this.tex_WTAVP_P2.Text = "100";
+            // 
+            // label94
+            // 
+            this.label94.AutoSize = true;
+            this.label94.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label94.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label94.ForeColor = System.Drawing.Color.Red;
+            this.label94.Location = new System.Drawing.Point(599, 323);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(45, 22);
+            this.label94.TabIndex = 221;
+            this.label94.Text = "AVP";
+            this.label94.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label101
+            // 
+            this.label101.AutoSize = true;
+            this.label101.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label101.Font = new System.Drawing.Font("微軟正黑體", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label101.ForeColor = System.Drawing.Color.Red;
+            this.label101.Location = new System.Drawing.Point(486, 272);
+            this.label101.Name = "label101";
+            this.label101.Size = new System.Drawing.Size(62, 18);
+            this.label101.TabIndex = 217;
+            this.label101.Text = "mm/sec";
+            this.label101.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tex_WTAVP_P1
+            // 
+            this.tex_WTAVP_P1.Location = new System.Drawing.Point(650, 324);
+            this.tex_WTAVP_P1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_WTAVP_P1.Name = "tex_WTAVP_P1";
+            this.tex_WTAVP_P1.Size = new System.Drawing.Size(59, 25);
+            this.tex_WTAVP_P1.TabIndex = 220;
+            this.tex_WTAVP_P1.Text = "150";
+            // 
+            // label102
+            // 
+            this.label102.AutoSize = true;
+            this.label102.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label102.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label102.ForeColor = System.Drawing.Color.Red;
+            this.label102.Location = new System.Drawing.Point(382, 292);
+            this.label102.Name = "label102";
+            this.label102.Size = new System.Drawing.Size(33, 22);
+            this.label102.TabIndex = 219;
+            this.label102.Text = "AC";
+            this.label102.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label96
+            // 
+            this.label96.AutoSize = true;
+            this.label96.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label96.Font = new System.Drawing.Font("微軟正黑體", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label96.ForeColor = System.Drawing.Color.Red;
+            this.label96.Location = new System.Drawing.Point(715, 275);
+            this.label96.Name = "label96";
+            this.label96.Size = new System.Drawing.Size(62, 18);
+            this.label96.TabIndex = 217;
+            this.label96.Text = "mm/sec";
+            this.label96.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label103
+            // 
+            this.label103.AutoSize = true;
+            this.label103.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label103.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label103.ForeColor = System.Drawing.Color.Red;
+            this.label103.Location = new System.Drawing.Point(353, 265);
+            this.label103.Name = "label103";
+            this.label103.Size = new System.Drawing.Size(62, 22);
+            this.label103.TabIndex = 216;
+            this.label103.Text = "Speed";
+            this.label103.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label98
+            // 
+            this.label98.AutoSize = true;
+            this.label98.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label98.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label98.ForeColor = System.Drawing.Color.Red;
+            this.label98.Location = new System.Drawing.Point(611, 295);
+            this.label98.Name = "label98";
+            this.label98.Size = new System.Drawing.Size(33, 22);
+            this.label98.TabIndex = 219;
+            this.label98.Text = "AC";
+            this.label98.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tex_WTAC_P2
+            // 
+            this.tex_WTAC_P2.Location = new System.Drawing.Point(421, 291);
+            this.tex_WTAC_P2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_WTAC_P2.Name = "tex_WTAC_P2";
+            this.tex_WTAC_P2.Size = new System.Drawing.Size(59, 25);
+            this.tex_WTAC_P2.TabIndex = 218;
+            this.tex_WTAC_P2.Text = "150";
+            // 
+            // label99
+            // 
+            this.label99.AutoSize = true;
+            this.label99.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label99.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label99.ForeColor = System.Drawing.Color.Red;
+            this.label99.Location = new System.Drawing.Point(582, 268);
+            this.label99.Name = "label99";
+            this.label99.Size = new System.Drawing.Size(62, 22);
+            this.label99.TabIndex = 216;
+            this.label99.Text = "Speed";
+            this.label99.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tex_WTSpeed_P2
+            // 
+            this.tex_WTSpeed_P2.Location = new System.Drawing.Point(421, 262);
+            this.tex_WTSpeed_P2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_WTSpeed_P2.Name = "tex_WTSpeed_P2";
+            this.tex_WTSpeed_P2.Size = new System.Drawing.Size(59, 25);
+            this.tex_WTSpeed_P2.TabIndex = 215;
+            this.tex_WTSpeed_P2.Text = "100";
+            // 
+            // tex_WTAC_P1
+            // 
+            this.tex_WTAC_P1.Location = new System.Drawing.Point(650, 294);
+            this.tex_WTAC_P1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_WTAC_P1.Name = "tex_WTAC_P1";
+            this.tex_WTAC_P1.Size = new System.Drawing.Size(59, 25);
+            this.tex_WTAC_P1.TabIndex = 218;
+            this.tex_WTAC_P1.Text = "180";
+            // 
+            // tex_WTSpeed_P1
+            // 
+            this.tex_WTSpeed_P1.Location = new System.Drawing.Point(650, 265);
+            this.tex_WTSpeed_P1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tex_WTSpeed_P1.Name = "tex_WTSpeed_P1";
+            this.tex_WTSpeed_P1.Size = new System.Drawing.Size(59, 25);
+            this.tex_WTSpeed_P1.TabIndex = 215;
+            this.tex_WTSpeed_P1.Text = "100";
+            // 
+            // btn_WTProgramRun
+            // 
+            this.btn_WTProgramRun.Font = new System.Drawing.Font("微軟正黑體", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btn_WTProgramRun.Location = new System.Drawing.Point(748, 482);
+            this.btn_WTProgramRun.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_WTProgramRun.Name = "btn_WTProgramRun";
+            this.btn_WTProgramRun.Size = new System.Drawing.Size(131, 102);
+            this.btn_WTProgramRun.TabIndex = 197;
+            this.btn_WTProgramRun.Tag = "btn_WTProgramRun";
+            this.btn_WTProgramRun.Text = "Run";
+            this.btn_WTProgramRun.UseVisualStyleBackColor = true;
+            this.btn_WTProgramRun.Click += new System.EventHandler(this.button_WeldingTest_Click);
+            // 
+            // lab_WldTestPLoad
+            // 
+            this.lab_WldTestPLoad.AutoSize = true;
+            this.lab_WldTestPLoad.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_WldTestPLoad.Location = new System.Drawing.Point(755, 24);
+            this.lab_WldTestPLoad.Name = "lab_WldTestPLoad";
+            this.lab_WldTestPLoad.Size = new System.Drawing.Size(91, 120);
+            this.lab_WldTestPLoad.TabIndex = 194;
+            this.lab_WldTestPLoad.Text = "P[002] = Load\r\n\r\nX = ***\r\nY = ***\r\nZ = ***\r\nRX = ***\r\nRY = ***\r\nRZ = ***";
+            // 
+            // lab_WldTestP1
+            // 
+            this.lab_WldTestP1.AutoSize = true;
+            this.lab_WldTestP1.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_WldTestP1.Location = new System.Drawing.Point(520, 24);
+            this.lab_WldTestP1.Name = "lab_WldTestP1";
+            this.lab_WldTestP1.Size = new System.Drawing.Size(124, 120);
+            this.lab_WldTestP1.TabIndex = 193;
+            this.lab_WldTestP1.Text = "P[003] = Welding_1\r\n\r\nX = ***\r\nY = ***\r\nZ = ***\r\nRX = ***\r\nRY = ***\r\nRZ = ***";
+            // 
+            // groupBox24
+            // 
+            this.groupBox24.Controls.Add(this.rad_WTProgramType2);
+            this.groupBox24.Controls.Add(this.rad_WTProgramType1);
+            this.groupBox24.Controls.Add(this.btn_WTProgramCompile);
+            this.groupBox24.Location = new System.Drawing.Point(28, 482);
+            this.groupBox24.Name = "groupBox24";
+            this.groupBox24.Size = new System.Drawing.Size(262, 102);
+            this.groupBox24.TabIndex = 195;
+            this.groupBox24.TabStop = false;
+            this.groupBox24.Text = "Program type";
+            // 
+            // rad_WTProgramType2
+            // 
+            this.rad_WTProgramType2.AutoSize = true;
+            this.rad_WTProgramType2.Font = new System.Drawing.Font("新細明體", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rad_WTProgramType2.Location = new System.Drawing.Point(14, 44);
+            this.rad_WTProgramType2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rad_WTProgramType2.Name = "rad_WTProgramType2";
+            this.rad_WTProgramType2.Size = new System.Drawing.Size(110, 18);
+            this.rad_WTProgramType2.TabIndex = 16;
+            this.rad_WTProgramType2.Tag = "rad_robotAxis";
+            this.rad_WTProgramType2.Text = "Compile+Load";
+            this.rad_WTProgramType2.UseVisualStyleBackColor = true;
+            // 
+            // rad_WTProgramType1
+            // 
+            this.rad_WTProgramType1.AutoSize = true;
+            this.rad_WTProgramType1.Checked = true;
+            this.rad_WTProgramType1.Font = new System.Drawing.Font("新細明體", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rad_WTProgramType1.Location = new System.Drawing.Point(14, 21);
+            this.rad_WTProgramType1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rad_WTProgramType1.Name = "rad_WTProgramType1";
+            this.rad_WTProgramType1.Size = new System.Drawing.Size(75, 18);
+            this.rad_WTProgramType1.TabIndex = 15;
+            this.rad_WTProgramType1.TabStop = true;
+            this.rad_WTProgramType1.Text = "Compile";
+            this.rad_WTProgramType1.UseVisualStyleBackColor = true;
+            // 
+            // btn_WTProgramCompile
+            // 
+            this.btn_WTProgramCompile.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btn_WTProgramCompile.Location = new System.Drawing.Point(143, 14);
+            this.btn_WTProgramCompile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_WTProgramCompile.Name = "btn_WTProgramCompile";
+            this.btn_WTProgramCompile.Size = new System.Drawing.Size(113, 80);
+            this.btn_WTProgramCompile.TabIndex = 196;
+            this.btn_WTProgramCompile.Tag = "btn_WTProgramCompile";
+            this.btn_WTProgramCompile.Text = "Compile";
+            this.btn_WTProgramCompile.UseVisualStyleBackColor = true;
+            this.btn_WTProgramCompile.Click += new System.EventHandler(this.button_WeldingTest_Click);
+            // 
+            // lab_WldTestP2
+            // 
+            this.lab_WldTestP2.AutoSize = true;
+            this.lab_WldTestP2.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_WldTestP2.Location = new System.Drawing.Point(293, 24);
+            this.lab_WldTestP2.Name = "lab_WldTestP2";
+            this.lab_WldTestP2.Size = new System.Drawing.Size(124, 120);
+            this.lab_WldTestP2.TabIndex = 192;
+            this.lab_WldTestP2.Text = "P[004] = Welding_2\r\n\r\nX = ***\r\nY = ***\r\nZ = ***\r\nRX = ***\r\nRY = ***\r\nRZ = ***";
+            // 
+            // lab_WldTestPUnload
+            // 
+            this.lab_WldTestPUnload.AutoSize = true;
+            this.lab_WldTestPUnload.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_WldTestPUnload.Location = new System.Drawing.Point(70, 24);
+            this.lab_WldTestPUnload.Name = "lab_WldTestPUnload";
+            this.lab_WldTestPUnload.Size = new System.Drawing.Size(103, 120);
+            this.lab_WldTestPUnload.TabIndex = 191;
+            this.lab_WldTestPUnload.Text = "P[005] = Unload\r\n\r\nX = ***\r\nY = ***\r\nZ = ***\r\nRX = ***\r\nRY = ***\r\nRZ = ***";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::MIRDC_Puckering.Properties.Resources.Welding_2;
+            this.pictureBox1.Location = new System.Drawing.Point(28, 200);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(851, 273);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btn_WTTeachP_1
+            // 
+            this.btn_WTTeachP_1.Location = new System.Drawing.Point(493, 154);
+            this.btn_WTTeachP_1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_WTTeachP_1.Name = "btn_WTTeachP_1";
+            this.btn_WTTeachP_1.Size = new System.Drawing.Size(151, 37);
+            this.btn_WTTeachP_1.TabIndex = 182;
+            this.btn_WTTeachP_1.Tag = "btn_WTTeachP_1";
+            this.btn_WTTeachP_1.Text = "Teach (Welding_1)";
+            this.btn_WTTeachP_1.UseVisualStyleBackColor = true;
+            this.btn_WTTeachP_1.Click += new System.EventHandler(this.button_WeldingTest_Click);
+            // 
+            // btn_WTTeachP_Unload
+            // 
+            this.btn_WTTeachP_Unload.Location = new System.Drawing.Point(54, 154);
+            this.btn_WTTeachP_Unload.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_WTTeachP_Unload.Name = "btn_WTTeachP_Unload";
+            this.btn_WTTeachP_Unload.Size = new System.Drawing.Size(117, 37);
+            this.btn_WTTeachP_Unload.TabIndex = 188;
+            this.btn_WTTeachP_Unload.Tag = "btn_WTTeachP_Unload";
+            this.btn_WTTeachP_Unload.Text = "Teach (Unload)";
+            this.btn_WTTeachP_Unload.UseVisualStyleBackColor = true;
+            this.btn_WTTeachP_Unload.Click += new System.EventHandler(this.button_WeldingTest_Click);
+            // 
+            // btn_WTTeachP_Load
+            // 
+            this.btn_WTTeachP_Load.Location = new System.Drawing.Point(737, 154);
+            this.btn_WTTeachP_Load.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_WTTeachP_Load.Name = "btn_WTTeachP_Load";
+            this.btn_WTTeachP_Load.Size = new System.Drawing.Size(111, 37);
+            this.btn_WTTeachP_Load.TabIndex = 184;
+            this.btn_WTTeachP_Load.Tag = "btn_WTTeachP_Load";
+            this.btn_WTTeachP_Load.Text = "Teach (Load)";
+            this.btn_WTTeachP_Load.UseVisualStyleBackColor = true;
+            this.btn_WTTeachP_Load.Click += new System.EventHandler(this.button_WeldingTest_Click);
+            // 
+            // btn_WTTeachP_2
+            // 
+            this.btn_WTTeachP_2.Location = new System.Drawing.Point(272, 154);
+            this.btn_WTTeachP_2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_WTTeachP_2.Name = "btn_WTTeachP_2";
+            this.btn_WTTeachP_2.Size = new System.Drawing.Size(138, 37);
+            this.btn_WTTeachP_2.TabIndex = 186;
+            this.btn_WTTeachP_2.Tag = "btn_WTTeachP_2";
+            this.btn_WTTeachP_2.Text = "Teach (Welding_2)";
+            this.btn_WTTeachP_2.UseVisualStyleBackColor = true;
+            this.btn_WTTeachP_2.Click += new System.EventHandler(this.button_WeldingTest_Click);
+            // 
+            // groupBox22
+            // 
+            this.groupBox22.Controls.Add(this.radioButton1);
+            this.groupBox22.Controls.Add(this.radioButton2);
+            this.groupBox22.Controls.Add(this.button73);
+            this.groupBox22.Controls.Add(this.button75);
+            this.groupBox22.Controls.Add(this.button76);
+            this.groupBox22.Controls.Add(this.button77);
+            this.groupBox22.Controls.Add(this.button78);
+            this.groupBox22.Controls.Add(this.button79);
+            this.groupBox22.Controls.Add(this.button80);
+            this.groupBox22.Controls.Add(this.button81);
+            this.groupBox22.Controls.Add(this.button82);
+            this.groupBox22.Controls.Add(this.button83);
+            this.groupBox22.Controls.Add(this.button84);
+            this.groupBox22.Controls.Add(this.button85);
+            this.groupBox22.Location = new System.Drawing.Point(17, 13);
+            this.groupBox22.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox22.Name = "groupBox22";
+            this.groupBox22.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox22.Size = new System.Drawing.Size(179, 352);
+            this.groupBox22.TabIndex = 192;
+            this.groupBox22.TabStop = false;
+            this.groupBox22.Text = "JOG";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(9, 63);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(112, 19);
+            this.radioButton1.TabIndex = 14;
+            this.radioButton1.Tag = "rad_robotAxis";
+            this.radioButton1.Text = "< J1 , J2 , J3 >";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Checked = true;
+            this.radioButton2.Location = new System.Drawing.Point(9, 32);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(105, 19);
+            this.radioButton2.TabIndex = 10;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "< X , Y , Z >";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // button73
+            // 
+            this.button73.Location = new System.Drawing.Point(91, 304);
+            this.button73.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button73.Name = "button73";
+            this.button73.Size = new System.Drawing.Size(79, 38);
+            this.button73.TabIndex = 13;
+            this.button73.Tag = "btn_xj6+";
+            this.button73.Text = "J6 / C (+)";
+            this.button73.UseVisualStyleBackColor = true;
+            this.button73.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseDown);
+            this.button73.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseUp);
+            // 
+            // button75
+            // 
+            this.button75.Location = new System.Drawing.Point(6, 304);
+            this.button75.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button75.Name = "button75";
+            this.button75.Size = new System.Drawing.Size(79, 38);
+            this.button75.TabIndex = 12;
+            this.button75.Tag = "btn_xj6-";
+            this.button75.Text = "J6 / C (-)";
+            this.button75.UseVisualStyleBackColor = true;
+            this.button75.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseDown);
+            this.button75.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseUp);
+            // 
+            // button76
+            // 
+            this.button76.Location = new System.Drawing.Point(91, 262);
+            this.button76.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button76.Name = "button76";
+            this.button76.Size = new System.Drawing.Size(79, 38);
+            this.button76.TabIndex = 11;
+            this.button76.Tag = "btn_xj5+";
+            this.button76.Text = "J5 / B (+)";
+            this.button76.UseVisualStyleBackColor = true;
+            this.button76.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseDown);
+            this.button76.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseUp);
+            // 
+            // button77
+            // 
+            this.button77.Location = new System.Drawing.Point(6, 262);
+            this.button77.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button77.Name = "button77";
+            this.button77.Size = new System.Drawing.Size(79, 38);
+            this.button77.TabIndex = 10;
+            this.button77.Tag = "btn_xj5-";
+            this.button77.Text = "J5 / B (-)";
+            this.button77.UseVisualStyleBackColor = true;
+            this.button77.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseDown);
+            this.button77.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseUp);
+            // 
+            // button78
+            // 
+            this.button78.Location = new System.Drawing.Point(91, 220);
+            this.button78.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button78.Name = "button78";
+            this.button78.Size = new System.Drawing.Size(79, 38);
+            this.button78.TabIndex = 9;
+            this.button78.Tag = "btn_xj4+";
+            this.button78.Text = "J4 / A (+)";
+            this.button78.UseVisualStyleBackColor = true;
+            this.button78.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseDown);
+            this.button78.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseUp);
+            // 
+            // button79
+            // 
+            this.button79.Location = new System.Drawing.Point(6, 220);
+            this.button79.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button79.Name = "button79";
+            this.button79.Size = new System.Drawing.Size(79, 38);
+            this.button79.TabIndex = 8;
+            this.button79.Tag = "btn_xj4-";
+            this.button79.Text = "J4 / A (-)";
+            this.button79.UseVisualStyleBackColor = true;
+            this.button79.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseDown);
+            this.button79.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseUp);
+            // 
+            // button80
+            // 
+            this.button80.Location = new System.Drawing.Point(91, 178);
+            this.button80.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button80.Name = "button80";
+            this.button80.Size = new System.Drawing.Size(79, 38);
+            this.button80.TabIndex = 7;
+            this.button80.Tag = "btn_xj3+";
+            this.button80.Text = "J3 / Z (+)";
+            this.button80.UseVisualStyleBackColor = true;
+            this.button80.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseDown);
+            this.button80.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseUp);
+            // 
+            // button81
+            // 
+            this.button81.Location = new System.Drawing.Point(6, 178);
+            this.button81.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button81.Name = "button81";
+            this.button81.Size = new System.Drawing.Size(79, 38);
+            this.button81.TabIndex = 6;
+            this.button81.Tag = "btn_xj3-";
+            this.button81.Text = "J3 / Z (-)";
+            this.button81.UseVisualStyleBackColor = true;
+            this.button81.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseDown);
+            this.button81.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseUp);
+            // 
+            // button82
+            // 
+            this.button82.Location = new System.Drawing.Point(91, 135);
+            this.button82.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button82.Name = "button82";
+            this.button82.Size = new System.Drawing.Size(79, 38);
+            this.button82.TabIndex = 5;
+            this.button82.Tag = "btn_xj2+";
+            this.button82.Text = "J2 / Y (+)";
+            this.button82.UseVisualStyleBackColor = true;
+            this.button82.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseDown);
+            this.button82.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseUp);
+            // 
+            // button83
+            // 
+            this.button83.Location = new System.Drawing.Point(6, 135);
+            this.button83.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button83.Name = "button83";
+            this.button83.Size = new System.Drawing.Size(79, 38);
+            this.button83.TabIndex = 4;
+            this.button83.Tag = "btn_xj2-";
+            this.button83.Text = "J2 / Y (-)";
+            this.button83.UseVisualStyleBackColor = true;
+            this.button83.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseDown);
+            this.button83.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseUp);
+            // 
+            // button84
+            // 
+            this.button84.Location = new System.Drawing.Point(91, 93);
+            this.button84.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button84.Name = "button84";
+            this.button84.Size = new System.Drawing.Size(79, 38);
+            this.button84.TabIndex = 3;
+            this.button84.Tag = "btn_xj1+";
+            this.button84.Text = "J1 / X (+)";
+            this.button84.UseVisualStyleBackColor = true;
+            this.button84.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseDown);
+            this.button84.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseUp);
+            // 
+            // button85
+            // 
+            this.button85.Location = new System.Drawing.Point(6, 93);
+            this.button85.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button85.Name = "button85";
+            this.button85.Size = new System.Drawing.Size(79, 38);
+            this.button85.TabIndex = 2;
+            this.button85.Tag = "btn_xj1-";
+            this.button85.Text = "J1 / X (-)";
+            this.button85.UseVisualStyleBackColor = true;
+            this.button85.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseDown);
+            this.button85.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button_JogMouseUp);
             // 
             // StateTimer
             // 
             this.StateTimer.Tick += new System.EventHandler(this.StateTimer_Tick);
-            // 
-            // JogLoopTimer
-            // 
-            this.JogLoopTimer.Tick += new System.EventHandler(this.JogLoopTimer_Tick);
             // 
             // groupBox18
             // 
@@ -3700,6 +4633,10 @@
             this.lab_CurPosXYZData.TabIndex = 184;
             this.lab_CurPosXYZData.Text = "Position(XYZ)";
             // 
+            // WTLoopTimer
+            // 
+            this.WTLoopTimer.Tick += new System.EventHandler(this.WTLoopTimer_Tick);
+            // 
             // YaskawRobot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -3756,6 +4693,18 @@
             this.groupBox21.PerformLayout();
             this.groupBox20.ResumeLayout(false);
             this.groupBox20.PerformLayout();
+            this.Welding.ResumeLayout(false);
+            this.groupBox25.ResumeLayout(false);
+            this.groupBox25.PerformLayout();
+            this.groupBox23.ResumeLayout(false);
+            this.groupBox23.PerformLayout();
+            this.groupBox26.ResumeLayout(false);
+            this.groupBox26.PerformLayout();
+            this.groupBox24.ResumeLayout(false);
+            this.groupBox24.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox22.ResumeLayout(false);
+            this.groupBox22.PerformLayout();
             this.groupBox18.ResumeLayout(false);
             this.groupBox19.ResumeLayout(false);
             this.groupBox19.PerformLayout();
@@ -3785,7 +4734,6 @@
         private System.Windows.Forms.TextBox tex_RegTimerScan;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Timer RegScanTimer;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.RadioButton rad_robotJoint;
         private System.Windows.Forms.RadioButton rad_robotxyz;
@@ -3803,7 +4751,6 @@
         private System.Windows.Forms.Button button30;
         private System.Windows.Forms.Label speed_label;
         private System.Windows.Forms.HScrollBar speed_Scroll;
-        private System.Windows.Forms.Timer RobotListBoxTimer;
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.GroupBox groupBox12;
         private System.Windows.Forms.ComboBox comboBox_RobotFile;
@@ -3940,7 +4887,6 @@
         private System.Windows.Forms.Label lab_OneCycle;
         private System.Windows.Forms.Label lab_Step;
         private System.Windows.Forms.Timer StateTimer;
-        private System.Windows.Forms.Timer JogLoopTimer;
         private System.Windows.Forms.GroupBox groupBox18;
         private System.Windows.Forms.Button button40;
         private System.Windows.Forms.Button button41;
@@ -4060,6 +5006,78 @@
         private System.Windows.Forms.TextBox tex_JogLimP_RX;
         private System.Windows.Forms.TextBox tex_JogLimM_RY;
         private System.Windows.Forms.TextBox tex_JogLimM_RX;
+        private System.Windows.Forms.TabPage Welding;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lab_WldTestPUnload;
+        private System.Windows.Forms.Button btn_WTTeachP_Unload;
+        private System.Windows.Forms.Button btn_WTTeachP_2;
+        private System.Windows.Forms.Button btn_WTTeachP_Load;
+        private System.Windows.Forms.Button btn_WTTeachP_1;
+        private System.Windows.Forms.Button btn_WTProgramCompile;
+        private System.Windows.Forms.GroupBox groupBox24;
+        private System.Windows.Forms.RadioButton rad_WTProgramType2;
+        private System.Windows.Forms.RadioButton rad_WTProgramType1;
+        private System.Windows.Forms.GroupBox groupBox23;
+        private System.Windows.Forms.Label lab_WldTestPLoad;
+        private System.Windows.Forms.Label lab_WldTestP1;
+        private System.Windows.Forms.Label lab_WldTestP2;
+        private System.Windows.Forms.GroupBox groupBox22;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.Button button73;
+        private System.Windows.Forms.Button button75;
+        private System.Windows.Forms.Button button76;
+        private System.Windows.Forms.Button button77;
+        private System.Windows.Forms.Button button78;
+        private System.Windows.Forms.Button button79;
+        private System.Windows.Forms.Button button80;
+        private System.Windows.Forms.Button button81;
+        private System.Windows.Forms.Button button82;
+        private System.Windows.Forms.Button button83;
+        private System.Windows.Forms.Button button84;
+        private System.Windows.Forms.Button button85;
+        private System.Windows.Forms.Label label100;
+        private System.Windows.Forms.TextBox tex_WTAVP_P2;
+        private System.Windows.Forms.Label label94;
+        private System.Windows.Forms.Label label101;
+        private System.Windows.Forms.TextBox tex_WTAVP_P1;
+        private System.Windows.Forms.Label label102;
+        private System.Windows.Forms.Label label96;
+        private System.Windows.Forms.Label label103;
+        private System.Windows.Forms.Label label98;
+        private System.Windows.Forms.TextBox tex_WTAC_P2;
+        private System.Windows.Forms.Label label99;
+        private System.Windows.Forms.TextBox tex_WTSpeed_P2;
+        private System.Windows.Forms.TextBox tex_WTAC_P1;
+        private System.Windows.Forms.TextBox tex_WTSpeed_P1;
+        private System.Windows.Forms.Button btn_WTProgramRun;
+        private System.Windows.Forms.Label label79;
+        private System.Windows.Forms.TextBox tex_WTAVP_ULD;
+        private System.Windows.Forms.Label label85;
+        private System.Windows.Forms.Label label95;
+        private System.Windows.Forms.Label label97;
+        private System.Windows.Forms.TextBox tex_WTAC_ULD;
+        private System.Windows.Forms.TextBox tex_WTSpeed_ULD;
+        private System.Windows.Forms.GroupBox groupBox25;
+        private System.Windows.Forms.Label lab_WTPSet_Unload;
+        private System.Windows.Forms.Label lab_WTPSet_P2;
+        private System.Windows.Forms.Label lab_WTPSet_P1;
+        private System.Windows.Forms.Label lab_WTPSet_Load;
+        private System.Windows.Forms.GroupBox groupBox26;
+        private System.Windows.Forms.Label label105;
+        private System.Windows.Forms.Label label104;
+        private System.Windows.Forms.Label label83;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Label label81;
+        private System.Windows.Forms.TextBox tex_WTRedo_X;
+        private System.Windows.Forms.TextBox tex_WTRedo_Z;
+        private System.Windows.Forms.Label label76;
+        private System.Windows.Forms.TextBox tex_WTRedo_Y;
+        private System.Windows.Forms.Label label77;
+        private System.Windows.Forms.Timer WTLoopTimer;
+        private System.Windows.Forms.Label lab_WTAVPReg;
+        private System.Windows.Forms.Label lab_WTACReg;
+        private System.Windows.Forms.Label lab_WTSpeedReg;
     }
 }
 

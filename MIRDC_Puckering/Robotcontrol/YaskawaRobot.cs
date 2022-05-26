@@ -18,21 +18,32 @@ namespace FesIF_Demo
         private int _Welding=0;
         private int _TimmerCunt = 0;
         int label;
+        bool _connectState = false;
 
         DirectoryInfo dirInfo;
         FileSystemWatcher _watch = new FileSystemWatcher();
         BindingList<PathData> PathDataList = new BindingList<PathData>();
+        
+        #region PosData data 
         PosData _GetPosData = new PosData();
         PosData _GetCurXYZPosData = new PosData();
         PosData _GetCurSLUPosData = new PosData();
         PosData _GetJOGCurXYZPosData = new PosData();
         PosData _GetJOGCurSLUPosData = new PosData();
+        PosData _HomePosData = new PosData();
+        PosData _WTData_Load = new PosData();
+        PosData _WTData_P1 = new PosData();
+        PosData _WTData_P2 = new PosData();
+        PosData _WTData_Unload = new PosData();
+        #endregion
 
+        bool _WTLoad = false, _WTP1 = false, _WTP2 = false, _WTUnload = false;
 
         //Robot State
-        string _Step = string.Empty, _OneCycle = string.Empty, _AutomaticAndContinuos = string.Empty, _isBusy = string.Empty, _InGuardSafeOperation = string.Empty,
-            _Teach = string.Empty, _Play = string.Empty, _CommendRemote = string.Empty, _HoldON = string.Empty, _HoldStatusE = string.Empty,
-            _HoldStatusC = string.Empty, _Alarm = string.Empty, _Error = string.Empty, _ServoON = string.Empty;
+        string _Step = string.Empty, _OneCycle = string.Empty, _AutomaticAndContinuos = string.Empty, _isBusy = string.Empty, 
+                _InGuardSafeOperation = string.Empty,_Teach = string.Empty, _Play = string.Empty, _CommendRemote = string.Empty,
+                _HoldON = string.Empty, _HoldStatusE = string.Empty,_HoldStatusC = string.Empty, _Alarm = string.Empty,
+                _Error = string.Empty, _ServoON = string.Empty;
 
         //Jog Lim (-)
         int _JogLimM_X = 0, _JogLimM_Y = 0, _JogLimM_Z = 0, _JogLimM_RX = 0, _JogLimM_RY = 0, _JogLimM_RZ = 0, 
@@ -40,8 +51,6 @@ namespace FesIF_Demo
         //Jog Lim (+)
         int _JogLimP_X = 0, _JogLimP_Y = 0, _JogLimP_Z = 0, _JogLimP_RX = 0, _JogLimP_RY = 0, _JogLimP_RZ = 0,
             _JogLimP_S = 0, _JogLimP_L = 0, _JogLimP_U = 0, _JogLimP_R = 0, _JogLimP_B = 0, _JogLimP_T = 0;
-
-
 
         #endregion
 
@@ -52,6 +61,7 @@ namespace FesIF_Demo
         {
             InitializeComponent();
             PCFileRefresh();
+            SetHomePoint();
         }
 
         #region 控制物件管理
@@ -76,6 +86,8 @@ namespace FesIF_Demo
                         _rslt = YaskawaController.Connect(textBox1.Text);
                         RobotProgramRefresh();
                         StateTimer.Enabled = true;
+                        WTLoopTimer.Enabled = true;
+                        _connectState = true;
                         /*
                         if (_rslt != 0)
                         {
@@ -162,7 +174,8 @@ namespace FesIF_Demo
 
                     #region 啟動程式
                     case "btn_ProgramGO": //ProgramRun
-                        _rslt = YaskawaController.RunProgram(tex_ProgramName.Text);
+
+                        RobotProgramRun(tex_ProgramName.Text);
 
                         break;
                     #endregion
@@ -202,8 +215,8 @@ namespace FesIF_Demo
                     #region Reg Scan Start
                     case "btn_RegScanStart": //RegScanStart
 
-                        RegScanTimer.Interval = Convert.ToInt32(tex_RegTimerScan.Text);
-                        RegScanTimer.Enabled = true;
+                        //RegScanTimer.Interval = Convert.ToInt32(tex_RegTimerScan.Text);
+                        //RegScanTimer.Enabled = true;
 
 
                         break;
@@ -213,7 +226,7 @@ namespace FesIF_Demo
                     case "btn_RegScanStop": //RegScanStop
 
                         
-                        RegScanTimer.Enabled = false;
+                       // RegScanTimer.Enabled = false;
                     
                         break;
                     #endregion
@@ -335,7 +348,7 @@ namespace FesIF_Demo
                     case "btn_SetPos":
 
 
-                        RobotPosSet_TestBtn(Convert.ToInt16(tex_WPointNum.Text));
+                        RobotPosSet(Convert.ToInt16(tex_WPointNum.Text));
 
                         break;
 
@@ -344,8 +357,8 @@ namespace FesIF_Demo
                     #region 定位觸發(Base)
                     case "btn_PosBaseGo":
 
-                        if (combox_BMovetype.Text=="MoveJ") { RobotSetPosMoveBase(0); }
-                        else { RobotSetPosMoveBase(1); }
+                        if (combox_BMovetype.Text=="MoveJ") { RobotSetPosMoveBaseData(0); }
+                        else { RobotSetPosMoveBaseData(1); }
                         PositionXYZDataColerRest();
 
                         break;
@@ -355,8 +368,9 @@ namespace FesIF_Demo
                     #region 定位觸發(Pluse)
                     case "btn_PosPlsGo":
 
-                        RobotPosMovePluse();
-
+                        if (combox_PMovetype.Text == "MoveJ") { RobotSetPosMovePluseData(0); }
+                        else { RobotSetPosMovePluseData(1); }
+                        PositionSLUDataColerRest();
 
                         break;
 
@@ -406,7 +420,15 @@ namespace FesIF_Demo
                         tex_PosB_RX.Text = "180";
                         tex_PosB_RY.Text = "30";
                         tex_PosB_RZ.Text = "0";
+                        tex_PosP_S.Text = "-185";
+                        tex_PosP_L.Text = "-55607";
+                        tex_PosP_U.Text = "-52752";
+                        tex_PosP_R.Text = "-50";
+                        tex_PosP_B.Text = "25997";
+                        tex_PosP_T.Text = "64";
+
                         PositionXYZDataColerRest();
+                        PositionSLUDataColerRest();
                         break;
 
                     #endregion
@@ -420,7 +442,14 @@ namespace FesIF_Demo
                         tex_PosB_RX.Text = "180";
                         tex_PosB_RY.Text = "0";
                         tex_PosB_RZ.Text = "90";
+                        tex_PosP_S.Text = "-14759";
+                        tex_PosP_L.Text = "-17540";
+                        tex_PosP_U.Text = "-58756";
+                        tex_PosP_R.Text = "-36520";
+                        tex_PosP_B.Text = "2645";
+                        tex_PosP_T.Text = "51341";
                         PositionXYZDataColerRest();
+                        PositionSLUDataColerRest();
                         break;
 
                     #endregion
@@ -434,6 +463,7 @@ namespace FesIF_Demo
                         tex_PosP_R.Text = _GetCurSLUPosData.axis[3].ToString();
                         tex_PosP_B.Text = _GetCurSLUPosData.axis[4].ToString();
                         tex_PosP_T.Text = _GetCurSLUPosData.axis[5].ToString();
+                        PositionSLUDataColerRest();
                         break;
 
                     #endregion
@@ -467,6 +497,7 @@ namespace FesIF_Demo
                     #region 手臂(Error Rst)
                     case "btn_RobotErrorRst":
 
+                        RobotErrorRst();
 
                         break;
 
@@ -494,6 +525,114 @@ namespace FesIF_Demo
             catch (Exception x) { MessageBox.Show(x.ToString(), "systen error!!!"); }
         }
 
+        /// <summary>
+        /// 按鈕管理巨集 Welding Test (Click)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_WeldingTest_Click(object sender, EventArgs e)
+        {
+            //int _rslt;
+            Button btn = (Button)sender;
+            string tag = (string)btn.Tag;
+            try
+            {
+                switch (tag)
+                {
+
+                    #region Set P Data (Load) 
+                    case "btn_WTTeachP_Load":
+
+                        SetWTPositionData("Load");
+                        _WTLoad = true;
+
+                        break;
+
+                    #endregion
+
+                    #region Set P Data (P1) 
+                    case "btn_WTTeachP_1":
+
+                        SetWTPositionData("P1");
+                        _WTP1 = true;
+
+                        break;
+
+                    #endregion
+
+                    #region Set P Data (P2) 
+                    case "btn_WTTeachP_2":
+
+                        SetWTPositionData("P2");
+                        _WTP2 = true;
+
+                        break;
+
+                    #endregion
+
+                    #region Set P Data (Unload) 
+                    case "btn_WTTeachP_Unload":
+
+                        SetWTPositionData("Unload");
+                        _WTUnload = true;
+
+                        break;
+
+                    #endregion
+
+                    #region Program compile and load 
+                    case "btn_WTProgramCompile":
+
+                        WTCompileProgram();
+                        _WTLoad = false;
+                        _WTP1 = false;
+                        _WTP2 = false;
+                        _WTUnload = false;
+
+
+                        break;
+
+                    #endregion
+
+                    #region Program recompile and load 
+                    case "btn_WTProgramRecompile":
+
+                        WTRedoSetData();
+                        WTCompileProgram();
+
+                        break;
+
+                    #endregion
+
+                    #region Program Run 
+                    case "btn_WTProgramRun":
+
+                        RobotProgramRun("WELDINGTEST");
+
+                        break;
+
+                    #endregion
+
+                    #region ****
+                    case "*****":
+
+  
+                        break;
+
+                    #endregion
+
+                    #region Other
+                    case "Other":
+
+
+                        break;
+
+                        #endregion
+
+                }
+            }
+            catch (Exception x) { MessageBox.Show(x.ToString(), "systen error!!!"); }
+        }
 
         /// <summary>
         /// 按鈕管理巨集 (Position Offset Click)
@@ -502,7 +641,7 @@ namespace FesIF_Demo
         /// <param name="e"></param>
         private void button_OFFSET_Click(object sender, EventArgs e)
         {
-            int _rslt;
+            //int _rslt;
             Button btn = (Button)sender;
             string tag = (string)btn.Tag;
             try
@@ -619,8 +758,8 @@ namespace FesIF_Demo
                         break;
                     #endregion
 
-
                     #endregion
+
                     #region SLU_Offset
 
                     #region P_Offset_S_-
@@ -738,15 +877,14 @@ namespace FesIF_Demo
             catch (Exception x) { MessageBox.Show(x.ToString(), "systen error!!!"); }
         }
 
-
         /// <summary>
-        /// 按鈕管理巨集 (Mouse Down)
+        /// JOG 按鈕管理巨集 (Mouse Down)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_MouseDown(object sender, MouseEventArgs e)
+        private void button_JogMouseDown(object sender, MouseEventArgs e)
         {
-            int _rslt;
+            //int _rslt;
             Button btn = (Button)sender;
             string tag = (string)btn.Tag;
             RobotStart();
@@ -756,8 +894,8 @@ namespace FesIF_Demo
                 {
                     #region JOG_X/S_-
                     case "btn_xj1-":
-
-                        RobotJog("X", 0);
+                        if (rad_robotxyz.Checked) { RobotJog("X", 0); }
+                        else { RobotJog("S", 0); }
 
                         break;
                     #endregion
@@ -765,7 +903,9 @@ namespace FesIF_Demo
                     #region JOG_X/S_+
                     case "btn_xj1+":
 
-                        RobotJog("X", 1);
+
+                        if (rad_robotxyz.Checked){RobotJog("X", 1);}
+                        else { RobotJog("S", 1); }
 
                         break;
                     #endregion
@@ -773,7 +913,8 @@ namespace FesIF_Demo
                     #region JOG_Y/L_-
                     case "btn_xj2-":
 
-                        RobotJog("Y", 0);
+                        if (rad_robotxyz.Checked) { RobotJog("Y", 0); }
+                        else { RobotJog("L", 0); }
 
                         break;
                     #endregion
@@ -781,16 +922,17 @@ namespace FesIF_Demo
                     #region JOG_Y/L_+
                     case "btn_xj2+":
 
-                        RobotJog("Y", 1);
+                        if (rad_robotxyz.Checked) { RobotJog("Y", 1); }
+                        else { RobotJog("L", 1); }
 
                         break;
                     #endregion
 
-
                     #region JOG_Z/U_-
                     case "btn_xj3-":
 
-                        RobotJog("Z", 0);
+                        if (rad_robotxyz.Checked) { RobotJog("Z", 0); }
+                        else { RobotJog("U", 0); }
 
                         break;
                     #endregion
@@ -798,15 +940,17 @@ namespace FesIF_Demo
                     #region JOG_Z/U_+
                     case "btn_xj3+":
 
-                        RobotJog("Z", 1);
+                        if (rad_robotxyz.Checked) { RobotJog("Z", 1); }
+                        else { RobotJog("U", 1); }
 
                         break;
                     #endregion
 
-
                     #region JOG_RX/R_-
                     case "btn_xj4-":
 
+                        if (rad_robotxyz.Checked) { RobotJog("RX", 0); }
+                        else { RobotJog("R", 0); }
 
                         break;
                     #endregion
@@ -814,6 +958,8 @@ namespace FesIF_Demo
                     #region JOG_RX/R_+
                     case "btn_xj4+":
 
+                        if (rad_robotxyz.Checked) { RobotJog("RX", 1); }
+                        else { RobotJog("R", 1); }
 
                         break;
                     #endregion
@@ -821,6 +967,8 @@ namespace FesIF_Demo
                     #region JOG_RY/B_-
                     case "btn_xj5-":
 
+                        if (rad_robotxyz.Checked) { RobotJog("RY", 0); }
+                        else { RobotJog("B", 0); }
 
                         break;
                     #endregion
@@ -828,20 +976,26 @@ namespace FesIF_Demo
                     #region JOG_RY/B_+
                     case "btn_xj5+":
 
+                        if (rad_robotxyz.Checked) { RobotJog("RY", 1); }
+                        else { RobotJog("B", 1); }
 
                         break;
                     #endregion
 
-
                     #region JOG_RZ/T_-
                     case "btn_xj6-":
 
+                        if (rad_robotxyz.Checked) { RobotJog("RZ", 0); }
+                        else { RobotJog("T", 0); }
 
                         break;
                     #endregion
 
                     #region JOG_RZ/T_+
                     case "btn_xj6+":
+
+                        if (rad_robotxyz.Checked) { RobotJog("RZ", 1); }
+                        else { RobotJog("T", 1); }
 
                         break;
                     #endregion
@@ -860,13 +1014,13 @@ namespace FesIF_Demo
         }
 
         /// <summary>
-        /// 按鈕管理巨集 (Mouse Up)
+        /// JOG 按鈕管理巨集 (Mouse Up)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_MouseUp(object sender, MouseEventArgs e)
+        private void button_JogMouseUp(object sender, MouseEventArgs e)
         {
-            int _rslt;
+            //int _rslt;
             Button btn = (Button)sender;
             string tag = (string)btn.Tag;
             try
@@ -905,7 +1059,6 @@ namespace FesIF_Demo
                         break;
                     #endregion
 
-
                     #region JOG_Z/U_-
                     case "btn_xj3-":
 
@@ -922,10 +1075,10 @@ namespace FesIF_Demo
                         break;
                     #endregion
 
-
                     #region JOG_RX/R_-
                     case "btn_xj4-":
 
+                        RobotStop();
 
                         break;
                     #endregion
@@ -933,6 +1086,7 @@ namespace FesIF_Demo
                     #region JOG_RX/R_+
                     case "btn_xj4+":
 
+                        RobotStop();
 
                         break;
                     #endregion
@@ -940,6 +1094,7 @@ namespace FesIF_Demo
                     #region JOG_RY/B_-
                     case "btn_xj5-":
 
+                        RobotStop();
 
                         break;
                     #endregion
@@ -947,20 +1102,23 @@ namespace FesIF_Demo
                     #region JOG_RY/B_+
                     case "btn_xj5+":
 
+                        RobotStop();
 
                         break;
                     #endregion
 
-
                     #region JOG_RZ/T_-
                     case "btn_xj6-":
 
+                        RobotStop();
 
                         break;
                     #endregion
 
                     #region JOG_RZ/T_+
                     case "btn_xj6+":
+
+                        RobotStop();
 
                         break;
                     #endregion
@@ -978,40 +1136,188 @@ namespace FesIF_Demo
             catch (Exception x) { MessageBox.Show(x.ToString(), "systen error!!!"); }
         }
 
+        /// <summary>
+        /// 按鈕管理巨集 (Mouse Down)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_MouseDown(object sender, MouseEventArgs e)
+        {
+            //int _rslt;
+            Button btn = (Button)sender;
+            string tag = (string)btn.Tag;
+            RobotStart();
+            try
+            {
+                switch (tag)
+                {
+                   
+                    #region Other
+                    case "Other":
+
+
+                        break;
+
+                        #endregion
+
+                }
+            }
+            catch (Exception x) { MessageBox.Show(x.ToString(), "systen error!!!"); }
+        }
+
+
+
+        /// <summary>
+        /// 按鈕管理巨集 (Mouse Up)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_MouseUp(object sender, MouseEventArgs e)
+        {
+            //int _rslt;
+            Button btn = (Button)sender;
+            string tag = (string)btn.Tag;
+            try
+            {
+                switch (tag)
+                {
+                    
+                    #region Other
+                    case "Other":
+
+
+                        break;
+
+                        #endregion
+
+                }
+            }
+            catch (Exception x) { MessageBox.Show(x.ToString(), "systen error!!!"); }
+        }
+
         #endregion
 
         #region 程式編寫內容
 
+        #region Robot Funtion <Control>
+
         /// <summary>
-        /// 取得csv並匯入DataGridView
+        /// Robot State Check
         /// </summary>
-        public void LoadCSV(string csvFile)
+        private void RobotStateCheck()
         {
+            //get robot state
+            YaskawaController.CheckStatus();
 
-            var listOfStrings = new List<string>();
-            string[] ss = listOfStrings.ToArray();
-            //int p_num = 0;
+            //check state
+            _Step = YaskawaController.Step ? "True" : "False";
+            _OneCycle = YaskawaController.OneCycle ? "True" : "False";
+            _AutomaticAndContinuos = YaskawaController.AutomaticAndContinuos ? "True" : "False";
+            _isBusy = YaskawaController.isBusy ? "True" : "False";
+            _InGuardSafeOperation = YaskawaController.InGuardSafeOperation ? "True" : "False";
+            _Teach = YaskawaController.Teach ? "True" : "False";
+            _Play = YaskawaController.Play ? "True" : "False";
+            _CommendRemote = YaskawaController.CommendRemote ? "True" : "False";
+            _HoldON = YaskawaController.HoldON ? "True" : "False";
+            _HoldStatusE = YaskawaController.HoldStatusE ? "True" : "False";
+            _HoldStatusC = YaskawaController.HoldStatusC ? "True" : "False";
+            _Alarm = YaskawaController.Alarm ? "True" : "False";
+            _Error = YaskawaController.Error ? "True" : "False";
+            _ServoON = YaskawaController.ServoON ? "True" : "False";
 
-            dataGridView1.DataSource = PathDataList;
+            //chang string coler
+            if (YaskawaController.Step) { lab_Step.ForeColor = System.Drawing.Color.Green; }
+            else { lab_Step.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.OneCycle) { lab_OneCycle.ForeColor = System.Drawing.Color.Green; }
+            else { lab_OneCycle.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.AutomaticAndContinuos) { lab_Automatic.ForeColor = System.Drawing.Color.Green; }
+            else { lab_Automatic.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.isBusy) { lab_Running.ForeColor = System.Drawing.Color.Green; }
+            else { lab_Running.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.InGuardSafeOperation) { lab_GuardSafeOp.ForeColor = System.Drawing.Color.Green; }
+            else { lab_GuardSafeOp.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.Teach) { lab_Teach.ForeColor = System.Drawing.Color.Green; }
+            else { lab_Teach.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.Play) { lab_Play.ForeColor = System.Drawing.Color.Green; }
+            else { lab_Play.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.CommendRemote) { lab_ComRemote.ForeColor = System.Drawing.Color.Green; }
+            else { lab_ComRemote.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.HoldON) { lab_HoldP.ForeColor = System.Drawing.Color.Green; }
+            else { lab_HoldP.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.HoldStatusE) { lab_HoldE.ForeColor = System.Drawing.Color.Green; }
+            else { lab_HoldE.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.HoldStatusC) { lab_HoldC.ForeColor = System.Drawing.Color.Green; }
+            else { lab_HoldC.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.Alarm) { lab_Alarm.ForeColor = System.Drawing.Color.Green; }
+            else { lab_Alarm.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.Error) { lab_Error.ForeColor = System.Drawing.Color.Green; }
+            else { lab_Error.ForeColor = System.Drawing.Color.Red; }
+            if (YaskawaController.ServoON) { lab_SVON.ForeColor = System.Drawing.Color.Green; }
+            else { lab_SVON.ForeColor = System.Drawing.Color.Red; }
 
-            foreach (string s in File.ReadAllLines(csvFile))
-            {
-                ss = s.Split(','); //將一列的資料，以逗號的方式進行資料切割，並將資料放入一個字串陣列       
 
-                PathDataList.Add(new PathData
-                {
-                    Name = ss[0],
-                    X = Math.Round(double.Parse(ss[1]) + 170, 2, MidpointRounding.AwayFromZero),
-                    Y = Math.Round(double.Parse(ss[2]) + 150, 2, MidpointRounding.AwayFromZero),
-                    Z = Math.Round(0 - double.Parse(ss[3]), 2, MidpointRounding.AwayFromZero),
-                    A = double.Parse(ss[4]),
-                    B = double.Parse(ss[5]),
-                    C = double.Parse(ss[6])
-                });
-
-            }
+            //write lab.text
+            lab_Step.Text = "Step : " + _Step;
+            lab_OneCycle.Text = "OneCycle : " + _OneCycle;
+            lab_Automatic.Text = "Automatic / Continuos : " + _AutomaticAndContinuos;
+            lab_Running.Text = "Running : " + _isBusy;
+            lab_GuardSafeOp.Text = "InGuardSafeOperation : " + _InGuardSafeOperation;
+            lab_Teach.Text = "Teach : " + _Teach;
+            lab_Play.Text = "Play : " + _Play;
+            lab_ComRemote.Text = "Cammand Remote : " + _CommendRemote;
+            lab_HoldP.Text = "Hold Status (P) : " + _HoldON;
+            lab_HoldE.Text = "Hold Status (E) : " + _HoldStatusE;
+            lab_HoldC.Text = "Hold Status (C) : " + _HoldStatusC;
+            lab_Alarm.Text = "Alarming : " + _Alarm;
+            lab_Error.Text = "Error : " + _Error;
+            lab_SVON.Text = "Servo On : " + _ServoON;
 
         }
+
+        /// <summary>
+        /// Robot Stop
+        /// </summary>
+        private void RobotStop()
+        {
+            YaskawaController.RobotStopSwitch(1); //1: ON 2: OFF
+        }
+
+        /// <summary>
+        /// Robot Start
+        /// </summary>
+        private void RobotStart()
+        {
+            YaskawaController.RobotStopSwitch(2); //1: ON 2: OFF
+        }
+
+        /// <summary>
+        /// Robot Alarm Rst
+        /// </summary>
+        private void RobotAlarmRst()
+        {
+            YaskawaController.ResetAlarm();
+        }
+
+        /// <summary>
+        /// Robot Error Rst
+        /// </summary>
+        private void RobotErrorRst()
+        {
+
+        }
+
+        /// <summary>
+        /// Robot Program Run
+        /// </summary>
+        /// <param name="_fileName"></param>
+        private void RobotProgramRun(string _fileName)
+        {
+            int _rslt = YaskawaController.RunProgram(_fileName);
+        }
+
+        #endregion
+
+        #region Robot Funtion <Program File>
 
         /// <summary>
         /// 編寫Robot Program (for Yaskawa)
@@ -1021,12 +1327,12 @@ namespace FesIF_Demo
             try
             {
                 // 實作程式物件
-                RouteBook_Yaskawa _routeBook_Welding = new RouteBook_Yaskawa(_programName,dataGridView1.RowCount, 0, 0);
+                RouteBook_Yaskawa _routeBook_Welding = new RouteBook_Yaskawa(_programName, dataGridView1.RowCount, 0, 0);
                 //寫入工作環境生成狀態
                 _routeBook_Welding.Workspace = 0;
                 _routeBook_Welding.FlipMode = 1;
-
-                for (int i = 0; i < dataGridView1.RowCount-1; i++)
+                
+                for (int i = 0; i < dataGridView1.RowCount - 1; i++)
                 {
                     if (rad_MOVL.Checked)
                     {
@@ -1062,57 +1368,60 @@ namespace FesIF_Demo
                         _routeBook_Welding.B[i] = (double)dataGridView1.Rows[i].Cells[5].Value;
                         _routeBook_Welding.C[i] = (double)dataGridView1.Rows[i].Cells[6].Value;
                     }
-                                     
+
                 }
 
                 //程式寫入
                 int _rslt;
-                if (rad_Base.Checked) 
+                if (rad_Base.Checked)
                 { _rslt = YaskawaController.CompileFile(_routeBook_Welding, _programName, 1); }
-                if (rad_Speed.Checked) 
-                { _rslt = YaskawaController.CompileFile(_routeBook_Welding, _programName, 1,Convert.ToInt32(tex_SpeedReg.Text)); }
-                if (rad_Welding.Checked) 
+                if (rad_Speed.Checked)
+                { _rslt = YaskawaController.CompileFile(_routeBook_Welding, _programName, 1, Convert.ToInt32(tex_SpeedReg.Text)); }
+                if (rad_Welding.Checked)
                 { _rslt = YaskawaController.CompileFile(_routeBook_Welding, _programName, 1, Convert.ToInt32(tex_WAReg.Text), Convert.ToInt32(tex_WVReg.Text)); }
-                if (rad_SpeedWelding.Checked) 
+                if (rad_SpeedWelding.Checked)
                 { _rslt = YaskawaController.CompileFile(_routeBook_Welding, _programName, 1, Convert.ToInt32(tex_SpeedReg.Text), Convert.ToInt32(tex_WAReg.Text), Convert.ToInt32(tex_WVReg.Text)); }
 
 
-                MessageBox.Show("OK!!!"); 
+                MessageBox.Show("OK!!!");
                 return true;
             }
             catch { MessageBox.Show("system error"); return false; }
         }
 
         /// <summary>
-        /// Robot Program Refresh
+        /// Yaskawa Controller 刪除JBI資料
         /// </summary>
-        /// <returns></returns>
-        private void RobotProgramRefresh()
+        /// <param name="_fileName"></param>
+        private void ContrillerFileDelete(string _fileName)
         {
-            try
+            int _rslt = YaskawaController.DeleteFile(_fileName);
+            if (_rslt == 1)
             {
-                string _fileName= String.Empty;
-                string _txtPath = "RobotProgeamFile.txt";
-                var _CurrentDirectory = Directory.GetCurrentDirectory(); //取得目前執行路徑
-                string _rtxtpath = _CurrentDirectory + "\\" + _txtPath;
-                int _counter = 0;
-                string _robotFileName = String.Empty;
-                if (listBox2.Items.Count > 0) { listBox2.Items.Clear(); }
-                if (comboBox_RobotFile.Items.Count > 0) { comboBox_RobotFile.Items.Clear(); }
-                YaskawaController.ReadFileList(ref _fileName);
-                File.WriteAllText(_txtPath, _fileName, Encoding.UTF8);
-
-                foreach (string line in File.ReadLines(_rtxtpath))
-                {
-                    _robotFileName = line.Remove(line.Length - 4, 4);
-                    listBox2.Items.Add(_robotFileName);
-                    comboBox_RobotFile.Items.Add(_robotFileName);
-                    _counter++;
-                }
-
+                Console.WriteLine("File Found");
+                Console.WriteLine("File Deleted Successfully");
             }
-            catch { MessageBox.Show("system error"); }
-            
+            else
+            {
+                Console.WriteLine("File Not Found");
+            }
+        }
+
+        #endregion
+
+        #region Robot Funtion <Data> 
+
+        /// <summary>
+        /// Set Home Point
+        /// </summary>
+        private void SetHomePoint()
+        {
+            _HomePosData.axis[0] = 500000;
+            _HomePosData.axis[1] = 0;
+            _HomePosData.axis[2] = 250000;
+            _HomePosData.axis[3] = 180000;
+            _HomePosData.axis[4] = 30000;
+            _HomePosData.axis[5] = 0;
         }
 
         /// <summary>
@@ -1120,11 +1429,11 @@ namespace FesIF_Demo
         /// </summary>
         /// <param name="_num"></param>
         /// <param name="_data"></param>
-        private void RobotRegWrite(short _num,short _data )
+        private void RobotRegWrite(short _num, short _data)
         {
             int _rslt;
             int _Dnum = _num;
-            _rslt = YaskawaController.WriteIData(Convert.ToInt16(_Dnum+1), _data);
+            _rslt = YaskawaController.WriteIData(Convert.ToInt16(_Dnum + 1), _data);
 
             /*
             short[] _var = new short[_num+1];
@@ -1138,14 +1447,14 @@ namespace FesIF_Demo
         /// </summary>
         /// <param name="_num"></param>
         /// <param name="_data"></param>
-        private void RobotRegRead(short _num,ref short _data)
+        private void RobotRegRead(short _num, ref short _data)
         {
             int _rslt;
             short[] _getNum = new short[1];
             _rslt = YaskawaController.ReadIData(_num, 1, ref _getNum);
             _data = _getNum[0];
         }
-        
+
         /// <summary>
         /// Robot Position Data Get [P***]
         /// </summary>
@@ -1171,69 +1480,18 @@ namespace FesIF_Demo
         /// Robot Position Data Get [P***]
         /// </summary>
         /// <param name="_posnum"></param>
-        private void RobotCurPosGet(string _type, ref PosData  _GetCurPosData)
+        private void RobotCurPosGet(string _type, ref PosData _GetCurPosData)
         {
-            if (_type=="XYZ"){YaskawaController.GetCurPosData(0, ref _GetCurPosData);}
-            else if(_type == "SLU") { YaskawaController.GetCurPosData(1, ref _GetCurPosData); }
-            
+            if (_type == "XYZ") { YaskawaController.GetCurPosData(0, ref _GetCurPosData); }
+            else if (_type == "SLU") { YaskawaController.GetCurPosData(1, ref _GetCurPosData); }
+
         }
 
         /// <summary>
-        /// Cur Pos Write Lab 寫入TXT
-        /// </summary>
-        /// <param name="_PosData"></param>
-        private void CurPosWriteLab(PosData _PosData)
-        {
-
-            lab_posData.Text =
-                ("P[ " + "Cur" + " ]:" + "\n\n Type = " + _PosData.type + ", 形態 = " + _PosData.pattern + ",\n Tool number = " + _PosData.tool_no
-                + ", User number = " + _PosData.user_coord_no + ",\n 擴張形態 = " + _PosData.ex_pattern
-                + "\n\n X = " + _PosData.axis[0]
-                + "\n Y = " + _PosData.axis[1]
-                + "\n Z = " + _PosData.axis[2]
-                + "\n A = " + _PosData.axis[3]
-                + "\n B = " + _PosData.axis[4]
-                + "\n C = " + _PosData.axis[5]
-                + "\n NULL = " + _PosData.axis[6]
-                + "\n NULL = " + _PosData.axis[7]);
-        }
-
-
-        /// <summary>
-        /// Cur Pos Write Lab 寫入TXT
-        /// </summary>
-        /// <param name="_PosData"></param>
-        private void CurPosShowLab(PosData _PosDataXYZ, PosData _PosDataSLU)
-        {
-
-            lab_CurPosXYZData.Text =
-                ("P[ X,Y,Z ]:" + "\n\n Type = " + _PosDataXYZ.type + " \n 形態 = " + _PosDataXYZ.pattern + "\n Tool num = " + _PosDataXYZ.tool_no
-                + "\n User num = " + _PosDataXYZ.user_coord_no + "\n 擴張形態 = " + _PosDataXYZ.ex_pattern
-                + "\n\n X = " + _PosDataXYZ.axis[0]
-                + "\n Y = " + _PosDataXYZ.axis[1]
-                + "\n Z = " + _PosDataXYZ.axis[2]
-                + "\n A = " + _PosDataXYZ.axis[3]
-                + "\n B = " + _PosDataXYZ.axis[4]
-                + "\n C = " + _PosDataXYZ.axis[5]);
-
-            lab_CurPosSLUData.Text =
-                ("P[ S,L,U ]:" + "\n\n Type = " + _PosDataSLU.type + " \n 形態 = " + _PosDataSLU.pattern + "\n Tool num = " + _PosDataSLU.tool_no
-                + "\n User num = " + _PosDataSLU.user_coord_no + "\n 擴張形態 = " + _PosDataSLU.ex_pattern
-                + "\n\n S = " + _PosDataSLU.axis[0]
-                + "\n L = " + _PosDataSLU.axis[1]
-                + "\n U = " + _PosDataSLU.axis[2]
-                + "\n R = " + _PosDataSLU.axis[3]
-                + "\n B = " + _PosDataSLU.axis[4]
-                + "\n T = " + _PosDataSLU.axis[5]);
-        }
-
-        
-
-        /// <summary>
-        /// Robot Pos Set_Test
+        /// Robot Pos Set P[***]
         /// </summary>
         /// <param name="_pointNum"></param>
-        private void RobotPosSet_TestBtn(short _pointNum)
+        private void RobotPosSet(short _pointNum)
         {
             PosData _posD = new PosData();
             int _axisValue = 0;
@@ -1254,20 +1512,15 @@ namespace FesIF_Demo
 
         }
 
-        /// <summary>
-        /// Robot Pos Move Base (XYZ)
-        /// </summary>
-        private void RobotPosMoveBase(CoordMove _baseData)
-        {
-            YaskawaController.RobotMoveBase(_baseData);
+        #endregion
 
-        }
+        #region Robot Funtion <Position>
 
         /// <summary>
         /// Robot Set Pos Move Base
         /// </summary>
         /// <param name="_moveType"></param>
-        private void RobotSetPosMoveBase(short _moveType)
+        private void RobotSetPosMoveBaseData(short _moveType)
         {
             CoordMove _baseData = new CoordMove();
             _baseData.des.robot_group = 1;
@@ -1304,15 +1557,207 @@ namespace FesIF_Demo
         }
 
         /// <summary>
+        /// Robot Pos Move Base (XYZ)
+        /// </summary>
+        private void RobotPosMoveBase(CoordMove _baseData)
+        {
+            YaskawaController.RobotMoveBase(_baseData);
+
+        }
+
+        /// <summary>
+        /// Robot Set Pos Move Pluse Data
+        /// </summary>
+        /// <param name="_moveType"></param>
+        private void RobotSetPosMovePluseData(short _moveType)
+        {
+            PulseMove _plsData = new PulseMove();
+            _plsData.des.robot_group = 1;
+            _plsData.des.station_group = 0;
+            if (_moveType == 0) { _plsData.des.speed_class = 0; }
+            if (_moveType == 1) { _plsData.des.speed_class = 1; }
+            _plsData.des.speed = uint.Parse(tex_PosP_Speed.Text);
+            _plsData.robot_pulse[0] = int.Parse(tex_PosP_S.Text);
+            _plsData.robot_pulse[1] = int.Parse(tex_PosP_L.Text);
+            _plsData.robot_pulse[2] = int.Parse(tex_PosP_U.Text);
+            _plsData.robot_pulse[3] = int.Parse(tex_PosP_R.Text);
+            _plsData.robot_pulse[4] = int.Parse(tex_PosP_B.Text);
+            _plsData.robot_pulse[5] = int.Parse(tex_PosP_T.Text);
+            _plsData.robot_pulse[6] = 0;
+            _plsData.robot_pulse[7] = 0;
+            RobotPosMovePluse(_plsData);
+        }
+
+        /// <summary>
+        /// Robot Pos Move Pluse (J1/J2/J3)
+        /// </summary>
+        private void RobotPosMovePluse(PulseMove _plsData)
+        {
+            YaskawaController.RobotMovePls(_plsData);
+        }
+
+        #endregion
+
+        #region Robot Funtion <Jog>
+
+        /// <summary>
+        /// Robot Jog
+        /// </summary>
+        /// <param name="_name"></param>
+        /// <param name="_state"></param>
+        private void RobotJog(string _name, short _state)
+        {
+            _GetJOGCurXYZPosData = _GetCurXYZPosData;
+            _GetJOGCurSLUPosData = _GetCurSLUPosData;
+
+            switch (_name)
+            {
+                #region JOG_X
+                case "X":
+
+                    if (_state == 0) { _GetJOGCurXYZPosData.axis[0] = int.Parse(tex_JogLimM_X.Text) * 1000; }
+                    else if (_state == 1) { _GetJOGCurXYZPosData.axis[0] = int.Parse(tex_JogLimP_X.Text) * 1000; }
+                    RobotSetJOGPosMoveBaseData(_GetJOGCurXYZPosData);
+
+                    break;
+
+                #endregion
+
+                #region JOG_Y
+                case "Y":
+
+                    if (_state == 0) { _GetJOGCurXYZPosData.axis[1] = int.Parse(tex_JogLimM_Y.Text) * 1000; }
+                    else if (_state == 1) { _GetJOGCurXYZPosData.axis[1] = int.Parse(tex_JogLimP_Y.Text) * 1000; }
+                    RobotSetJOGPosMoveBaseData(_GetJOGCurXYZPosData);
+
+                    break;
+
+                #endregion
+
+                #region JOG_Z
+                case "Z":
+
+                    if (_state == 0) { _GetJOGCurXYZPosData.axis[2] = int.Parse(tex_JogLimM_Z.Text) * 1000; }
+                    else if (_state == 1) { _GetJOGCurXYZPosData.axis[2] = int.Parse(tex_JogLimP_Z.Text) * 1000; }
+                    RobotSetJOGPosMoveBaseData(_GetJOGCurXYZPosData);
+                    break;
+
+                #endregion
+
+                #region JOG_RX
+                case "RX":
+
+                    if (_state == 0) { _GetJOGCurXYZPosData.axis[3] = int.Parse(tex_JogLimM_RX.Text) * 10000; }
+                    else if (_state == 1) { _GetJOGCurXYZPosData.axis[3] = int.Parse(tex_JogLimP_RX.Text) * 10000; }
+                    RobotSetJOGPosMoveBaseData(_GetJOGCurXYZPosData);
+
+                    break;
+
+                #endregion
+
+                #region JOG_RY
+                case "RY":
+
+                    if (_state == 0) { _GetJOGCurXYZPosData.axis[4] = int.Parse(tex_JogLimM_RY.Text) * 10000; }
+                    else if (_state == 1) { _GetJOGCurXYZPosData.axis[4] = int.Parse(tex_JogLimP_RY.Text) * 10000; }
+                    RobotSetJOGPosMoveBaseData(_GetJOGCurXYZPosData);
+
+                    break;
+
+                #endregion
+
+                #region JOG_RZ
+                case "RZ":
+
+                    if (_state == 0) { _GetJOGCurXYZPosData.axis[5] = int.Parse(tex_JogLimM_RZ.Text) * 10000; }
+                    else if (_state == 1) { _GetJOGCurXYZPosData.axis[5] = int.Parse(tex_JogLimP_RZ.Text) * 10000; }
+                    RobotSetJOGPosMoveBaseData(_GetJOGCurXYZPosData);
+
+                    break;
+
+                #endregion
+
+                #region JOG_S
+                case "S":
+
+                    if (_state == 0) { _GetJOGCurSLUPosData.axis[0] = int.Parse(tex_JogLimM_S.Text) * 1000; }
+                    else if (_state == 1) { _GetJOGCurSLUPosData.axis[0] = int.Parse(tex_JogLimP_S.Text) * 1000; }
+                    RobotSetJOGPosMovePluseData(_GetJOGCurSLUPosData);
+
+                    break;
+
+                #endregion
+
+                #region JOG_L
+                case "L":
+
+                    if (_state == 0) { _GetJOGCurSLUPosData.axis[1] = int.Parse(tex_JogLimM_L.Text) * 1000; }
+                    else if (_state == 1) { _GetJOGCurSLUPosData.axis[1] = int.Parse(tex_JogLimP_L.Text) * 1000; }
+                    RobotSetJOGPosMovePluseData(_GetJOGCurSLUPosData);
+
+                    break;
+
+                #endregion
+
+                #region JOG_U
+                case "U":
+
+                    if (_state == 0) { _GetJOGCurSLUPosData.axis[2] = int.Parse(tex_JogLimM_U.Text) * 1000; }
+                    else if (_state == 1) { _GetJOGCurSLUPosData.axis[2] = int.Parse(tex_JogLimP_U.Text) * 1000; }
+                    RobotSetJOGPosMovePluseData(_GetJOGCurSLUPosData);
+
+                    break;
+
+                #endregion
+
+                #region JOG_R
+                case "R":
+
+                    if (_state == 0) { _GetJOGCurSLUPosData.axis[3] = int.Parse(tex_JogLimM_R.Text) * 1000; }
+                    else if (_state == 1) { _GetJOGCurSLUPosData.axis[3] = int.Parse(tex_JogLimP_R.Text) * 1000; }
+                    RobotSetJOGPosMovePluseData(_GetJOGCurSLUPosData);
+
+                    break;
+
+                #endregion
+
+                #region JOG_B
+                case "B":
+
+                    if (_state == 0) { _GetJOGCurSLUPosData.axis[4] = int.Parse(tex_JogLimM_B.Text) * 1000; }
+                    else if (_state == 1) { _GetJOGCurSLUPosData.axis[4] = int.Parse(tex_JogLimP_B.Text) * 1000; }
+                    RobotSetJOGPosMovePluseData(_GetJOGCurSLUPosData);
+
+                    break;
+
+                #endregion
+
+                #region JOG_T
+                case "T":
+
+                    if (_state == 0) { _GetJOGCurSLUPosData.axis[5] = int.Parse(tex_JogLimM_T.Text) * 1000; }
+                    else if (_state == 1) { _GetJOGCurSLUPosData.axis[5] = int.Parse(tex_JogLimP_T.Text) * 1000; }
+                    RobotSetJOGPosMovePluseData(_GetJOGCurSLUPosData);
+
+                    break;
+
+                    #endregion
+
+            }
+
+
+        }
+
+        /// <summary>
         /// Robot Set JOG Pos Move Base
         /// </summary>
         /// <param name="_moveType"></param>
-        private void RobotSetJOGPosMoveBase(PosData _SetJOGPosData)
+        private void RobotSetJOGPosMoveBaseData(PosData _SetJOGPosData)
         {
             CoordMove _baseData = new CoordMove();
             _baseData.des.robot_group = 1;
             _baseData.des.station_group = 0;
-            _baseData.des.speed_class = 0; 
+            _baseData.des.speed_class = 0;
             _baseData.des.speed = 100;
             _baseData.act_coord_des = 16;
             _baseData.x_coord = _SetJOGPosData.axis[0];
@@ -1343,201 +1788,98 @@ namespace FesIF_Demo
         }
 
         /// <summary>
-        /// Robot Pos Move Pluse (J1/J2/J3)
+        /// Robot Set JOG Pos Move Pluse
         /// </summary>
-        private void RobotPosMovePluse()
+        /// <param name="_moveType"></param>
+        private void RobotSetJOGPosMovePluseData(PosData _SetJOGPosData)
         {
             PulseMove _plsData = new PulseMove();
             _plsData.des.robot_group = 1;
-            _plsData.des.station_group = 0; 
-            if (combox_PMovetype.Text == "MoveJ") { _plsData.des.speed_class = 0; }
-            if (combox_PMovetype.Text == "MoveL") { _plsData.des.speed_class = 1; }
-            _plsData.des.speed = uint.Parse(tex_PosP_Speed.Text);
-            _plsData.robot_pulse[0] = int.Parse(tex_PosP_S.Text);
-            _plsData.robot_pulse[1] = int.Parse(tex_PosP_L.Text);
-            _plsData.robot_pulse[2] = int.Parse(tex_PosP_U.Text);
-            _plsData.robot_pulse[3] = int.Parse(tex_PosP_R.Text);
-            _plsData.robot_pulse[4] = int.Parse(tex_PosP_B.Text);
-            _plsData.robot_pulse[5] = int.Parse(tex_PosP_T.Text);
+            _plsData.des.station_group = 0;
+            _plsData.des.speed_class = 0;
+            _plsData.des.speed = 100;
+            _plsData.robot_pulse[0] = _SetJOGPosData.axis[0];
+            _plsData.robot_pulse[1] = _SetJOGPosData.axis[1];
+            _plsData.robot_pulse[2] = _SetJOGPosData.axis[2];
+            _plsData.robot_pulse[3] = _SetJOGPosData.axis[3];
+            _plsData.robot_pulse[4] = _SetJOGPosData.axis[4];
+            _plsData.robot_pulse[5] = _SetJOGPosData.axis[5];
             _plsData.robot_pulse[6] = 0;
             _plsData.robot_pulse[7] = 0;
-            YaskawaController.RobotMovePls(_plsData);
+            RobotPosMovePluse(_plsData);
 
         }
 
+        #endregion
+
+        #region Form Control Funtion
+
         /// <summary>
-        /// Robot State Check
+        /// 取得csv並匯入DataGridView
         /// </summary>
-        private void RobotStateCheck()
+        public void LoadCSV(string csvFile)
         {
-            //get robot state
-            YaskawaController.CheckStatus();
-            
-            //check state
-            _Step = YaskawaController.Step ? "True": "False";
-            _OneCycle = YaskawaController.OneCycle ? "True" : "False";
-            _AutomaticAndContinuos = YaskawaController.AutomaticAndContinuos ? "True" : "False";
-            _isBusy = YaskawaController.isBusy ? "True" : "False";
-            _InGuardSafeOperation = YaskawaController.InGuardSafeOperation ? "True" : "False";
-            _Teach = YaskawaController.Teach ? "True" : "False";
-            _Play = YaskawaController.Play ? "True" : "False";
-            _CommendRemote = YaskawaController.CommendRemote ? "True" : "False";
-            _HoldON = YaskawaController.HoldON ? "True" : "False";
-            _HoldStatusE = YaskawaController.HoldStatusE ? "True" : "False";
-            _HoldStatusC = YaskawaController.HoldStatusC ? "True" : "False";
-            _Alarm = YaskawaController.Alarm ? "True" : "False";
-            _Error = YaskawaController.Error ? "True" : "False";
-            _ServoON = YaskawaController.ServoON ? "True" : "False";
 
-            //chang string coler
-            if (YaskawaController.Step){ lab_Step.ForeColor = System.Drawing.Color.Green; }
-            else { lab_Step.ForeColor = System.Drawing.Color.Red; }
-            if (YaskawaController.OneCycle) { lab_OneCycle.ForeColor = System.Drawing.Color.Green; }
-            else { lab_OneCycle.ForeColor = System.Drawing.Color.Red; }
-            if (YaskawaController.AutomaticAndContinuos) { lab_Automatic.ForeColor = System.Drawing.Color.Green; }
-            else { lab_Automatic.ForeColor = System.Drawing.Color.Red; }
-            if (YaskawaController.isBusy) { lab_Running.ForeColor = System.Drawing.Color.Green; }
-            else  { lab_Running.ForeColor = System.Drawing.Color.Red; }
-            if (YaskawaController.InGuardSafeOperation) { lab_GuardSafeOp.ForeColor = System.Drawing.Color.Green; }
-            else { lab_GuardSafeOp.ForeColor = System.Drawing.Color.Red; }
-            if (YaskawaController.Teach) { lab_Teach.ForeColor = System.Drawing.Color.Green; }
-            else { lab_Teach.ForeColor = System.Drawing.Color.Red; }
-            if (YaskawaController.Play) { lab_Play.ForeColor = System.Drawing.Color.Green; }
-            else { lab_Play.ForeColor = System.Drawing.Color.Red; }
-            if (YaskawaController.CommendRemote) { lab_ComRemote.ForeColor = System.Drawing.Color.Green; }
-            else { lab_ComRemote.ForeColor = System.Drawing.Color.Red; }
-            if (YaskawaController.HoldON) { lab_HoldP.ForeColor = System.Drawing.Color.Green; }
-            else { lab_HoldP.ForeColor = System.Drawing.Color.Red; }
-            if (YaskawaController.HoldStatusE) { lab_HoldE.ForeColor = System.Drawing.Color.Green; }
-            else { lab_HoldE.ForeColor = System.Drawing.Color.Red; }
-            if (YaskawaController.HoldStatusC) { lab_HoldC.ForeColor = System.Drawing.Color.Green; }
-            else { lab_HoldC.ForeColor = System.Drawing.Color.Red; }
-            if (YaskawaController.Alarm) { lab_Alarm.ForeColor = System.Drawing.Color.Green; }
-            else { lab_Alarm.ForeColor = System.Drawing.Color.Red; }
-            if (YaskawaController.Error) { lab_Error.ForeColor = System.Drawing.Color.Green; }
-            else { lab_Error.ForeColor = System.Drawing.Color.Red; }
-            if (YaskawaController.ServoON) { lab_SVON.ForeColor = System.Drawing.Color.Green; }
-            else { lab_SVON.ForeColor = System.Drawing.Color.Red; }
+            var listOfStrings = new List<string>();
+            string[] ss = listOfStrings.ToArray();
+            //int p_num = 0;
 
+            dataGridView1.DataSource = PathDataList;
 
-            //write lab.text
-            lab_Step.Text = "Step : "+ _Step;
-            lab_OneCycle.Text = "OneCycle : " + _OneCycle;
-            lab_Automatic.Text = "Automatic / Continuos : " + _AutomaticAndContinuos;
-            lab_Running.Text = "Running : " + _isBusy;
-            lab_GuardSafeOp.Text = "InGuardSafeOperation : " + _InGuardSafeOperation;
-            lab_Teach.Text = "Teach : " + _Teach;
-            lab_Play.Text = "Play : " + _Play;
-            lab_ComRemote.Text = "Cammand Remote : " + _CommendRemote;
-            lab_HoldP.Text = "Hold Status (P) : " + _HoldON;
-            lab_HoldE.Text = "Hold Status (E) : " + _HoldStatusE;
-            lab_HoldC.Text = "Hold Status (C) : " + _HoldStatusC;
-            lab_Alarm.Text = "Alarming : " + _Alarm;
-            lab_Error.Text = "Error : " + _Error;
-            lab_SVON.Text = "Servo On : " + _ServoON;
+            foreach (string s in File.ReadAllLines(csvFile))
+            {
+                ss = s.Split(','); //將一列的資料，以逗號的方式進行資料切割，並將資料放入一個字串陣列       
+
+                PathDataList.Add(new PathData
+                {
+                    Name = ss[0],
+                    X = Math.Round(double.Parse(ss[1]) + 170, 2, MidpointRounding.AwayFromZero),
+                    Y = Math.Round(double.Parse(ss[2]) + 150, 2, MidpointRounding.AwayFromZero),
+                    Z = Math.Round(0 - double.Parse(ss[3]), 2, MidpointRounding.AwayFromZero),
+                    A = double.Parse(ss[4]),
+                    B = double.Parse(ss[5]),
+                    C = double.Parse(ss[6])
+                });
+
+            }
 
         }
 
         /// <summary>
-        /// 測試Jog動作
+        /// Robot Program Refresh
         /// </summary>
-        /// <param name="_moveValue"></param>
-        private void JogTest(int _moveValue)
-        {
-            PosData _PosData = new PosData();
-            CoordMove _PosData2 = new CoordMove();
-            RobotCurPosGet("XYZ", ref _PosData);
-            _PosData2 = JogMath(_PosData, _moveValue, 100);
-            RobotPosMoveBase(_PosData2);
-        }
-
-        /// <summary>
-        /// Jog 演算匯入增益數值及速度
-        /// </summary>
-        /// <param name="_LJMPosData"></param>
-        /// <param name="_moveValue"></param>
-        /// <param name="_speed"></param>
         /// <returns></returns>
-        private CoordMove JogMath(PosData _LJMPosData,int _moveValue,uint _speed)
+        private void RobotProgramRefresh()
         {
-            CoordMove _JMPosData = new CoordMove();
-            _JMPosData.des.robot_group = 1;
-            _JMPosData.des.station_group = 0;
-            _JMPosData.des.speed_class = 0;
-            _JMPosData.des.speed = _speed;
-            _JMPosData.act_coord_des = 16;
-            _JMPosData.x_coord = _LJMPosData.axis[0]+ _moveValue;
-            _JMPosData.y_coord = _LJMPosData.axis[1];
-            _JMPosData.z_coord = _LJMPosData.axis[2];
-            _JMPosData.Tx_coord = _LJMPosData.axis[3];
-            _JMPosData.Ty_coord = _LJMPosData.axis[4];
-            _JMPosData.Tz_coord = _LJMPosData.axis[5];
+            try
+            {
+                string _fileName = String.Empty;
+                string _txtPath = "RobotProgeamFile.txt";
+                var _CurrentDirectory = Directory.GetCurrentDirectory(); //取得目前執行路徑
+                string _rtxtpath = _CurrentDirectory + "\\" + _txtPath;
+                int _counter = 0;
+                string _robotFileName = String.Empty;
+                if (listBox2.Items.Count > 0) { listBox2.Items.Clear(); }
+                if (comboBox_RobotFile.Items.Count > 0) { comboBox_RobotFile.Items.Clear(); }
+                YaskawaController.ReadFileList(ref _fileName);
+                File.WriteAllText(_txtPath, _fileName, Encoding.UTF8);
 
-            _JMPosData.reserve = 0;
-            _JMPosData.reserve2 = 0;
-            _JMPosData.ex_pattern = 0;
-            _JMPosData.tool_no = 0;
-            _JMPosData.user_coord_no = 1;
-            _JMPosData.axis.base_pos[0] = 0;
-            _JMPosData.axis.base_pos[1] = 0;
-            _JMPosData.axis.base_pos[2] = 0;
-            _JMPosData.axis.station_pos[0] = 0;
-            _JMPosData.axis.station_pos[1] = 0;
-            _JMPosData.axis.station_pos[2] = 0;
-            _JMPosData.axis.station_pos[3] = 0;
-            _JMPosData.axis.station_pos[4] = 0;
-            _JMPosData.axis.station_pos[5] = 0;
+                foreach (string line in File.ReadLines(_rtxtpath))
+                {
+                    _robotFileName = line.Remove(line.Length - 4, 4);
+                    listBox2.Items.Add(_robotFileName);
+                    comboBox_RobotFile.Items.Add(_robotFileName);
+                    _counter++;
+                }
 
+            }
+            catch { MessageBox.Show("system error"); }
 
-
-
-            return _JMPosData;
         }
 
         /// <summary>
-        /// Robot Stop
+        /// Set Jog XYZ Lim Data
         /// </summary>
-        private void RobotStop()
-        {
-            YaskawaController.RobotStopSwitch(1); //1: ON 2: OFF
-        }
-
-        /// <summary>
-        /// Robot Start
-        /// </summary>
-        private void RobotStart()
-        {
-            YaskawaController.RobotStopSwitch(2); //1: ON 2: OFF
-        }
-        
-        /// <summary>
-        /// Robot Alarm Rst
-        /// </summary>
-        private void RobotAlarmRst()
-        {
-            YaskawaController.ResetAlarm();
-        }
-       
-        /// <summary>
-        /// Robot Error Rst
-        /// </summary>
-        private void RobotErrorRst()
-        {
-
-        }
-
-
-        private void PositionXYZDataColerRest()
-        {
-            tex_PosB_X.ForeColor = System.Drawing.Color.Black;
-            tex_PosB_Y.ForeColor = System.Drawing.Color.Black;
-            tex_PosB_Z.ForeColor = System.Drawing.Color.Black;
-            tex_PosB_RX.ForeColor = System.Drawing.Color.Black;
-            tex_PosB_RY.ForeColor = System.Drawing.Color.Black;
-            tex_PosB_RZ.ForeColor = System.Drawing.Color.Black;
-        }
-
-
         private void SetJogXYZLimData()
         {
             _JogLimM_X = int.Parse(tex_JogLimM_X.Text);
@@ -1555,6 +1897,9 @@ namespace FesIF_Demo
 
         }
 
+        /// <summary>
+        /// Set Jog SLU Lim Data
+        /// </summary>
         private void SetJogSLULimData()
         {
 
@@ -1573,112 +1918,363 @@ namespace FesIF_Demo
 
         }
 
-
-        private void RobotJog(string _name , short _state)
+        /// <summary>
+        /// Position XYZ Data Coler Rest
+        /// </summary>
+        private void PositionXYZDataColerRest()
         {
-            _GetJOGCurXYZPosData = _GetCurXYZPosData;
-            _GetJOGCurSLUPosData = _GetCurSLUPosData;
+            tex_PosB_X.ForeColor = System.Drawing.Color.Black;
+            tex_PosB_Y.ForeColor = System.Drawing.Color.Black;
+            tex_PosB_Z.ForeColor = System.Drawing.Color.Black;
+            tex_PosB_RX.ForeColor = System.Drawing.Color.Black;
+            tex_PosB_RY.ForeColor = System.Drawing.Color.Black;
+            tex_PosB_RZ.ForeColor = System.Drawing.Color.Black;
+        }
 
-            switch (_name)
+        /// <summary>
+        /// Position XYZ Data Coler Rest
+        /// </summary>
+        private void PositionSLUDataColerRest()
+        {
+            tex_PosP_S.ForeColor = System.Drawing.Color.Black;
+            tex_PosP_L.ForeColor = System.Drawing.Color.Black;
+            tex_PosP_U.ForeColor = System.Drawing.Color.Black;
+            tex_PosP_R.ForeColor = System.Drawing.Color.Black;
+            tex_PosP_B.ForeColor = System.Drawing.Color.Black;
+            tex_PosP_T.ForeColor = System.Drawing.Color.Black;
+        }
+
+        /// <summary>
+        /// Cur Pos Write Lab 寫入TXT
+        /// </summary>
+        /// <param name="_PosData"></param>
+        private void CurPosShowLab(PosData _PosDataXYZ, PosData _PosDataSLU)
+        {
+
+            lab_CurPosXYZData.Text =
+                ("P[ X,Y,Z ]:" + "\n\n Type = " + _PosDataXYZ.type + " \n 形態 = " + _PosDataXYZ.pattern + "\n Tool num = " + _PosDataXYZ.tool_no
+                + "\n User num = " + _PosDataXYZ.user_coord_no + "\n 擴張形態 = " + _PosDataXYZ.ex_pattern
+                + "\n\n X = " + _PosDataXYZ.axis[0]
+                + "\n Y = " + _PosDataXYZ.axis[1]
+                + "\n Z = " + _PosDataXYZ.axis[2]
+                + "\n A = " + _PosDataXYZ.axis[3]
+                + "\n B = " + _PosDataXYZ.axis[4]
+                + "\n C = " + _PosDataXYZ.axis[5]);
+
+            lab_CurPosSLUData.Text =
+                ("P[ S,L,U ]:" + "\n\n Type = " + _PosDataSLU.type + " \n 形態 = " + _PosDataSLU.pattern + "\n Tool num = " + _PosDataSLU.tool_no
+                + "\n User num = " + _PosDataSLU.user_coord_no + "\n 擴張形態 = " + _PosDataSLU.ex_pattern
+                + "\n\n S = " + _PosDataSLU.axis[0]
+                + "\n L = " + _PosDataSLU.axis[1]
+                + "\n U = " + _PosDataSLU.axis[2]
+                + "\n R = " + _PosDataSLU.axis[3]
+                + "\n B = " + _PosDataSLU.axis[4]
+                + "\n T = " + _PosDataSLU.axis[5]);
+        }
+
+        #endregion
+
+        #region Welding Test Funtion (WT)
+
+        /// <summary>
+        /// Set WT Position Data to TXT
+        /// </summary>
+        /// <param name="_pNum"></param>
+        /// <param name="_PosDataXYZ"></param>
+        private void SetWTPositionDatatoTXT(string _pNum, PosData _PosDataXYZ)
+        {
+            switch (_pNum)
             {
-                #region X
-                case "X":
-                    
-                    if (_state == 0 ) { _GetJOGCurXYZPosData.axis[0] = int.Parse(tex_JogLimM_X.Text)*1000; } 
-                    else if(_state == 1) { _GetJOGCurXYZPosData.axis[0] = int.Parse(tex_JogLimP_X.Text)*1000; }
-                    RobotSetJOGPosMoveBase(_GetJOGCurXYZPosData);
+                #region Load Point
+                case "Load":
+
+                    lab_WldTestPLoad.Text =
+                          ("P[ 002 ] = Load" 
+                             + "\n\n X = " + (float) _PosDataXYZ.axis[0] / 1000 + " mm"
+                             + "\n Y = " + (float) _PosDataXYZ.axis[1] / 1000 + " mm"
+                             + "\n Z = " + (float)_PosDataXYZ.axis[2] / 1000 + " mm"
+                             + "\n A = " + (float)_PosDataXYZ.axis[3] / 10000 + " deg."
+                             + "\n B = " + (float)_PosDataXYZ.axis[4] / 10000 + " deg."
+                             + "\n C = " + (float)_PosDataXYZ.axis[5] / 10000 + " deg.");
 
                     break;
 
                 #endregion
 
-                #region Y
-                case "Y":
+                #region P1
+                case "P1":
 
-                    if (_state == 0) { _GetJOGCurXYZPosData.axis[1] = int.Parse(tex_JogLimM_Y.Text) * 1000; }
-                    else if (_state == 1) { _GetJOGCurXYZPosData.axis[1] = int.Parse(tex_JogLimP_Y.Text) * 1000; }
-                    RobotSetJOGPosMoveBase(_GetJOGCurXYZPosData);
-
-                    break;
-
-                #endregion
-
-                #region Z
-                case "Z":
-
-                    if (_state == 0) { _GetJOGCurXYZPosData.axis[2] = int.Parse(tex_JogLimM_Z.Text) * 1000; }
-                    else if (_state == 1) { _GetJOGCurXYZPosData.axis[2] = int.Parse(tex_JogLimP_Z.Text) * 1000; }
-                    RobotSetJOGPosMoveBase(_GetJOGCurXYZPosData);
-                    break;
-
-                #endregion
-
-                #region RX
-                case "RX":
+                    lab_WldTestP1.Text =
+                         ("P[ 003 ] = P1"
+                            + "\n\n X = " + (float)_PosDataXYZ.axis[0] / 1000 + " mm"
+                            + "\n Y = " + (float)_PosDataXYZ.axis[1] / 1000 + " mm"
+                            + "\n Z = " + (float)_PosDataXYZ.axis[2] / 1000 + " mm"
+                            + "\n A = " + (float)_PosDataXYZ.axis[3] / 10000 + " deg."
+                            + "\n B = " + (float)_PosDataXYZ.axis[4] / 10000 + " deg."
+                            + "\n C = " + (float)_PosDataXYZ.axis[5] / 10000 + " deg.");
 
                     break;
 
                 #endregion
 
-                #region RY
-                case "RY":
+                #region P2
+                case "P2":
+
+                    lab_WldTestP2.Text =
+                         ("P[ 001 ] = P2"
+                            + "\n\n X = " + (float)_PosDataXYZ.axis[0] / 1000 + " mm"
+                            + "\n Y = " + (float)_PosDataXYZ.axis[1] / 1000 + " mm"
+                            + "\n Z = " + (float)_PosDataXYZ.axis[2] / 1000 + " mm"
+                            + "\n A = " + (float)_PosDataXYZ.axis[3] / 10000 + " deg."
+                            + "\n B = " + (float)_PosDataXYZ.axis[4] / 10000 + " deg."
+                            + "\n C = " + (float)_PosDataXYZ.axis[5] / 10000 + " deg.");
 
                     break;
 
                 #endregion
 
-                #region RZ
-                case "RZ":
+                #region Unload Point
+                case "Unload":
 
+                    lab_WldTestPUnload.Text =
+                         ("P[ 001 ] = Unload"
+                            + "\n\n X = " + (float)_PosDataXYZ.axis[0] / 1000 + " mm"
+                            + "\n Y = " + (float)_PosDataXYZ.axis[1] / 1000 + " mm"
+                            + "\n Z = " + (float)_PosDataXYZ.axis[2] / 1000 + " mm"
+                            + "\n A = " + (float)_PosDataXYZ.axis[3] / 10000 + " deg."
+                            + "\n B = " + (float)_PosDataXYZ.axis[4] / 10000 + " deg."
+                            + "\n C = " + (float)_PosDataXYZ.axis[5] / 10000 + " deg.");
+
+                    break;
+
+                    #endregion
+            }
+        }
+
+        /// <summary>
+        /// Set WT Position Data
+        /// </summary>
+        /// <param name="_pNum"></param>
+        private void SetWTPositionData(string _pNum)
+        {
+            switch (_pNum)
+            {
+                #region Load Point
+                case "Load":
+                    _WTData_Load = _GetCurXYZPosData;
+                    SetWTPositionDatatoTXT(_pNum, _WTData_Load);
+
+                    _WTLoad = true;
                     break;
 
                 #endregion
 
-                #region S
-                case "S":
+                #region P1
+                case "P1":
+                    _WTData_P1 = _GetCurXYZPosData;
+                    SetWTPositionDatatoTXT(_pNum, _WTData_P1);
 
+                    _WTP1 = true;
                     break;
 
                 #endregion
 
-                #region L
-                case "L":
+                #region P2
+                case "P2":
+                    _WTData_P2 = _GetCurXYZPosData;
+                    SetWTPositionDatatoTXT(_pNum, _WTData_P2);
 
+                    _WTP2 = true;
                     break;
 
                 #endregion
 
-                #region U
-                case "U":
+                #region Unload Point
+                case "Unload":
+                    _WTData_Unload = _GetCurXYZPosData;
+                    SetWTPositionDatatoTXT(_pNum, _WTData_Unload);
 
-                    break;
-
-                #endregion
-
-                #region R
-                case "R":
-
-                    break;
-
-                #endregion
-
-                #region B
-                case "B":
-
-                    break;
-
-                #endregion
-
-                #region T
-                case "T":
-
+                    _WTUnload = true;
                     break;
 
                     #endregion
 
             }
+        }
 
+        /// <summary>
+        ///  Welding test Compile Program 
+        /// </summary>
+        private bool WTCompileProgram()
+        {
+            try
+            {
+                // 實作程式物件
+                RouteBook_Yaskawa _routeBook_Welding = new RouteBook_Yaskawa("WELDINGTEST",5, 0, 0); // ( Home,Load,P1,P2,Unload)
+                //寫入工作環境生成狀態
+                _routeBook_Welding.Workspace = 0;
+                _routeBook_Welding.FlipMode = 1;
 
+                for (int i = 0; i < 5 ; i++)
+                {
+                    if (i==0) 
+                    {
+                        _routeBook_Welding.ProcessQueue[i] = 1;  // (1: Point  2: Dout  3: 註解)
+                        _routeBook_Welding.MovingMode[i] = 1; //  (1: MOVL  2: MOVS )
+                        _routeBook_Welding.Tool[i] = 0;
+                        _routeBook_Welding.Override[i] = 10;
+                        _routeBook_Welding.Accerlerate[i] = 70;
+                        _routeBook_Welding.Decerlerate[i] = 70;
+                        //填入Point 資料數值
+                        _routeBook_Welding.X[i] = _HomePosData.axis[0];
+                        _routeBook_Welding.Y[i] = _HomePosData.axis[1];
+                        _routeBook_Welding.Z[i] = _HomePosData.axis[2];
+                        _routeBook_Welding.A[i] = _HomePosData.axis[3];
+                        _routeBook_Welding.B[i] = _HomePosData.axis[4];
+                        _routeBook_Welding.C[i] = _HomePosData.axis[5];
+
+                    } //Home Point
+                    else if(i == 1)
+                    {
+                        //填入Point 資料屬性
+                        _routeBook_Welding.ProcessQueue[i] = 1;  // (1: Point  2: Dout  3: 註解)
+                        _routeBook_Welding.MovingMode[i] = 1; //  (1: MOVL  2: MOVS )
+                        _routeBook_Welding.Tool[i] = 0;
+                        _routeBook_Welding.Override[i] = 10;
+                        _routeBook_Welding.Accerlerate[i] = 70;
+                        _routeBook_Welding.Decerlerate[i] = 70;
+                        //填入Point 資料數值
+                        _routeBook_Welding.X[i] = _WTData_Load.axis[0];
+                        _routeBook_Welding.Y[i] = _WTData_Load.axis[1];
+                        _routeBook_Welding.Z[i] = _WTData_Load.axis[2];
+                        _routeBook_Welding.A[i] = _WTData_Load.axis[3];
+                        _routeBook_Welding.B[i] = _WTData_Load.axis[4];
+                        _routeBook_Welding.C[i] = _WTData_Load.axis[5];
+                    } //Load
+                    else if (i == 2)
+                    {
+                        //填入Point 資料屬性
+                        _routeBook_Welding.ProcessQueue[i] = 1;  // (1: Point  2: Dout  3: 註解)
+                        _routeBook_Welding.MovingMode[i] = 1; //  (1: MOVL  2: MOVS )
+                        _routeBook_Welding.Tool[i] = 0;
+                        _routeBook_Welding.Override[i] = 10;
+                        _routeBook_Welding.Accerlerate[i] = 70;
+                        _routeBook_Welding.Decerlerate[i] = 70;
+                        //填入Point 資料數值
+                        _routeBook_Welding.X[i] = _WTData_P1.axis[0];
+                        _routeBook_Welding.Y[i] = _WTData_P1.axis[1];
+                        _routeBook_Welding.Z[i] = _WTData_P1.axis[2];
+                        _routeBook_Welding.A[i] = _WTData_P1.axis[3];
+                        _routeBook_Welding.B[i] = _WTData_P1.axis[4];
+                        _routeBook_Welding.C[i] = _WTData_P1.axis[5];
+                    } //P1
+                    else if (i == 3)
+                    {
+                        //填入Point 資料屬性
+                        _routeBook_Welding.ProcessQueue[i] = 1;  // (1: Point  2: Dout  3: 註解)
+                        _routeBook_Welding.MovingMode[i] = 1; //  (1: MOVL  2: MOVS )
+                        _routeBook_Welding.Tool[i] = 0;
+                        _routeBook_Welding.Override[i] = 10;
+                        _routeBook_Welding.Accerlerate[i] = 70;
+                        _routeBook_Welding.Decerlerate[i] = 70;
+                        //填入Point 資料數值
+                        _routeBook_Welding.X[i] = _WTData_P2.axis[0];
+                        _routeBook_Welding.Y[i] = _WTData_P2.axis[1];
+                        _routeBook_Welding.Z[i] = _WTData_P2.axis[2];
+                        _routeBook_Welding.A[i] = _WTData_P2.axis[3];
+                        _routeBook_Welding.B[i] = _WTData_P2.axis[4];
+                        _routeBook_Welding.C[i] = _WTData_P2.axis[5];
+                    } //P2
+                    else if (i == 4)
+                    {
+                        //填入Point 資料屬性
+                        _routeBook_Welding.ProcessQueue[i] = 1;  // (1: Point  2: Dout  3: 註解)
+                        _routeBook_Welding.MovingMode[i] = 1; //  (1: MOVL  2: MOVS )
+                        _routeBook_Welding.Tool[i] = 0;
+                        _routeBook_Welding.Override[i] = 10;
+                        _routeBook_Welding.Accerlerate[i] = 70;
+                        _routeBook_Welding.Decerlerate[i] = 70;
+                        //填入Point 資料數值
+                        _routeBook_Welding.X[i] = _WTData_Unload.axis[0];
+                        _routeBook_Welding.Y[i] = _WTData_Unload.axis[1];
+                        _routeBook_Welding.Z[i] = _WTData_Unload.axis[2];
+                        _routeBook_Welding.A[i] = _WTData_Unload.axis[3];
+                        _routeBook_Welding.B[i] = _WTData_Unload.axis[4];
+                        _routeBook_Welding.C[i] = _WTData_Unload.axis[5];
+                    } //Unload
+
+                }
+
+                //程式編譯
+                int _rslt;
+                _rslt = YaskawaController.CompileFile(_routeBook_Welding, "WELDINGTEST","HOME", 1, 1 , 2 , 3 );
+                if (_rslt==0) 
+                { 
+                    MessageBox.Show("Program CompileFile OK!!!");
+                    if (rad_WTProgramType2.Checked)
+                    {
+                        //程式匯入
+                        _rslt = YaskawaController.Upload2Controller("WELDINGTEST");
+                        if (_rslt == 0) { MessageBox.Show("Program Load OK!!!"); }
+                        else { MessageBox.Show("Program Load Fale!!!"); }
+                    }
+                    
+                }else{MessageBox.Show("Program CompileFile Fale!!!");}
+                
+                return true;
+            }
+            catch { MessageBox.Show("system error"); return false; }
+        }
+
+        /// <summary>
+        /// WT Read Point State
+        /// </summary>
+        private void WTReadPointState()
+        {
+            short _speedVal = 0;
+            short _ACVal = 0;
+            short _AVPVal = 0;
+
+            if (_WTLoad) { lab_WTPSet_Load.ForeColor = System.Drawing.Color.Green; } else { lab_WTPSet_Load.ForeColor = System.Drawing.Color.Red; }
+            if (_WTP1) { lab_WTPSet_P1.ForeColor = System.Drawing.Color.Green; } else { lab_WTPSet_P1.ForeColor = System.Drawing.Color.Red; }
+            if (_WTP2) { lab_WTPSet_P2.ForeColor = System.Drawing.Color.Green; } else { lab_WTPSet_P2.ForeColor = System.Drawing.Color.Red; }
+            if (_WTUnload) { lab_WTPSet_Unload.ForeColor = System.Drawing.Color.Green; } else { lab_WTPSet_Unload.ForeColor = System.Drawing.Color.Red; }
+
+            
+            RobotRegRead(1, ref _speedVal);
+            RobotRegRead(2, ref _ACVal);
+            RobotRegRead(3, ref _AVPVal);
+            lab_WTSpeedReg.Text = "Speed : " + _speedVal.ToString();
+            lab_WTACReg.Text = "AC : " + _ACVal.ToString();
+            lab_WTAVPReg.Text = "AVP : " + _AVPVal.ToString();
+
+        }
+
+        /// <summary>
+        /// WT Redo Set Data
+        /// </summary>
+        private void WTRedoSetData()
+        {
+
+            _WTData_Load.axis[0] += (Convert.ToInt32(tex_WTRedo_X.Text) * 1000);
+            _WTData_Load.axis[1] += (Convert.ToInt32(tex_WTRedo_Y.Text) * 1000);
+            _WTData_Load.axis[2] += (Convert.ToInt32(tex_WTRedo_Z.Text) * 1000);
+            
+            if (_connectState)
+            {
+                _WTData_P1.axis[0] += (Convert.ToInt32(tex_WTRedo_X.Text) * 1000);
+                _WTData_P1.axis[1] += (Convert.ToInt32(tex_WTRedo_Y.Text) * 1000);
+                _WTData_P1.axis[2] += (Convert.ToInt32(tex_WTRedo_Z.Text) * 1000);
+
+                _WTData_P2.axis[0] += (Convert.ToInt32(tex_WTRedo_X.Text) * 1000);
+                _WTData_P2.axis[1] += (Convert.ToInt32(tex_WTRedo_Y.Text) * 1000);
+                _WTData_P2.axis[2] += (Convert.ToInt32(tex_WTRedo_Z.Text) * 1000);
+
+                _WTData_Unload.axis[0] += (Convert.ToInt32(tex_WTRedo_X.Text) * 1000);
+                _WTData_Unload.axis[1] += (Convert.ToInt32(tex_WTRedo_Y.Text) * 1000);
+                _WTData_Unload.axis[2] += (Convert.ToInt32(tex_WTRedo_Z.Text) * 1000);
+
+            }
         }
 
         #endregion
@@ -1696,7 +2292,7 @@ namespace FesIF_Demo
             if (listBox1.Items.Count > 0) { listBox1.Items.Clear(); }
             //依序寫入 listBox1 Items 
             foreach (var _file in _files)
-            {                
+            {
                 listBox1.Items.Add(Path.GetFileNameWithoutExtension(_file)); //不含副檔名
                 //listBox1.Items.Add(Path.GetFileName(_file)); //含副檔名
             }
@@ -1710,7 +2306,7 @@ namespace FesIF_Demo
         private void PCFileDelete(string _fileName)
         {
             var _CurrentDirectory = Directory.GetCurrentDirectory(); //取得目前執行路徑
-            string path = _CurrentDirectory+"\\"+ _fileName+".JBI";
+            string path = _CurrentDirectory + "\\" + _fileName + ".JBI";
             bool result = File.Exists(path);
             if (result == true)
             {
@@ -1724,23 +2320,7 @@ namespace FesIF_Demo
             }
         }
 
-        /// <summary>
-        /// Yaskawa Controller 刪除JBI資料
-        /// </summary>
-        /// <param name="_fileName"></param>
-        private void ContrillerFileDelete(string _fileName)
-        {
-            int _rslt = YaskawaController.DeleteFile(_fileName);
-            if (_rslt == 1)
-            {
-                Console.WriteLine("File Found");
-                Console.WriteLine("File Deleted Successfully");
-            }
-            else
-            {
-                Console.WriteLine("File Not Found");
-            }
-        }
+        #endregion
 
         #endregion
 
@@ -1789,19 +2369,34 @@ namespace FesIF_Demo
             RobotCurPosGet("XYZ", ref _GetCurXYZPosData);
             RobotCurPosGet("SLU", ref _GetCurSLUPosData);
             CurPosShowLab(_GetCurXYZPosData, _GetCurSLUPosData);
+            WTReadPointState();
         }
 
         /// <summary>
-        /// Jog Loop Timer
+        /// WT Loop Timer (需確認)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void JogLoopTimer_Tick(object sender, EventArgs e)
+        private void WTLoopTimer_Tick(object sender, EventArgs e)
         {
-            if (YaskawaController.isBusy==true)
+            if (_GetCurXYZPosData.axis[1] > _WTData_P1.axis[1])
             {
-                JogTest(1000);
-            }
+                RobotRegWrite(1, short.Parse(tex_WTSpeed_P1.Text));
+                RobotRegWrite(2, short.Parse(tex_WTAC_P1.Text));
+                RobotRegWrite(3, short.Parse(tex_WTAVP_P1.Text));
+            } //寫入設定數值 P1 (Speed/AC/AVP)
+            if (_GetCurXYZPosData.axis[1] > _WTData_P2.axis[1])
+            {
+                RobotRegWrite(1, short.Parse(tex_WTSpeed_P2.Text));
+                RobotRegWrite(2, short.Parse(tex_WTAC_P2.Text));
+                RobotRegWrite(3, short.Parse(tex_WTAVP_P2.Text));
+            } //寫入設定數值 P2 (Speed/AC/AVP)
+            if (_GetCurXYZPosData.axis[1] > _WTData_Unload.axis[1])
+            {
+                RobotRegWrite(1, short.Parse(tex_WTSpeed_ULD.Text));
+                RobotRegWrite(2, short.Parse(tex_WTAC_ULD.Text));
+                RobotRegWrite(3, short.Parse(tex_WTAVP_ULD.Text));
+            } //寫入設定數值 Unload (Speed/AC/AVP)
         }
 
         #endregion

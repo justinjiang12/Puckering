@@ -170,6 +170,8 @@
     <Content Include="Image\MIRDC_LOGO.png" />
     <Content Include="Image\SESC_LOGO.png" />
     <Content Include="Image\SHomePage_LOGO.png" />
+    <None Include="Image\Welding_2.png" />
+    <None Include="Image\Welding_1.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
