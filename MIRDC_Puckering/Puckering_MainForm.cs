@@ -13,7 +13,6 @@ using MIRDC_Puckering.Robotcontrol;
 using DIO;
 using MxAutomation_Example;
 using MIRDC_Puckering.OtherProgram;
-using FesIF_Demo;
 
 
 
@@ -37,7 +36,6 @@ namespace MIRDC_Puckering
         public static IOForm F_IO = new IOForm();
         public static MainView F_KRC = new MainView();
         public static LoginForm F_LOGIN = new LoginForm();
-        public static YaskawRobot F_YRC = new YaskawRobot();
 
         #endregion
 
@@ -62,31 +60,6 @@ namespace MIRDC_Puckering
             IPermission_EventLoad();
         }
 
-        private void ISystem_EventLoad()
-        {
-            ISystem.OnSysModelChanging += ChangeSysModelState;
-            ISystem.OnSysControlChanging += ChangeSysControlState;
-            //委派方法
-            //thr_control.L_GrabRobot.OnChangeLoopStep += ChangeGLoopStep;
-            ISystem.Model_State = SysModel.Manual;
-        }
-
-        private void IPermission_EventLoad()
-        {
-            IPermission.OnSysLevelChanging += ChangePermissionLevel;
-            //委派方法
-            IPermission.Permission_Level = PermissionList.Level_0_Guest;
-        }
-
-        private void Thread_EventLoad()
-        {
-            thr_control.L_GrabRobot.e_Signal_output_1 += GrabRobot_output;
-        }
-
-        private void GrabRobot_output(ushort num,bool state)
-        {
-            F_IO.DO_Write(num,state);
-        }
 
         /// <summary>
         /// 視窗關閉
@@ -95,7 +68,7 @@ namespace MIRDC_Puckering
         /// <param name="e"></param>
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
             DialogResult dr = MessageBox.Show("確定要關閉程式嗎?",
             "Closing event!", MessageBoxButtons.YesNo);
             if (dr == DialogResult.No)
@@ -108,11 +81,47 @@ namespace MIRDC_Puckering
                 e.Cancel = false;//確認離開
 
             }
-            
+
         }
         #endregion
 
-        #region 相關事件觸發方法
+
+        #region Event 管理(匯入)
+
+        /// <summary>
+        /// 控制系統 Event
+        /// </summary>
+        private void ISystem_EventLoad()
+        {
+            ISystem.OnSysModelChanging += ChangeSysModelState;
+            ISystem.OnSysControlChanging += ChangeSysControlState;
+            //委派方法
+            //thr_control.L_GrabRobot.OnChangeLoopStep += ChangeGLoopStep;
+            ISystem.Model_State = SysModel.Manual;
+        }
+
+        /// <summary>
+        /// 權限 Event
+        /// </summary>
+        private void IPermission_EventLoad()
+        {
+            IPermission.OnSysLevelChanging += ChangePermissionLevel;
+            //委派方法
+            IPermission.Permission_Level = PermissionList.Level_0_Guest;
+        }
+
+        /// <summary>
+        /// 自動流程 Event
+        /// </summary>
+        private void Thread_EventLoad()
+        {
+            thr_control.L_GrabRobot.e_Signal_output_1 += GrabRobot_output;
+        }
+
+
+        #endregion
+
+        #region 相關Event觸發(方法)
 
         /// <summary>
         /// 當系統狀態改變事件觸發
@@ -152,6 +161,18 @@ namespace MIRDC_Puckering
             CheckSysControl(State);
 
         }
+
+
+        /// <summary>
+        /// 模擬IO輸出
+        /// </summary>
+        /// <param name="num"></param>
+        /// <param name="state"></param>
+        private void GrabRobot_output(ushort num, bool state)
+        {
+            F_IO.DO_Write(num, state);
+        }
+
 
         /*
          //委派方法
@@ -379,13 +400,7 @@ namespace MIRDC_Puckering
                         pageState = "KUKA_Page";
                         break;
 
-                    case "YaskawaPage":
 
-                        ShowForm(F_YRC);
-                        pageState = "Yaskawa_Page";
-                        break;
-
-                        
 
 
                     case "IOPage":
@@ -399,8 +414,6 @@ namespace MIRDC_Puckering
                         panel1.Controls.Remove(F_MRC);
 
                         break;
-
-
 
 
 
@@ -482,7 +495,6 @@ namespace MIRDC_Puckering
             if (pageName == "Mitusbishi_Page") { panel1.Controls.Remove(F_MRC); }
             if (pageName == "IO_Page") { panel1.Controls.Remove(F_IO); }
             if (pageName == "KUKA_Page") { panel1.Controls.Remove(F_KRC); }
-            if (pageName == "Yaskawa_Page") { panel1.Controls.Remove(F_YRC); }
         }
 
         /// <summary>

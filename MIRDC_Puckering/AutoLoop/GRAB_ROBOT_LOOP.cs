@@ -73,9 +73,382 @@ namespace MIRDC_Puckering.AutoLoop
         {
             switch (_step)
             {
-
                 #region 步序(0)
                 case 0:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用 
+                    _step++; //下一步序控制
+
+
+                    /*
+                    //if (!Puckering_MainForm.F_IO.DI_Read(0)) {Puckering_MainForm.F_IO.DO_Write(1, true);}//IO輸出
+                    e_Signal_output_1(1, true);//委派觸發
+                    //判斷該回饋訊號
+                    if (Puckering_MainForm.F_IO.DI_Read(1))
+                    {
+
+                        _StepNum = _step.ToString(); //步序顯示用
+                        _step++; //下一步序控制
+                    }
+                    */
+
+                    break;
+
+                #endregion
+                #region 步序(1)
+                case 1:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用 
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(2)
+                case 2:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用 
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(3)
+                case 3:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(4)
+                case 4:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(5)
+                case 5:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(6)
+                case 6:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+                    e_Signal_output_1(1, false);//委派觸發
+
+                    //判斷該回饋訊號
+                    if (!Puckering_MainForm.F_IO.DI_Read(1))
+                    {
+                        _StepNum = _step.ToString(); //步序顯示用
+                        _step++; //下一步序控制
+                    }
+
+                    break;
+
+                #endregion
+                #region 步序(7)
+                case 7:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(8)
+                case 8:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(9)
+                case 9:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(10)
+                case 10:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(11)
+                case 11:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(12)
+                case 12:
+                    while (_loopStop) { } //暫停迴圈
+
+
+
+
+                    //填入該步序動作區塊
+                    _signal_a1 = true;
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step = 0; //下一步序控制
+
+
+                    break;
+
+                #endregion
+                #region 步序(13)
+                case 13:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(14)
+                case 14:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(15)
+                case 15:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(16)
+                case 16:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+                    e_Signal_output_1(1, false);//委派觸發
+
+                    //判斷該回饋訊號
+                    if (!Puckering_MainForm.F_IO.DI_Read(1))
+                    {
+                        _StepNum = _step.ToString(); //步序顯示用
+                        _step++; //下一步序控制
+                    }
+
+                    break;
+
+                #endregion
+                #region 步序(17)
+                case 17:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(18)
+                case 18:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(19)
+                case 19:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(20)
+                case 20:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(21)
+                case 21:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(22)
+                case 22:
+                    while (_loopStop) { } //暫停迴圈
+
+
+
+
+                    //填入該步序動作區塊
+                    _signal_a1 = true;
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step = 0; //下一步序控制
+
+
+                    break;
+
+                #endregion
+                #region 步序(23)
+                case 23:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(24)
+                case 24:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(25)
+                case 25:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(26)
+                case 26:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+                    e_Signal_output_1(1, false);//委派觸發
+
+                    //判斷該回饋訊號
+                    if (!Puckering_MainForm.F_IO.DI_Read(1))
+                    {
+                        _StepNum = _step.ToString(); //步序顯示用
+                        _step++; //下一步序控制
+                    }
+
+                    break;
+
+                #endregion
+                #region 步序(27)
+                case 27:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(28)
+                case 28:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(29)
+                case 29:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(30)
+                case 30:
                     while (_loopStop) { } //暫停迴圈
 
                     //填入該步序動作區塊
@@ -95,9 +468,8 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-
-                #region 步序(1)
-                case 1:
+                #region 步序(31)
+                case 31:
                     while (_loopStop) { } //暫停迴圈
 
                     //填入該步序動作區塊
@@ -107,9 +479,8 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-
-                #region 步序(2)
-                case 2:
+                #region 步序(32)
+                case 32:
                     while (_loopStop) { } //暫停迴圈
 
                     //填入該步序動作區塊
@@ -119,9 +490,8 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-
-                #region 步序(3)
-                case 3:
+                #region 步序(33)
+                case 33:
                     while (_loopStop) { } //暫停迴圈
 
                     //填入該步序動作區塊
@@ -131,9 +501,8 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-
-                #region 步序(4)
-                case 4:
+                #region 步序(34)
+                case 34:
                     while (_loopStop) { } //暫停迴圈
 
                     //填入該步序動作區塊
@@ -143,9 +512,8 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-
-                #region 步序(5)
-                case 5:
+                #region 步序(35)
+                case 35:
                     while (_loopStop) { } //暫停迴圈
 
                     //填入該步序動作區塊
@@ -155,9 +523,8 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-
-                #region 步序(6)
-                case 6:
+                #region 步序(36)
+                case 36:
                     while (_loopStop) { } //暫停迴圈
 
                     //填入該步序動作區塊
@@ -173,9 +540,8 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-
-                #region 步序(7)
-                case 7:
+                #region 步序(37)
+                case 37:
                     while (_loopStop) { } //暫停迴圈
 
                     //填入該步序動作區塊
@@ -185,9 +551,8 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-
-                #region 步序(8)
-                case 8:
+                #region 步序(38)
+                case 38:
                     while (_loopStop) { } //暫停迴圈
 
                     //填入該步序動作區塊
@@ -197,9 +562,8 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-
-                #region 步序(9)
-                case 9:
+                #region 步序(39)
+                case 39:
                     while (_loopStop) { } //暫停迴圈
 
                     //填入該步序動作區塊
@@ -209,9 +573,8 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-
-                #region 步序(10)
-                case 10:
+                #region 步序(40)
+                case 40:
                     while (_loopStop) { } //暫停迴圈
 
                     //填入該步序動作區塊
@@ -221,9 +584,8 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-
-                #region 步序(11)
-                case 11:
+                #region 步序(41)
+                case 41:
                     while (_loopStop) { } //暫停迴圈
 
                     //填入該步序動作區塊
@@ -233,9 +595,8 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-
-                #region 步序(12)
-                case 12:
+                #region 步序(42)
+                case 42:
                     while (_loopStop) { } //暫停迴圈
 
 
@@ -247,6 +608,704 @@ namespace MIRDC_Puckering.AutoLoop
                     _step = 0; //下一步序控制
 
 
+                    break;
+
+                #endregion
+                #region 步序(43)
+                case 43:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(44)
+                case 44:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(45)
+                case 45:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(46)
+                case 46:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+                    e_Signal_output_1(1, false);//委派觸發
+
+                    //判斷該回饋訊號
+                    if (!Puckering_MainForm.F_IO.DI_Read(1))
+                    {
+                        _StepNum = _step.ToString(); //步序顯示用
+                        _step++; //下一步序控制
+                    }
+
+                    break;
+
+                #endregion
+                #region 步序(47)
+                case 47:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(48)
+                case 48:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(49)
+                case 49:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(50)
+                case 50:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(51)
+                case 51:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(52)
+                case 52:
+                    while (_loopStop) { } //暫停迴圈
+
+
+
+
+                    //填入該步序動作區塊
+                    _signal_a1 = true;
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step = 0; //下一步序控制
+
+
+                    break;
+
+                #endregion
+                #region 步序(53)
+                case 53:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(54)
+                case 54:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(55)
+                case 55:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(56)
+                case 56:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+                    e_Signal_output_1(1, false);//委派觸發
+
+                    //判斷該回饋訊號
+                    if (!Puckering_MainForm.F_IO.DI_Read(1))
+                    {
+                        _StepNum = _step.ToString(); //步序顯示用
+                        _step++; //下一步序控制
+                    }
+
+                    break;
+
+                #endregion
+                #region 步序(57)
+                case 57:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(58)
+                case 58:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(59)
+                case 59:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(60)
+                case 60:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+
+                    //if (!Puckering_MainForm.F_IO.DI_Read(0)) {Puckering_MainForm.F_IO.DO_Write(1, true);}//IO輸出
+                    e_Signal_output_1(1, true);//委派觸發
+                    //判斷該回饋訊號
+                    if (Puckering_MainForm.F_IO.DI_Read(1))
+                    {
+
+                        _StepNum = _step.ToString(); //步序顯示用
+                        _step++; //下一步序控制
+                    }
+
+
+                    break;
+
+                #endregion
+                #region 步序(61)
+                case 61:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用 
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(62)
+                case 62:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用 
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(63)
+                case 63:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(64)
+                case 64:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(65)
+                case 65:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(66)
+                case 66:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+                    e_Signal_output_1(1, false);//委派觸發
+
+                    //判斷該回饋訊號
+                    if (!Puckering_MainForm.F_IO.DI_Read(1))
+                    {
+                        _StepNum = _step.ToString(); //步序顯示用
+                        _step++; //下一步序控制
+                    }
+
+                    break;
+
+                #endregion
+                #region 步序(67)
+                case 67:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(68)
+                case 68:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(69)
+                case 69:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(70)
+                case 70:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(71)
+                case 71:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(72)
+                case 72:
+                    while (_loopStop) { } //暫停迴圈
+
+
+
+
+                    //填入該步序動作區塊
+                    _signal_a1 = true;
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step = 0; //下一步序控制
+
+
+                    break;
+
+                #endregion
+                #region 步序(73)
+                case 73:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(74)
+                case 74:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(75)
+                case 75:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(76)
+                case 76:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+                    e_Signal_output_1(1, false);//委派觸發
+
+                    //判斷該回饋訊號
+                    if (!Puckering_MainForm.F_IO.DI_Read(1))
+                    {
+                        _StepNum = _step.ToString(); //步序顯示用
+                        _step++; //下一步序控制
+                    }
+
+                    break;
+
+                #endregion
+                #region 步序(77)
+                case 77:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(78)
+                case 78:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(79)
+                case 79:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(80)
+                case 80:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(81)
+                case 81:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(82)
+                case 82:
+                    while (_loopStop) { } //暫停迴圈
+
+
+
+
+                    //填入該步序動作區塊
+                    _signal_a1 = true;
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step = 0; //下一步序控制
+
+
+                    break;
+
+                #endregion
+                #region 步序(83)
+                case 83:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(84)
+                case 84:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(85)
+                case 85:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(86)
+                case 86:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+                    e_Signal_output_1(1, false);//委派觸發
+
+                    //判斷該回饋訊號
+                    if (!Puckering_MainForm.F_IO.DI_Read(1))
+                    {
+                        _StepNum = _step.ToString(); //步序顯示用
+                        _step++; //下一步序控制
+                    }
+
+                    break;
+
+                #endregion
+                #region 步序(87)
+                case 87:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(88)
+                case 88:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(89)
+                case 89:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(90)
+                case 90:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+
+                    //if (!Puckering_MainForm.F_IO.DI_Read(0)) {Puckering_MainForm.F_IO.DO_Write(1, true);}//IO輸出
+                    e_Signal_output_1(1, true);//委派觸發
+                    //判斷該回饋訊號
+                    if (Puckering_MainForm.F_IO.DI_Read(1))
+                    {
+
+                        _StepNum = _step.ToString(); //步序顯示用
+                        _step++; //下一步序控制
+                    }
+
+
+                    break;
+
+                #endregion
+                #region 步序(91)
+                case 91:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用 
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(92)
+                case 92:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用 
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(93)
+                case 93:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(94)
+                case 94:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(95)
+                case 95:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(96)
+                case 96:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+                    e_Signal_output_1(1, false);//委派觸發
+
+                    //判斷該回饋訊號
+                    if (!Puckering_MainForm.F_IO.DI_Read(1))
+                    {
+                        _StepNum = _step.ToString(); //步序顯示用
+                        _step++; //下一步序控制
+                    }
+
+                    break;
+
+                #endregion
+                #region 步序(97)
+                case 97:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(98)
+                case 98:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step++; //下一步序控制
+                    break;
+
+                #endregion
+                #region 步序(99)
+                case 99:
+                    while (_loopStop) { } //暫停迴圈
+
+                    //填入該步序動作區塊
+
+                    _StepNum = _step.ToString(); //步序顯示用
+                    _step = 0; //下一步序控制
                     break;
 
                     #endregion

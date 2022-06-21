@@ -7,46 +7,46 @@ using System.Threading;
 
 namespace MIRDC_Puckering.AutoLoop
 {
-    delegate void A_OTHER_DO(ushort num, bool state);
 
-    class OTHER_LOOP
+    delegate void A_SYSControl_DO(ushort num, bool state);
+
+    class AutoControl_Loop
     {
-
         #region 委派專用欄位
-        public event A_OTHER_DO e_Signal_output_1;
-        //public event A_OTHER_DO e_Signal_output_2;
-        //public event A_OTHER_DO e_Signal_output_3;
-        //public event A_OTHER_DO e_Signal_output_4;
-        //public event A_OTHER_DO e_Signal_output_5;
-        //public event A_OTHER_DO e_Signal_output_6;
+        public event A_SYSControl_DO e_Signal_output_1;
+        //public event A_SYSControl_DO e_Signal_output_2;
+        //public event A_SYSControl_DO e_Signal_output_3;
+        //public event A_SYSControl_DO e_Signal_output_4;
+        //public event A_SYSControl_DO e_Signal_output_5;
+        //public event A_SYSControl_DO e_Signal_output_6;
+
         #endregion
 
         #region 外部實作欄位
 
         //步序數據
-        public int Other_step { get { return _step; } set { _step = value; } } //對外訊號(R/W)
+        public int SYSC_step { get { return _step; } set { _step = value; } } //對外訊號(R/W)
         private int _step = 0; //對內訊號
         //步序速度
-        public int Other_loopSpeed { get { return _loopSpeed; } set { _loopSpeed = value; } }//對外訊號(R/W)
+        public int SYSC_loopSpeed { get { return _loopSpeed; } set { _loopSpeed = value; } }//對外訊號(R/W)
         private int _loopSpeed = 100; //對內訊號
         //步序停止訊號
-        public bool Other_loopStop { get { return _loopStop; } set { _loopStop = value; } }//對外訊號(R/W)
+        public bool SYSC_loopStop { get { return _loopStop; } set { _loopStop = value; } }//對外訊號(R/W)
         private bool _loopStop; //對內訊號
         //步序數據狀態
-        public static string Other_StepNum { get { return _StepNum; } set { _StepNum = value; } }//對外訊號(R)
+        public static string SYSC_StepNum { get { return _StepNum; } set { _StepNum = value; } }//對外訊號(R)
         private static string _StepNum = "0"; //對內訊號
 
         #endregion
 
-
         #region 內部(for Other Loop)交握欄位
-        public static bool Other_signal_a1 { get { return _signal_a1; } set { _signal_a1 = value; } }//訊號(R/W)
+        public static bool SYSC_signal_a1 { get { return _signal_a1; } set { _signal_a1 = value; } }//訊號(R/W)
         private static bool _signal_a1 = false; //訊號
-        public static bool Other_signal_a2 { get { return _signal_a2; } set { _signal_a2 = value; } }//訊號(R/W)
+        public static bool SYSC_signal_a2 { get { return _signal_a2; } set { _signal_a2 = value; } }//訊號(R/W)
         private static bool _signal_a2 = false; //訊號
-        public static bool Other_signal_a3 { get { return _signal_a3; } set { _signal_a3 = value; } }//訊號(R/W)
+        public static bool SYSC_signal_a3 { get { return _signal_a3; } set { _signal_a3 = value; } }//訊號(R/W)
         private static bool _signal_a3 = false; //訊號
-        public static bool Other_signal_a4 { get { return _signal_a4; } set { _signal_a4 = value; } }//訊號(R/W)
+        public static bool SYSC_signal_a4 { get { return _signal_a4; } set { _signal_a4 = value; } }//訊號(R/W)
         private static bool _signal_a4 = false; //訊號
 
 
@@ -74,7 +74,7 @@ namespace MIRDC_Puckering.AutoLoop
         {
             switch (_step)
             {
-                #region 步序(0)
+                #region 步序(0) 啟動準備
                 case 0:
                     while (_loopStop) { } //暫停迴圈
 
@@ -95,7 +95,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(1)
+                #region 步序(1) 確認各項狀態
                 case 1:
                     while (_loopStop) { } //暫停迴圈
 
@@ -106,7 +106,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(2)
+                #region 步序(2) 確認各項狀態(完成)
                 case 2:
                     while (_loopStop) { } //暫停迴圈
 
@@ -139,7 +139,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(5)
+                #region 步序(5) 各項元件復位動作_準備
                 case 5:
                     while (_loopStop) { } //暫停迴圈
 
@@ -150,7 +150,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(6)
+                #region 步序(6) 各項元件復位動作_開始
                 case 6:
                     while (_loopStop) { } //暫停迴圈
 
@@ -167,7 +167,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(7)
+                #region 步序(7) 各項元件復位動作_完成
                 case 7:
                     while (_loopStop) { } //暫停迴圈
 
@@ -200,7 +200,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(10)
+                #region 步序(10) 準備完成
                 case 10:
                     while (_loopStop) { } //暫停迴圈
 
@@ -211,7 +211,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(11)
+                #region 步序(11) 自動流程開始
                 case 11:
                     while (_loopStop) { } //暫停迴圈
 
@@ -222,7 +222,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(12)
+                #region 步序(12) 判斷張數
                 case 12:
                     while (_loopStop) { } //暫停迴圈
 
@@ -260,7 +260,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(15)
+                #region 步序(15) 汽缸復位(股)_啟動
                 case 15:
                     while (_loopStop) { } //暫停迴圈
 
@@ -271,7 +271,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(16)
+                #region 步序(16) 汽缸復位(股)_啟動到位
                 case 16:
                     while (_loopStop) { } //暫停迴圈
 
@@ -288,7 +288,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(17)
+                #region 步序(17) 汽缸進位(紗)_啟動
                 case 17:
                     while (_loopStop) { } //暫停迴圈
 
@@ -299,7 +299,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(18)
+                #region 步序(18) 汽缸進位(紗)_啟動
                 case 18:
                     while (_loopStop) { } //暫停迴圈
 
@@ -321,7 +321,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(20)
+                #region 步序(20) MR_取料動作_準備
                 case 20:
                     while (_loopStop) { } //暫停迴圈
 
@@ -332,7 +332,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(21)
+                #region 步序(21) MR_取料動作_開始
                 case 21:
                     while (_loopStop) { } //暫停迴圈
 
@@ -343,7 +343,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(22)
+                #region 步序(22) MR_取料動作_完成
                 case 22:
                     while (_loopStop) { } //暫停迴圈
 
@@ -381,7 +381,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(25)
+                #region 步序(25) 開啟柏努力汽缸
                 case 25:
                     while (_loopStop) { } //暫停迴圈
 
@@ -392,7 +392,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(26)
+                #region 步序(26) 開啟柏努力汽缸(完成)
                 case 26:
                     while (_loopStop) { } //暫停迴圈
 
@@ -442,7 +442,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(30)
+                #region 步序(30) MR_取料提高動作_準備
                 case 30:
                     while (_loopStop) { } //暫停迴圈
 
@@ -463,7 +463,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(31)
+                #region 步序(31) MR_取料提高動作_開始
                 case 31:
                     while (_loopStop) { } //暫停迴圈
 
@@ -474,7 +474,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(32)
+                #region 步序(32) MR_取料提高動作_完成
                 case 32:
                     while (_loopStop) { } //暫停迴圈
 
@@ -507,7 +507,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(35)
+                #region 步序(35) 開啟夾爪汽缸
                 case 35:
                     while (_loopStop) { } //暫停迴圈
 
@@ -518,7 +518,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(36)
+                #region 步序(36) 開啟夾爪汽缸(完成)
                 case 36:
                     while (_loopStop) { } //暫停迴圈
 
@@ -535,7 +535,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(37)
+                #region 步序(37) 關閉柏努力汽缸
                 case 37:
                     while (_loopStop) { } //暫停迴圈
 
@@ -545,8 +545,8 @@ namespace MIRDC_Puckering.AutoLoop
                     _step++; //下一步序控制
                     break;
 
-                #endregion
-                #region 步序(38)
+                #endregion 
+                #region 步序(38) 關閉柏努力汽缸(完成)
                 case 38:
                     while (_loopStop) { } //暫停迴圈
 
@@ -556,7 +556,7 @@ namespace MIRDC_Puckering.AutoLoop
                     _step++; //下一步序控制
                     break;
 
-                #endregion
+                #endregion 
                 #region 步序(39)
                 case 39:
                     while (_loopStop) { } //暫停迴圈
@@ -568,7 +568,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(40)
+                #region 步序(40) MR_進入A區放料動作_準備
                 case 40:
                     while (_loopStop) { } //暫停迴圈
 
@@ -578,8 +578,8 @@ namespace MIRDC_Puckering.AutoLoop
                     _step++; //下一步序控制
                     break;
 
-                #endregion
-                #region 步序(41)
+                #endregion 
+                #region 步序(41) MR_進入A區放料動作_開始
                 case 41:
                     while (_loopStop) { } //暫停迴圈
 
@@ -589,8 +589,8 @@ namespace MIRDC_Puckering.AutoLoop
                     _step++; //下一步序控制
                     break;
 
-                #endregion
-                #region 步序(42)
+                #endregion 
+                #region 步序(42) MR_進入A區放料動作_完成
                 case 42:
                     while (_loopStop) { } //暫停迴圈
 
@@ -628,7 +628,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(45)
+                #region 步序(45) KR_壓布動作_準備
                 case 45:
                     while (_loopStop) { } //暫停迴圈
 
@@ -639,7 +639,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(46)
+                #region 步序(46) KR_壓布動作_開始
                 case 46:
                     while (_loopStop) { } //暫停迴圈
 
@@ -656,7 +656,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(47)
+                #region 步序(47) KR_壓布動作_完成
                 case 47:
                     while (_loopStop) { } //暫停迴圈
 
@@ -689,7 +689,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(50)
+                #region 步序(50) 觸發視覺取像
                 case 50:
                     while (_loopStop) { } //暫停迴圈
 
@@ -700,7 +700,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(51)
+                #region 步序(51) 觸發視覺取像(取得路徑)
                 case 51:
                     while (_loopStop) { } //暫停迴圈
 
@@ -749,7 +749,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(55)
+                #region 步序(55) MR_進入A區除皺動作_準備
                 case 55:
                     while (_loopStop) { } //暫停迴圈
 
@@ -760,7 +760,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(56)
+                #region 步序(56) MR_進入A區除皺動作_開始
                 case 56:
                     while (_loopStop) { } //暫停迴圈
 
@@ -777,7 +777,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(57)
+                #region 步序(57) MR_進入A區除皺動作_完成
                 case 57:
                     while (_loopStop) { } //暫停迴圈
 
@@ -810,7 +810,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(60)
+                #region 步序(60) KR_滾布除皺A動作_準備
                 case 60:
                     while (_loopStop) { } //暫停迴圈
 
@@ -831,7 +831,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(61)
+                #region 步序(61) KR_滾布除皺A動作_開始
                 case 61:
                     while (_loopStop) { } //暫停迴圈
 
@@ -842,7 +842,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(62)
+                #region 步序(62) KR_滾布除皺A動作_完成
                 case 62:
                     while (_loopStop) { } //暫停迴圈
 
@@ -936,7 +936,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(70)
+                #region 步序(70) MR_進入B區放料動作_準備
                 case 70:
                     while (_loopStop) { } //暫停迴圈
 
@@ -947,7 +947,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(71)
+                #region 步序(71) MR_進入B區放料動作_開始
                 case 71:
                     while (_loopStop) { } //暫停迴圈
 
@@ -958,7 +958,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(72)
+                #region 步序(72) MR_進入B區放料動作_完成
                 case 72:
                     while (_loopStop) { } //暫停迴圈
 
@@ -996,7 +996,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(75)
+                #region 步序(75) KR_壓布動作_準備
                 case 75:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1007,7 +1007,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(76)
+                #region 步序(76) KR_壓布動作_開始
                 case 76:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1024,7 +1024,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(77)
+                #region 步序(77) KR_壓布動作_完成
                 case 77:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1057,7 +1057,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(80)
+                #region 步序(80) 觸發視覺取像
                 case 80:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1068,7 +1068,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(81)
+                #region 步序(81) 觸發視覺取像(取得路徑)
                 case 81:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1117,7 +1117,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(85)
+                #region 步序(85) MR_進入B區除皺動作_準備
                 case 85:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1128,7 +1128,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(86)
+                #region 步序(86) MR_進入B區除皺動作_開始
                 case 86:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1145,7 +1145,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(87)
+                #region 步序(87) MR_進入B區除皺動作_完成
                 case 87:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1178,7 +1178,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(90)
+                #region 步序(90) KR_滾布除皺B動作_準備
                 case 90:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1199,7 +1199,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(91)
+                #region 步序(91) KR_滾布除皺B動作_開始
                 case 91:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1210,7 +1210,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(92)
+                #region 步序(92) KR_滾布除皺B動作_完成
                 case 92:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1304,7 +1304,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(100)
+                #region 步序(100) MR_進入C區放料動作_準備
                 case 100:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1325,7 +1325,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(101)
+                #region 步序(101) MR_進入C區放料動作_開始
                 case 101:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1336,7 +1336,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(102)
+                #region 步序(102) MR_進入C區放料動作_完成
                 case 102:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1369,7 +1369,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(105)
+                #region 步序(105) KR_壓布動作_準備
                 case 105:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1380,7 +1380,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(106)
+                #region 步序(106) KR_壓布動作_開始
                 case 106:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1397,7 +1397,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(107)
+                #region 步序(107) KR_壓布動作_完成
                 case 107:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1430,7 +1430,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(110)
+                #region 步序(110) 觸發視覺取像
                 case 110:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1441,7 +1441,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(111)
+                #region 步序(111) 觸發視覺取像(取得路徑)
                 case 111:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1490,7 +1490,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(115)
+                #region 步序(115) MR_進入C區除皺動作_準備
                 case 115:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1501,7 +1501,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(116)
+                #region 步序(116) MR_進入C區除皺動作_開始
                 case 116:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1518,7 +1518,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(117)
+                #region 步序(117) MR_進入C區除皺動作_完成
                 case 117:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1551,7 +1551,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(120)
+                #region 步序(120) KR_滾布除皺C動作_準備
                 case 120:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1562,7 +1562,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(121)
+                #region 步序(121) KR_滾布除皺C動作_開始
                 case 121:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1573,7 +1573,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(122)
+                #region 步序(122) KR_滾布除皺C動作_完成
                 case 122:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1611,7 +1611,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(125)
+                #region 步序(125) 關閉夾爪汽缸
                 case 125:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1622,7 +1622,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(126)
+                #region 步序(126) 關閉夾爪汽缸(完成)
                 case 126:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1672,7 +1672,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(130)
+                #region 步序(130) MR_復位動作_準備
                 case 130:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1693,7 +1693,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(131)
+                #region 步序(131) MR_復位動作_開始
                 case 131:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1704,7 +1704,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(132)
+                #region 步序(132) MR_復位動作_完成
                 case 132:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1765,7 +1765,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(137)
+                #region 步序(137) 張數計數
                 case 137:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1798,7 +1798,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(140)
+                #region 步序(140) 判斷是否第五張
                 case 140:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1809,7 +1809,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(141)
+                #region 步序(141) 判斷第五張後是否布料復位
                 case 141:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1858,7 +1858,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(145)
+                #region 步序(145) KR_第五張滾布除皺動作_準備
                 case 145:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1869,7 +1869,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(146)
+                #region 步序(146) KR_第五張滾布除皺動作_開始
                 case 146:
                     while (_loopStop) { } //暫停迴圈
 
@@ -1886,7 +1886,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(147)
+                #region 步序(147) KR_第五張滾布除皺動作_完成
                 case 147:
                     while (_loopStop) { } //暫停迴圈
 
@@ -2534,7 +2534,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(200)
+                #region 步序(200) 進入排料動作
                 case 200:
                     while (_loopStop) { } //暫停迴圈
 
@@ -2660,7 +2660,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(210)
+                #region 步序(210) 排料動作開始
                 case 210:
                     while (_loopStop) { } //暫停迴圈
 
@@ -2671,7 +2671,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(211)
+                #region 步序(211) 判斷組裝張數
                 case 211:
                     while (_loopStop) { } //暫停迴圈
 
@@ -2682,7 +2682,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(212)
+                #region 步序(212) 汽缸復位(股)_啟動
                 case 212:
                     while (_loopStop) { } //暫停迴圈
 
@@ -2698,7 +2698,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(213)
+                #region 步序(213) 汽缸復位(股)_啟動到位
                 case 213:
                     while (_loopStop) { } //暫停迴圈
 
@@ -2709,7 +2709,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(214)
+                #region 步序(214) 汽缸進位(紗)_啟動
                 case 214:
                     while (_loopStop) { } //暫停迴圈
 
@@ -2720,7 +2720,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(215)
+                #region 步序(215) 汽缸進位(紗)_啟動到位
                 case 215:
                     while (_loopStop) { } //暫停迴圈
 
@@ -2781,7 +2781,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(220)
+                #region 步序(220) MR_排料區取料動作_準備
                 case 220:
                     while (_loopStop) { } //暫停迴圈
 
@@ -2792,7 +2792,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(221)
+                #region 步序(221) MR_排料區取料動作_開始
                 case 221:
                     while (_loopStop) { } //暫停迴圈
 
@@ -2803,7 +2803,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(222)
+                #region 步序(222) MR_排料區取料動作_完成
                 case 222:
                     while (_loopStop) { } //暫停迴圈
 
@@ -2841,7 +2841,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(225)
+                #region 步序(225) 開啟柏努力汽缸
                 case 225:
                     while (_loopStop) { } //暫停迴圈
 
@@ -2852,7 +2852,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(226)
+                #region 步序(226) 開啟柏努力汽缸(完成)
                 case 226:
                     while (_loopStop) { } //暫停迴圈
 
@@ -2902,7 +2902,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(230)
+                #region 步序(230) MR_取料提高動作_準備
                 case 230:
                     while (_loopStop) { } //暫停迴圈
 
@@ -2923,7 +2923,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(231)
+                #region 步序(231) MR_取料提高動作_開始
                 case 231:
                     while (_loopStop) { } //暫停迴圈
 
@@ -2934,7 +2934,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(232)
+                #region 步序(232) MR_取料提高動作_完成
                 case 232:
                     while (_loopStop) { } //暫停迴圈
 
@@ -2967,7 +2967,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(235)
+                #region 步序(235) 開啟夾爪汽缸
                 case 235:
                     while (_loopStop) { } //暫停迴圈
 
@@ -2978,7 +2978,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(236)
+                #region 步序(236) 開啟夾爪汽缸(完成)
                 case 236:
                     while (_loopStop) { } //暫停迴圈
 
@@ -2995,7 +2995,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(237)
+                #region 步序(237) 關閉柏努力汽缸
                 case 237:
                     while (_loopStop) { } //暫停迴圈
 
@@ -3006,7 +3006,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(238)
+                #region 步序(238) 關閉柏努力汽缸(完成)
                 case 238:
                     while (_loopStop) { } //暫停迴圈
 
@@ -3028,7 +3028,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(240)
+                #region 步序(240) MR_原位取料區放料動作_準備
                 case 240:
                     while (_loopStop) { } //暫停迴圈
 
@@ -3039,7 +3039,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(241)
+                #region 步序(241) MR_原位取料區放料動作_開始
                 case 241:
                     while (_loopStop) { } //暫停迴圈
 
@@ -3050,7 +3050,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(242)
+                #region 步序(242) MR_原位取料區放料動作_完成
                 case 242:
                     while (_loopStop) { } //暫停迴圈
 
@@ -3088,7 +3088,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(245)
+                #region 步序(245) 關閉夾爪汽缸
                 case 245:
                     while (_loopStop) { } //暫停迴圈
 
@@ -3099,7 +3099,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(246)
+                #region 步序(246) 關閉夾爪汽缸(完成)
                 case 246:
                     while (_loopStop) { } //暫停迴圈
 
@@ -3149,7 +3149,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(250)
+                #region 步序(250) MR_復位動作_準備
                 case 250:
                     while (_loopStop) { } //暫停迴圈
 
@@ -3160,7 +3160,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(251)
+                #region 步序(251) MR_復位動作_開始
                 case 251:
                     while (_loopStop) { } //暫停迴圈
 
@@ -3171,7 +3171,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(252)
+                #region 步序(252) MR_復位動作_完成
                 case 252:
                     while (_loopStop) { } //暫停迴圈
 
@@ -3209,7 +3209,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(255)
+                #region 步序(255) 回放張數計數
                 case 255:
                     while (_loopStop) { } //暫停迴圈
 
@@ -3742,7 +3742,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(298)
+                #region 步序(298) 流程結束
                 case 298:
                     while (_loopStop) { } //暫停迴圈
 
@@ -3753,7 +3753,7 @@ namespace MIRDC_Puckering.AutoLoop
                     break;
 
                 #endregion
-                #region 步序(299)
+                #region 步序(299) 流程復歸
                 case 299:
                     while (_loopStop) { } //暫停迴圈
 
@@ -3772,11 +3772,13 @@ namespace MIRDC_Puckering.AutoLoop
         /// </summary>
         public void ResetData()
         {
-            Other_signal_a1 = false;
-            Other_signal_a2 = false;
-            Other_signal_a3 = false;
-            Other_signal_a4 = false;
-            Other_StepNum = "0";
+            SYSC_signal_a1 = false;
+            SYSC_signal_a2 = false;
+            SYSC_signal_a3 = false;
+            SYSC_signal_a4 = false;
+            SYSC_StepNum = "0";
         }
     }
+
+    
 }
