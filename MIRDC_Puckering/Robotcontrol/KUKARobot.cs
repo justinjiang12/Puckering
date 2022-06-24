@@ -1059,7 +1059,7 @@ namespace MxAutomation_Example
         /// <summary>
         /// read jog state (justin)
         /// </summary>
-        private void ReadJogState()
+        public void ReadJogState()
         {
             label20.Text = "Busy : " + _mxJog.BUSY.ToString();
             label19.Text = "Active : " + _mxJog.ACTIVE.ToString();

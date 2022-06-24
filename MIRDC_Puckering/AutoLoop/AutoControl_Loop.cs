@@ -80,13 +80,16 @@ namespace MIRDC_Puckering.AutoLoop
 
                     //填入該步序動作區塊
 
+                    //Puckering_MainForm.F_MRC.RobotServoOn();
+                    //Puckering_MainForm.F_KRC.ReadJogState();
+                    //Puckering_MainForm.F_IO.DO_Write(1, true);
+                    //Puckering_MainForm.F_IO.DI_Read(0);
 
                     //if (!Puckering_MainForm.F_IO.DI_Read(0)) {Puckering_MainForm.F_IO.DO_Write(1, true);}//IO輸出
                     e_Signal_output_1(1, true);//委派觸發
                     //判斷該回饋訊號
                     if (Puckering_MainForm.F_IO.DI_Read(1))
                     {
-
                         _StepNum = _step.ToString(); //步序顯示用
                         _step++; //下一步序控制
                     }
@@ -100,6 +103,8 @@ namespace MIRDC_Puckering.AutoLoop
                     while (_loopStop) { } //暫停迴圈
 
                     //填入該步序動作區塊
+                    //Puckering_MainForm.F_MRC.RobotServoOn();
+
 
                     _StepNum = _step.ToString(); //步序顯示用 
                     _step++; //下一步序控制

@@ -72,8 +72,8 @@ namespace MIRDC_Puckering.Robotcontrol
         {
             #region for **** button
 
-            int f_i_state = 0;
-            bool f_b_state = false;
+            //int f_i_state = 0;
+            //bool f_b_state = false;
 
             int iStep = 1;
             string sPrgName = "", sCmdLines = "", sDefPos = "", sPosRef = "", sPrgServoOn = "", sSPD = "", sMvs = "", sPrgHlt = "";
@@ -922,7 +922,7 @@ namespace MIRDC_Puckering.Robotcontrol
 
             var listOfStrings = new List<string>();
             string[] ss = listOfStrings.ToArray();
-            int p_num = 0;
+            //int p_num = 0;
 
             dataGridView1.DataSource = PathDataList;
 
@@ -966,8 +966,8 @@ namespace MIRDC_Puckering.Robotcontrol
         /// </summary>
         private void GetPathCData()
         {
-            short p;
-            short p_p;
+            //short p;
+            //short p_p;
             string[] P_data = new string[3]; //X,Y,Z
             string[] PP_data = new string[3]; //X',Y',Z'
             float[] P_fdata = new float[3]; //X,Y,Z (float)
@@ -1031,8 +1031,8 @@ namespace MIRDC_Puckering.Robotcontrol
         /// </summary>
         private void GetPathXData()
         {
-            short p;
-            short p_p;
+            //short p;
+            //short p_p;
             string[] P_data = new string[3]; //X,Y,Z
             string[] PP_data = new string[3]; //X',Y',Z'
             float[] P_fdata = new float[3]; //X,Y,Z (float)
@@ -1099,13 +1099,13 @@ namespace MIRDC_Puckering.Robotcontrol
         /// </summary>
         private void GetPathYData()
         {
-            short p;
-            short p_p;
+            //short p;
+            //short p_p;
             string[] P_data = new string[3]; //X,Y,Z
             string[] PP_data = new string[3]; //X',Y',Z'
             float[] P_fdata = new float[3]; //X,Y,Z (float)
             float[] PP_fdata = new float[3]; //X',Y',Z'(float)
-            double Prv_C_Data;
+            //double Prv_C_Data;
             string Y_Data = "";
 
 
@@ -1381,7 +1381,7 @@ namespace MIRDC_Puckering.Robotcontrol
 
                     #region 寫入
                     case 1:
-                        //*   prg_lis.Items.Add(FileName);
+                        //   prg_lis.Items.Add(FileName);
                         break;
                     #endregion
 
@@ -1394,13 +1394,13 @@ namespace MIRDC_Puckering.Robotcontrol
 
                     #region 刪除
                     case 3:
-                        //*   prg_lis.Items.Remove(FileName);
+                        //   prg_lis.Items.Remove(FileName);
                         break;
                     #endregion
 
                     #region 清除
                     case 4:
-                        //*   prg_lis.Items.Clear();
+                        //   prg_lis.Items.Clear();
                         break;
                         #endregion
                 }
@@ -1493,8 +1493,8 @@ namespace MIRDC_Puckering.Robotcontrol
         /// <param name="RP_data"></param>
         private void CreatRobotPathABC(int p_num, ref string[] RP_data)
         {
-            short p;
-            short p_p;
+            //short p;
+            //short p_p;
             string[] P_data = new string[3]; //X,Y,Z
             string[] PP_data = new string[3]; //X',Y',Z'
             float[] P_fdata = new float[3]; //X,Y,Z (float)
@@ -1898,6 +1898,7 @@ namespace MIRDC_Puckering.Robotcontrol
         /// <param name="sender"></param>
         /// <param name="e"></param>
         //Robot Received Data Event
+        //private void axMelfaRxM1_MsgRecvEvent()
         private void axMelfaRxM1_MsgRecvEvent(object sender, EventArgs e)
         {
             int lReqID = 0;
@@ -1905,6 +1906,8 @@ namespace MIRDC_Puckering.Robotcontrol
             int lStatus = 0;
             int lError = 0;
             int lRobotID = 0;
+            //bool IsRobotCommOK = false;
+
             try
             {
                 int lState = axMelfaRxM1.GetRecvDataM(ref lRobotID, ref lReqID, ref sRecvData, ref lStatus, ref lError);
@@ -1915,7 +1918,7 @@ namespace MIRDC_Puckering.Robotcontrol
                     string s1 = "E" + lReqID.ToString() + "-" + lStatus.ToString() + "-" + lError.ToString() + " " + sRecvData;
                     //cLog.WriteLog((int)LOGTYPE.ALERT, s1);                    
                     //AddInfoInvoke.Invoke((int)LOGTYPE.ALERT, "Robot", s1);
-                    //TB_ConnErrorMSG.Text = s1;
+                    //label7.Text = s1;
                     Console.WriteLine(s1);
                     return;
                 }
@@ -1936,7 +1939,7 @@ namespace MIRDC_Puckering.Robotcontrol
                                 sOneData = axMelfaRxM1.GetOneData(i, sRecvData); //'one data get
                                 sData += sOneData; //+ "\r\n"; //'add <CR>  <LF>
                             }
-                            //* txtProgramEdit.Text = sData;
+                            //label7.Text = sData;
                             break;
                         case 104: //upload prog
                             //AddInfoInvoke.Invoke((int)LOGTYPE.COMM, "Robot", "(Info) Upload Program Finish");
@@ -1960,6 +1963,7 @@ namespace MIRDC_Puckering.Robotcontrol
                                 //* IsRobotCommOK = false;
                                 //string s1 = "(E" + lReqID.ToString() + " )The received data number is illegal. ";
                                 //AddInfoInvoke.Invoke((int)LOGTYPE.ALERT, "Robot", s1);
+                                
                                 return;
                             }
                             break;
@@ -1992,7 +1996,7 @@ namespace MIRDC_Puckering.Robotcontrol
                             lbRbt12.Text = (iVal & (Idx << 13)).ToString(); //Servo on/off status
                             lbRbt13.Text = (iVal & (Idx << 14)).ToString(); //Stopped/operating
                             lbRbt14.Text = (iVal & (Idx << 15)).ToString(); // Invalid/valid operation right
-
+                            label7.Text
                             IsRobotRunning = (iVal & (Idx << 14)) > 0;
                             IsRobotProgExec = (iVal & (Idx << 1)) <= 0;
 
@@ -2000,8 +2004,41 @@ namespace MIRDC_Puckering.Robotcontrol
                             //IsRobotStatusRefresh = true;
                             */
 
+                            //label7.Text = (iVal & (Idx << 13)).ToString(); //Servo on/off status
+
+                            #region <Justin>
+
+                            sData = axMelfaRxM1.GetOneData(0, sRecvData); // 取得狀態資訊
+                            string[] tmp200 = sRecvData.Split('\n');
+                            if (tmp200.Length < 9) return;
+
+
+                            lab_tmp202.Text = "tmp200[2] : "+ tmp200[2];
+                            lab_tmp205.Text = "tmp200[5] : "+ tmp200[5];
+                            lab_tmp206.Text = "tmp200[6] : "+tmp200[6];
+                            lab_tmp209.Text = "tmp200[9] : "+tmp200[9];
+                            int iVal = Convert.ToInt32(tmp200[9], 16);
+                            int Idx = 1;
+                            bool IsRobotRunning;
+                            lab_emg.Text = "EMG : "+(iVal & (Idx << 0)).ToString(); //During emergency stop
+                            lab_stop.Text = "Stopped : "+(iVal & (Idx << 1)).ToString(); //Paused or stopped
+                            lab_pus.Text = "Paused : "+(iVal & (Idx << 2)).ToString(); //Paused
+                            lab_cyc.Text = "Cycle : "+(iVal & (Idx << 8)).ToString(); //Cycle/continuous operation
+                            lab_cycb.Text = "Cycle being : "+(iVal & (Idx << 9)).ToString(); //Cycle being operated/stopped
+                            lab_at.Text = "AUTO/TEACH : "+(iVal & (Idx << 11)).ToString(); //AUTO/TEACH mode
+                            lab_stepop.Text = "A step op : "+(iVal & (Idx << 12)).ToString(); //A step operation or jog operation is being executed
+                            lab_svo.Text = "Svo on/off : "+(iVal & (Idx << 13)).ToString(); //Servo on/off status
+                            lab_stopped.Text = "Stopped : "+(iVal & (Idx << 14)).ToString(); //Stopped/operating
+                            lab_inv.Text = "Invalid : "+(iVal & (Idx << 15)).ToString(); // Invalid/valid operation right
+                            IsRobotRunning = (iVal & (Idx << 14)) > 0;
+                            lab_busy.Text = IsRobotRunning ? "Running : Busy" : "Running : Wait";
+
+
+                            #endregion
+
                             break;
                         case 203:
+
                             sData = axMelfaRxM1.GetOneData(0, sRecvData);
                             lNum = Convert.ToInt32(sData);
                             if (lCnt == (lNum * 8 + 1))
@@ -2021,11 +2058,13 @@ namespace MIRDC_Puckering.Robotcontrol
                                 string s1 = $"(E{lReqID})The received data number is illegal. ";
                                 //cLog.WriteLog((int)LOGTYPE.ALERT, s1);
                                 //AddInfoInvoke.Invoke((int)LOGTYPE.ALERT, "Robot", s1);
-                                //MessageBox.Show(s1, "Error", MessageBoxButtons.OK);
+                                MessageBox.Show(s1, "Error", MessageBoxButtons.OK);
                                 return;
                             }
                             break;
+
                         case 214:
+
                             sData = axMelfaRxM1.GetOneData(0, sRecvData);
                             lNum = Convert.ToInt32(sData);
                             //* lbInput.Text = sRecvData;
@@ -2039,7 +2078,9 @@ namespace MIRDC_Puckering.Robotcontrol
                                 //* bDO[i] = (iVal214 & 1 << (i % 4)) > 0;
                             }
                             break;
+
                         case 235:
+
                             if (lCnt == 24)
                             {
                                 lEleNo = 2;
@@ -2056,10 +2097,10 @@ namespace MIRDC_Puckering.Robotcontrol
                                     {
                                         //* sPosOrthogonal[i] = axMelfaRxM1.GetOneData(lEleNo + i, sRecvData);
                                     }
-                                    sData = sData + axMelfaRxM1.GetOneData(lEleNo + i, sRecvData) + " , ";
+                                    sData = sData + axMelfaRxM1.GetOneData(lEleNo + i, sRecvData) + " , \r\n";
                                 }
                                 sData.Remove(sData.Length - 3); //'The last ','is deleted.
-                                                                //txtCurrPos.Text = sData;
+                                //label7.Text = sData;
                                                                 //* ShowPosition();
                             }
                             else
@@ -2070,11 +2111,16 @@ namespace MIRDC_Puckering.Robotcontrol
                                 return;
                             }
                             break;
+
                         case 242: // Get slot status.
                             //* if (IsRobotCommOK == false) return;
 
                             sData = axMelfaRxM1.GetOneData(0, sRecvData);
                             string[] tmp242 = sRecvData.Split('\n');
+                            string RobotCurrentProgName = "";
+                            short RobotCurrentExecLine;
+                            short RobotCurrentOverride;
+                            string RobotCurrentErrorNo;
                             //Slot No
                             //Program Name
                             //Execution Line No.
@@ -2092,13 +2138,35 @@ namespace MIRDC_Puckering.Robotcontrol
                             //* lbStateSlotStatus.Text = tmp242[4];
                             //* lbStateOpStatus.Text = tmp242[5];
                             //* lbStateErrorNo.Text = tmp242[6];
-
-                            //* if (tmp242[1].Length > 4) RobotCurrentProgName = tmp242[1].Substring(0, tmp242[1].Length - 4);
+                            // if (tmp242[1].Length > 4) RobotCurrentProgName = tmp242[1].Substring(0, tmp242[1].Length - 4);
                             //* RobotCurrentExecLine = Convert.ToInt16(tmp242[2]);
                             //* RobotCurrentOverride = Convert.ToInt16(tmp242[3]);
                             //* RobotCurrentErrorNo = tmp242[6];
-
+                            //label7.Text = tmp242[5];
                             //* lbRbtProgName.Text = RobotCurrentProgName;
+                            //label7.Text = RobotCurrentProgName;
+
+
+                            #region <Justin>
+
+                            lab_SlotNo.Text = "SlotNo : "+tmp242[0];
+                            lab_ProNam.Text = "ProgName : "+tmp242[1];
+                            lab_ExecLine.Text = "ExecLine : "+tmp242[2];
+                            lab_Override.Text = "Override : "+tmp242[3];
+                            lab_SlotStatus.Text = "SlotStatus : "+tmp242[4];
+                            lab_OpStatus.Text = "OpStatus : "+tmp242[5];
+                            lab_ErrorNo.Text = "ErrorNo : "+tmp242[6];
+                            if (tmp242[1].Length > 4){ RobotCurrentProgName = tmp242[1].Substring(0, tmp242[1].Length - 4); }
+                                
+                            RobotCurrentExecLine = Convert.ToInt16(tmp242[2]);
+                            RobotCurrentOverride = Convert.ToInt16(tmp242[3]);
+                            RobotCurrentErrorNo = tmp242[6];
+                            lab_ProNam.Text = RobotCurrentProgName;
+                            lab_CurrentErrorNo.Text = "CurrentErrorNo : "+RobotCurrentErrorNo;
+                            lab_CurrentExecLine.Text = "CurrentExecLine : "+RobotCurrentExecLine.ToString();
+                            lab_CurrentOverride.Text = "CurrentOverride : "+RobotCurrentOverride.ToString();
+
+                            #endregion
 
                             int iOpStatus = Convert.ToInt32(tmp242[5], 16);
                             //int iOpStatus = Convert.ToInt16( tmp2[5]);
@@ -2111,19 +2179,32 @@ namespace MIRDC_Puckering.Robotcontrol
 
                             //IsRobotRunning = iV > 0 ? true : false;
                             //IsRobotProgExec = iV > 0 ? false : true;
-                            //lbRbtRunning.Text = (IsRobotRunning == true) ? "Rbt Running" : "Rbt Idle";
+                            //label7.Text = (IsRobotRunning == true) ? "Rbt Running" : "Rbt Idle";
                             //IsRobotStatusRefresh = true;
 
+
                             break;
+
                         case 400: // Exec Prog
                             //AddInfoInvoke.Invoke((int)LOGTYPE.COMM, "Robot", "(Info) Command Robot Strat Process Finish");
                             break;
+
                         case 123:
                             break;
+
                         default:
                             //* txtRecvID.Text = lReqID.ToString();
                             //* txtRecvStatus.Text = lStatus.ToString();
                             //* txtRecvError.Text = lError.ToString();
+                            
+                            #region <Justin>
+
+                            lab_RecvID.Text = lReqID.ToString();
+                            lab_RecvStatus.Text = lStatus.ToString();
+                            lab_RecvError.Text = lError.ToString();
+
+                            #endregion
+
                             sData = "";
                             lCnt = axMelfaRxM1.GetDataCnt(sRecvData); //'data number
                             for (int i = 0; i < lCnt; i++)
@@ -2132,6 +2213,7 @@ namespace MIRDC_Puckering.Robotcontrol
                                 sData = sData + sOneData + "\r\n"; //'add <CR>  <LF>
                             }
                             //* txtRecvData.Text = sData;
+                            lab_RecvData.Text = sData;
                             break;
                     }
 
@@ -2300,7 +2382,7 @@ namespace MIRDC_Puckering.Robotcontrol
             string PathProgram = "";
             string Prog_Name = textBox3.Text + "\n";
             //string Prog_Name = textBox3.Text + "\n";
-            string Prog_ServoOn = "SERVO ON";
+            //string Prog_ServoOn = "SERVO ON";
             string Prog_CNT = "Cnt 1";
             string Prog_Work = "Base 1";
             string Prog_Tool = "Tool 2";
@@ -2347,10 +2429,10 @@ namespace MIRDC_Puckering.Robotcontrol
         public void RobotCompilePointData()
         {
             textBox2.Clear();
-            int step = 1;
+            //int step = 1;
             string PathPointData = "";
             string Prog_Name = textBox3.Text + "\n";
-            string Prog_ServoOn = "SERVO ON\n";
+            //string Prog_ServoOn = "SERVO ON\n";
             string sLines = Convert.ToString(dataGridView1.RowCount) + "\n";
             PathPointData = Prog_Name + sLines;
 
@@ -2418,6 +2500,8 @@ namespace MIRDC_Puckering.Robotcontrol
 
 
         #endregion
+
+
     }
 
 

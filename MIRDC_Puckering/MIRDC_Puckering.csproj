@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -159,7 +160,6 @@
     <None Include="Image\Welding_2.png" />
     <None Include="Image\Welding_1.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <COMReference Include="AxMELFARXMLib">
       <Guid>{1E9AEBC5-891B-11D6-8661-00D05915F009}</Guid>
